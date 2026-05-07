@@ -1,0 +1,39 @@
+name: Daily Data Scraper
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # 6h UTC = 3h BRT
+  workflow_dispatch:       # permite rodar manualmente
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install playwright
+          playwright install chromium --with-deps
+
+      - name: Run scraper – all leagues
+        run: python scraper.py --liga all
+        timeout-minutes: 50
+
+      - name: Commit updated data
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add *.json
+          git diff --cached --quiet || git commit -m "chore: atualiza dados das ligas $(date +'%Y-%m-%d')"
+          git push

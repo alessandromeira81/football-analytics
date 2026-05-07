@@ -1,0 +1,490 @@
+{
+  "markets": [
+    {
+      "sourceId": 193004668,
+      "structureType": 1,
+      "marketId": 1,
+      "marketName": "Full time",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 306529308,
+      "marketGroup": "1X2",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "163/100",
+          "fractionalValue": "5/2",
+          "sourceId": 1069003195,
+          "name": "1",
+          "change": 1
+        },
+        {
+          "initialFractionalValue": "21/10",
+          "fractionalValue": "2/1",
+          "sourceId": 1069003197,
+          "name": "X",
+          "change": -1
+        },
+        {
+          "initialFractionalValue": "17/10",
+          "fractionalValue": "13/10",
+          "sourceId": 1069003198,
+          "name": "2",
+          "change": -1
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 1,
+      "marketId": 2,
+      "marketName": "Double chance",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 306534966,
+      "marketGroup": "Double chance",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "4/9",
+          "fractionalValue": "4/7",
+          "sourceId": 1089097072,
+          "name": "1X",
+          "change": 1
+        },
+        {
+          "initialFractionalValue": "4/9",
+          "fractionalValue": "2/7",
+          "sourceId": 1089097068,
+          "name": "X2",
+          "change": -1
+        },
+        {
+          "initialFractionalValue": "4/11",
+          "fractionalValue": "4/11",
+          "sourceId": 1089097071,
+          "name": "12",
+          "change": 0
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 1,
+      "marketId": 3,
+      "marketName": "1st half",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 306534968,
+      "marketGroup": "1X2",
+      "marketPeriod": "1st half",
+      "choices": [
+        {
+          "initialFractionalValue": "12/5",
+          "fractionalValue": "10/3",
+          "sourceId": 1089097061,
+          "name": "1",
+          "change": 1
+        },
+        {
+          "initialFractionalValue": "1/1",
+          "fractionalValue": "20/21",
+          "sourceId": 1089097063,
+          "name": "X",
+          "change": -1
+        },
+        {
+          "initialFractionalValue": "5/2",
+          "fractionalValue": "21/10",
+          "sourceId": 1089097059,
+          "name": "2",
+          "change": -1
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 1,
+      "marketId": 4,
+      "marketName": "Draw no bet",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 306534970,
+      "marketGroup": "Draw no bet",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "5/6",
+          "fractionalValue": "11/8",
+          "sourceId": 1089097118,
+          "name": "1",
+          "change": 1
+        },
+        {
+          "initialFractionalValue": "5/6",
+          "fractionalValue": "8/15",
+          "sourceId": 1089097119,
+          "name": "2",
+          "change": -1
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 1,
+      "marketId": 5,
+      "marketName": "Both teams to score",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 306534972,
+      "marketGroup": "Both teams to score",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "1/1",
+          "fractionalValue": "21/20",
+          "sourceId": 1089100967,
+          "name": "Yes",
+          "change": 1
+        },
+        {
+          "initialFractionalValue": "3/4",
+          "fractionalValue": "7/10",
+          "sourceId": 1089100970,
+          "name": "No",
+          "change": -1
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 2,
+      "marketId": 9,
+      "marketName": "Match goals",
+      "choiceGroup": "0.5",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 306534990,
+      "marketGroup": "Match goals",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "1/10",
+          "fractionalValue": "1/9",
+          "sourceId": 1089100984,
+          "name": "Over",
+          "change": 1
+        },
+        {
+          "initialFractionalValue": "6/1",
+          "fractionalValue": "11/2",
+          "sourceId": 1089100976,
+          "name": "Under",
+          "change": -1
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 2,
+      "marketId": 9,
+      "marketName": "Match goals",
+      "choiceGroup": "1.5",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 306534989,
+      "marketGroup": "Match goals",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "4/9",
+          "fractionalValue": "1/2",
+          "sourceId": 1089100978,
+          "name": "Over",
+          "change": 1
+        },
+        {
+          "initialFractionalValue": "7/4",
+          "fractionalValue": "13/8",
+          "sourceId": 1089100980,
+          "name": "Under",
+          "change": -1
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 2,
+      "marketId": 9,
+      "marketName": "Match goals",
+      "choiceGroup": "2.5",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 306534980,
+      "marketGroup": "Match goals",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "1/500",
+          "fractionalValue": "13/8",
+          "sourceId": 1069003200,
+          "name": "Over",
+          "change": 1
+        },
+        {
+          "initialFractionalValue": "50/1",
+          "fractionalValue": "1/2",
+          "sourceId": 1069003205,
+          "name": "Under",
+          "change": -1
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 2,
+      "marketId": 9,
+      "marketName": "Match goals",
+      "choiceGroup": "3.5",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 306534986,
+      "marketGroup": "Match goals",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "7/2",
+          "fractionalValue": "4/1",
+          "sourceId": 1089100985,
+          "name": "Over",
+          "change": 1
+        },
+        {
+          "initialFractionalValue": "1/5",
+          "fractionalValue": "1/6",
+          "sourceId": 1089100981,
+          "name": "Under",
+          "change": -1
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 2,
+      "marketId": 9,
+      "marketName": "Match goals",
+      "choiceGroup": "4.5",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 306534984,
+      "marketGroup": "Match goals",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "9/1",
+          "fractionalValue": "10/1",
+          "sourceId": 1089100986,
+          "name": "Over",
+          "change": 1
+        },
+        {
+          "initialFractionalValue": "1/16",
+          "fractionalValue": "1/20",
+          "sourceId": 1089100990,
+          "name": "Under",
+          "change": -1
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 2,
+      "marketId": 9,
+      "marketName": "Match goals",
+      "choiceGroup": "5.5",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 306534982,
+      "marketGroup": "Match goals",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "20/1",
+          "fractionalValue": "22/1",
+          "sourceId": 1089100982,
+          "name": "Over",
+          "change": 1
+        },
+        {
+          "initialFractionalValue": "1/66",
+          "fractionalValue": "1/80",
+          "sourceId": 1089100994,
+          "name": "Under",
+          "change": -1
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 2,
+      "marketId": 9,
+      "marketName": "Match goals",
+      "choiceGroup": "6.5",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 307326977,
+      "marketGroup": "Match goals",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "50/1",
+          "fractionalValue": "50/1",
+          "sourceId": 1089100973,
+          "name": "Over",
+          "change": 0
+        },
+        {
+          "initialFractionalValue": "1/500",
+          "fractionalValue": "1/500",
+          "sourceId": 1089100983,
+          "name": "Under",
+          "change": 0
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 1,
+      "marketId": 17,
+      "marketName": "Asian handicap",
+      "isLive": false,
+      "fid": 193004669,
+      "suspended": false,
+      "id": 306534976,
+      "marketGroup": "Asian Handicap",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "9/10",
+          "fractionalValue": "9/10",
+          "sourceId": 1069003210,
+          "name": "(0.25) Pisa",
+          "change": 0
+        },
+        {
+          "initialFractionalValue": "19/20",
+          "fractionalValue": "19/20",
+          "sourceId": 1069003211,
+          "name": "(-0.25) Lecce",
+          "change": 0
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 2,
+      "marketId": 20,
+      "marketName": "Cards in match",
+      "choiceGroup": "3.5",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 307177114,
+      "marketGroup": "Total Cards",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "5/6",
+          "fractionalValue": "5/6",
+          "sourceId": 1190798775,
+          "name": "Over",
+          "change": 0
+        },
+        {
+          "initialFractionalValue": "5/6",
+          "fractionalValue": "5/6",
+          "sourceId": 1190798770,
+          "name": "Under",
+          "change": 0
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 2,
+      "marketId": 21,
+      "marketName": "Corners 2-Way",
+      "choiceGroup": "9.5",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 306682276,
+      "marketGroup": "Corners 2-Way",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "1/1",
+          "fractionalValue": "1/1",
+          "sourceId": 1162366295,
+          "name": "Over",
+          "change": 0
+        },
+        {
+          "initialFractionalValue": "8/11",
+          "fractionalValue": "8/11",
+          "sourceId": 1162366300,
+          "name": "Under",
+          "change": 0
+        }
+      ]
+    },
+    {
+      "sourceId": 193004668,
+      "structureType": 1,
+      "marketId": 6,
+      "marketName": "First team to score",
+      "isLive": false,
+      "fid": 193004668,
+      "suspended": false,
+      "id": 306534974,
+      "marketGroup": "First team to score",
+      "marketPeriod": "Full-time",
+      "choices": [
+        {
+          "initialFractionalValue": "1/1",
+          "fractionalValue": "11/8",
+          "sourceId": 1089097056,
+          "name": "Pisa",
+          "change": 1
+        },
+        {
+          "initialFractionalValue": "13/2",
+          "fractionalValue": "11/2",
+          "sourceId": 1089097057,
+          "name": "No goal",
+          "change": -1
+        },
+        {
+          "initialFractionalValue": "21/20",
+          "fractionalValue": "5/6",
+          "sourceId": 1089097054,
+          "name": "Lecce",
+          "change": -1
+        }
+      ]
+    }
+  ],
+  "eventId": 13980097
+}

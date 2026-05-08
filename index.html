@@ -272,7 +272,7 @@ select{font-family:var(--mono);font-size:11px;padding:5px 10px;background:var(--
 .pb-val{font-family:var(--mono);font-size:17px;font-weight:800;line-height:1}
 </style>
 </head>
-<body onload="loadEmbeddedAssert()">
+<body onload="loadEmbeddedAssert(); runAutoAssertividade();">
 
 <div class="header">
   <div class="logo" onclick="showHome()">
@@ -1301,9 +1301,13 @@ function registerAssertDay() {
 }
 
 function deleteAssertHistoryEntry(date) {
-  ASSERT_HISTORY = ASSERT_HISTORY.filter(function(h) { return h.date !== date; });
-  localStorage.setItem('assert_history', JSON.stringify(ASSERT_HISTORY));
-  renderResumo();
+  // Sempre exige senha antes de deletar, mesmo que o cadeado já esteja aberto
+  openArbModal(function() {
+    if (!confirm('Remover o histórico do dia ' + date + '? Esta ação não pode ser desfeita.')) return;
+    ASSERT_HISTORY = ASSERT_HISTORY.filter(function(h) { return h.date !== date; });
+    localStorage.setItem('assert_history', JSON.stringify(ASSERT_HISTORY));
+    renderResumo();
+  });
 }
 
 function _applyAssertAndDownload(html, data) {
@@ -1473,6 +1477,137 @@ function autoFillAssertividade() {
   if (nNotFound) msg += '\n⚠️ Jogo não encontrado nos dados: ' + nNotFound;
   if (nNoStat)   msg += '\n❓ Estatística indisponível: ' + nNoStat;
   alert(msg);
+}
+
+// ── Automação completa de assertividade ───────────────────────────────────────
+// Carrega todos os JSONs em paralelo sem afetar a view atual
+function _loadAllLeaguesForAuto(callback) {
+  var files = {
+    brasileirao: 'brasileirao_2026_data.json',
+    premier:     'premier_league_data.json',
+    laliga:      'laliga_data.json',
+    bundesliga:  'bundesliga_data.json',
+    ligue1:      'ligue1_data.json',
+    saudi:       'saudi_data.json',
+    argentina:   'argentina_data.json',
+    seriea:      'seriea_data.json',
+  };
+  window.SCRAPED_DATA = window.SCRAPED_DATA || {};
+  var keys = Object.keys(files);
+  var pending = keys.length;
+  function done() { pending--; if (pending === 0) callback(); }
+  keys.forEach(function(key) {
+    if (window.SCRAPED_DATA[key]) { done(); return; }
+    fetch('./' + files[key])
+      .then(function(r) { return r.json(); })
+      .then(function(json) { window.SCRAPED_DATA[key] = json; done(); })
+      .catch(done);
+  });
+}
+
+// Persiste metadados de TODOS os insights atuais (não só os clicados)
+function _autoSaveAllMeta() {
+  computeAllInsights().forEach(function(b) {
+    if (!localStorage.getItem('assertmeta_' + b.betId)) {
+      _saveAssertMeta(b.betId, {p: b.p, date: b.date, leagueKey: b.leagueKey, leagueName: b.leagueName});
+    }
+  });
+}
+
+// Reconstrói o histórico a partir de TODOS os assert_* salvos (sem alert)
+function _registerAssertDaySilent() {
+  var betMap = {};
+  for (var i = 0; i < localStorage.length; i++) {
+    var k = localStorage.key(i);
+    if (k && k.indexOf('assertmeta_') === 0) {
+      try { betMap[k.slice(11)] = JSON.parse(localStorage.getItem(k)); } catch(e) {}
+    }
+  }
+  computeAllInsights().forEach(function(b) {
+    betMap[b.betId] = {p: b.p, date: b.date, leagueKey: b.leagueKey, leagueName: b.leagueName};
+  });
+  var dateMap = {};
+  Object.keys(betMap).forEach(function(betId) {
+    var st = getAssert(betId);
+    if (st !== 'verde' && st !== 'vermelho') return;
+    var b = betMap[betId];
+    var date = b.date || '—';
+    if (!dateMap[date]) dateMap[date] = { bands: {}, leagues: {} };
+    var bandKey = null;
+    RESUMO_BANDS.forEach(function(band) { if (b.p >= band.min && b.p < band.max) bandKey = band.cls; });
+    if (!bandKey) return;
+    if (!dateMap[date].bands[bandKey]) dateMap[date].bands[bandKey] = { verde: 0, vermelho: 0 };
+    dateMap[date].bands[bandKey][st]++;
+    var lk = b.leagueKey;
+    if (!dateMap[date].leagues[lk]) dateMap[date].leagues[lk] = { name: b.leagueName || lk, bands: {}, total: { verde: 0, vermelho: 0 } };
+    if (!dateMap[date].leagues[lk].bands[bandKey]) dateMap[date].leagues[lk].bands[bandKey] = { verde: 0, vermelho: 0 };
+    dateMap[date].leagues[lk].bands[bandKey][st]++;
+    dateMap[date].leagues[lk].total[st]++;
+  });
+  if (!Object.keys(dateMap).length) return;
+  Object.keys(dateMap).forEach(function(date) {
+    var bands = dateMap[date].bands;
+    var tv = 0, tr = 0;
+    RESUMO_BANDS.forEach(function(band) { var b2 = bands[band.cls] || { verde:0, vermelho:0 }; tv += b2.verde; tr += b2.vermelho; });
+    var entry = { date: date, bands: bands, total: { verde: tv, vermelho: tr }, leagues: dateMap[date].leagues };
+    var idx = -1;
+    ASSERT_HISTORY.forEach(function(h, i) { if (h.date === date) idx = i; });
+    if (idx >= 0) ASSERT_HISTORY[idx] = entry; else ASSERT_HISTORY.push(entry);
+  });
+  ASSERT_HISTORY.sort(function(a, b) { return b.date.localeCompare(a.date); });
+  localStorage.setItem('assert_history', JSON.stringify(ASSERT_HISTORY));
+}
+
+// Preenche automaticamente resultados disponíveis e registra no histórico
+function _autoFillAndRegister() {
+  var sd = window.SCRAPED_DATA || {};
+  var gameIdx = {};
+  Object.keys(LEAGUES_META).forEach(function(key) {
+    var data = sd[key];
+    if (!data || !data.games) return;
+    gameIdx[key] = {};
+    data.games.forEach(function(g) { gameIdx[key][g.homeTeam + '_' + g.awayTeam] = g; });
+  });
+
+  var nFilled = 0;
+  var keys = [];
+  for (var i = 0; i < localStorage.length; i++) { keys.push(localStorage.key(i)); }
+  keys.forEach(function(k) {
+    if (!k || k.indexOf('assertmeta_') !== 0) return;
+    var betId = k.slice(11);
+    if (getAssert(betId) !== 'cinza') return;
+    var meta;
+    try { meta = JSON.parse(localStorage.getItem(k)); } catch(e) { return; }
+    if (!meta || !meta.leagueKey) return;
+    var leagueGames = gameIdx[meta.leagueKey];
+    if (!leagueGames) return;
+    var parts = betId.split('|');
+    if (parts.length < 4) return;
+    var home = parts[1], away = parts[2], label = parts.slice(3).join('|');
+    var game = leagueGames[home + '_' + away];
+    if (!game) return;
+    var result = evaluateBetLabel(label, game);
+    if (!result) return;
+    localStorage.setItem('assert_' + betId, result);
+    nFilled++;
+  });
+
+  if (nFilled > 0) {
+    _registerAssertDaySilent();
+    renderResumo();
+    console.log('[Auto-assertividade] ' + nFilled + ' apostas preenchidas automaticamente.');
+  }
+}
+
+// Ponto de entrada: roda uma vez por dia ao abrir o site
+function runAutoAssertividade() {
+  var today = new Date().toISOString().slice(0, 10);
+  if (localStorage.getItem('_auto_assert_run') === today) return;
+  _loadAllLeaguesForAuto(function() {
+    _autoSaveAllMeta();
+    _autoFillAndRegister();
+    localStorage.setItem('_auto_assert_run', today);
+  });
 }
 
 function importAssertFromFile() {
@@ -4360,7 +4495,6 @@ function setArbStatus(msg, isErr) {
       window.importAssertData = function() {
         _orig_importAssertData.apply(this, arguments);
         if (!_syncEnabled) return;
-        // Dispara push de tudo que está no localStorage após a importação
         setTimeout(function() {
           ASSERT_HISTORY.forEach(function(entry) { _pushHistory(entry); });
           for (var i = 0; i < localStorage.length; i++) {
@@ -4381,6 +4515,9 @@ function setArbStatus(msg, isErr) {
         }, 500);
       };
     }
+
+    // Roda automação de assertividade uma vez por dia
+    runAutoAssertividade();
   });
 
   // ── Login integrado ao modal de senha existente ───────────────────────────

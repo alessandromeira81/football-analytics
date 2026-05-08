@@ -2,7 +2,7 @@ name: Daily Data Scraper
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # 9h UTC = 6h BRT (self-hosted: PC precisa estar ligado)
+    - cron: '0 12 * * *'  # 12h UTC = 9h BRT (self-hosted: PC precisa estar ligado)
   workflow_dispatch:       # permite rodar manualmente
 
 permissions:

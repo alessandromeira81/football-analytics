@@ -221,6 +221,29 @@ def main():
         print('  Nenhum resultado novo para preencher.', flush=True)
 
     print('\n── Recomputando assertHistory ───────────────────────────────', flush=True)
+
+    # DEBUG: verifica correspondência de betIds entre outcomes e meta_map
+    outcome_ids = set(outcomes.keys())
+    meta_ids    = set(meta_map.keys())
+    matched     = outcome_ids & meta_ids
+    only_out    = outcome_ids - meta_ids
+    only_meta   = meta_ids - outcome_ids
+    print(f'  [DEBUG] outcomes com resultado verde/vermelho: {sum(1 for v in outcomes.values() if v in ("verde","vermelho"))}', flush=True)
+    print(f'  [DEBUG] meta_map entries: {len(meta_ids)}', flush=True)
+    print(f'  [DEBUG] betIds com resultado E meta: {len(matched)}', flush=True)
+    print(f'  [DEBUG] betIds apenas em outcomes (sem meta): {len(only_out)}', flush=True)
+    print(f'  [DEBUG] betIds apenas em meta (sem outcome): {len(only_meta)}', flush=True)
+    # Mostra exemplos dos primeiros 5 de cada caso para comparação
+    for bid in list(outcome_ids)[:5]:
+        has_meta = bid in meta_map
+        meta_p   = meta_map[bid].get('p', '—') if has_meta else '—'
+        meta_dt  = meta_map[bid].get('date', '—') if has_meta else '—'
+        print(f'  [SAMPLE OUT] {bid[:80]} → {outcomes[bid]} | meta={has_meta} p={meta_p} date={meta_dt}', flush=True)
+    if only_out:
+        print(f'  [SAMPLE ONLY_OUT] {list(only_out)[:3]}', flush=True)
+    if only_meta:
+        print(f'  [SAMPLE ONLY_META] {list(only_meta)[:3]}', flush=True)
+
     date_map = {}
 
     for bet_id, state in outcomes.items():
@@ -251,6 +274,8 @@ def main():
                 band_key = band['cls']
                 break
         if not band_key:
+            if p > 0:  # só loga se realmente tem p, mas fora das bandas
+                print(f'  [SKIP] p={p} fora das bandas (0.70-1.00): {bet_id[:60]}', flush=True)
             continue
 
         if bet_date not in date_map:

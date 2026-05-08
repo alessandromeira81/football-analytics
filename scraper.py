@@ -117,20 +117,31 @@ PERIOD_MAP = {"ALL": "all", "1ST": "1t", "2ND": "2t"}
 # ─── Fetch via browser context ────────────────────────────────────────────────
 
 def browser_fetch(page, url):
-    js = f"""
-    async () => {{
-      const r = await fetch("{url}", {{
-        headers: {{
-          "Accept": "application/json, text/plain, */*",
-          "Accept-Language": "pt-BR,pt;q=0.9",
-        }}
-      }});
-      if (!r.ok) return null;
-      return await r.json();
-    }}
+    """Faz requisicao HTTP via Playwright APIRequestContext.
+
+    Usa o mesmo cookie jar do navegador (mesma sessao que o Sofascore viu),
+    sem as restricoes de CORS do JavaScript in-page.
     """
     try:
-        return page.evaluate(js)
+        resp = page.context.request.get(
+            url,
+            headers={
+                "Accept":           "application/json, text/plain, */*",
+                "Accept-Language":  "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+                "Cache-Control":    "no-cache",
+                "Pragma":           "no-cache",
+                "Referer":          "https://www.sofascore.com/",
+                "Origin":           "https://www.sofascore.com",
+                "Sec-Fetch-Dest":   "empty",
+                "Sec-Fetch-Mode":   "cors",
+                "Sec-Fetch-Site":   "same-site",
+            },
+            timeout=20000,
+        )
+        if not resp.ok:
+            print(f"  [ERR] HTTP {resp.status} → ...{url[-60:]}", flush=True)
+            return None
+        return resp.json()
     except Exception as e:
         print(f"  [ERR] {e}", flush=True)
         return None
@@ -147,8 +158,11 @@ def navigate_and_discover_season(page, tournament_id, home_url, known_sid=None):
     Fallback: endpoint /seasons.
     """
     if known_sid:
-        page.goto(home_url, wait_until="domcontentloaded", timeout=30000)
-        time.sleep(2)
+        try:
+            page.goto(home_url, wait_until="domcontentloaded", timeout=30000)
+            time.sleep(3)
+        except Exception as e:
+            print(f"  [WARN] Navegacao para home da liga falhou: {e}", flush=True)
         return known_sid
 
     # Intercepta requisicoes para capturar o season_id dinamicamente
@@ -188,9 +202,24 @@ def navigate_and_discover_season(page, tournament_id, home_url, known_sid=None):
         print(f"  Season via API: {sname} (id={sid})", flush=True)
         return sid
 
-    # Log detalhado para debug
+    # Fallback 2: reinicia sessao e tenta novamente
+    print(f"  [RETRY] Aguardando 15s e retentando discovery para tournament {tournament_id}...", flush=True)
+    time.sleep(15)
+    try:
+        page.goto("https://www.sofascore.com", wait_until="domcontentloaded", timeout=20000)
+        time.sleep(5)
+        data2 = browser_fetch(page, f"{BASE}/unique-tournament/{tournament_id}/seasons")
+        if data2 and "seasons" in data2 and data2["seasons"]:
+            sid2   = data2["seasons"][0].get("id")
+            sname2 = data2["seasons"][0].get("name", "?")
+            print(f"  Season via API (retry): {sname2} (id={sid2})", flush=True)
+            return sid2
+        print(f"  [DEBUG] /seasons (retry) retornou: {str(data2)[:300]}", flush=True)
+    except Exception as e2:
+        print(f"  [WARN] Retry falhou: {e2}", flush=True)
+
     print(f"  [WARN] season_id nao encontrado para tournament {tournament_id}", flush=True)
-    print(f"  [DEBUG] /seasons retornou: {str(data)[:300]}", flush=True)
+    print(f"  [DEBUG] /seasons (tentativa inicial) retornou: {str(data)[:300]}", flush=True)
     return None
 
 
@@ -395,17 +424,21 @@ def backfill_stats(page, games_by_id):
 
 def load_existing(out_file):
     if not os.path.exists(out_file):
-        return {}, 0
+        return {}, 0, None
     try:
         with open(out_file, encoding="utf-8") as f:
             data = json.load(f)
+        meta        = data.get("meta", {})
         games_by_id = {g["id"]: g for g in data.get("games", [])}
-        last_round  = data.get("meta", {}).get("lastRound", 0)
+        last_round  = meta.get("lastRound", 0)
+        season_id   = meta.get("seasonId")          # reutiliza season_id ja descoberto
         print(f"JSON existente: {len(games_by_id)} jogos, ultima coleta rodada {last_round}", flush=True)
-        return games_by_id, last_round
+        if season_id:
+            print(f"  Season_id cached no JSON: {season_id}", flush=True)
+        return games_by_id, last_round, season_id
     except Exception as e:
         print(f"Aviso: nao foi possivel ler JSON existente ({e})", flush=True)
-        return {}, 0
+        return {}, 0, None
 
 
 # ─── Injecao no HTML ──────────────────────────────────────────────────────────
@@ -456,13 +489,17 @@ def run_league(page, league_key, force_full=False, max_round_arg=None):
     print(f"  Liga: {league['name']} ({league['country']})", flush=True)
     print(f"{'='*56}", flush=True)
 
+    # Carrega JSON existente primeiro — recupera season_id ja descoberto anteriormente
+    games_by_id, last_collected, cached_sid = load_existing(league['out_file'])
+
+    # Prefere: 1) season_id fixo no config  2) season_id salvo no JSON  3) auto-discovery
+    effective_sid = league['season_id'] or cached_sid
+
     # Navega para a pagina da liga e descobre/confirma o season_id
-    sid = navigate_and_discover_season(page, tid, league['home_url'], known_sid=league['season_id'])
+    sid = navigate_and_discover_season(page, tid, league['home_url'], known_sid=effective_sid)
     if sid is None:
         print("ERRO: season_id nao encontrado. Pulando liga.", flush=True)
         return
-
-    games_by_id, last_collected = load_existing(league['out_file'])
 
     backfilled  = backfill_referee(page, games_by_id)
     backfilled += backfill_stats(page, games_by_id)
@@ -686,8 +723,25 @@ def main():
 
         # Aquece o contexto com a pagina inicial do Sofascore
         print("Abrindo Sofascore...", flush=True)
-        page.goto("https://www.sofascore.com", wait_until="domcontentloaded", timeout=30000)
-        time.sleep(2)
+        try:
+            page.goto("https://www.sofascore.com", wait_until="domcontentloaded", timeout=30000)
+        except Exception as e:
+            print(f"  [WARN] Home do Sofascore nao carregou: {e}", flush=True)
+        time.sleep(3)
+        print(f"  URL atual: {page.url}", flush=True)
+
+        # Teste rapido de acesso a API — confirma que a sessao esta funcional
+        _test = browser_fetch(page, f"{BASE}/sport/0/scheduled-events/2026-05-08")
+        if _test is None:
+            print("  [WARN] API inacessivel apos home. Aguardando 15s e retentando...", flush=True)
+            time.sleep(15)
+            _test = browser_fetch(page, f"{BASE}/sport/0/scheduled-events/2026-05-08")
+            if _test is None:
+                print("  [ERRO] API Sofascore bloqueada neste ambiente. Verifique IP/bot-detection.", flush=True)
+            else:
+                print("  API acessivel apos espera.", flush=True)
+        else:
+            print(f"  API OK — {len(_test.get('events', []))} eventos hoje.", flush=True)
 
         for key in valid:
             # A navegacao para cada liga e feita dentro de run_league

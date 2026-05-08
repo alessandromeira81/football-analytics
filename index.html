@@ -3474,15 +3474,6 @@ function _ipro_analyzeMatch(homeName, awayName, scheduledOdds, leagueGames) {
 function _ipro_renderBet(b) {
   var lab = _ipro_confLabel(b.conf);
   var pct = (b.p * 100).toFixed(1) + '%';
-  var oddTxt = b.odd ? b.odd.toFixed(2) : '—';
-  var edgeTxt = '';
-  if (b.edge != null) {
-    var edgePct = (b.edge * 100).toFixed(1);
-    var edgeColor = b.edge > 0.05 ? 'var(--green)' : (b.edge > 0 ? 'var(--accent)' : 'var(--muted)');
-    edgeTxt = '<span style="color:'+edgeColor+';font-weight:600">' + (b.edge>0?'+':'') + edgePct + '%</span>';
-  } else {
-    edgeTxt = '<span style="color:var(--muted2)">s/odd</span>';
-  }
   var catColor = {
     'Resultado':'var(--blue)','Gols':'var(--green)','Escanteios':'var(--orange)',
     'Finalizacoes':'var(--teal)','Cartoes':'var(--red)'
@@ -3491,8 +3482,6 @@ function _ipro_renderBet(b) {
     '<td style="padding:7px 8px"><span style="color:'+catColor+';font-size:10px;font-weight:700">'+b.cat.toUpperCase()+'</span></td>' +
     '<td style="padding:7px 8px;font-weight:600">'+b.label+'</td>' +
     '<td style="padding:7px 8px;text-align:right;font-family:var(--mono)">'+pct+'</td>' +
-    '<td style="padding:7px 8px;text-align:right;font-family:var(--mono)">'+oddTxt+'</td>' +
-    '<td style="padding:7px 8px;text-align:right;font-family:var(--mono)">'+edgeTxt+'</td>' +
     '<td style="padding:7px 8px;text-align:center"><span class="'+lab.cls+'">'+lab.txt+'</span></td>' +
     '<td style="padding:7px 8px;font-size:11px;color:var(--muted2)">'+b.why+'</td>' +
   '</tr>';
@@ -3530,8 +3519,6 @@ function _ipro_renderMatchCard(analysis, leagueLabel, betsToShow) {
         '<th style="padding:5px 8px">CAT</th>' +
         '<th style="padding:5px 8px">APOSTA</th>' +
         '<th style="padding:5px 8px;text-align:right">P(MODELO)</th>' +
-        '<th style="padding:5px 8px;text-align:right">ODD</th>' +
-        '<th style="padding:5px 8px;text-align:right">EDGE</th>' +
         '<th style="padding:5px 8px;text-align:center">CONFIANCA</th>' +
         '<th style="padding:5px 8px">CONTEXTO</th>' +
       '</tr></thead><tbody>'+rows+'</tbody></table></div>' +

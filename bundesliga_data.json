@@ -5,8 +5,8 @@
     "tournamentId": 35,
     "seasonId": 77333,
     "lastRound": 33,
-    "totalGames": 288,
-    "updatedAt": "2026-05-07T14:10:47Z",
+    "totalGames": 289,
+    "updatedAt": "2026-05-08T21:15:14Z",
     "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents."
   },
   "games": [
@@ -34697,6 +34697,123 @@
         "id": 67061,
         "name": "Bastian Dankert"
       }
+    },
+    {
+      "id": 14065245,
+      "round": 33,
+      "date": "2026-05-08",
+      "homeTeam": "Borussia Dortmund",
+      "awayTeam": "Eintracht Frankfurt",
+      "homeId": 2673,
+      "awayId": 2674,
+      "score": {
+        "home": 3,
+        "away": 2
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 13,
+            "away": 9
+          },
+          "corners": {
+            "home": 6,
+            "away": 2
+          },
+          "fouls": {
+            "home": 14,
+            "away": 8
+          },
+          "yellowCards": {
+            "home": 3,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 8,
+            "away": 4
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 8,
+            "away": 4
+          },
+          "corners": {
+            "home": 1,
+            "away": 0
+          },
+          "fouls": {
+            "home": 8,
+            "away": 3
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 5,
+            "away": 5
+          },
+          "corners": {
+            "home": 5,
+            "away": 2
+          },
+          "fouls": {
+            "home": 6,
+            "away": 5
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 94,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 91,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 21,
+          "isHome": true,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 84329,
+        "name": "Patrick Ittrich"
+      }
     }
   ],
   "scheduledGames": [
@@ -34707,29 +34824,29 @@
       "awayTeam": "Eintracht Frankfurt",
       "date": "2026-05-08",
       "odds": {
-        "Full time_1": 1.48,
-        "Full time_X": 5.0,
-        "Full time_2": 5.5,
-        "Double chance_1X": 1.14,
-        "Double chance_X2": 2.62,
-        "Double chance_12": 1.17,
-        "1st half_1": 1.91,
-        "1st half_X": 2.75,
-        "1st half_2": 5.0,
-        "Draw no bet_1": 1.2,
-        "Draw no bet_2": 4.33,
-        "Both teams to score_Yes": 1.5,
-        "Both teams to score_No": 2.5,
+        "Full time_1": 1.73,
+        "Full time_X": 4.2,
+        "Full time_2": 4.1,
+        "Double chance_1X": 1.22,
+        "Double chance_X2": 2.05,
+        "Double chance_12": 1.22,
+        "1st half_1": 2.2,
+        "1st half_X": 2.62,
+        "1st half_2": 4.0,
+        "Draw no bet_1": 1.33,
+        "Draw no bet_2": 3.25,
+        "Both teams to score_Yes": 1.44,
+        "Both teams to score_No": 2.62,
         "Match goals_0.5_Over": 1.02,
         "Match goals_0.5_Under": 21.0,
-        "Match goals_1.5_Over": 1.1,
-        "Match goals_1.5_Under": 7.0,
+        "Match goals_1.5_Over": 1.11,
+        "Match goals_1.5_Under": 6.5,
         "Match goals_2.5_Over": 1.36,
         "Match goals_2.5_Under": 3.2,
         "Match goals_3.5_Over": 1.91,
         "Match goals_3.5_Under": 1.91,
-        "Match goals_4.5_Over": 3.0,
-        "Match goals_4.5_Under": 1.4,
+        "Match goals_4.5_Over": 3.2,
+        "Match goals_4.5_Under": 1.36,
         "Match goals_5.5_Over": 5.0,
         "Match goals_5.5_Under": 1.17,
         "Match goals_6.5_Over": 10.0,
@@ -34738,13 +34855,15 @@
         "Match goals_7.5_Under": 1.02,
         "Match goals_8.5_Over": 34.0,
         "Match goals_8.5_Under": 1.0,
-        "Asian handicap_(-1.25) Borussia Dortmund": 2.02,
-        "Asian handicap_(1.25) Eintracht Frankfurt": 1.82,
-        "Corners 2-Way_9.5_Over": 1.83,
-        "Corners 2-Way_9.5_Under": 1.83,
-        "First team to score_Borussia Dortmund": 1.44,
-        "First team to score_No goal": 26.0,
-        "First team to score_Eintracht Frankfurt": 2.62
+        "Asian handicap_(-0.75) Borussia Dortmund": 1.93,
+        "Asian handicap_(0.75) Eintracht Frankfurt": 1.93,
+        "Cards in match_2.5_Over": 1.57,
+        "Cards in match_2.5_Under": 2.25,
+        "Corners 2-Way_9.5_Over": 1.73,
+        "Corners 2-Way_9.5_Under": 2.0,
+        "First team to score_Borussia Dortmund": 1.57,
+        "First team to score_No goal": 23.0,
+        "First team to score_Eintracht Frankfurt": 2.3
       }
     },
     {
@@ -34754,42 +34873,44 @@
       "awayTeam": "Borussia M'gladbach",
       "date": "2026-05-09",
       "odds": {
-        "Full time_1": 2.05,
-        "Full time_X": 3.75,
-        "Full time_2": 3.3,
-        "Double chance_1X": 1.33,
-        "Double chance_X2": 1.73,
+        "Full time_1": 2.0,
+        "Full time_X": 3.8,
+        "Full time_2": 3.4,
+        "Double chance_1X": 1.3,
+        "Double chance_X2": 1.8,
         "Double chance_12": 1.25,
-        "1st half_1": 2.6,
+        "1st half_1": 2.5,
         "1st half_X": 2.4,
-        "1st half_2": 3.6,
-        "Draw no bet_1": 1.5,
-        "Draw no bet_2": 2.5,
-        "Both teams to score_Yes": 1.53,
-        "Both teams to score_No": 2.38,
+        "1st half_2": 3.75,
+        "Draw no bet_1": 1.44,
+        "Draw no bet_2": 2.62,
+        "Both teams to score_Yes": 1.5,
+        "Both teams to score_No": 2.5,
         "Match goals_0.5_Over": 1.03,
         "Match goals_0.5_Under": 15.0,
         "Match goals_1.5_Over": 1.17,
         "Match goals_1.5_Under": 5.0,
-        "Match goals_2.5_Over": 1.62,
-        "Match goals_2.5_Under": 2.3,
-        "Match goals_3.5_Over": 2.38,
-        "Match goals_3.5_Under": 1.57,
+        "Match goals_2.5_Over": 1.57,
+        "Match goals_2.5_Under": 2.38,
+        "Match goals_3.5_Over": 2.3,
+        "Match goals_3.5_Under": 1.62,
         "Match goals_4.5_Over": 4.33,
         "Match goals_4.5_Under": 1.22,
         "Match goals_5.5_Over": 8.0,
         "Match goals_5.5_Under": 1.08,
-        "Match goals_6.5_Over": 17.0,
-        "Match goals_6.5_Under": 1.02,
+        "Match goals_6.5_Over": 15.0,
+        "Match goals_6.5_Under": 1.03,
         "Match goals_7.5_Over": 29.0,
         "Match goals_7.5_Under": 1.01,
-        "Asian handicap_(-0.25) FC Augsburg": 1.8,
-        "Asian handicap_(0.25) Borussia M'gladbach": 2.05,
-        "Corners 2-Way_9.5_Over": 1.73,
-        "Corners 2-Way_9.5_Under": 2.0,
-        "First team to score_FC Augsburg": 1.73,
-        "First team to score_No goal": 15.0,
-        "First team to score_Borussia M'gladbach": 2.1
+        "Asian handicap_(-0.5) FC Augsburg": 2.02,
+        "Asian handicap_(0.5) Borussia M'gladbach": 1.82,
+        "Cards in match_3.5_Over": 1.73,
+        "Cards in match_3.5_Under": 2.0,
+        "Corners 2-Way_9.5_Over": 1.83,
+        "Corners 2-Way_9.5_Under": 1.83,
+        "First team to score_FC Augsburg": 1.67,
+        "First team to score_No goal": 17.0,
+        "First team to score_Borussia M'gladbach": 2.2
       }
     },
     {
@@ -34805,15 +34926,15 @@
         "Double chance_1X": 1.07,
         "Double chance_X2": 3.4,
         "Double chance_12": 1.14,
-        "1st half_1": 1.73,
-        "1st half_X": 2.75,
+        "1st half_1": 1.67,
+        "1st half_X": 2.88,
         "1st half_2": 7.5,
         "Draw no bet_1": 1.08,
         "Draw no bet_2": 8.0,
-        "Both teams to score_Yes": 1.75,
-        "Both teams to score_No": 2.0,
+        "Both teams to score_Yes": 1.8,
+        "Both teams to score_No": 1.95,
         "Match goals_0.5_Over": 1.02,
-        "Match goals_0.5_Under": 19.0,
+        "Match goals_0.5_Under": 17.0,
         "Match goals_1.5_Over": 1.14,
         "Match goals_1.5_Under": 5.5,
         "Match goals_2.5_Over": 1.44,
@@ -34830,8 +34951,10 @@
         "Match goals_7.5_Under": 1.01,
         "Match goals_8.5_Over": 51.0,
         "Match goals_8.5_Under": 1.0,
-        "Asian handicap_(-1.5) RB Leipzig": 1.85,
-        "Asian handicap_(1.5) FC St. Pauli": 2.0,
+        "Asian handicap_(-1.5) RB Leipzig": 1.82,
+        "Asian handicap_(1.5) FC St. Pauli": 2.02,
+        "Cards in match_3.5_Over": 2.0,
+        "Cards in match_3.5_Under": 1.73,
         "Corners 2-Way_9.5_Over": 1.8,
         "Corners 2-Way_9.5_Under": 1.91,
         "First team to score_RB Leipzig": 1.33,
@@ -34879,6 +35002,8 @@
         "Match goals_8.5_Under": 1.0,
         "Asian handicap_(-1.25) TSG Hoffenheim": 1.95,
         "Asian handicap_(1.25) SV Werder Bremen": 1.9,
+        "Cards in match_4.5_Over": 2.2,
+        "Cards in match_4.5_Under": 1.62,
         "Corners 2-Way_10.5_Over": 2.0,
         "Corners 2-Way_10.5_Under": 1.73,
         "First team to score_TSG Hoffenheim": 1.44,
@@ -34893,21 +35018,21 @@
       "awayTeam": "Bayer 04 Leverkusen",
       "date": "2026-05-09",
       "odds": {
-        "Full time_1": 2.1,
+        "Full time_1": 2.2,
         "Full time_X": 4.0,
         "Full time_2": 2.9,
         "Double chance_1X": 1.4,
-        "Double chance_X2": 1.7,
+        "Double chance_X2": 1.67,
         "Double chance_12": 1.22,
-        "1st half_1": 2.6,
+        "1st half_1": 2.62,
         "1st half_X": 2.62,
         "1st half_2": 3.1,
         "Draw no bet_1": 1.62,
         "Draw no bet_2": 2.2,
         "Both teams to score_Yes": 1.33,
         "Both teams to score_No": 3.25,
-        "Match goals_0.5_Over": 1.01,
-        "Match goals_0.5_Under": 29.0,
+        "Match goals_0.5_Over": 1.02,
+        "Match goals_0.5_Under": 21.0,
         "Match goals_1.5_Over": 1.1,
         "Match goals_1.5_Under": 7.0,
         "Match goals_2.5_Over": 1.33,
@@ -34924,12 +35049,14 @@
         "Match goals_7.5_Under": 1.02,
         "Match goals_8.5_Over": 29.0,
         "Match goals_8.5_Under": 1.01,
-        "Asian handicap_(-0.25) VfB Stuttgart": 1.93,
-        "Asian handicap_(0.25) Bayer 04 Leverkusen": 1.93,
+        "Asian handicap_(-0.25) VfB Stuttgart": 1.95,
+        "Asian handicap_(0.25) Bayer 04 Leverkusen": 1.9,
+        "Cards in match_4.5_Over": 1.91,
+        "Cards in match_4.5_Under": 1.8,
         "Corners 2-Way_9.5_Over": 1.83,
         "Corners 2-Way_9.5_Under": 1.83,
         "First team to score_VfB Stuttgart": 1.73,
-        "First team to score_No goal": 29.0,
+        "First team to score_No goal": 26.0,
         "First team to score_Bayer 04 Leverkusen": 2.0
       }
     },
@@ -34940,46 +35067,48 @@
       "awayTeam": "FC Bayern München",
       "date": "2026-05-09",
       "odds": {
-        "Full time_1": 4.33,
-        "Full time_X": 4.33,
-        "Full time_2": 1.7,
-        "Double chance_1X": 2.1,
-        "Double chance_X2": 1.2,
-        "Double chance_12": 1.2,
-        "1st half_1": 4.0,
+        "Full time_1": 4.75,
+        "Full time_X": 4.75,
+        "Full time_2": 1.57,
+        "Double chance_1X": 2.3,
+        "Double chance_X2": 1.18,
+        "Double chance_12": 1.18,
+        "1st half_1": 4.33,
         "1st half_X": 2.88,
-        "1st half_2": 2.1,
-        "Draw no bet_1": 3.4,
-        "Draw no bet_2": 1.3,
+        "1st half_2": 1.95,
+        "Draw no bet_1": 3.75,
+        "Draw no bet_2": 1.25,
         "Both teams to score_Yes": 1.33,
         "Both teams to score_No": 3.25,
-        "Match goals_0.5_Over": 1.0,
-        "Match goals_0.5_Under": 34.0,
+        "Match goals_0.5_Over": 1.01,
+        "Match goals_0.5_Under": 26.0,
         "Match goals_1.5_Over": 1.07,
         "Match goals_1.5_Under": 9.0,
-        "Match goals_2.5_Over": 1.29,
-        "Match goals_2.5_Under": 3.75,
-        "Match goals_3.5_Over": 1.73,
-        "Match goals_3.5_Under": 2.1,
-        "Match goals_4.5_Over": 2.62,
-        "Match goals_4.5_Under": 1.5,
-        "Match goals_5.5_Over": 4.33,
-        "Match goals_5.5_Under": 1.22,
-        "Match goals_6.5_Over": 8.0,
-        "Match goals_6.5_Under": 1.08,
-        "Match goals_7.5_Over": 15.0,
-        "Match goals_7.5_Under": 1.03,
-        "Match goals_8.5_Over": 26.0,
+        "Match goals_2.5_Over": 1.25,
+        "Match goals_2.5_Under": 4.0,
+        "Match goals_3.5_Over": 1.62,
+        "Match goals_3.5_Under": 2.3,
+        "Match goals_4.5_Over": 2.38,
+        "Match goals_4.5_Under": 1.57,
+        "Match goals_5.5_Over": 4.0,
+        "Match goals_5.5_Under": 1.25,
+        "Match goals_6.5_Over": 7.0,
+        "Match goals_6.5_Under": 1.1,
+        "Match goals_7.5_Over": 13.0,
+        "Match goals_7.5_Under": 1.04,
+        "Match goals_8.5_Over": 23.0,
         "Match goals_8.5_Under": 1.01,
-        "Match goals_9.5_Over": 51.0,
+        "Match goals_9.5_Over": 41.0,
         "Match goals_9.5_Under": 1.0,
-        "Asian handicap_(0.75) VfL Wolfsburg": 2.02,
-        "Asian handicap_(-0.75) FC Bayern München": 1.82,
+        "Asian handicap_(1) VfL Wolfsburg": 1.98,
+        "Asian handicap_(-1) FC Bayern München": 1.88,
+        "Cards in match_3.5_Over": 1.83,
+        "Cards in match_3.5_Under": 1.83,
         "Corners 2-Way_10.5_Over": 1.91,
         "Corners 2-Way_10.5_Under": 1.8,
-        "First team to score_VfL Wolfsburg": 2.38,
+        "First team to score_VfL Wolfsburg": 2.5,
         "First team to score_No goal": 34.0,
-        "First team to score_FC Bayern München": 1.53
+        "First team to score_FC Bayern München": 1.5
       }
     },
     {
@@ -34989,17 +35118,17 @@
       "awayTeam": "SC Freiburg",
       "date": "2026-05-10",
       "odds": {
-        "Full time_1": 2.8,
+        "Full time_1": 2.63,
         "Full time_X": 3.6,
-        "Full time_2": 2.38,
-        "Double chance_1X": 1.53,
-        "Double chance_X2": 1.4,
+        "Full time_2": 2.5,
+        "Double chance_1X": 1.5,
+        "Double chance_X2": 1.44,
         "Double chance_12": 1.29,
-        "1st half_1": 3.25,
+        "1st half_1": 3.2,
         "1st half_X": 2.3,
-        "1st half_2": 2.88,
-        "Draw no bet_1": 2.0,
-        "Draw no bet_2": 1.73,
+        "1st half_2": 3.0,
+        "Draw no bet_1": 1.91,
+        "Draw no bet_2": 1.8,
         "Both teams to score_Yes": 1.57,
         "Both teams to score_No": 2.25,
         "Match goals_0.5_Over": 1.04,
@@ -35018,13 +35147,15 @@
         "Match goals_6.5_Under": 1.02,
         "Match goals_7.5_Over": 41.0,
         "Match goals_7.5_Under": 1.0,
-        "Asian handicap_(0.25) Hamburger SV": 1.77,
-        "Asian handicap_(-0.25) SC Freiburg": 2.1,
+        "Asian handicap_(0) Hamburger SV": 2.0,
+        "Asian handicap_(-0) SC Freiburg": 1.85,
+        "Cards in match_4.5_Over": 2.1,
+        "Cards in match_4.5_Under": 1.67,
         "Corners 2-Way_9.5_Over": 1.83,
         "Corners 2-Way_9.5_Under": 1.83,
-        "First team to score_Hamburger SV": 2.0,
+        "First team to score_Hamburger SV": 1.95,
         "First team to score_No goal": 13.0,
-        "First team to score_SC Freiburg": 1.83
+        "First team to score_SC Freiburg": 1.91
       }
     },
     {
@@ -35034,21 +35165,21 @@
       "awayTeam": "1. FC Heidenheim",
       "date": "2026-05-10",
       "odds": {
-        "Full time_1": 1.91,
+        "Full time_1": 1.95,
         "Full time_X": 4.1,
-        "Full time_2": 3.4,
-        "Double chance_1X": 1.3,
-        "Double chance_X2": 1.83,
+        "Full time_2": 3.3,
+        "Double chance_1X": 1.33,
+        "Double chance_X2": 1.8,
         "Double chance_12": 1.22,
         "1st half_1": 2.4,
-        "1st half_X": 2.6,
-        "1st half_2": 3.75,
-        "Draw no bet_1": 1.44,
-        "Draw no bet_2": 2.62,
+        "1st half_X": 2.5,
+        "1st half_2": 3.6,
+        "Draw no bet_1": 1.5,
+        "Draw no bet_2": 2.5,
         "Both teams to score_Yes": 1.44,
         "Both teams to score_No": 2.62,
         "Match goals_0.5_Over": 1.02,
-        "Match goals_0.5_Under": 21.0,
+        "Match goals_0.5_Under": 19.0,
         "Match goals_1.5_Over": 1.14,
         "Match goals_1.5_Under": 5.5,
         "Match goals_2.5_Over": 1.44,
@@ -35065,13 +35196,15 @@
         "Match goals_7.5_Under": 1.01,
         "Match goals_8.5_Over": 51.0,
         "Match goals_8.5_Under": 1.0,
-        "Asian handicap_(-0.5) 1. FC Köln": 1.93,
-        "Asian handicap_(0.5) 1. FC Heidenheim": 1.93,
+        "Asian handicap_(-0.5) 1. FC Köln": 1.98,
+        "Asian handicap_(0.5) 1. FC Heidenheim": 1.88,
+        "Cards in match_3.5_Over": 1.8,
+        "Cards in match_3.5_Under": 1.91,
         "Corners 2-Way_9.5_Over": 1.83,
         "Corners 2-Way_9.5_Under": 1.83,
         "First team to score_1. FC Köln": 1.67,
         "First team to score_No goal": 21.0,
-        "First team to score_1. FC Heidenheim": 2.2
+        "First team to score_1. FC Heidenheim": 2.1
       }
     },
     {
@@ -35087,11 +35220,11 @@
         "Double chance_1X": 1.2,
         "Double chance_X2": 2.0,
         "Double chance_12": 1.22,
-        "1st half_1": 2.3,
+        "1st half_1": 2.25,
         "1st half_X": 2.38,
         "1st half_2": 4.5,
-        "Draw no bet_1": 1.33,
-        "Draw no bet_2": 3.25,
+        "Draw no bet_1": 1.3,
+        "Draw no bet_2": 3.4,
         "Both teams to score_Yes": 1.67,
         "Both teams to score_No": 2.1,
         "Match goals_0.5_Over": 1.04,
@@ -35112,11 +35245,13 @@
         "Match goals_7.5_Under": 1.0,
         "Asian handicap_(-0.75) 1. FSV Mainz 05": 1.98,
         "Asian handicap_(0.75) 1. FC Union Berlin": 1.88,
+        "Cards in match_3.5_Over": 1.67,
+        "Cards in match_3.5_Under": 2.1,
         "Corners 2-Way_9.5_Over": 1.83,
         "Corners 2-Way_9.5_Under": 1.83,
         "First team to score_1. FSV Mainz 05": 1.57,
         "First team to score_No goal": 13.0,
-        "First team to score_1. FC Union Berlin": 2.4
+        "First team to score_1. FC Union Berlin": 2.5
       }
     }
   ]

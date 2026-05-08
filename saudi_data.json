@@ -5,8 +5,8 @@
     "tournamentId": 955,
     "seasonId": 80443,
     "lastRound": 33,
-    "totalGames": 276,
-    "updatedAt": "2026-05-07T14:13:10Z",
+    "totalGames": 277,
+    "updatedAt": "2026-05-08T21:16:24Z",
     "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents."
   },
   "games": [
@@ -34045,6 +34045,123 @@
         "id": 789069,
         "name": "Abdulsamad Bakri"
       }
+    },
+    {
+      "id": 14773797,
+      "round": 33,
+      "date": "2026-05-07",
+      "homeTeam": "Al-Shabab",
+      "awayTeam": "Al-Nassr",
+      "homeId": 34313,
+      "awayId": 23400,
+      "score": {
+        "home": 2,
+        "away": 4
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 10,
+            "away": 15
+          },
+          "corners": {
+            "home": 2,
+            "away": 8
+          },
+          "fouls": {
+            "home": 13,
+            "away": 12
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 5
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 4,
+            "away": 9
+          },
+          "corners": {
+            "home": 1,
+            "away": 5
+          },
+          "fouls": {
+            "home": 4,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 6,
+            "away": 6
+          },
+          "corners": {
+            "home": 1,
+            "away": 3
+          },
+          "fouls": {
+            "home": 9,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 99,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 97,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 85,
+          "isHome": true,
+          "period": "2t"
+        }
+      ],
+      "referee": {
+        "id": 785716,
+        "name": "Vassilis Fotias"
+      }
     }
   ],
   "scheduledGames": [
@@ -34055,44 +34172,46 @@
       "awayTeam": "Al-Nassr",
       "date": "2026-05-07",
       "odds": {
-        "Full time_1": 7.0,
-        "Full time_X": 5.25,
-        "Full time_2": 1.29,
-        "Double chance_1X": 3.4,
-        "Double chance_X2": 1.08,
-        "Double chance_12": 1.14,
-        "1st half_1": 6.5,
+        "Full time_1": 6.25,
+        "Full time_X": 5.0,
+        "Full time_2": 1.33,
+        "Double chance_1X": 3.0,
+        "Double chance_X2": 1.1,
+        "Double chance_12": 1.17,
+        "1st half_1": 6.0,
         "1st half_X": 3.0,
-        "1st half_2": 1.67,
-        "Draw no bet_1": 6.5,
-        "Draw no bet_2": 1.11,
-        "Both teams to score_Yes": 1.57,
-        "Both teams to score_No": 2.25,
+        "1st half_2": 1.73,
+        "Draw no bet_1": 6.0,
+        "Draw no bet_2": 1.12,
+        "Both teams to score_Yes": 1.44,
+        "Both teams to score_No": 2.62,
         "Match goals_0.5_Over": 1.01,
         "Match goals_0.5_Under": 26.0,
-        "Match goals_1.5_Over": 1.08,
-        "Match goals_1.5_Under": 8.0,
-        "Match goals_2.5_Over": 1.33,
-        "Match goals_2.5_Under": 3.4,
-        "Match goals_3.5_Over": 1.8,
-        "Match goals_3.5_Under": 1.91,
-        "Match goals_4.5_Over": 2.75,
-        "Match goals_4.5_Under": 1.4,
-        "Match goals_5.5_Over": 5.0,
-        "Match goals_5.5_Under": 1.17,
-        "Match goals_6.5_Over": 10.0,
-        "Match goals_6.5_Under": 1.06,
-        "Match goals_7.5_Over": 19.0,
+        "Match goals_1.5_Over": 1.07,
+        "Match goals_1.5_Under": 9.0,
+        "Match goals_2.5_Over": 1.29,
+        "Match goals_2.5_Under": 3.6,
+        "Match goals_3.5_Over": 1.73,
+        "Match goals_3.5_Under": 2.0,
+        "Match goals_4.5_Over": 2.62,
+        "Match goals_4.5_Under": 1.44,
+        "Match goals_5.5_Over": 4.33,
+        "Match goals_5.5_Under": 1.2,
+        "Match goals_6.5_Over": 8.0,
+        "Match goals_6.5_Under": 1.08,
+        "Match goals_7.5_Over": 17.0,
         "Match goals_7.5_Under": 1.02,
-        "Match goals_8.5_Over": 34.0,
-        "Match goals_8.5_Under": 1.0,
-        "Asian handicap_(1.75) Al-Shabab": 1.8,
-        "Asian handicap_(-1.75) Al-Nassr": 2.0,
-        "Corners 2-Way_10.5_Over": 2.0,
-        "Corners 2-Way_10.5_Under": 1.73,
-        "First team to score_Al-Shabab": 3.0,
+        "Match goals_8.5_Over": 29.0,
+        "Match goals_8.5_Under": 1.01,
+        "Match goals_9.5_Over": 51.0,
+        "Match goals_9.5_Under": 1.0,
+        "Asian handicap_(1.5) Al-Shabab": 1.93,
+        "Asian handicap_(-1.5) Al-Nassr": 1.88,
+        "Corners 2-Way_9.5_Over": 1.67,
+        "Corners 2-Way_9.5_Under": 2.1,
+        "First team to score_Al-Shabab": 2.75,
         "First team to score_No goal": 29.0,
-        "First team to score_Al-Nassr": 1.36
+        "First team to score_Al-Nassr": 1.4
       }
     },
     {

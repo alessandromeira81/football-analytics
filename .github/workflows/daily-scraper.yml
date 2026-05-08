@@ -30,6 +30,10 @@ jobs:
         run: python scraper.py --liga all
         timeout-minutes: 50
 
+      - name: Run referee scraper – Brasileirao
+        run: python scraper_refs.py
+        timeout-minutes: 10
+
       - name: Commit updated data
         run: |
           git config user.name  "github-actions[bot]"

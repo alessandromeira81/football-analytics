@@ -1,7 +1,9 @@
 """
-Sincroniza o histórico de assertividade para o Firestore.
-Lê betOutcomes + betMeta do Firestore, recomputa o histórico por dia,
-e grava de volta na coleção assertHistory.
+Sincroniza assertividade para o Firestore via GitHub Actions.
+1. Lê betMeta do Firestore (quais apostas rastrear)
+2. Lê JSONs de dados das ligas (resultados dos jogos)
+3. Auto-preenche betOutcomes para jogos já encerrados
+4. Recomputa assertHistory e grava no Firestore
 
 Uso:
   FIREBASE_SERVICE_ACCOUNT='<json>' python assertividade_sync.py
@@ -9,9 +11,16 @@ Uso:
 
 import json
 import os
+import re
 import sys
+from datetime import date as dt_date
 import firebase_admin
 from firebase_admin import credentials, firestore
+
+LEAGUES = [
+    'brasileirao', 'premier', 'laliga', 'bundesliga',
+    'ligue1', 'saudi', 'argentina', 'seriea',
+]
 
 BANDS = [
     {'min': 0.90, 'max': 1.01, 'cls': 'band-90'},
@@ -21,8 +30,111 @@ BANDS = [
     {'min': 0.70, 'max': 0.75, 'cls': 'band-70'},
 ]
 
+TODAY = dt_date.today().isoformat()  # 'yyyy-mm-dd'
+
+
+# ── Firestore ID encoding ─────────────────────────────────────────────────────
+
 def decode_id(encoded):
     return encoded.replace('__pipe__', '|').replace('__slash__', '/')
+
+def encode_id(bet_id):
+    return bet_id.replace('|', '__pipe__').replace('/', '__slash__')
+
+
+# ── Avaliação de resultado de aposta ─────────────────────────────────────────
+
+def evaluate_bet(label, game):
+    """Retorna 'verde', 'vermelho' ou None (dados insuficientes)."""
+    score = game.get('score') or {}
+    sh, sa = score.get('home'), score.get('away')
+    if sh is None or sa is None:
+        return None  # jogo não encerrado
+
+    tot   = sh + sa
+    btts  = sh > 0 and sa > 0
+    stats = (game.get('stats') or {}).get('all') or {}
+
+    if label == 'Vitoria Mandante':  return 'verde' if sh > sa  else 'vermelho'
+    if label == 'Empate':            return 'verde' if sh == sa else 'vermelho'
+    if label == 'Vitoria Visitante': return 'verde' if sa > sh  else 'vermelho'
+    if label == 'BTTS - Sim':        return 'verde' if btts     else 'vermelho'
+    if label == 'BTTS - Nao':        return 'verde' if not btts else 'vermelho'
+
+    # Gols
+    m = re.match(r'^(Over|Under) (\d+\.5) gols$', label)
+    if m:
+        line = float(m.group(2))
+        return 'verde' if (tot > line if m.group(1) == 'Over' else tot < line) else 'vermelho'
+
+    # Escanteios
+    co = stats.get('corners') or {}
+    tot_co = (co.get('home') or 0) + (co.get('away') or 0)
+    m = re.match(r'^(Over|Under) (\d+\.5) escanteios$', label)
+    if m:
+        if not (co.get('home') or co.get('away')):
+            return None
+        line = float(m.group(2))
+        return 'verde' if (tot_co > line if m.group(1) == 'Over' else tot_co < line) else 'vermelho'
+
+    # Cartões
+    cards = game.get('cards') or []
+    tot_cards = len([c for c in cards if isinstance(c, dict) and c.get('minute', -1) >= 0])
+    m = re.match(r'^(Over|Under) (\d+\.5) cartoes$', label)
+    if m:
+        line = float(m.group(2))
+        return 'verde' if (tot_cards > line if m.group(1) == 'Over' else tot_cards < line) else 'vermelho'
+
+    # Faltas
+    fo = stats.get('fouls') or {}
+    m = re.match(r'^(Over|Under) (\d+\.5) faltas$', label)
+    if m:
+        if not (fo.get('home') or fo.get('away')):
+            return None
+        tot_fo = (fo.get('home') or 0) + (fo.get('away') or 0)
+        line = float(m.group(2))
+        return 'verde' if (tot_fo > line if m.group(1) == 'Over' else tot_fo < line) else 'vermelho'
+
+    # Finalizações
+    sh2 = stats.get('shots') or {}
+    m = re.match(r'^(Over|Under) (\d+\.5) finalizacoes$', label)
+    if m:
+        if not (sh2.get('home') or sh2.get('away')):
+            return None
+        tot_sh = (sh2.get('home') or 0) + (sh2.get('away') or 0)
+        line = float(m.group(2))
+        return 'verde' if (tot_sh > line if m.group(1) == 'Over' else tot_sh < line) else 'vermelho'
+
+    return None
+
+
+# ── Carrega JSONs das ligas ───────────────────────────────────────────────────
+
+def load_league_games():
+    """Retorna dict: league_key → { 'homeTeam_awayTeam': game }"""
+    game_idx = {}
+    for league in LEAGUES:
+        fname = f'{league}_2026_data.json'
+        if not os.path.exists(fname):
+            fname_alt = f'{league}_data.json'
+            if not os.path.exists(fname_alt):
+                continue
+            fname = fname_alt
+        try:
+            with open(fname, encoding='utf-8') as f:
+                data = json.load(f)
+            games = data.get('games') or []
+            game_idx[league] = {
+                g['homeTeam'] + '_' + g['awayTeam']: g
+                for g in games if 'homeTeam' in g and 'awayTeam' in g
+            }
+            print(f'  [{league}] {len(game_idx[league])} jogos encerrados', flush=True)
+        except Exception as e:
+            print(f'  [{league}] erro ao ler JSON: {e}', flush=True)
+    return game_idx
+
+
+# ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
     sa_json = os.environ.get('FIREBASE_SERVICE_ACCOUNT', '')
@@ -34,37 +146,82 @@ def main():
     firebase_admin.initialize_app(cred)
     db = firestore.client()
 
-    # 1) Lê resultados individuais
+    print('\n── Carregando JSONs das ligas ───────────────────────────────', flush=True)
+    game_idx = load_league_games()
+
+    print('\n── Lendo Firestore ──────────────────────────────────────────', flush=True)
+
+    # betOutcomes existentes
     outcomes = {}
     for doc in db.collection('betOutcomes').stream():
         bet_id = decode_id(doc.id)
         val = doc.to_dict().get('value', 'cinza')
-        if val in ('verde', 'vermelho'):
-            outcomes[bet_id] = val
-    print(f'{len(outcomes)} resultados lidos do Firestore', flush=True)
+        outcomes[bet_id] = val
+    print(f'  {len(outcomes)} betOutcomes lidos', flush=True)
 
-    # 2) Lê metadados
-    meta = {}
+    # betMeta
+    meta_map = {}
     for doc in db.collection('betMeta').stream():
         bet_id = decode_id(doc.id)
-        meta[bet_id] = doc.to_dict()
-    print(f'{len(meta)} metadados lidos do Firestore', flush=True)
+        meta_map[bet_id] = doc.to_dict()
+    print(f'  {len(meta_map)} betMeta lidos', flush=True)
 
-    if not outcomes:
-        print('Nenhum resultado registrado. Nada a sincronizar.', flush=True)
-        return
+    print('\n── Auto-fill de resultados ──────────────────────────────────', flush=True)
+    batch = db.batch()
+    n_filled = 0
 
-    # 3) Agrega por data
+    for bet_id, meta in meta_map.items():
+        # Pula apostas com data futura (evita fantasmas)
+        bet_date = meta.get('date', '')
+        if bet_date > TODAY:
+            continue
+        # Pula se já tem resultado
+        if outcomes.get(bet_id) in ('verde', 'vermelho'):
+            continue
+
+        parts = bet_id.split('|')
+        if len(parts) < 4:
+            continue
+        league_key = parts[0]
+        home       = parts[1]
+        away       = parts[2]
+        label      = '|'.join(parts[3:])
+
+        games_for_league = game_idx.get(league_key, {})
+        game = games_for_league.get(home + '_' + away)
+        if not game:
+            continue
+
+        result = evaluate_bet(label, game)
+        if not result:
+            continue
+
+        outcomes[bet_id] = result
+        ref = db.collection('betOutcomes').document(encode_id(bet_id))
+        batch.set(ref, {'value': result})
+        print(f'  {home} x {away} | {label} → {result}', flush=True)
+        n_filled += 1
+
+    if n_filled > 0:
+        batch.commit()
+        print(f'  {n_filled} resultado(s) preenchido(s) automaticamente.', flush=True)
+    else:
+        print('  Nenhum resultado novo para preencher.', flush=True)
+
+    print('\n── Recomputando assertHistory ───────────────────────────────', flush=True)
     date_map = {}
-    for bet_id, state in outcomes.items():
-        b = meta.get(bet_id, {})
-        date       = b.get('date', '—')
-        p          = b.get('p', 0) or 0
-        league_key = b.get('leagueKey', '')
-        league_name = b.get('leagueName', league_key)
 
-        if date not in date_map:
-            date_map[date] = {'bands': {}, 'leagues': {}}
+    for bet_id, state in outcomes.items():
+        if state not in ('verde', 'vermelho'):
+            continue
+        b = meta_map.get(bet_id, {})
+        bet_date    = b.get('date', '—')
+        # Ignora datas futuras
+        if bet_date > TODAY:
+            continue
+        p           = b.get('p', 0) or 0
+        league_key  = b.get('leagueKey', '')
+        league_name = b.get('leagueName', league_key)
 
         band_key = None
         for band in BANDS:
@@ -74,42 +231,44 @@ def main():
         if not band_key:
             continue
 
-        bands = date_map[date]['bands']
-        if band_key not in bands:
-            bands[band_key] = {'verde': 0, 'vermelho': 0}
-        bands[band_key][state] += 1
+        if bet_date not in date_map:
+            date_map[bet_date] = {'bands': {}, 'leagues': {}}
 
-        leagues = date_map[date]['leagues']
+        bands = date_map[bet_date]['bands']
+        bands.setdefault(band_key, {'verde': 0, 'vermelho': 0})[state] += 1
+
+        leagues = date_map[bet_date]['leagues']
         if league_key not in leagues:
-            leagues[league_key] = {
-                'name': league_name,
-                'bands': {},
-                'total': {'verde': 0, 'vermelho': 0}
-            }
+            leagues[league_key] = {'name': league_name, 'bands': {}, 'total': {'verde': 0, 'vermelho': 0}}
         lg = leagues[league_key]
-        if band_key not in lg['bands']:
-            lg['bands'][band_key] = {'verde': 0, 'vermelho': 0}
-        lg['bands'][band_key][state] += 1
+        lg['bands'].setdefault(band_key, {'verde': 0, 'vermelho': 0})[state] += 1
         lg['total'][state] += 1
 
-    # 4) Grava no Firestore
-    batch = db.batch()
-    for date, data in date_map.items():
+    hist_batch = db.batch()
+    for d, data in sorted(date_map.items()):
         bands = data['bands']
         tv = sum(b.get('verde', 0) for b in bands.values())
         tr = sum(b.get('vermelho', 0) for b in bands.values())
         entry = {
-            'date':    date,
+            'date':    d,
             'bands':   bands,
             'total':   {'verde': tv, 'vermelho': tr},
             'leagues': data['leagues'],
         }
-        ref = db.collection('assertHistory').document(date)
-        batch.set(ref, entry)
-        print(f'  {date}: {tv}V / {tr}R', flush=True)
+        ref = db.collection('assertHistory').document(d)
+        hist_batch.set(ref, entry)
+        pct = round(tv / (tv + tr) * 100) if (tv + tr) else 0
+        print(f'  {d}: {tv}V / {tr}R = {pct}%', flush=True)
 
-    batch.commit()
+    # Remove entradas fantasmas de datas futuras do Firestore
+    for doc in db.collection('assertHistory').stream():
+        if doc.id > TODAY:
+            hist_batch.delete(doc.reference)
+            print(f'  Removido entrada futura: {doc.id}', flush=True)
+
+    hist_batch.commit()
     print(f'\n✅ {len(date_map)} dia(s) sincronizado(s) no Firestore.', flush=True)
+
 
 if __name__ == '__main__':
     main()

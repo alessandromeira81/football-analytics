@@ -4598,11 +4598,36 @@ function setArbStatus(msg, isErr) {
     _syncEnabled = !!user;
     if (user) {
       console.log('[Firebase] Autenticado como', user.email);
-      _pullFromCloud(); // re-pull para garantir dados mais recentes após login
+      _pullFromCloud();
+      _pushAllToCloud(); // migra todos os dados locais para o Firestore
     } else {
       console.log('[Firebase] Modo leitura pública.');
     }
   });
+
+  function _pushAllToCloud() {
+    if (!_syncEnabled) return;
+    // Histórico
+    ASSERT_HISTORY.forEach(function(entry) { _pushHistory(entry); });
+    // Estados e metadados
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i);
+      if (!k) continue;
+      if (k.indexOf('assert_') === 0 && k !== 'assert_history') {
+        var bId = k.slice(7);
+        var val = localStorage.getItem(k);
+        if (val && val !== 'cinza') _pushBetOutcome(bId, val);
+      }
+      if (k.indexOf('assertmeta_') === 0) {
+        try {
+          var bId2 = k.slice(11);
+          var m = JSON.parse(localStorage.getItem(k));
+          _pushBetMeta(bId2, m);
+        } catch(e) {}
+      }
+    }
+    console.log('[Firebase] Push completo enviado.');
+  }
 
   // Expõe login/logout para o resto da página
   window.fbSignIn = function(email, password) {

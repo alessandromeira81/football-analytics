@@ -37,6 +37,15 @@ jobs:
         run: python scraper_refs.py
         timeout-minutes: 10
 
+      - name: Install firebase-admin
+        run: pip install firebase-admin
+
+      - name: Sync assertividade → Firestore
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: python assertividade_sync.py
+        timeout-minutes: 5
+
       - name: Commit updated data
         run: |
           git config user.name  "github-actions[bot]"

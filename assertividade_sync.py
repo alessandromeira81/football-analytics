@@ -23,11 +23,10 @@ LEAGUES = [
 ]
 
 BANDS = [
-    {'min': 0.90, 'max': 1.01, 'cls': 'band-90'},
-    {'min': 0.85, 'max': 0.90, 'cls': 'band-85'},
-    {'min': 0.80, 'max': 0.85, 'cls': 'band-80'},
-    {'min': 0.75, 'max': 0.80, 'cls': 'band-75'},
-    {'min': 0.70, 'max': 0.75, 'cls': 'band-70'},
+    {'min': 0.95, 'max': 1.01, 'cls': 'rb-95'},
+    {'min': 0.90, 'max': 0.95, 'cls': 'rb-90'},
+    {'min': 0.85, 'max': 0.90, 'cls': 'rb-85'},
+    {'min': 0.80, 'max': 0.85, 'cls': 'rb-80'},
 ]
 
 TODAY = dt_date.today().isoformat()  # 'yyyy-mm-dd'

@@ -1187,7 +1187,13 @@ var RESUMO_BANDS = [
   {cls:'rb-85', label:'85% — 90%',  min:0.85, max:0.90},
   {cls:'rb-80', label:'80% — 85%',  min:0.80, max:0.85},
 ];
-var RESUMO_FILTER_DATES = new Set(); // vazio = todos
+var RESUMO_FILTER_DATES  = new Set(); // vazio = todos
+var RESUMO_FILTER_LEAGUE = '';        // '' = todas as ligas
+
+function setResumoLeagueFilter(lk) {
+  RESUMO_FILTER_LEAGUE = (RESUMO_FILTER_LEAGUE === lk) ? '' : lk;
+  renderResumo();
+}
 
 // ── Assertividade (localStorage + senha) ─────────────────────────────────────
 var ASSERT_UNLOCKED = false;
@@ -1841,17 +1847,36 @@ function renderResumo() {
   uniqueDates.sort();
 
   // Chips de data
-  var chipsHtml = '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px">'
+  var chipsHtml = '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">'
     + '<button class="arb-chip' + (RESUMO_FILTER_DATES.size === 0 ? ' active' : '') + '" onclick="setResumoDateFilter(\'\')">Todos</button>';
   uniqueDates.forEach(function(d) {
     chipsHtml += '<button class="arb-chip' + (RESUMO_FILTER_DATES.has(d) ? ' active' : '') + '" onclick="setResumoDateFilter(\'' + d + '\')">' + fmtResumoDate(d) + '</button>';
   });
   chipsHtml += '</div>';
 
-  // Filtra por datas selecionadas
-  var filteredBets = RESUMO_FILTER_DATES.size > 0
-    ? allBets.filter(function(b){ return RESUMO_FILTER_DATES.has(b.date); })
-    : allBets;
+  // Chips de liga (bandeiras)
+  var uniqueLeagues = [];
+  var seenLk = {};
+  allBets.forEach(function(b) { if (b.leagueKey && !seenLk[b.leagueKey]) { seenLk[b.leagueKey] = true; uniqueLeagues.push(b.leagueKey); } });
+  if (uniqueLeagues.length > 1) {
+    chipsHtml += '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;align-items:center">';
+    chipsHtml += '<button class="arb-chip' + (!RESUMO_FILTER_LEAGUE ? ' active' : '') + '" onclick="setResumoLeagueFilter(\'\')" style="font-size:10px;padding:3px 8px">Todas</button>';
+    uniqueLeagues.forEach(function(lk) {
+      var meta = LEAGUES_META[lk] || {};
+      var active = RESUMO_FILTER_LEAGUE === lk;
+      chipsHtml += '<span title="' + (meta.name || lk) + '" onclick="setResumoLeagueFilter(\'' + lk + '\')" style="display:inline-flex;align-items:center;padding:3px 7px;border-radius:6px;cursor:pointer;border:2px solid ' + (active ? 'var(--accent)' : 'var(--border2)') + ';background:' + (active ? 'rgba(255,255,255,.07)' : 'transparent') + ';transition:all .15s">'
+        + '<img src="https://flagcdn.com/w40/' + (meta.flagCode || 'un') + '.png" style="width:22px;height:15px;border-radius:2px;object-fit:cover;display:block">'
+        + '</span>';
+    });
+    chipsHtml += '</div>';
+  } else {
+    chipsHtml += '<div style="margin-bottom:16px"></div>';
+  }
+
+  // Filtra por datas e liga
+  var filteredBets = allBets;
+  if (RESUMO_FILTER_DATES.size > 0) filteredBets = filteredBets.filter(function(b){ return RESUMO_FILTER_DATES.has(b.date); });
+  if (RESUMO_FILTER_LEAGUE)         filteredBets = filteredBets.filter(function(b){ return b.leagueKey === RESUMO_FILTER_LEAGUE; });
 
   var html = chipsHtml;
   RESUMO_BANDS.forEach(function(band) {

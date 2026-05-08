@@ -5,6 +5,9 @@ on:
     - cron: '0 6 * * *'  # 6h UTC = 3h BRT
   workflow_dispatch:       # permite rodar manualmente
 
+permissions:
+  contents: write
+
 jobs:
   scrape:
     runs-on: ubuntu-latest

@@ -1541,12 +1541,14 @@ function _registerAssertDaySilent() {
   computeAllInsights().forEach(function(b) {
     betMap[b.betId] = {p: b.p, date: b.date, leagueKey: b.leagueKey, leagueName: b.leagueName};
   });
+  var _todaySilent = new Date().toISOString().slice(0, 10);
   var dateMap = {};
   Object.keys(betMap).forEach(function(betId) {
     var st = getAssert(betId);
     if (st !== 'verde' && st !== 'vermelho') return;
     var b = betMap[betId];
     var date = b.date || '—';
+    if (date > _todaySilent) return; // ignora datas futuras
     if (!dateMap[date]) dateMap[date] = { bands: {}, leagues: {} };
     var bandKey = null;
     RESUMO_BANDS.forEach(function(band) { if (b.p >= band.min && b.p < band.max) bandKey = band.cls; });
@@ -4656,11 +4658,12 @@ function setArbStatus(msg, isErr) {
       var history = [];
       snap.forEach(function(doc) { history.push(doc.data()); });
       if (history.length) {
-        // Merge com dados locais — não apaga entradas que só existem no localStorage
+        // Merge com dados locais — só inclui datas passadas não presentes no Firestore
+        var today = new Date().toISOString().slice(0, 10);
         var cloudDates = {};
         history.forEach(function(h) { cloudDates[h.date] = true; });
         ASSERT_HISTORY.forEach(function(h) {
-          if (h.date && !cloudDates[h.date]) history.push(h);
+          if (h.date && !cloudDates[h.date] && h.date <= today) history.push(h);
         });
         history.sort(function(a, b) { return b.date.localeCompare(a.date); });
         ASSERT_HISTORY = history;

@@ -2070,7 +2070,7 @@ function renderResumo() {
   var html = chipsHtml;
   RESUMO_BANDS.forEach(function(band) {
     var bets = filteredBets
-      .filter(function(b){ return b.p >= band.min && b.p < band.max; })
+      .filter(function(b){ var pr = Math.round(b.p * 100) / 100; return pr >= band.min && pr < band.max; })
       .sort(function(a,b){ return b.p - a.p; });
     if (!bets.length) return;
 

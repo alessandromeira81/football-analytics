@@ -1770,6 +1770,15 @@ function getMarketOdd(gameOdds, betLabel) {
 // ── Estado da calculadora de múltipla ────────────────────────────────────────
 var PARLAY_SELECTIONS = {};   // betId → { p, marketOdd }
 
+function selectBand(bandId, checked) {
+  var band = document.getElementById(bandId);
+  if (!band) return;
+  band.querySelectorAll('.parlay-chk').forEach(function(chk) {
+    chk.checked = checked;
+    updateParlay(chk);
+  });
+}
+
 function updateParlay(checkbox) {
   var row = checkbox.parentElement;
   while (row && !row.getAttribute('data-betid')) row = row.parentElement;
@@ -2079,8 +2088,11 @@ function renderResumo() {
         + assertPct + '% assertividade</span>'
       : '';
 
-    html += '<div class="resumo-band ' + band.cls + '">'
-      + '<div class="resumo-band-hdr"><span>' + band.label + '</span>'
+    var bandId = 'band-' + band.min.toString().replace('.','_');
+    html += '<div class="resumo-band ' + band.cls + '" id="' + bandId + '">'
+      + '<div class="resumo-band-hdr"><span style="display:flex;align-items:center;gap:8px">'
+      + '<input type="checkbox" onchange="selectBand(\'' + bandId + '\',this.checked)" style="width:14px;height:14px;cursor:pointer;accent-color:var(--accent);flex-shrink:0" title="Selecionar todos">'
+      + band.label + '</span>'
       + '<span style="font-weight:400;opacity:.65;display:flex;align-items:center;gap:4px">'
       + bets.length + ' apostas' + assertStr + '</span></div>'
       + '<div class="resumo-bets">';

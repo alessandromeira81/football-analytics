@@ -6,7 +6,7 @@
     "seasonId": 76986,
     "lastRound": 36,
     "totalGames": 349,
-    "updatedAt": "2026-05-08T21:14:31Z",
+    "updatedAt": "2026-05-08T21:46:14Z",
     "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents."
   },
   "games": [
@@ -42091,7 +42091,7 @@
         "Corners 2-Way_10.5_Under": 1.73,
         "First team to score_Liverpool FC": 1.62,
         "First team to score_No goal": 21.0,
-        "First team to score_Chelsea": 2.2
+        "First team to score_Chelsea": 2.25
       }
     },
     {
@@ -42150,14 +42150,14 @@
       "awayTeam": "Bournemouth",
       "date": "2026-05-09",
       "odds": {
-        "Full time_1": 2.6,
-        "Full time_X": 3.5,
-        "Full time_2": 2.55,
+        "Full time_1": 2.5,
+        "Full time_X": 3.3,
+        "Full time_2": 2.45,
         "Double chance_1X": 1.5,
-        "Double chance_X2": 1.5,
-        "Double chance_12": 1.29,
-        "1st half_1": 3.0,
-        "1st half_X": 2.4,
+        "Double chance_X2": 1.44,
+        "Double chance_12": 1.3,
+        "1st half_1": 3.1,
+        "1st half_X": 2.38,
         "1st half_2": 3.0,
         "Draw no bet_1": 1.83,
         "Draw no bet_2": 1.83,
@@ -42169,10 +42169,10 @@
         "Match goals_1.5_Under": 5.0,
         "Match goals_2.5_Over": 1.62,
         "Match goals_2.5_Under": 2.3,
-        "Match goals_3.5_Over": 2.5,
-        "Match goals_3.5_Under": 1.53,
-        "Match goals_4.5_Over": 4.5,
-        "Match goals_4.5_Under": 1.2,
+        "Match goals_3.5_Over": 2.38,
+        "Match goals_3.5_Under": 1.57,
+        "Match goals_4.5_Over": 4.33,
+        "Match goals_4.5_Under": 1.22,
         "Match goals_5.5_Over": 8.0,
         "Match goals_5.5_Under": 1.08,
         "Match goals_6.5_Over": 17.0,

@@ -6,7 +6,7 @@
     "seasonId": 77559,
     "lastRound": 35,
     "totalGames": 341,
-    "updatedAt": "2026-05-08T21:14:53Z",
+    "updatedAt": "2026-05-08T21:46:32Z",
     "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents."
   },
   "games": [
@@ -42248,8 +42248,8 @@
         "Match goals_1.5_Under": 3.0,
         "Match goals_2.5_Over": 2.2,
         "Match goals_2.5_Under": 1.67,
-        "Match goals_3.5_Over": 4.0,
-        "Match goals_3.5_Under": 1.25,
+        "Match goals_3.5_Over": 4.33,
+        "Match goals_3.5_Under": 1.22,
         "Match goals_4.5_Over": 9.0,
         "Match goals_4.5_Under": 1.07,
         "Match goals_5.5_Over": 19.0,

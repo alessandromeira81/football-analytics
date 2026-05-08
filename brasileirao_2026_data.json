@@ -6,7 +6,7 @@
     "seasonId": 87678,
     "lastRound": 15,
     "totalGames": 137,
-    "updatedAt": "2026-05-08T21:14:13Z",
+    "updatedAt": "2026-05-08T21:45:56Z",
     "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents."
   },
   "games": [
@@ -17906,8 +17906,8 @@
         "Match goals_6.5_Under": 1.01,
         "Asian handicap_(-1) Fluminense": 1.88,
         "Asian handicap_(1) Vitória": 1.98,
-        "Cards in match_6.5_Over": 1.83,
-        "Cards in match_6.5_Under": 1.83,
+        "Cards in match_5.5_Over": 1.62,
+        "Cards in match_5.5_Under": 2.2,
         "Corners 2-Way_9.5_Over": 2.0,
         "Corners 2-Way_9.5_Under": 1.73,
         "First team to score_Fluminense": 1.44,

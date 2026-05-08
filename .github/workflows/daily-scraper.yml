@@ -23,7 +23,7 @@ jobs:
         run: pip install playwright firebase-admin
 
       - name: Install Chromium
-        run: playwright install chromium
+        run: python -m playwright install chromium
 
       - name: Run scraper – all leagues
         run: python scraper.py --liga all

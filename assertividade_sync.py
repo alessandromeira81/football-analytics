@@ -134,6 +134,18 @@ def load_league_games():
     return game_idx
 
 
+def find_game_date(bet_id, game_idx):
+    """Tenta recuperar a data real do jogo a partir do JSON."""
+    parts = bet_id.split('|')
+    if len(parts) < 4:
+        return None
+    league_key, home, away = parts[0], parts[1], parts[2]
+    game = (game_idx.get(league_key) or {}).get(home + '_' + away)
+    if game and game.get('date'):
+        return game['date']
+    return None
+
+
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
@@ -215,10 +227,20 @@ def main():
         if state not in ('verde', 'vermelho'):
             continue
         b = meta_map.get(bet_id, {})
-        bet_date    = b.get('date', '—')
-        # Ignora datas futuras
+        bet_date = b.get('date', '—')
+        # Se a data do meta é futura, tenta recuperar do JSON
         if bet_date > TODAY:
-            continue
+            real_date = find_game_date(bet_id, game_idx)
+            if real_date and real_date <= TODAY:
+                bet_date = real_date
+                # Corrige no Firestore para não repetir esse problema
+                updated_meta = dict(b)
+                updated_meta['date'] = real_date
+                meta_map[bet_id] = updated_meta
+                db.collection('betMeta').document(encode_id(bet_id)).set(updated_meta)
+                print(f'  Corrigida data: {bet_id.split("|")[1]} x {bet_id.split("|")[2]} → {real_date}', flush=True)
+            else:
+                continue  # ainda futura, pula
         p           = b.get('p', 0) or 0
         league_key  = b.get('leagueKey', '')
         league_name = b.get('leagueName', league_key)

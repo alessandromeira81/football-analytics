@@ -1471,7 +1471,8 @@ function autoFillAssertividade() {
     if (!game) { nNotFound++; return; }
     var result = evaluateBetLabel(b.label, game);
     if (!result) { nNoStat++; return; }
-    localStorage.setItem('assert_' + b.betId, result);
+    ASSERT_STATES[b.betId] = result;
+    if (window._fbPushBetOutcome) window._fbPushBetOutcome(b.betId, result);
     _saveAssertMeta(b.betId, {p: b.p, date: b.date, leagueKey: b.leagueKey, leagueName: b.leagueName});
     nFilled++;
   });
@@ -1632,20 +1633,25 @@ function importAssertFromFile() {
           if (key === '__history__') {
             if (Array.isArray(data[key]) && data[key].length) {
               ASSERT_HISTORY = data[key];
-              localStorage.setItem('assert_history', JSON.stringify(ASSERT_HISTORY));
+              if (window._fbPushHistory) ASSERT_HISTORY.forEach(function(e) { window._fbPushHistory(e); });
               hasHistory = true;
             }
           } else if (key === '__meta__') {
             var meta = data[key];
             if (meta && typeof meta === 'object') {
               Object.keys(meta).forEach(function(betId) {
-                localStorage.setItem('assertmeta_' + betId, meta[betId]);
+                try { ASSERT_META[betId] = JSON.parse(meta[betId]); } catch(e) { ASSERT_META[betId] = meta[betId]; }
+                if (window._fbPushBetMeta) window._fbPushBetMeta(betId, ASSERT_META[betId]);
                 nMeta++;
               });
             }
           } else {
             var st = data[key];
-            if (st && st !== 'cinza') { localStorage.setItem('assert_' + key, st); nBets++; }
+            if (st && st !== 'cinza') {
+              ASSERT_STATES[key] = st;
+              if (window._fbPushBetOutcome) window._fbPushBetOutcome(key, st);
+              nBets++;
+            }
           }
         });
         renderResumo();

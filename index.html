@@ -2898,9 +2898,11 @@ function computeMatchInsights(homeTeam, awayTeam, refName) {
   var lCards = refData ? Math.max(1, refData.ca_j)     : Math.max(1, L().cart);
   var lFouls = refData ? Math.max(10, refData.fouls_j) : lgFoulAvg();
 
-  // Finalizacoes: mandante faz em casa + visitante faz fora
-  var lShots = Math.max(8, (H.shots_c||0)/_jH + (A.shots_f||0)/_jA);
-  if (!H.shots_c && !A.shots_f) lShots = lgShotsAvg();
+  // Finalizacoes: shrinkage igual ao de escanteios — evita floor ficticio
+  var lgS       = lgShotsAvg();
+  var shotH_raw = H.shots_c > 0 ? H.shots_c / _jH : lgS / 2;
+  var shotA_raw = A.shots_f > 0 ? A.shots_f / _jA : lgS / 2;
+  var lShots    = (Math.min(_jH, _jA) * (shotH_raw + shotA_raw) + k * lgS) / (Math.min(_jH, _jA) + k);
 
   var lTot = lH + lA;
   var pBTTS = (1 - poissonCDF(lH, 0)) * (1 - poissonCDF(lA, 0));

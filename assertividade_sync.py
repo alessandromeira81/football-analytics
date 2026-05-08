@@ -267,9 +267,13 @@ def main():
         league_key  = b.get('leagueKey', '')
         league_name = b.get('leagueName', league_key)
 
+        # Arredonda para o inteiro percentual mais próximo antes de classificar
+        # Ex: 0.946 → 95% → rb-95 | 0.944 → 94% → rb-90
+        p_rounded = round(p * 100) / 100
+
         band_key = None
         for band in BANDS:
-            if band['min'] <= p < band['max']:
+            if band['min'] <= p_rounded < band['max']:
                 band_key = band['cls']
                 break
         if not band_key:

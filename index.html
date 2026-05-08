@@ -1277,7 +1277,8 @@ function registerAssertDay() {
     var date = b.date || '—';
     if (!dateMap[date]) dateMap[date] = { bands: {}, leagues: {} };
     var bandKey = null;
-    RESUMO_BANDS.forEach(function(band) { if (b.p >= band.min && b.p < band.max) bandKey = band.cls; });
+    var pRounded = Math.round(b.p * 100) / 100;
+    RESUMO_BANDS.forEach(function(band) { if (pRounded >= band.min && pRounded < band.max) bandKey = band.cls; });
     if (!bandKey) return;
     // overall bands
     if (!dateMap[date].bands[bandKey]) dateMap[date].bands[bandKey] = { verde: 0, vermelho: 0 };
@@ -1535,7 +1536,8 @@ function _registerAssertDaySilent() {
     if (date > _todaySilent) return; // ignora datas futuras
     if (!dateMap[date]) dateMap[date] = { bands: {}, leagues: {} };
     var bandKey = null;
-    RESUMO_BANDS.forEach(function(band) { if (b.p >= band.min && b.p < band.max) bandKey = band.cls; });
+    var pRounded = Math.round(b.p * 100) / 100;
+    RESUMO_BANDS.forEach(function(band) { if (pRounded >= band.min && pRounded < band.max) bandKey = band.cls; });
     if (!bandKey) return;
     if (!dateMap[date].bands[bandKey]) dateMap[date].bands[bandKey] = { verde: 0, vermelho: 0 };
     dateMap[date].bands[bandKey][st]++;

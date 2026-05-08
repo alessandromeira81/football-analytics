@@ -295,9 +295,11 @@ select{font-family:var(--mono);font-size:11px;padding:5px 10px;background:var(--
 <div id="arb-modal-overlay" onclick="if(event.target===this)closeArbModal()">
   <div class="arb-modal">
     <div class="arb-modal-icon">&#128274;</div>
-    <h3>Módulo de Arbitragem</h3>
-    <p>Acesso restrito — insira a senha</p>
-    <input type="password" id="arb-pwd-input" placeholder="••••••••"
+    <h3>Acesso Admin</h3>
+    <p>Entre com sua conta para habilitar edição</p>
+    <input type="email" id="arb-pwd-email" placeholder="email" style="margin-bottom:8px"
+      onkeydown="if(event.key==='Enter')document.getElementById('arb-pwd-input').focus()">
+    <input type="password" id="arb-pwd-input" placeholder="senha"
       onkeydown="if(event.key==='Enter')submitArbPwd()">
     <div class="arb-modal-err" id="arb-pwd-err"></div>
     <button class="btn-primary" onclick="submitArbPwd()" style="width:100%">Entrar</button>
@@ -4056,27 +4058,36 @@ var _pwdCallback = null; // callback após senha correta (null = abrir tela arb)
 
 function openArbModal(callback) {
   _pwdCallback = callback || null;
+  document.getElementById('arb-pwd-email').value = '';
   document.getElementById('arb-pwd-input').value = '';
   document.getElementById('arb-pwd-err').textContent = '';
   document.getElementById('arb-modal-overlay').classList.add('open');
-  setTimeout(function(){ document.getElementById('arb-pwd-input').focus(); }, 80);
+  setTimeout(function(){ document.getElementById('arb-pwd-email').focus(); }, 80);
 }
 function closeArbModal() {
   document.getElementById('arb-modal-overlay').classList.remove('open');
   _pwdCallback = null;
 }
 function submitArbPwd() {
-  var val = document.getElementById('arb-pwd-input').value;
-  if (val === atob('MDQwMjIwMTU=')) {
+  var email = (document.getElementById('arb-pwd-email').value || '').trim();
+  var pwd   = document.getElementById('arb-pwd-input').value;
+  var errEl = document.getElementById('arb-pwd-err');
+  errEl.textContent = '';
+  if (!email || !pwd) { errEl.textContent = 'Preencha email e senha.'; return; }
+
+  // Usa Firebase auth — se não estiver disponível, bloqueia
+  if (!window.fbSignIn) { errEl.textContent = 'Firebase não inicializado.'; return; }
+  errEl.textContent = 'Autenticando…';
+  window.fbSignIn(email, pwd).then(function() {
     var cb = _pwdCallback;
     closeArbModal();
     if (cb) cb();
     else showArbScreen();
-  } else {
-    document.getElementById('arb-pwd-err').textContent = 'Senha incorreta.';
+  }).catch(function(e) {
+    errEl.textContent = 'Email ou senha incorretos.';
     document.getElementById('arb-pwd-input').value = '';
     document.getElementById('arb-pwd-input').focus();
-  }
+  });
 }
 
 function showArbScreen() {
@@ -4776,26 +4787,6 @@ function setArbStatus(msg, isErr) {
     runAutoAssertividade();
   });
 
-  // ── Login integrado ao modal de senha existente ───────────────────────────
-  // Intercepta openArbModal para tentar autenticação Firebase ao mesmo tempo
-  var _orig_openArbModal = window.openArbModal;
-  window.openArbModal = function(onSuccess) {
-    _orig_openArbModal.call(this, function() {
-      // Senha local OK — tenta autenticar via Firebase se ainda não estiver logado
-      if (!_fbUser) {
-        var pwd = document.getElementById('arb-api-key')
-          ? document.getElementById('arb-api-key').value.trim() : '';
-        if (pwd) {
-          auth.signInWithEmailAndPassword('alessandromeira@gmail.com', pwd)
-            .catch(function() {
-              // Senha incorreta para Firebase — segue sem sync (não bloqueia o fluxo)
-              console.warn('[Firebase] Autenticação falhou — sync desativado nesta sessão.');
-            });
-        }
-      }
-      if (onSuccess) onSuccess();
-    });
-  };
 
 })();
 </script>

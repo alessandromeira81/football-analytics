@@ -12,6 +12,9 @@ jobs:
   scrape:
     runs-on: self-hosted
     timeout-minutes: 60
+    env:
+      PYTHONIOENCODING: utf-8
+      PYTHONUTF8: 1
 
     steps:
       - name: Checkout repo

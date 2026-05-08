@@ -1230,9 +1230,19 @@ function _histPct(entry, col) {
 function loadEmbeddedAssert() {
   Object.keys(ASSERT_EMBEDDED).forEach(function(key) {
     if (key === '__history__') {
-      if (Array.isArray(ASSERT_EMBEDDED[key])) {
-        ASSERT_HISTORY = ASSERT_EMBEDDED[key];
-        localStorage.setItem('assert_history', JSON.stringify(ASSERT_HISTORY));
+      var embedded = ASSERT_EMBEDDED[key];
+      if (Array.isArray(embedded) && embedded.length) {
+        // Merge: só adiciona entradas que não existem no localStorage
+        var existingDates = {};
+        ASSERT_HISTORY.forEach(function(h) { existingDates[h.date] = true; });
+        var merged = false;
+        embedded.forEach(function(h) {
+          if (h.date && !existingDates[h.date]) { ASSERT_HISTORY.push(h); merged = true; }
+        });
+        if (merged) {
+          ASSERT_HISTORY.sort(function(a, b) { return b.date.localeCompare(a.date); });
+          localStorage.setItem('assert_history', JSON.stringify(ASSERT_HISTORY));
+        }
       }
     } else {
       var st = ASSERT_EMBEDDED[key];
@@ -4610,6 +4620,12 @@ function setArbStatus(msg, isErr) {
       var history = [];
       snap.forEach(function(doc) { history.push(doc.data()); });
       if (history.length) {
+        // Merge com dados locais — não apaga entradas que só existem no localStorage
+        var cloudDates = {};
+        history.forEach(function(h) { cloudDates[h.date] = true; });
+        ASSERT_HISTORY.forEach(function(h) {
+          if (h.date && !cloudDates[h.date]) history.push(h);
+        });
         history.sort(function(a, b) { return b.date.localeCompare(a.date); });
         ASSERT_HISTORY = history;
         localStorage.setItem('assert_history', JSON.stringify(ASSERT_HISTORY));

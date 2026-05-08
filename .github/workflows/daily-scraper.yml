@@ -2,7 +2,7 @@ name: Daily Data Scraper
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # 6h UTC = 3h BRT
+    - cron: '0 9 * * *'  # 9h UTC = 6h BRT (self-hosted: PC precisa estar ligado)
   workflow_dispatch:       # permite rodar manualmente
 
 permissions:
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   scrape:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     timeout-minutes: 60
 
     steps:
@@ -19,15 +19,11 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+      - name: Install Python dependencies
+        run: pip install playwright firebase-admin
 
-      - name: Install dependencies
-        run: |
-          pip install playwright
-          playwright install chromium --with-deps
+      - name: Install Chromium
+        run: playwright install chromium
 
       - name: Run scraper – all leagues
         run: python scraper.py --liga all
@@ -36,9 +32,6 @@ jobs:
       - name: Run referee scraper – Brasileirao
         run: python scraper_refs.py
         timeout-minutes: 10
-
-      - name: Install firebase-admin
-        run: pip install firebase-admin
 
       - name: Sync assertividade → Firestore
         env:
@@ -51,5 +44,5 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add *.json
-          git diff --cached --quiet || git commit -m "chore: atualiza dados das ligas $(date +'%Y-%m-%d')"
+          git diff --cached --quiet && echo "Nada novo." || git commit -m "chore: atualiza dados das ligas"
           git push

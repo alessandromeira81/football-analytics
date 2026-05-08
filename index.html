@@ -1891,7 +1891,8 @@ function compareWithInsightsPro() {
       } else {
         var delta = pPro - pOriginal;
         var lowConf = confLabel && (confLabel.txt === 'Baixa' || confLabel.txt === 'Muito Baixa');
-        if (delta >= -0.08 && !lowConf && pPro >= 0.70) {
+        var altaConf = confLabel && confLabel.txt === 'Alta';
+        if (pPro >= 0.80 && altaConf && delta >= -0.08) {
           suggestion = 'Manter';  sugColor = 'var(--green)';  sugIcon = '✅';
         } else if (delta < -0.15 || pPro < 0.58) {
           suggestion = 'Retirar'; sugColor = 'var(--red)';    sugIcon = '🚫';

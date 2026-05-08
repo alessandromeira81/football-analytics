@@ -2881,22 +2881,34 @@ function computeMatchInsights(homeTeam, awayTeam, refName) {
   var lA = (Math.max(1,jA) * lA_raw + k * lg.a) / (Math.max(1,jA) + k);
 
   var _jH = Math.max(1, jH), _jA = Math.max(1, jA);
-  // Escanteios: shrinkage igual ao dos gols — puxa lC para media da liga.
-  // Elimina o piso fixo (4) que causava Under 8.5 ficticios quando dados sao esparsos.
-  var lgC   = lgCornersAvg();
-  var nC    = Math.min(_jH, _jA); // amostra efetiva = menor dos dois
-  var lC_raw = H.esc_c/_jH + A.esc_f/_jA;
-  var lC    = (nC * lC_raw + k * lgC) / (nC + k);
 
-  // Cartoes: arbitro se selecionado, senao media da liga
+  // Escanteios: usa lgC/2 como prior individual quando time não tem dados (esc_c=0),
+  // evitando que lC_raw=0 contamine o shrinkage e gere Under 8.5 ficticios.
+  var lgC    = lgCornersAvg();
+  var nC     = Math.min(_jH, _jA);
+  var cornH  = H.esc_c > 0 ? H.esc_c / _jH : lgC / 2;
+  var cornA  = A.esc_f > 0 ? A.esc_f / _jA : lgC / 2;
+  var lC     = (nC * (cornH + cornA) + k * lgC) / (nC + k);
+
+  // Cartoes e faltas: shrinkage usando media da liga como prior,
+  // evitando pisos fixos que geram probabilidades ficticias com arbitros de poucos jogos.
   var refData = null;
   if (refName && SCRAPED_GAMES.length) {
     aggregateReferees(SCRAPED_GAMES).forEach(function(r){
       if (r.name === refName) refData = r;
     });
   }
-  var lCards = refData ? Math.max(1, refData.ca_j)     : Math.max(1, L().cart);
-  var lFouls = refData ? Math.max(10, refData.fouls_j) : lgFoulAvg();
+  var lgCards = Math.max(1, L().cart || 3.5);
+  var lgFouls = lgFoulAvg();
+  var lCards, lFouls;
+  if (refData) {
+    var rj = Math.max(1, refData.j);
+    lCards = (rj * (refData.ca_j    > 0 ? refData.ca_j    : lgCards) + k * lgCards) / (rj + k);
+    lFouls = (rj * (refData.fouls_j > 0 ? refData.fouls_j : lgFouls) + k * lgFouls) / (rj + k);
+  } else {
+    lCards = lgCards;
+    lFouls = lgFouls;
+  }
 
   // Finalizacoes: shrinkage igual ao de escanteios — evita floor ficticio
   var lgS       = lgShotsAvg();

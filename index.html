@@ -4590,14 +4590,17 @@ function setArbStatus(msg, isErr) {
   var _syncEnabled = false;
 
   // ── Auth ──────────────────────────────────────────────────────────────────
+  // Leitura pública: carrega dados do Firestore sem precisar de login
+  _pullFromCloud();
+
   auth.onAuthStateChanged(function(user) {
     _fbUser = user;
     _syncEnabled = !!user;
     if (user) {
       console.log('[Firebase] Autenticado como', user.email);
-      _pullFromCloud();
+      _pullFromCloud(); // re-pull para garantir dados mais recentes após login
     } else {
-      console.log('[Firebase] Não autenticado — dados locais em uso.');
+      console.log('[Firebase] Modo leitura pública.');
     }
   });
 
@@ -4612,9 +4615,6 @@ function setArbStatus(msg, isErr) {
 
   // ── Pull: Firestore → localStorage ───────────────────────────────────────
   function _pullFromCloud() {
-    var uid = _fbUser ? _fbUser.uid : null;
-    if (!uid) return;
-
     // 1) Histórico de assertividade
     db.collection('assertHistory').get().then(function(snap) {
       var history = [];

@@ -1823,6 +1823,185 @@ function clearParlay() {
   updateParlayBar();
 }
 
+// ── Comparação Modelo vs Insights Pro ────────────────────────────────────────
+function closeProCompare() {
+  var ov = document.getElementById('pro-compare-overlay');
+  if (ov) ov.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function compareWithInsightsPro() {
+  var keys = Object.keys(PARLAY_SELECTIONS);
+  if (!keys.length) { alert('Selecione pelo menos uma aposta antes de comparar.'); return; }
+
+  // Agrupa por jogo: leagueKey|homeTeam|awayTeam → [bets]
+  var gameMap = {};
+  keys.forEach(function(betId) {
+    var parts = betId.split('|');
+    if (parts.length < 4) return;
+    var gameKey = parts[0] + '|' + parts[1] + '|' + parts[2];
+    if (!gameMap[gameKey]) gameMap[gameKey] = [];
+    gameMap[gameKey].push({ betId: betId, label: parts.slice(3).join('|'), p: PARLAY_SELECTIONS[betId].p });
+  });
+
+  var sd = window.SCRAPED_DATA || {};
+  var savedGames   = SCRAPED_GAMES;
+  var savedByTeam  = SCRAPED_BY_TEAM;
+
+  // Para cada jogo, roda o modelo Insights Pro e coleta os resultados
+  var rows = [];
+  Object.keys(gameMap).forEach(function(gameKey) {
+    var parts     = gameKey.split('|');
+    var lk        = parts[0], home = parts[1], away = parts[2];
+    var data      = sd[lk];
+    if (!data || !data.games) return;
+
+    SCRAPED_GAMES   = data.games;
+    SCRAPED_BY_TEAM = aggregateGames(data.games);
+
+    // Encontra as odds do jogo agendado (se disponível)
+    var gameOdds = {};
+    if (data.scheduledGames) {
+      data.scheduledGames.forEach(function(sg) {
+        if (sg.homeTeam === home && sg.awayTeam === away) gameOdds = sg.odds || {};
+      });
+    }
+
+    var iproResult = _ipro_analyzeMatch(home, away, gameOdds, data.games);
+    var meta = LEAGUES_META[lk] || {};
+
+    gameMap[gameKey].forEach(function(sel) {
+      // Procura a aposta correspondente no resultado Pro
+      var probet = null;
+      if (iproResult) {
+        iproResult.bets.forEach(function(b) {
+          if (b.label === sel.label && !probet) probet = b;
+        });
+      }
+
+      var pOriginal = sel.p;
+      var pPro      = probet ? probet.p      : null;
+      var confPro   = probet ? probet.conf    : null;
+      var confLabel = probet ? _ipro_confLabel(confPro) : null;
+
+      // Sugestão
+      var suggestion, sugColor, sugIcon;
+      if (pPro === null) {
+        suggestion = 'Sem dado Pro'; sugColor = 'var(--muted2)'; sugIcon = '—';
+      } else {
+        var delta = pPro - pOriginal;
+        var lowConf = confLabel && (confLabel.txt === 'Baixa' || confLabel.txt === 'Muito Baixa');
+        if (delta >= -0.08 && !lowConf && pPro >= 0.70) {
+          suggestion = 'Manter';  sugColor = 'var(--green)';  sugIcon = '✅';
+        } else if (delta < -0.15 || pPro < 0.58) {
+          suggestion = 'Retirar'; sugColor = 'var(--red)';    sugIcon = '🚫';
+        } else {
+          suggestion = 'Rever';   sugColor = 'var(--orange)'; sugIcon = '⚠️';
+        }
+      }
+
+      rows.push({
+        leagueName: meta.name || lk,
+        flagCode:   meta.flagCode || '',
+        home: home, away: away,
+        label:      sel.label,
+        pOriginal:  pOriginal,
+        pPro:       pPro,
+        confLabel:  confLabel,
+        delta:      pPro !== null ? pPro - pOriginal : null,
+        suggestion: suggestion, sugColor: sugColor, sugIcon: sugIcon,
+        why:        probet ? probet.why : ''
+      });
+    });
+  });
+
+  SCRAPED_GAMES   = savedGames;
+  SCRAPED_BY_TEAM = savedByTeam;
+
+  // Ordena: Retirar primeiro, depois Rever, depois Manter
+  var order = { 'Retirar': 0, 'Rever': 1, 'Manter': 2, 'Sem dado Pro': 3 };
+  rows.sort(function(a, b) { return (order[a.suggestion]||9) - (order[b.suggestion]||9); });
+
+  // Renderiza tabela
+  var thS = 'padding:8px 12px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--muted2);border-bottom:1px solid var(--border2);white-space:nowrap';
+  var tdS = 'padding:9px 12px;font-size:12px;border-bottom:1px solid rgba(255,255,255,.04)';
+  var tdM = 'padding:9px 12px;font-family:var(--mono);font-size:12px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04)';
+
+  var tableRows = rows.map(function(r) {
+    var flag     = r.flagCode ? '<img src="https://flagcdn.com/w40/'+r.flagCode+'.png" style="width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-align:middle;margin-right:5px">' : '';
+    var matchStr = r.home.slice(0,12) + ' v ' + r.away.slice(0,12);
+    var pOrigStr = Math.round(r.pOriginal * 100) + '%';
+    var pProStr  = r.pPro !== null ? Math.round(r.pPro * 100) + '%' : '—';
+    var pProColor = r.pPro === null ? 'var(--muted2)'
+                  : r.pPro >= 0.85 ? 'var(--green)' : r.pPro >= 0.70 ? 'var(--accent)' : 'var(--red)';
+    var deltaStr = r.delta !== null
+      ? '<span style="color:' + (r.delta >= 0 ? 'var(--green)' : r.delta >= -0.08 ? 'var(--accent)' : 'var(--red)') + ';font-weight:700">'
+        + (r.delta >= 0 ? '+' : '') + Math.round(r.delta * 100) + 'pp</span>'
+      : '<span style="color:var(--muted2)">—</span>';
+    var confStr  = r.confLabel
+      ? '<span class="' + r.confLabel.cls + '" style="font-size:10px">' + r.confLabel.txt + '</span>'
+      : '<span style="color:var(--muted2)">—</span>';
+    var sugStr   = '<span style="font-weight:700;color:' + r.sugColor + '">' + r.sugIcon + ' ' + r.suggestion + '</span>';
+
+    return '<tr>'
+      + '<td style="'+tdS+'">'+flag+matchStr+'</td>'
+      + '<td style="'+tdS+';font-size:11px;color:var(--muted2)">'+r.label+'</td>'
+      + '<td style="'+tdM+';font-weight:700">'+pOrigStr+'</td>'
+      + '<td style="'+tdM+';font-weight:700;color:'+pProColor+'">'+pProStr+'</td>'
+      + '<td style="'+tdM+'">'+deltaStr+'</td>'
+      + '<td style="'+tdM+'">'+confStr+'</td>'
+      + '<td style="'+tdM+'">'+sugStr+'</td>'
+      + '</tr>';
+  }).join('');
+
+  // Resumo executivo
+  var nManter  = rows.filter(function(r){ return r.suggestion === 'Manter';  }).length;
+  var nRever   = rows.filter(function(r){ return r.suggestion === 'Rever';   }).length;
+  var nRetirar = rows.filter(function(r){ return r.suggestion === 'Retirar'; }).length;
+
+  var summaryHtml =
+    '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px">' +
+      '<div class="card" style="text-align:center;border-left:3px solid var(--green)">' +
+        '<div style="font-size:24px;font-weight:800;color:var(--green)">'+nManter+'</div>' +
+        '<div style="font-size:11px;color:var(--muted2);margin-top:2px">Manter</div></div>' +
+      '<div class="card" style="text-align:center;border-left:3px solid var(--orange)">' +
+        '<div style="font-size:24px;font-weight:800;color:var(--orange)">'+nRever+'</div>' +
+        '<div style="font-size:11px;color:var(--muted2);margin-top:2px">Rever</div></div>' +
+      '<div class="card" style="text-align:center;border-left:3px solid var(--red)">' +
+        '<div style="font-size:24px;font-weight:800;color:var(--red)">'+nRetirar+'</div>' +
+        '<div style="font-size:11px;color:var(--muted2);margin-top:2px">Retirar</div></div>' +
+    '</div>';
+
+  var noteHtml = '<div style="font-size:11px;color:var(--muted2);margin-bottom:16px;line-height:1.6">' +
+    '<b style="color:var(--text)">Como interpretar:</b> ' +
+    '✅ <b>Manter</b> — ambos os modelos convergem (delta ≥ −8pp e confiança adequada). ' +
+    '⚠️ <b>Rever</b> — Insights Pro é mais conservador, avalie o contexto antes de apostar. ' +
+    '🚫 <b>Retirar</b> — divergência elevada (delta &lt; −15pp ou probabilidade Pro abaixo de 58%).' +
+    '</div>';
+
+  var html = summaryHtml + noteHtml +
+    '<div class="card" style="padding:0;overflow-x:auto">' +
+    '<table style="width:100%;border-collapse:collapse;font-size:12px">' +
+    '<thead><tr>' +
+      '<th style="'+thS+';text-align:left">JOGO</th>' +
+      '<th style="'+thS+';text-align:left">APOSTA</th>' +
+      '<th style="'+thS+'">MODELO</th>' +
+      '<th style="'+thS+'">INSIGHTS PRO</th>' +
+      '<th style="'+thS+'">DELTA</th>' +
+      '<th style="'+thS+'">CONFIANÇA</th>' +
+      '<th style="'+thS+'">SUGESTÃO</th>' +
+    '</tr></thead>' +
+    '<tbody>' + tableRows + '</tbody>' +
+    '</table></div>';
+
+  var container = document.getElementById('pro-compare-content');
+  if (container) container.innerHTML = html;
+
+  var ov = document.getElementById('pro-compare-overlay');
+  if (ov) { ov.style.display = 'block'; ov.scrollTop = 0; }
+  document.body.style.overflow = 'hidden';
+}
+
 // ── Renderização ─────────────────────────────────────────────────────────────
 function renderResumo() {
   var container = document.getElementById('resumo-content');
@@ -4568,12 +4747,24 @@ function setArbStatus(msg, isErr) {
 </script>
 
 <!-- PARLAY BAR (fixo no rodapé, visível só no resumo) -->
+<!-- OVERLAY COMPARAÇÃO PRO -->
+<div id="pro-compare-overlay" style="display:none;position:fixed;inset:0;z-index:9999;background:var(--bg);overflow-y:auto">
+  <div style="max-width:900px;margin:0 auto;padding:20px 16px 60px">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;position:sticky;top:0;background:var(--bg);padding:14px 0;border-bottom:1px solid var(--border2);z-index:10">
+      <button onclick="closeProCompare()" style="background:transparent;border:1px solid var(--border2);color:var(--muted2);border-radius:6px;padding:5px 12px;font-family:var(--mono);font-size:11px;cursor:pointer">← Voltar</button>
+      <span style="font-size:16px;font-weight:800;letter-spacing:-.03em">Comparação Modelo vs Insights Pro</span>
+    </div>
+    <div id="pro-compare-content"></div>
+  </div>
+</div>
+
 <div id="parlay-bar">
   <span id="parlay-count" style="font-family:var(--mono);font-size:11px;color:var(--muted2);white-space:nowrap">0 seleções</span>
   <div style="display:flex;gap:18px;flex:1;flex-wrap:wrap">
     <div class="pb-stat"><span class="pb-lbl">Prob. combinada</span><strong class="pb-val" id="parlay-prob" style="color:var(--text)">—</strong></div>
     <div class="pb-stat"><span class="pb-lbl">Odd Sofascore</span><strong class="pb-val" id="parlay-market-odd" style="color:var(--blue)">—</strong></div>
   </div>
+  <button onclick="compareWithInsightsPro()" style="background:var(--purple);border:none;color:#fff;border-radius:6px;padding:5px 13px;font-family:var(--mono);font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;box-shadow:0 0 8px rgba(139,92,246,.4)">🔬 Visão Pro</button>
   <button class="btn-secondary" onclick="clearParlay()" style="white-space:nowrap">&#215; Limpar</button>
 </div>
 </body>

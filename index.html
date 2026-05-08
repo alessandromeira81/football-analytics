@@ -4190,6 +4190,223 @@ function setArbStatus(msg, isErr) {
 }
 </script>
 
+<!-- ══ FIREBASE SYNC ══════════════════════════════════════════════════════════ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+(function() {
+  // ── Configuração Firebase ─────────────────────────────────────────────────
+  var FB_CONFIG = {
+    apiKey:            "AIzaSyDrDZ8pL40Qg7Qkb6t6zFy6kyJht_O5xSQ",
+    authDomain:        "football-analytics-26.firebaseapp.com",
+    projectId:         "football-analytics-26",
+    storageBucket:     "football-analytics-26.firebasestorage.app",
+    messagingSenderId: "903616827242",
+    appId:             "1:903616827242:web:4e8c698a3196c2674e9f13"
+  };
+
+  // Aborta silenciosamente se as chaves placeholder ainda não foram preenchidas
+  if (FB_CONFIG.apiKey.indexOf('PLACEHOLDER') !== -1) {
+    console.warn('[Firebase] Credenciais não configuradas — sincronização desativada.');
+    return;
+  }
+
+  var app = firebase.initializeApp(FB_CONFIG);
+  var auth = firebase.auth(app);
+  var db   = firebase.firestore(app);
+
+  // ── Utilidades de ID ──────────────────────────────────────────────────────
+  // Firestore não aceita '|' ou '/' em IDs de documento
+  function encodeId(betId) {
+    return betId.replace(/\|/g, '__pipe__').replace(/\//g, '__slash__');
+  }
+  function decodeId(encoded) {
+    return encoded.replace(/__pipe__/g, '|').replace(/__slash__/g, '/');
+  }
+
+  // ── Estado ────────────────────────────────────────────────────────────────
+  var _fbUser = null;
+  var _syncEnabled = false;
+
+  // ── Auth ──────────────────────────────────────────────────────────────────
+  auth.onAuthStateChanged(function(user) {
+    _fbUser = user;
+    _syncEnabled = !!user;
+    if (user) {
+      console.log('[Firebase] Autenticado como', user.email);
+      _pullFromCloud();
+    } else {
+      console.log('[Firebase] Não autenticado — dados locais em uso.');
+    }
+  });
+
+  // Expõe login/logout para o resto da página
+  window.fbSignIn = function(email, password) {
+    return auth.signInWithEmailAndPassword(email, password);
+  };
+  window.fbSignOut = function() {
+    return auth.signOut();
+  };
+  window.fbCurrentUser = function() { return _fbUser; };
+
+  // ── Pull: Firestore → localStorage ───────────────────────────────────────
+  function _pullFromCloud() {
+    var uid = _fbUser ? _fbUser.uid : null;
+    if (!uid) return;
+
+    // 1) Histórico de assertividade
+    db.collection('assertHistory').get().then(function(snap) {
+      var history = [];
+      snap.forEach(function(doc) { history.push(doc.data()); });
+      if (history.length) {
+        history.sort(function(a, b) { return b.date.localeCompare(a.date); });
+        ASSERT_HISTORY = history;
+        localStorage.setItem('assert_history', JSON.stringify(ASSERT_HISTORY));
+        renderResumo();
+      }
+    }).catch(function(e) { console.warn('[Firebase] Erro ao ler assertHistory:', e); });
+
+    // 2) Resultados das apostas
+    db.collection('betOutcomes').get().then(function(snap) {
+      snap.forEach(function(doc) {
+        var betId = decodeId(doc.id);
+        var val   = doc.data().value;
+        if (val && val !== 'cinza') localStorage.setItem('assert_' + betId, val);
+        else localStorage.removeItem('assert_' + betId);
+      });
+    }).catch(function(e) { console.warn('[Firebase] Erro ao ler betOutcomes:', e); });
+
+    // 3) Metadados das apostas
+    db.collection('betMeta').get().then(function(snap) {
+      snap.forEach(function(doc) {
+        var betId = decodeId(doc.id);
+        localStorage.setItem('assertmeta_' + betId, JSON.stringify(doc.data()));
+      });
+    }).catch(function(e) { console.warn('[Firebase] Erro ao ler betMeta:', e); });
+  }
+
+  // ── Push helpers ──────────────────────────────────────────────────────────
+  function _pushHistory(entry) {
+    if (!_syncEnabled || !entry || !entry.date) return;
+    db.collection('assertHistory').doc(entry.date).set(entry)
+      .catch(function(e) { console.warn('[Firebase] Erro ao salvar histórico:', e); });
+  }
+
+  function _pushBetOutcome(betId, value) {
+    if (!_syncEnabled) return;
+    var docId = encodeId(betId);
+    if (!value || value === 'cinza') {
+      db.collection('betOutcomes').doc(docId).delete()
+        .catch(function(e) { console.warn('[Firebase] Erro ao deletar betOutcome:', e); });
+    } else {
+      db.collection('betOutcomes').doc(docId).set({ value: value })
+        .catch(function(e) { console.warn('[Firebase] Erro ao salvar betOutcome:', e); });
+    }
+  }
+
+  function _pushBetMeta(betId, meta) {
+    if (!_syncEnabled || !meta) return;
+    db.collection('betMeta').doc(encodeId(betId)).set(meta)
+      .catch(function(e) { console.warn('[Firebase] Erro ao salvar betMeta:', e); });
+  }
+
+  function _deleteHistory(date) {
+    if (!_syncEnabled || !date) return;
+    db.collection('assertHistory').doc(date).delete()
+      .catch(function(e) { console.warn('[Firebase] Erro ao deletar histórico:', e); });
+  }
+
+  // ── Monkey-patch das funções de assertividade ─────────────────────────────
+  // Aguarda o DOM estar pronto antes de interceptar (as funções são globais)
+  document.addEventListener('DOMContentLoaded', function() {
+
+    // registerAssertDay → salva cada entrada de histórico no Firestore
+    var _orig_registerAssertDay = window.registerAssertDay;
+    window.registerAssertDay = function() {
+      _orig_registerAssertDay.apply(this, arguments);
+      if (_syncEnabled) {
+        ASSERT_HISTORY.forEach(function(entry) { _pushHistory(entry); });
+      }
+    };
+
+    // deleteAssertHistoryEntry → deleta do Firestore também
+    var _orig_deleteAssertHistoryEntry = window.deleteAssertHistoryEntry;
+    window.deleteAssertHistoryEntry = function(date) {
+      _orig_deleteAssertHistoryEntry.apply(this, arguments);
+      _deleteHistory(date);
+    };
+
+    // toggleAssert → sincroniza resultado + meta
+    var _orig_toggleAssert = window.toggleAssert;
+    window.toggleAssert = function(betId, meta) {
+      _orig_toggleAssert.apply(this, arguments);
+      // lê o valor que foi salvo no localStorage logo após o toggle original
+      var newVal = localStorage.getItem('assert_' + betId) || 'cinza';
+      _pushBetOutcome(betId, newVal);
+      if (newVal !== 'cinza' && meta) _pushBetMeta(betId, meta);
+    };
+
+    // _saveAssertMeta → sincroniza meta separadamente (chamado de outros pontos)
+    var _orig_saveAssertMeta = window._saveAssertMeta;
+    window._saveAssertMeta = function(betId, meta) {
+      _orig_saveAssertMeta.apply(this, arguments);
+      _pushBetMeta(betId, meta);
+    };
+
+    // importAssertData → após importar, faz push completo para a nuvem
+    var _orig_importAssertData = window.importAssertData;
+    if (_orig_importAssertData) {
+      window.importAssertData = function() {
+        _orig_importAssertData.apply(this, arguments);
+        if (!_syncEnabled) return;
+        // Dispara push de tudo que está no localStorage após a importação
+        setTimeout(function() {
+          ASSERT_HISTORY.forEach(function(entry) { _pushHistory(entry); });
+          for (var i = 0; i < localStorage.length; i++) {
+            var k = localStorage.key(i);
+            if (k && k.indexOf('assert_') === 0) {
+              var bId  = k.slice(7);
+              var val  = localStorage.getItem(k);
+              if (val && val !== 'cinza') _pushBetOutcome(bId, val);
+            }
+            if (k && k.indexOf('assertmeta_') === 0) {
+              try {
+                var bId2 = k.slice(11);
+                var m = JSON.parse(localStorage.getItem(k));
+                _pushBetMeta(bId2, m);
+              } catch(e) {}
+            }
+          }
+        }, 500);
+      };
+    }
+  });
+
+  // ── Login integrado ao modal de senha existente ───────────────────────────
+  // Intercepta openArbModal para tentar autenticação Firebase ao mesmo tempo
+  var _orig_openArbModal = window.openArbModal;
+  window.openArbModal = function(onSuccess) {
+    _orig_openArbModal.call(this, function() {
+      // Senha local OK — tenta autenticar via Firebase se ainda não estiver logado
+      if (!_fbUser) {
+        var pwd = document.getElementById('arb-api-key')
+          ? document.getElementById('arb-api-key').value.trim() : '';
+        if (pwd) {
+          auth.signInWithEmailAndPassword('alessandromeira@gmail.com', pwd)
+            .catch(function() {
+              // Senha incorreta para Firebase — segue sem sync (não bloqueia o fluxo)
+              console.warn('[Firebase] Autenticação falhou — sync desativado nesta sessão.');
+            });
+        }
+      }
+      if (onSuccess) onSuccess();
+    });
+  };
+
+})();
+</script>
+
 <!-- PARLAY BAR (fixo no rodapé, visível só no resumo) -->
 <div id="parlay-bar">
   <span id="parlay-count" style="font-family:var(--mono);font-size:11px;color:var(--muted2);white-space:nowrap">0 seleções</span>

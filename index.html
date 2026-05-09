@@ -1190,10 +1190,27 @@ var RESUMO_BANDS = [
 ];
 var RESUMO_FILTER_DATES  = new Set(); // vazio = todos
 var RESUMO_FILTER_LEAGUE = '';        // '' = todas as ligas
+var RESUMO_FILTER_CAT    = '';        // '' = todos os tipos
 
 function setResumoLeagueFilter(lk) {
   RESUMO_FILTER_LEAGUE = (RESUMO_FILTER_LEAGUE === lk) ? '' : lk;
   renderResumo();
+}
+
+function setResumoCatFilter(cat) {
+  RESUMO_FILTER_CAT = (RESUMO_FILTER_CAT === cat) ? '' : cat;
+  renderResumo();
+}
+
+function getBetCategory(label) {
+  if (/Vitoria|Empate/.test(label))       return 'Resultado';
+  if (/BTTS/.test(label))                 return 'BTTS';
+  if (/gols/.test(label))                 return 'Gols';
+  if (/escanteios/.test(label))           return 'Escanteios';
+  if (/cartoes/.test(label))              return 'Cartoes';
+  if (/faltas/.test(label))               return 'Faltas';
+  if (/finalizacoes/.test(label))         return 'Finalizacoes';
+  return 'Outros';
 }
 
 // ── Assertividade (Firestore — sem localStorage) ──────────────────────────────
@@ -1706,7 +1723,8 @@ function computeAllInsights() {
 
     var meta = LEAGUES_META[key];
     data.scheduledGames.forEach(function(sg) {
-      var result = computeMatchInsights(sg.homeTeam, sg.awayTeam, sg.referee || '');
+      var refName = sg.referee ? (sg.referee.name || sg.referee) : '';
+      var result = computeMatchInsights(sg.homeTeam, sg.awayTeam, refName);
       if (!result) return;
       var gameOdds = sg.odds || {};
       result.bets.forEach(function(bet) {
@@ -2059,13 +2077,23 @@ function renderResumo() {
     });
     chipsHtml += '</div>';
   } else {
-    chipsHtml += '<div style="margin-bottom:16px"></div>';
+    chipsHtml += '<div style="margin-bottom:8px"></div>';
   }
 
-  // Filtra por datas e liga
+  // Chips de tipo de aposta
+  var CAT_LIST = ['Resultado','BTTS','Gols','Escanteios','Cartoes','Faltas','Finalizacoes'];
+  chipsHtml += '<div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:16px;align-items:center">';
+  chipsHtml += '<button class="arb-chip' + (!RESUMO_FILTER_CAT ? ' active' : '') + '" onclick="setResumoCatFilter(\'\')" style="font-size:10px;padding:3px 8px">Todos</button>';
+  CAT_LIST.forEach(function(cat) {
+    chipsHtml += '<button class="arb-chip' + (RESUMO_FILTER_CAT === cat ? ' active' : '') + '" onclick="setResumoCatFilter(\'' + cat + '\')" style="font-size:10px;padding:3px 8px">' + cat + '</button>';
+  });
+  chipsHtml += '</div>';
+
+  // Filtra por datas, liga e tipo
   var filteredBets = allBets;
   if (RESUMO_FILTER_DATES.size > 0) filteredBets = filteredBets.filter(function(b){ return RESUMO_FILTER_DATES.has(b.date); });
   if (RESUMO_FILTER_LEAGUE)         filteredBets = filteredBets.filter(function(b){ return b.leagueKey === RESUMO_FILTER_LEAGUE; });
+  if (RESUMO_FILTER_CAT)            filteredBets = filteredBets.filter(function(b){ return getBetCategory(b.betId.split('|').slice(3).join('|')) === RESUMO_FILTER_CAT; });
 
   var html = chipsHtml;
   RESUMO_BANDS.forEach(function(band) {

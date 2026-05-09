@@ -2130,7 +2130,7 @@ function renderResumo() {
   var filteredBets = allBets;
   if (RESUMO_FILTER_DATES.size > 0) filteredBets = filteredBets.filter(function(b){ return RESUMO_FILTER_DATES.has(b.date); });
   if (RESUMO_FILTER_LEAGUE)         filteredBets = filteredBets.filter(function(b){ return b.leagueKey === RESUMO_FILTER_LEAGUE; });
-  if (RESUMO_FILTER_CAT)            filteredBets = filteredBets.filter(function(b){ return getBetCategory(b.betId.split('|').slice(3).join('|')) === RESUMO_FILTER_CAT; });
+  if (RESUMO_FILTER_CAT)            filteredBets = filteredBets.filter(function(b){ return b.cat === RESUMO_FILTER_CAT; });
 
   var html = chipsHtml;
   RESUMO_BANDS.forEach(function(band) {
@@ -2179,7 +2179,7 @@ function renderResumo() {
       var oddStr     = validOdd ? validOdd.toFixed(2) : '';
       var dataOdd    = validOdd ? 'data-odd="' + validOdd + '"' : '';
 
-      var dateStr = b.date ? b.date.slice(5).replace('-', '/') : '';
+      var dateStr = b.date ? b.date.slice(8) + '/' + b.date.slice(5, 7) : '';
       var assertState = getAssert(b.betId);
       var assertTitle = assertState === 'verde' ? 'Acertou — clique para alterar' : assertState === 'vermelho' ? 'Errou — clique para alterar' : 'Jogo não realizado — clique para marcar';
       html += '<div class="resumo-bet" data-betid="' + b.betId + '" data-p="' + b.p.toFixed(4) + '" ' + dataOdd + '>'
@@ -3198,8 +3198,8 @@ function computeMatchInsights(homeTeam, awayTeam, refName) {
     {label:'Under 2.5 gols',      p:1-pOver(lTot,2.5),     cat:'Gols'},
     {label:'Over 3.5 gols',       p:pOver(lTot,3.5),       cat:'Gols'},
     {label:'Under 3.5 gols',      p:1-pOver(lTot,3.5),     cat:'Gols'},
-    {label:'BTTS - Sim',          p:pBTTS,                  cat:'Gols'},
-    {label:'BTTS - Nao',          p:1-pBTTS,                cat:'Gols'},
+    {label:'BTTS - Sim',          p:pBTTS,                  cat:'BTTS'},
+    {label:'BTTS - Nao',          p:1-pBTTS,                cat:'BTTS'},
     {label:'Vitoria Mandante',    p:res.win,                cat:'Resultado'},
     {label:'Empate',              p:res.draw,               cat:'Resultado'},
     {label:'Vitoria Visitante',   p:res.loss,               cat:'Resultado'},
@@ -3245,7 +3245,7 @@ function computeMatchInsights(homeTeam, awayTeam, refName) {
 var INSIGHTS_FIXTURES = [];
 var INSIGHTS_FALTAS   = false;
 var INSIGHTS_FINS     = false;
-var CAT_COLOR = {Gols:'var(--blue)',Resultado:'var(--green)',Escanteios:'var(--teal)',Cartoes:'var(--accent)',Faltas:'var(--purple)',Finalizacoes:'var(--orange)'};
+var CAT_COLOR = {Gols:'var(--blue)',BTTS:'var(--blue)',Resultado:'var(--green)',Escanteios:'var(--teal)',Cartoes:'var(--accent)',Faltas:'var(--purple)',Finalizacoes:'var(--orange)'};
 
 function toggleFaltas() {
   INSIGHTS_FALTAS = !INSIGHTS_FALTAS;
@@ -3288,12 +3288,18 @@ function buildInsights() {
 function renderInsightsForm() {
   var teams = Object.keys(SCRAPED_BY_TEAM).sort();
   var refs  = aggregateReferees(SCRAPED_GAMES).map(function(r){ return r.name; });
-  // Add refs from scheduledGames (may not yet appear in completed games)
+  // Add refs from scheduledGames (assigned by scraper per game)
   var _sdRef = (window.SCRAPED_DATA && currentLeagueKey && window.SCRAPED_DATA[currentLeagueKey]) || window.SCRAPED_JSON || {};
   (_sdRef.scheduledGames || []).forEach(function(g) {
     var rn = (g.referee && g.referee.name) || (typeof g.referee === 'string' ? g.referee : '');
     if (rn && refs.indexOf(rn) === -1) refs.push(rn);
   });
+  // Add all refs from the static 2026 Brasileirão scale (already in JS as STATIC_REFS)
+  if (currentLeagueKey === 'brasileirao' && typeof STATIC_REFS !== 'undefined') {
+    STATIC_REFS.forEach(function(r) {
+      if (r.n && refs.indexOf(r.n) === -1) refs.push(r.n);
+    });
+  }
   refs.sort();
   var tOpts = '<option value="">Selecione...</option>'
     + teams.map(function(t){ return '<option value="'+escH(t)+'">'+t+'</option>'; }).join('');

@@ -2235,10 +2235,9 @@ function renderResumo() {
       return '<span style="' + chipStyle(ym === ASSERT_HIST_MONTH) + '" onclick="setAssertHistMonth(\'' + ym + '\')">' + label + '</span>';
     }).join('');
 
-    // ── Filter history by selected month ────────────────────────────────────
-    var filteredHistory = ASSERT_HISTORY.filter(function(e) {
-      return e.date && e.date.slice(0,7) === ASSERT_HIST_MONTH;
-    });
+    // ── Filter history by selected month (+ categoria se filtro ativo) ────────
+    var filteredHistory = (ASSERT_HIST_CAT ? computeFilteredHistory(ASSERT_HIST_CAT) : ASSERT_HISTORY)
+      .filter(function(e) { return e.date && e.date.slice(0,7) === ASSERT_HIST_MONTH; });
 
     // ── League chips (from month-filtered entries) ───────────────────────────
     var leagueMap = {}; // {lk: name}
@@ -2323,14 +2322,6 @@ function renderResumo() {
     var filterRow = '<div style="margin-bottom:12px">' + monthChips + '</div>'
       + (leagueChips ? '<div style="margin-bottom:12px">' + leagueChips + '</div>' : '')
       + catChips;
-
-    // Usa dados filtrados por categoria se necessário
-    if (ASSERT_HIST_CAT) {
-      var computedHist = computeFilteredHistory(ASSERT_HIST_CAT);
-      filteredHistory = computedHist.filter(function(e) {
-        return e.date && e.date.slice(0,7) === ASSERT_HIST_MONTH;
-      });
-    }
 
     html += '<div style="margin-top:32px">'
       + '<div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted2);margin-bottom:10px">&#128202; Histórico de Assertividade</div>'
@@ -3296,7 +3287,14 @@ function buildInsights() {
 
 function renderInsightsForm() {
   var teams = Object.keys(SCRAPED_BY_TEAM).sort();
-  var refs  = aggregateReferees(SCRAPED_GAMES).map(function(r){ return r.name; }).sort();
+  var refs  = aggregateReferees(SCRAPED_GAMES).map(function(r){ return r.name; });
+  // Add refs from scheduledGames (may not yet appear in completed games)
+  var _sdRef = (window.SCRAPED_DATA && currentLeagueKey && window.SCRAPED_DATA[currentLeagueKey]) || window.SCRAPED_JSON || {};
+  (_sdRef.scheduledGames || []).forEach(function(g) {
+    var rn = (g.referee && g.referee.name) || (typeof g.referee === 'string' ? g.referee : '');
+    if (rn && refs.indexOf(rn) === -1) refs.push(rn);
+  });
+  refs.sort();
   var tOpts = '<option value="">Selecione...</option>'
     + teams.map(function(t){ return '<option value="'+escH(t)+'">'+t+'</option>'; }).join('');
   var rOpts = '<option value="">Nao definido (media liga)</option>'

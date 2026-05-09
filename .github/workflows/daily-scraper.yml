@@ -36,6 +36,9 @@ jobs:
         run: python scraper_refs.py
         timeout-minutes: 10
 
+      - name: Re-inject JSON into HTML (refs now included)
+        run: python scraper.py --inject --liga all
+
       - name: Sync assertividade → Firestore
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}

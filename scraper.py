@@ -445,7 +445,7 @@ def load_existing(out_file):
 
 def inject_into_html(league_key, data):
     """Injeta dados da liga no bloco especifico do HTML."""
-    html_file = "football_analytics.html"
+    html_file = "index.html"
     if not os.path.exists(html_file):
         print(f"Aviso: {html_file} nao encontrado, injecao ignorada.", flush=True)
         return

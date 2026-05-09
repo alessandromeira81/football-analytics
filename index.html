@@ -1249,27 +1249,28 @@ function computeFilteredHistory(catFilter) {
     var meta = ASSERT_META[betId] || {};
     var date = meta.date || '';
     if (!date || date > today) return;
-    var lk = meta.leagueKey || '';
-    var ln = meta.leagueName || lk;
-    if (!dateMap[date]) dateMap[date] = {date:date, bands:{}, total:{verde:0, vermelho:0}, leagues:{}};
-    // Always count in totals — even when p metadata is missing
-    dateMap[date].total[st]++;
-    // Per-band only when p is known and within a valid range
+
+    // Mirror server-side logic (assertividade_sync.py): skip bets without a valid band.
+    // Bets with p=0 or p outside [80%, 100%) are NOT counted in totals or bands,
+    // exactly as the server does when computing assertHistory. This ensures
+    // filtered total ≤ unfiltered total and bands always have data when total > 0.
     var p = meta.p || 0;
     var pRounded = Math.round(p * 100) / 100;
     var bandCls = null;
     RESUMO_BANDS.forEach(function(b) { if (pRounded >= b.min && pRounded < b.max) bandCls = b.cls; });
-    if (bandCls) {
-      if (!dateMap[date].bands[bandCls]) dateMap[date].bands[bandCls] = {verde:0, vermelho:0};
-      dateMap[date].bands[bandCls][st]++;
-    }
+    if (!bandCls) return; // no valid band → skip entirely
+
+    var lk = meta.leagueKey || '';
+    var ln = meta.leagueName || lk;
+    if (!dateMap[date]) dateMap[date] = {date:date, bands:{}, total:{verde:0, vermelho:0}, leagues:{}};
+    dateMap[date].total[st]++;
+    if (!dateMap[date].bands[bandCls]) dateMap[date].bands[bandCls] = {verde:0, vermelho:0};
+    dateMap[date].bands[bandCls][st]++;
     if (lk) {
       if (!dateMap[date].leagues[lk]) dateMap[date].leagues[lk] = {name:ln, bands:{}, total:{verde:0, vermelho:0}};
       dateMap[date].leagues[lk].total[st]++;
-      if (bandCls) {
-        if (!dateMap[date].leagues[lk].bands[bandCls]) dateMap[date].leagues[lk].bands[bandCls] = {verde:0, vermelho:0};
-        dateMap[date].leagues[lk].bands[bandCls][st]++;
-      }
+      if (!dateMap[date].leagues[lk].bands[bandCls]) dateMap[date].leagues[lk].bands[bandCls] = {verde:0, vermelho:0};
+      dateMap[date].leagues[lk].bands[bandCls][st]++;
     }
   });
   return Object.keys(dateMap).map(function(d){ return dateMap[d]; }).sort(function(a,b){ return b.date.localeCompare(a.date); });

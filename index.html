@@ -1232,6 +1232,43 @@ function setAssertHistLeague(lk) {
   ASSERT_HIST_LEAGUE = ASSERT_HIST_LEAGUE === lk ? '' : lk;
   renderResumo();
 }
+var ASSERT_HIST_CAT = ''; // '' = todos os tipos
+function setAssertHistCat(cat) {
+  ASSERT_HIST_CAT = ASSERT_HIST_CAT === cat ? '' : cat;
+  renderResumo();
+}
+
+function computeFilteredHistory(catFilter) {
+  var today = new Date().toISOString().slice(0, 10);
+  var dateMap = {};
+  Object.keys(ASSERT_STATES).forEach(function(betId) {
+    var st = ASSERT_STATES[betId];
+    if (st !== 'verde' && st !== 'vermelho') return;
+    var label = betId.split('|').slice(3).join('|');
+    if (catFilter && getBetCategory(label) !== catFilter) return;
+    var meta = ASSERT_META[betId] || {};
+    var p = meta.p || 0;
+    var date = meta.date || '';
+    if (!date || date > today) return;
+    var pRounded = Math.round(p * 100) / 100;
+    var bandCls = null;
+    RESUMO_BANDS.forEach(function(b) { if (pRounded >= b.min && pRounded < b.max) bandCls = b.cls; });
+    if (!bandCls) return;
+    var lk = meta.leagueKey || '';
+    var ln = meta.leagueName || lk;
+    if (!dateMap[date]) dateMap[date] = {date:date, bands:{}, total:{verde:0, vermelho:0}, leagues:{}};
+    if (!dateMap[date].bands[bandCls]) dateMap[date].bands[bandCls] = {verde:0, vermelho:0};
+    dateMap[date].bands[bandCls][st]++;
+    dateMap[date].total[st]++;
+    if (lk) {
+      if (!dateMap[date].leagues[lk]) dateMap[date].leagues[lk] = {name:ln, bands:{}, total:{verde:0, vermelho:0}};
+      if (!dateMap[date].leagues[lk].bands[bandCls]) dateMap[date].leagues[lk].bands[bandCls] = {verde:0, vermelho:0};
+      dateMap[date].leagues[lk].bands[bandCls][st]++;
+      dateMap[date].leagues[lk].total[st]++;
+    }
+  });
+  return Object.keys(dateMap).map(function(d){ return dateMap[d]; }).sort(function(a,b){ return b.date.localeCompare(a.date); });
+}
 
 function sortAssertHistory(col) {
   if (ASSERT_HIST_SORT.col === col) ASSERT_HIST_SORT.dir *= -1;
@@ -2274,8 +2311,26 @@ function renderResumo() {
         + label + arrow(col) + '</th>';
     };
 
+    // Chips de tipo de aposta (history)
+    var CAT_LIST_H = ['Resultado','BTTS','Gols','Escanteios','Cartoes','Faltas','Finalizacoes'];
+    var catChips = '<div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px">'
+      + '<span style="' + chipStyle(!ASSERT_HIST_CAT) + '" onclick="setAssertHistCat(\'\')">Todos</span>'
+      + CAT_LIST_H.map(function(cat) {
+          return '<span style="' + chipStyle(ASSERT_HIST_CAT === cat) + '" onclick="setAssertHistCat(\'' + cat + '\')">' + cat + '</span>';
+        }).join('')
+      + '</div>';
+
     var filterRow = '<div style="margin-bottom:12px">' + monthChips + '</div>'
-      + (leagueChips ? '<div style="margin-bottom:12px">' + leagueChips + '</div>' : '');
+      + (leagueChips ? '<div style="margin-bottom:12px">' + leagueChips + '</div>' : '')
+      + catChips;
+
+    // Usa dados filtrados por categoria se necessário
+    if (ASSERT_HIST_CAT) {
+      var computedHist = computeFilteredHistory(ASSERT_HIST_CAT);
+      filteredHistory = computedHist.filter(function(e) {
+        return e.date && e.date.slice(0,7) === ASSERT_HIST_MONTH;
+      });
+    }
 
     html += '<div style="margin-top:32px">'
       + '<div style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted2);margin-bottom:10px">&#128202; Histórico de Assertividade</div>'
@@ -3231,7 +3286,7 @@ function buildInsights() {
   var sched = _sd.scheduledGames || [];
   if (INSIGHTS_FIXTURES.length === 0) {
     INSIGHTS_FIXTURES = sched.length
-      ? sched.map(function(g){ return {home:g.homeTeam, away:g.awayTeam, ref:g.referee||'', date:g.date||'', odds:g.odds||{}}; })
+      ? sched.map(function(g){ return {home:g.homeTeam, away:g.awayTeam, ref:(g.referee&&g.referee.name)||'', date:g.date||'', odds:g.odds||{}}; })
       : [{home:'', away:'', ref:'', date:'', odds:{}}];
     var lbl = document.getElementById('ins-round-label');
     if (lbl && sched.length) lbl.textContent = 'Rodada '+(sched[0].round||'');

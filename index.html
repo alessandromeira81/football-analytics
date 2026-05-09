@@ -2206,11 +2206,26 @@ function renderResumo() {
   });
 
   // ── Tabela histórica de assertividade ────────────────────────────────────────
-  // Sempre usa computeFilteredHistory como fonte única — garante que filtrado e
-  // "Todos" partem dos mesmos dados brutos (ASSERT_STATES + ASSERT_META), evitando
-  // divergência com ASSERT_HISTORY (pré-computado pelo servidor em momento diferente).
-  var _allHistory = computeFilteredHistory('');
-  if (_allHistory.length > 0 || ASSERT_HISTORY.length > 0) {
+  // Estratégia de fonte de dados:
+  //   "Todos" (sem cat filter): usa ASSERT_HISTORY mesclado com computeFilteredHistory('').
+  //     ASSERT_HISTORY é a base (contém datas antigas mesmo sem ASSERT_META completo).
+  //     computeFilteredHistory adiciona datas novas que ainda não foram sincronizadas.
+  //   Com cat filter: usa computeFilteredHistory(cat) — único modo de filtrar por categoria.
+  //     Datas antigas sem ASSERT_META completo não aparecem nos filtros (sem metadados = sem cat).
+  var _computedAll = computeFilteredHistory('');
+  var _computedByDate = {};
+  _computedAll.forEach(function(e) { _computedByDate[e.date] = true; });
+  // Mescla: ASSERT_HISTORY como base + datas novas de computeFilteredHistory
+  var _allHistory = ASSERT_HISTORY.slice();
+  _computedAll.forEach(function(e) { if (!_computedByDate[e.date] || !ASSERT_HISTORY.some(function(h){ return h.date === e.date; })) _allHistory.push(e); });
+  // Garante que datas de computeFilteredHistory que já existem em ASSERT_HISTORY não são duplicadas
+  var _assertDates = {};
+  ASSERT_HISTORY.forEach(function(h) { _assertDates[h.date] = true; });
+  _allHistory = ASSERT_HISTORY.slice();
+  _computedAll.forEach(function(e) { if (!_assertDates[e.date]) _allHistory.push(e); });
+  _allHistory.sort(function(a,b){ return b.date.localeCompare(a.date); });
+
+  if (_allHistory.length > 0) {
     var pct = function(v, r) {
       var t = v + r;
       if (!t) return '—';
@@ -2223,14 +2238,9 @@ function renderResumo() {
     var tdStyle = 'padding:6px 10px;font-family:var(--mono);font-size:11px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04)';
     var tdDate  = 'padding:6px 10px;font-family:var(--mono);font-size:11px;color:var(--muted2);border-bottom:1px solid rgba(255,255,255,.04)';
 
-    // ── Month chips ──────────────────────────────────────────────────────────
-    // Descobre meses a partir dos dados computados (mesma fonte da tabela)
+    // ── Month chips (a partir do histórico mesclado completo) ────────────────
     var ptMonths = {}; // {yyyy-mm: true}
     _allHistory.forEach(function(e) { if (e.date && e.date.length >= 7) ptMonths[e.date.slice(0,7)] = true; });
-    // Fallback: inclui meses do ASSERT_HISTORY caso não haja dados em ASSERT_STATES
-    if (!Object.keys(ptMonths).length) {
-      ASSERT_HISTORY.forEach(function(e) { if (e.date && e.date.length >= 7) ptMonths[e.date.slice(0,7)] = true; });
-    }
     var monthList = Object.keys(ptMonths).sort();
     // If ASSERT_HIST_MONTH not in data, pick last available month
     if (monthList.length && monthList.indexOf(ASSERT_HIST_MONTH) === -1) {
@@ -2250,8 +2260,8 @@ function renderResumo() {
       return '<span style="' + chipStyle(ym === ASSERT_HIST_MONTH) + '" onclick="setAssertHistMonth(\'' + ym + '\')">' + label + '</span>';
     }).join('');
 
-    // ── Filtra pelo mês selecionado (fonte única: computeFilteredHistory) ────
-    var filteredHistory = computeFilteredHistory(ASSERT_HIST_CAT)
+    // ── Fonte da tabela: mesclado para "Todos", computeFilteredHistory para cat filter ──
+    var filteredHistory = (ASSERT_HIST_CAT ? computeFilteredHistory(ASSERT_HIST_CAT) : _allHistory)
       .filter(function(e) { return e.date && e.date.slice(0,7) === ASSERT_HIST_MONTH; });
 
     // ── League chips (from month-filtered entries) ───────────────────────────

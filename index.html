@@ -2206,7 +2206,11 @@ function renderResumo() {
   });
 
   // ── Tabela histórica de assertividade ────────────────────────────────────────
-  if (ASSERT_HISTORY.length > 0) {
+  // Sempre usa computeFilteredHistory como fonte única — garante que filtrado e
+  // "Todos" partem dos mesmos dados brutos (ASSERT_STATES + ASSERT_META), evitando
+  // divergência com ASSERT_HISTORY (pré-computado pelo servidor em momento diferente).
+  var _allHistory = computeFilteredHistory('');
+  if (_allHistory.length > 0 || ASSERT_HISTORY.length > 0) {
     var pct = function(v, r) {
       var t = v + r;
       if (!t) return '—';
@@ -2220,8 +2224,13 @@ function renderResumo() {
     var tdDate  = 'padding:6px 10px;font-family:var(--mono);font-size:11px;color:var(--muted2);border-bottom:1px solid rgba(255,255,255,.04)';
 
     // ── Month chips ──────────────────────────────────────────────────────────
+    // Descobre meses a partir dos dados computados (mesma fonte da tabela)
     var ptMonths = {}; // {yyyy-mm: true}
-    ASSERT_HISTORY.forEach(function(e) { if (e.date && e.date.length >= 7) ptMonths[e.date.slice(0,7)] = true; });
+    _allHistory.forEach(function(e) { if (e.date && e.date.length >= 7) ptMonths[e.date.slice(0,7)] = true; });
+    // Fallback: inclui meses do ASSERT_HISTORY caso não haja dados em ASSERT_STATES
+    if (!Object.keys(ptMonths).length) {
+      ASSERT_HISTORY.forEach(function(e) { if (e.date && e.date.length >= 7) ptMonths[e.date.slice(0,7)] = true; });
+    }
     var monthList = Object.keys(ptMonths).sort();
     // If ASSERT_HIST_MONTH not in data, pick last available month
     if (monthList.length && monthList.indexOf(ASSERT_HIST_MONTH) === -1) {
@@ -2241,8 +2250,8 @@ function renderResumo() {
       return '<span style="' + chipStyle(ym === ASSERT_HIST_MONTH) + '" onclick="setAssertHistMonth(\'' + ym + '\')">' + label + '</span>';
     }).join('');
 
-    // ── Filter history by selected month (+ categoria se filtro ativo) ────────
-    var filteredHistory = (ASSERT_HIST_CAT ? computeFilteredHistory(ASSERT_HIST_CAT) : ASSERT_HISTORY)
+    // ── Filtra pelo mês selecionado (fonte única: computeFilteredHistory) ────
+    var filteredHistory = computeFilteredHistory(ASSERT_HIST_CAT)
       .filter(function(e) { return e.date && e.date.slice(0,7) === ASSERT_HIST_MONTH; });
 
     // ── League chips (from month-filtered entries) ───────────────────────────

@@ -298,11 +298,42 @@ def main():
         lg['bands'].setdefault(band_key, {'verde': 0, 'vermelho': 0})[state] += 1
         lg['total'][state] += 1
 
+    # Lê assertHistory existente para evitar sobrescrever com dados menores (model drift).
+    # Se o modelo hoje computar menos apostas ≥80% do que o registrado no passado
+    # (porque as médias da liga mudaram), preservamos o dado histórico original.
+    print('\n── Lendo assertHistory existente ────────────────────────────', flush=True)
+    existing_history = {}
+    for doc in db.collection('assertHistory').stream():
+        if doc.id <= TODAY:
+            h = doc.to_dict()
+            existing_history[doc.id] = h
+    print(f'  {len(existing_history)} entradas existentes', flush=True)
+
     hist_batch = db.batch()
+    n_updated = n_preserved = n_new = 0
+
     for d, data in sorted(date_map.items()):
         bands = data['bands']
         tv = sum(b.get('verde', 0) for b in bands.values())
         tr = sum(b.get('vermelho', 0) for b in bands.values())
+        new_total = tv + tr
+
+        existing = existing_history.get(d)
+        if existing:
+            ex_tv = existing.get('total', {}).get('verde', 0)
+            ex_tr = existing.get('total', {}).get('vermelho', 0)
+            ex_total = ex_tv + ex_tr
+            if ex_total > new_total:
+                # Preserva dado histórico: nova computação tem menos apostas
+                # (provavelmente model drift — médias da liga mudaram)
+                pct = round(ex_tv / ex_total * 100) if ex_total else 0
+                print(f'  PRESERVADO {d}: {ex_tv}V/{ex_tr}R={pct}% (novo seria {tv}V/{tr}R)', flush=True)
+                n_preserved += 1
+                continue
+            n_updated += 1
+        else:
+            n_new += 1
+
         entry = {
             'date':    d,
             'bands':   bands,
@@ -312,7 +343,8 @@ def main():
         ref = db.collection('assertHistory').document(d)
         hist_batch.set(ref, entry)
         pct = round(tv / (tv + tr) * 100) if (tv + tr) else 0
-        print(f'  {d}: {tv}V / {tr}R = {pct}%', flush=True)
+        action = 'ATUALIZADO' if existing else 'NOVO'
+        print(f'  {action} {d}: {tv}V / {tr}R = {pct}%', flush=True)
 
     # Remove entradas fantasmas de datas futuras do Firestore
     for doc in db.collection('assertHistory').stream():
@@ -321,7 +353,7 @@ def main():
             print(f'  Removido entrada futura: {doc.id}', flush=True)
 
     hist_batch.commit()
-    print(f'\n✅ {len(date_map)} dia(s) sincronizado(s) no Firestore.', flush=True)
+    print(f'\n✅ {n_new} novo(s), {n_updated} atualizado(s), {n_preserved} preservado(s).', flush=True)
 
 
 if __name__ == '__main__':

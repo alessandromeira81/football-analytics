@@ -1255,6 +1255,7 @@ function computeFilteredHistory(catFilter) {
     // exactly as the server does when computing assertHistory. This ensures
     // filtered total ≤ unfiltered total and bands always have data when total > 0.
     var p = meta.p || 0;
+    if (p > 1) p = p / 100; // normaliza: bets antigas podem ter p como porcentagem (ex: 82 → 0.82)
     var pRounded = Math.round(p * 100) / 100;
     var bandCls = null;
     RESUMO_BANDS.forEach(function(b) { if (pRounded >= b.min && pRounded < b.max) bandCls = b.cls; });

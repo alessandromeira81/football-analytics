@@ -257,7 +257,7 @@ def compute_bet_p(label, home_team, away_team, games):
 def load_league_data():
     data = {}
     for lk in LEAGUES:
-        for fname in (f'{lk}_2026_data.json', f'{lk}_data.json'):
+        for fname in (f'{lk}_2026_data.json', f'{lk}_data.json', f'{lk}_league_data.json'):
             if os.path.exists(fname):
                 try:
                     with open(fname, encoding='utf-8') as f:

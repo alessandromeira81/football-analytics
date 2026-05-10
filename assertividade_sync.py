@@ -264,6 +264,10 @@ def main():
             else:
                 continue  # ainda futura, pula
         p           = b.get('p', 0) or 0
+        # Normaliza: bets antigas podem ter p salvo como porcentagem (ex: 82)
+        # em vez de probabilidade (ex: 0.82). Qualquer valor > 1 é normalizado.
+        if p > 1:
+            p = p / 100
         league_key  = b.get('leagueKey', '')
         league_name = b.get('leagueName', league_key)
 

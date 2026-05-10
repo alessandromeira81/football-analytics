@@ -1240,27 +1240,70 @@ function setAssertHistCat(cat) {
 
 function computeFilteredHistory(catFilter) {
   var today = new Date().toISOString().slice(0, 10);
-  var dateMap = {};
+
+  // Âncora: total histórico por data (do assertHistory do servidor).
+  // Para datas preservadas (model drift), usamos o total armazenado para saber
+  // quantas bets devem ser incluídas, em vez de depender do p atual.
+  var histTotals = {};
+  ASSERT_HISTORY.forEach(function(h) {
+    if (h.date && h.total) histTotals[h.date] = (h.total.verde || 0) + (h.total.vermelho || 0);
+  });
+
+  // Agrupa todas as bets verde/vermelho por data (com metadados)
+  var byDate = {};
   Object.keys(ASSERT_STATES).forEach(function(betId) {
     var st = ASSERT_STATES[betId];
     if (st !== 'verde' && st !== 'vermelho') return;
-    var label = betId.split('|').slice(3).join('|');
-    if (catFilter && getBetCategory(label) !== catFilter) return;
-    var meta = ASSERT_META[betId] || {};
+    var meta = ASSERT_META[betId];
+    if (!meta) return;
     var date = meta.date || '';
     if (!date || date > today) return;
-
-    // Mirror server-side logic (assertividade_sync.py): skip bets without a valid band.
-    // Bets with p=0 or p outside [80%, 100%) are NOT counted in totals or bands,
-    // exactly as the server does when computing assertHistory. This ensures
-    // filtered total ≤ unfiltered total and bands always have data when total > 0.
     var p = meta.p || 0;
-    if (p > 1) p = p / 100; // normaliza: bets antigas podem ter p como porcentagem (ex: 82 → 0.82)
+    if (p > 1) p = p / 100; // normaliza inteiros (ex: 82 → 0.82)
+    if (!byDate[date]) byDate[date] = [];
+    byDate[date].push({betId: betId, p: p, st: st, meta: meta});
+  });
+
+  // Determina quais bets são "qualificadas" por data.
+  // Para datas em assertHistory: ordena por p desc e pega exatamente histTotal bets.
+  // Isso resolve o model drift — a aposta que tinha p≥80% antes ainda é incluída.
+  // Para datas sem assertHistory: filtra normalmente por banda atual (p≥80%).
+  var qualifyingBetIds = {};
+  Object.keys(byDate).forEach(function(date) {
+    var bets = byDate[date];
+    var histCount = histTotals[date];
+    if (histCount !== undefined) {
+      // Ordena por p decrescente e pega os top histCount
+      bets.sort(function(a, b) { return b.p - a.p; });
+      var take = Math.min(histCount, bets.length);
+      for (var i = 0; i < take; i++) qualifyingBetIds[bets[i].betId] = true;
+    } else {
+      // Sem entrada no assertHistory: usa checagem normal de banda
+      bets.forEach(function(bet) {
+        var pR = Math.round(bet.p * 100) / 100;
+        var inBand = false;
+        RESUMO_BANDS.forEach(function(b) { if (pR >= b.min && pR < b.max) inBand = true; });
+        if (inBand) qualifyingBetIds[bet.betId] = true;
+      });
+    }
+  });
+
+  // Constrói o dateMap aplicando filtro de categoria sobre as bets qualificadas
+  var dateMap = {};
+  Object.keys(qualifyingBetIds).forEach(function(betId) {
+    var label = betId.split('|').slice(3).join('|');
+    if (catFilter && getBetCategory(label) !== catFilter) return;
+    var st  = ASSERT_STATES[betId];
+    var meta = ASSERT_META[betId];
+    var date = meta.date;
+    var p = meta.p || 0;
+    if (p > 1) p = p / 100;
     var pRounded = Math.round(p * 100) / 100;
+    // Banda: usa a banda atual; se p derivou abaixo de 80%, usa rb-80 como fallback
+    // (a banda real histórica está no ASSERT_HISTORY, não aqui)
     var bandCls = null;
     RESUMO_BANDS.forEach(function(b) { if (pRounded >= b.min && pRounded < b.max) bandCls = b.cls; });
-    if (!bandCls) return; // no valid band → skip entirely
-
+    if (!bandCls) bandCls = 'rb-80'; // fallback para bets com model drift
     var lk = meta.leagueKey || '';
     var ln = meta.leagueName || lk;
     if (!dateMap[date]) dateMap[date] = {date:date, bands:{}, total:{verde:0, vermelho:0}, leagues:{}};

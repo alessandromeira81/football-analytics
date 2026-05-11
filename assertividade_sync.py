@@ -323,11 +323,15 @@ def main():
             ex_tv = existing.get('total', {}).get('verde', 0)
             ex_tr = existing.get('total', {}).get('vermelho', 0)
             ex_total = ex_tv + ex_tr
-            if ex_total > new_total:
-                # Preserva dado histórico: nova computação tem menos apostas
-                # (provavelmente model drift — médias da liga mudaram)
+            if ex_total >= new_total:
+                # Preserva dado histórico SEMPRE que o total existente >= novo total.
+                # Regra: o passado não muda. Uma vez que um insight foi apresentado
+                # com determinada probabilidade, essa informação fica congelada.
+                # Recomputar com o p atual (que deriva por model drift) causaria
+                # mudança nas bandas históricas — o que é incorreto.
                 pct = round(ex_tv / ex_total * 100) if ex_total else 0
-                print(f'  PRESERVADO {d}: {ex_tv}V/{ex_tr}R={pct}% (novo seria {tv}V/{tr}R)', flush=True)
+                reason = 'total igual' if ex_total == new_total else 'novo menor'
+                print(f'  PRESERVADO {d}: {ex_tv}V/{ex_tr}R={pct}% ({reason}, novo seria {tv}V/{tr}R)', flush=True)
                 n_preserved += 1
                 continue
             n_updated += 1

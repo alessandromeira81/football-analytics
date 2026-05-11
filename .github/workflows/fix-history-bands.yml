@@ -1,0 +1,40 @@
+name: Fix History Bands (one-time / manual)
+
+# Corrige a distribuicao de bandas no assertHistory do Firestore
+# usando o gabarito extraido do HTML salvo.
+# Tambem grava p_original em betMeta para congelar o p historico.
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry-run (true = nao grava no Firestore)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: read
+
+jobs:
+  fix:
+    runs-on: self-hosted
+    timeout-minutes: 10
+    env:
+      PYTHONIOENCODING: utf-8
+      PYTHONUTF8: 1
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install Python dependencies
+        run: pip install firebase-admin
+
+      - name: Run fix
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          if ('${{ github.event.inputs.dry_run }}' -eq 'true') {
+            python fix_history_bands.py --dry-run
+          } else {
+            python fix_history_bands.py
+          }

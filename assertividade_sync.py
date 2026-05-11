@@ -31,6 +31,9 @@ BANDS = [
 
 TODAY = dt_date.today().isoformat()  # 'yyyy-mm-dd'
 
+# Datas com dados historicos congelados (NUNCA recomputar — o passado nao muda)
+FROZEN_DATES = {'2026-05-01', '2026-05-02', '2026-05-03', '2026-05-04', '2026-05-05'}
+
 
 # ── Firestore ID encoding ─────────────────────────────────────────────────────
 
@@ -326,6 +329,12 @@ def main():
     n_updated = n_preserved = n_new = 0
 
     for d, data in sorted(date_map.items()):
+        # Datas com dados historicos congelados — NUNCA recomputar
+        if d in FROZEN_DATES:
+            print(f'  FROZEN {d}: data congelada, nao recomputa.', flush=True)
+            n_preserved += 1
+            continue
+
         bands = data['bands']
         tv = sum(b.get('verde', 0) for b in bands.values())
         tr = sum(b.get('vermelho', 0) for b in bands.values())

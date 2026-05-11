@@ -1,0 +1,794 @@
+{
+  "bundesliga|Bayer 04 Leverkusen|RB Leipzig|Over 8.5 escanteios": {
+    "p_orig": 83,
+    "band": "rb-80",
+    "category": "Escanteios",
+    "leagueKey": "bundesliga",
+    "leagueName": "Bundesliga",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "bundesliga|FC Bayern München|1. FC Heidenheim|Vitoria Mandante": {
+    "p_orig": 94.9,
+    "band": "rb-95",
+    "category": "Resultado",
+    "leagueKey": "bundesliga",
+    "leagueName": "Bundesliga",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "seriea|Udinese|Torino|Under 3.5 gols": {
+    "p_orig": 81,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "seriea",
+    "leagueName": "Serie A",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "brasileirao|Palmeiras|Santos|Vitoria Mandante": {
+    "p_orig": 81,
+    "band": "rb-80",
+    "category": "Resultado",
+    "leagueKey": "brasileirao",
+    "leagueName": "Brasileirao Serie A",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "premier|Wolverhampton|Sunderland|Under 3.5 gols": {
+    "p_orig": 82,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "premier",
+    "leagueName": "Premier League",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "ligue1|Nice|RC Lens|Over 1.5 gols": {
+    "p_orig": 87,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "ligue1",
+    "leagueName": "Ligue 1",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "premier|Wolverhampton|Sunderland|Under 8.5 escanteios": {
+    "p_orig": 80,
+    "band": "rb-80",
+    "category": "Escanteios",
+    "leagueKey": "premier",
+    "leagueName": "Premier League",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "argentina|Central Córdoba|Boca Juniors|Under 3.5 gols": {
+    "p_orig": 94.9,
+    "band": "rb-95",
+    "category": "Gols",
+    "leagueKey": "argentina",
+    "leagueName": "Liga Profesional",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "seriea|Pisa|Lecce|Under 3.5 gols": {
+    "p_orig": 97,
+    "band": "rb-95",
+    "category": "Gols",
+    "leagueKey": "seriea",
+    "leagueName": "Serie A",
+    "date": "2026-05-01",
+    "source": "football_analytics (10).html"
+  },
+  "saudi|Al-Hazem|Al-Hilal|Over 1.5 gols": {
+    "p_orig": 94,
+    "band": "rb-90",
+    "category": "Gols",
+    "leagueKey": "saudi",
+    "leagueName": "Saudi Pro League",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "argentina|Club Atlético Unión de Santa Fe|CA Talleres|Under 3.5 gols": {
+    "p_orig": 94,
+    "band": "rb-90",
+    "category": "Gols",
+    "leagueKey": "argentina",
+    "leagueName": "Liga Profesional",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "ligue1|Paris Saint-Germain|Lorient|Vitoria Mandante": {
+    "p_orig": 84,
+    "band": "rb-80",
+    "category": "Resultado",
+    "leagueKey": "ligue1",
+    "leagueName": "Ligue 1",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "argentina|Central Córdoba|Boca Juniors|Under 2.5 gols": {
+    "p_orig": 83,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "argentina",
+    "leagueName": "Liga Profesional",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "premier|Leeds United|Burnley|Over 1.5 gols": {
+    "p_orig": 86,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "premier",
+    "leagueName": "Premier League",
+    "date": "2026-05-01",
+    "source": "football_analytics (10).html"
+  },
+  "bundesliga|FC Bayern München|1. FC Heidenheim|Over 8.5 escanteios": {
+    "p_orig": 84,
+    "band": "rb-80",
+    "category": "Escanteios",
+    "leagueKey": "bundesliga",
+    "leagueName": "Bundesliga",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "argentina|CA Lanús|Deportivo Riestra|BTTS - Nao": {
+    "p_orig": 80,
+    "band": "rb-80",
+    "category": "BTTS",
+    "leagueKey": "argentina",
+    "leagueName": "Liga Profesional",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "premier|Newcastle United|Brighton & Hove Albion|Over 1.5 gols": {
+    "p_orig": 82,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "premier",
+    "leagueName": "Premier League",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "bundesliga|TSG Hoffenheim|VfB Stuttgart|Over 8.5 escanteios": {
+    "p_orig": 84,
+    "band": "rb-80",
+    "category": "Escanteios",
+    "leagueKey": "bundesliga",
+    "leagueName": "Bundesliga",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "argentina|CA Lanús|Deportivo Riestra|Under 2.5 gols": {
+    "p_orig": 88,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "argentina",
+    "leagueName": "Liga Profesional",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "brasileirao|Vitória|Coritiba|Under 3.5 gols": {
+    "p_orig": 93,
+    "band": "rb-90",
+    "category": "Gols",
+    "leagueKey": "brasileirao",
+    "leagueName": "Brasileirao Serie A",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "brasileirao|Botafogo|Remo|Over 1.5 gols": {
+    "p_orig": 93,
+    "band": "rb-90",
+    "category": "Gols",
+    "leagueKey": "brasileirao",
+    "leagueName": "Brasileirao Serie A",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "saudi|Al-Hazem|Al-Hilal|Vitoria Visitante": {
+    "p_orig": 86,
+    "band": "rb-85",
+    "category": "Resultado",
+    "leagueKey": "saudi",
+    "leagueName": "Saudi Pro League",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "laliga|Osasuna|FC Barcelona|Over 1.5 gols": {
+    "p_orig": 87,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "laliga",
+    "leagueName": "La Liga",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "argentina|Barracas Central|Banfield|Under 3.5 gols": {
+    "p_orig": 83,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "argentina",
+    "leagueName": "Liga Profesional",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "argentina|San Lorenzo|CA Independiente|Over 1.5 gols": {
+    "p_orig": 83,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "argentina",
+    "leagueName": "Liga Profesional",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "argentina|Barracas Central|Banfield|Under 8.5 escanteios": {
+    "p_orig": 98,
+    "band": "rb-95",
+    "category": "Escanteios",
+    "leagueKey": "argentina",
+    "leagueName": "Liga Profesional",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "laliga|Sevilla|Real Sociedad|Over 1.5 gols": {
+    "p_orig": 82,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "laliga",
+    "leagueName": "La Liga",
+    "date": "2026-05-04",
+    "source": "football_analytics (10).html"
+  },
+  "brasileirao|Palmeiras|Santos|Over 1.5 gols": {
+    "p_orig": 88,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "brasileirao",
+    "leagueName": "Brasileirao Serie A",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "premier|Tottenham Hotspur|Leeds United|Over 1.5 gols": {
+    "p_orig": 0.8009630398501115,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "premier",
+    "leagueName": "Premier League",
+    "date": "2026-05-11",
+    "source": "football_analytics (10).html"
+  },
+  "bundesliga|TSG Hoffenheim|VfB Stuttgart|Over 1.5 gols": {
+    "p_orig": 92,
+    "band": "rb-90",
+    "category": "Gols",
+    "leagueKey": "bundesliga",
+    "leagueName": "Bundesliga",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "argentina|CA Lanús|Deportivo Riestra|Under 3.5 gols": {
+    "p_orig": 97,
+    "band": "rb-95",
+    "category": "Gols",
+    "leagueKey": "argentina",
+    "leagueName": "Liga Profesional",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "argentina|Club Atlético Unión de Santa Fe|CA Talleres|Under 2.5 gols": {
+    "p_orig": 82,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "argentina",
+    "leagueName": "Liga Profesional",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "seriea|Pisa|Lecce|Under 2.5 gols": {
+    "p_orig": 89,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "seriea",
+    "leagueName": "Serie A",
+    "date": "2026-05-01",
+    "source": "football_analytics (10).html"
+  },
+  "bundesliga|FC Bayern München|1. FC Heidenheim|Over 2.5 gols": {
+    "p_orig": 88,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "bundesliga",
+    "leagueName": "Bundesliga",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "brasileirao|Palmeiras|Santos|Over 8.5 escanteios": {
+    "p_orig": 82,
+    "band": "rb-80",
+    "category": "Escanteios",
+    "leagueKey": "brasileirao",
+    "leagueName": "Brasileirao Serie A",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "seriea|Pisa|Lecce|BTTS - Nao": {
+    "p_orig": 82,
+    "band": "rb-80",
+    "category": "BTTS",
+    "leagueKey": "seriea",
+    "leagueName": "Serie A",
+    "date": "2026-05-01",
+    "source": "football_analytics (10).html"
+  },
+  "argentina|Club Atlético Unión de Santa Fe|CA Talleres|BTTS - Nao": {
+    "p_orig": 93,
+    "band": "rb-90",
+    "category": "BTTS",
+    "leagueKey": "argentina",
+    "leagueName": "Liga Profesional",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "bundesliga|FC Bayern München|1. FC Heidenheim|Over 1.5 gols": {
+    "p_orig": 97,
+    "band": "rb-95",
+    "category": "Gols",
+    "leagueKey": "bundesliga",
+    "leagueName": "Bundesliga",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "saudi|Al-Hazem|Al-Hilal|Over 2.5 gols": {
+    "p_orig": 83,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "saudi",
+    "leagueName": "Saudi Pro League",
+    "date": "2026-05-02",
+    "source": "football_analytics (10).html"
+  },
+  "premier|Manchester City|Brentford|Over 1.5 gols": {
+    "p_orig": 0.8164098121004119,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "premier",
+    "leagueName": "Premier League",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "brasileirao|Corinthians|São Paulo|Under 3.5 gols": {
+    "p_orig": 0.8913374969955767,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "brasileirao",
+    "leagueName": "Brasileirao Serie A",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "premier|Nottingham Forest|Newcastle United|Under 3.5 gols": {
+    "p_orig": 0.8483303567715672,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "premier",
+    "leagueName": "Premier League",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "bundesliga|VfL Wolfsburg|FC Bayern München|Over 2.5 gols": {
+    "p_orig": 0.8500292490263252,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "bundesliga",
+    "leagueName": "Bundesliga",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "seriea|Milan|Atalanta|Under 3.5 gols": {
+    "p_orig": 0.8174271921036562,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "seriea",
+    "leagueName": "Serie A",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "saudi|Al-Okhdood|Al-Khaleej|Over 1.5 gols": {
+    "p_orig": 0.8621252176190948,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "saudi",
+    "leagueName": "Saudi Pro League",
+    "date": "2026-05-16",
+    "source": "football_analytics (13).html"
+  },
+  "laliga|Rayo Vallecano|Girona FC|Under 3.5 gols": {
+    "p_orig": 0.8373398376957005,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "laliga",
+    "leagueName": "La Liga",
+    "date": "2026-05-11",
+    "source": "football_analytics (13).html"
+  },
+  "bundesliga|VfL Wolfsburg|FC Bayern München|Over 1.5 gols": {
+    "p_orig": 0.9491458183616075,
+    "band": "rb-95",
+    "category": "Gols",
+    "leagueKey": "bundesliga",
+    "leagueName": "Bundesliga",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "laliga|Athletic Club|Valencia|Under 3.5 gols": {
+    "p_orig": 0.8033091926608027,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "laliga",
+    "leagueName": "La Liga",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "premier|Manchester City|Brentford|Over 8.5 escanteios": {
+    "p_orig": 0.8253334963336776,
+    "band": "rb-80",
+    "category": "Escanteios",
+    "leagueKey": "premier",
+    "leagueName": "Premier League",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "seriea|Parma|AS Roma|Under 2.5 gols": {
+    "p_orig": 0.8309183302991838,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "seriea",
+    "leagueName": "Serie A",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "bundesliga|Borussia Dortmund|Eintracht Frankfurt|Over 1.5 gols": {
+    "p_orig": 0.8940027782769377,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "bundesliga",
+    "leagueName": "Bundesliga",
+    "date": "2026-05-08",
+    "source": "football_analytics (13).html"
+  },
+  "bundesliga|1. FC Köln|1. FC Heidenheim|Over 1.5 gols": {
+    "p_orig": 0.8367549980491683,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "bundesliga",
+    "leagueName": "Bundesliga",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "laliga|Real Oviedo|Getafe|Under 2.5 gols": {
+    "p_orig": 0.8093536222623459,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "laliga",
+    "leagueName": "La Liga",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "seriea|SSC Napoli|Bologna|BTTS - Nao": {
+    "p_orig": 0.837407592094309,
+    "band": "rb-80",
+    "category": "BTTS",
+    "leagueKey": "seriea",
+    "leagueName": "Serie A",
+    "date": "2026-05-11",
+    "source": "football_analytics (13).html"
+  },
+  "premier|Fulham|Bournemouth|Over 1.5 gols": {
+    "p_orig": 0.8481607646299252,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "premier",
+    "leagueName": "Premier League",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "seriea|SSC Napoli|Bologna|Under 3.5 gols": {
+    "p_orig": 0.9285405690833345,
+    "band": "rb-90",
+    "category": "Gols",
+    "leagueKey": "seriea",
+    "leagueName": "Serie A",
+    "date": "2026-05-11",
+    "source": "football_analytics (13).html"
+  },
+  "laliga|Levante UD|Osasuna|Under 3.5 gols": {
+    "p_orig": 0.8429771922607613,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "laliga",
+    "leagueName": "La Liga",
+    "date": "2026-05-08",
+    "source": "football_analytics (13).html"
+  },
+  "brasileirao|Coritiba|Internacional|Under 3.5 gols": {
+    "p_orig": 0.8778384728490392,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "brasileirao",
+    "leagueName": "Brasileirao Serie A",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "ligue1|Paris Saint-Germain|Stade Brestois|Over 1.5 gols": {
+    "p_orig": 0.8525009314904095,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "ligue1",
+    "leagueName": "Ligue 1",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "saudi|Al-Taawoun|Al-Riyadh|Over 1.5 gols": {
+    "p_orig": 0.874224001168169,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "saudi",
+    "leagueName": "Saudi Pro League",
+    "date": "2026-05-15",
+    "source": "football_analytics (13).html"
+  },
+  "laliga|Real Sociedad|Real Betis|Over 1.5 gols": {
+    "p_orig": 0.8316785527712052,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "laliga",
+    "leagueName": "La Liga",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "premier|Brighton & Hove Albion|Wolverhampton|Under 3.5 gols": {
+    "p_orig": 0.7982078546042439,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "premier",
+    "leagueName": "Premier League",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "laliga|FC Barcelona|Real Madrid|Over 9.5 escanteios": {
+    "p_orig": 0.8062328417432081,
+    "band": "rb-80",
+    "category": "Escanteios",
+    "leagueKey": "laliga",
+    "leagueName": "La Liga",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "premier|Nottingham Forest|Newcastle United|Over 8.5 escanteios": {
+    "p_orig": 0.8008300540930344,
+    "band": "rb-80",
+    "category": "Escanteios",
+    "leagueKey": "premier",
+    "leagueName": "Premier League",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "premier|Crystal Palace|Everton|Under 3.5 gols": {
+    "p_orig": 0.8626995828521089,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "premier",
+    "leagueName": "Premier League",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "seriea|SSC Napoli|Bologna|Under 2.5 gols": {
+    "p_orig": 0.7973864337987503,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "seriea",
+    "leagueName": "Serie A",
+    "date": "2026-05-11",
+    "source": "football_analytics (13).html"
+  },
+  "bundesliga|VfL Wolfsburg|FC Bayern München|Vitoria Visitante": {
+    "p_orig": 0.8467434456099961,
+    "band": "rb-85",
+    "category": "Resultado",
+    "leagueKey": "bundesliga",
+    "leagueName": "Bundesliga",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "brasileirao|Atlético Mineiro|Botafogo|Over 1.5 gols": {
+    "p_orig": 0.9046651343892148,
+    "band": "rb-90",
+    "category": "Gols",
+    "leagueKey": "brasileirao",
+    "leagueName": "Brasileirao Serie A",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "saudi|Al-Shabab|Al-Nassr|Over 8.5 escanteios": {
+    "p_orig": 0.845621035780297,
+    "band": "rb-85",
+    "category": "Escanteios",
+    "leagueKey": "saudi",
+    "leagueName": "Saudi Pro League",
+    "date": "2026-05-07",
+    "source": "football_analytics (13).html"
+  },
+  "ligue1|AS Monaco|Lille|Over 1.5 gols": {
+    "p_orig": 0.8455840527808729,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "ligue1",
+    "leagueName": "Ligue 1",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "saudi|Al-Qadsiah|Al-Hazem|Over 8.5 escanteios": {
+    "p_orig": 0.8419129225905707,
+    "band": "rb-80",
+    "category": "Escanteios",
+    "leagueKey": "saudi",
+    "leagueName": "Saudi Pro League",
+    "date": "2026-05-14",
+    "source": "football_analytics (13).html"
+  },
+  "seriea|Lecce|Juventus|Under 3.5 gols": {
+    "p_orig": 0.8171763556283717,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "seriea",
+    "leagueName": "Serie A",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "saudi|Al-Ahli|Al-Kholood|Over 1.5 gols": {
+    "p_orig": 0.8523413087866281,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "saudi",
+    "leagueName": "Saudi Pro League",
+    "date": "2026-05-16",
+    "source": "football_analytics (13).html"
+  },
+  "ligue1|Metz|Lorient|Under 3.5 gols": {
+    "p_orig": 0.8035932841777816,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "ligue1",
+    "leagueName": "Ligue 1",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "saudi|Al-Ettifaq|Al-Ittihad|Over 1.5 gols": {
+    "p_orig": 0.8402216407101273,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "saudi",
+    "leagueName": "Saudi Pro League",
+    "date": "2026-05-14",
+    "source": "football_analytics (13).html"
+  },
+  "laliga|FC Barcelona|Real Madrid|Over 8.5 escanteios": {
+    "p_orig": 0.8805796457658063,
+    "band": "rb-85",
+    "category": "Escanteios",
+    "leagueKey": "laliga",
+    "leagueName": "La Liga",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "laliga|Real Oviedo|Getafe|Under 3.5 gols": {
+    "p_orig": 0.9346107709168731,
+    "band": "rb-90",
+    "category": "Gols",
+    "leagueKey": "laliga",
+    "leagueName": "La Liga",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "premier|Liverpool FC|Chelsea|Under 3.5 gols": {
+    "p_orig": 0.8903775031319929,
+    "band": "rb-85",
+    "category": "Gols",
+    "leagueKey": "premier",
+    "leagueName": "Premier League",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "premier|Liverpool FC|Chelsea|BTTS - Nao": {
+    "p_orig": 0.808182817421157,
+    "band": "rb-80",
+    "category": "BTTS",
+    "leagueKey": "premier",
+    "leagueName": "Premier League",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "brasileirao|Santos|Red Bull Bragantino|Under 3.5 gols": {
+    "p_orig": 0.81167133186296,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "brasileirao",
+    "leagueName": "Brasileirao Serie A",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "brasileirao|Bahia|Cruzeiro|Over 1.5 gols": {
+    "p_orig": 0.7988209712404377,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "brasileirao",
+    "leagueName": "Brasileirao Serie A",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "brasileirao|Fluminense|Vitória|Over 1.5 gols": {
+    "p_orig": 0.8318618978612636,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "brasileirao",
+    "leagueName": "Brasileirao Serie A",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "saudi|Al-Shabab|Al-Nassr|Over 1.5 gols": {
+    "p_orig": 0.9154398517902997,
+    "band": "rb-90",
+    "category": "Gols",
+    "leagueKey": "saudi",
+    "leagueName": "Saudi Pro League",
+    "date": "2026-05-07",
+    "source": "football_analytics (13).html"
+  },
+  "bundesliga|TSG Hoffenheim|SV Werder Bremen|Over 1.5 gols": {
+    "p_orig": 0.8221122541466037,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "bundesliga",
+    "leagueName": "Bundesliga",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "seriea|Parma|AS Roma|BTTS - Nao": {
+    "p_orig": 0.8288729366178145,
+    "band": "rb-80",
+    "category": "BTTS",
+    "leagueKey": "seriea",
+    "leagueName": "Serie A",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "seriea|Lazio|Inter|Over 1.5 gols": {
+    "p_orig": 0.805903838841683,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "seriea",
+    "leagueName": "Serie A",
+    "date": "2026-05-09",
+    "source": "football_analytics (13).html"
+  },
+  "ligue1|Auxerre|Nice|Under 3.5 gols": {
+    "p_orig": 0.8093974385191867,
+    "band": "rb-80",
+    "category": "Gols",
+    "leagueKey": "ligue1",
+    "leagueName": "Ligue 1",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  },
+  "seriea|Parma|AS Roma|Under 3.5 gols": {
+    "p_orig": 0.9450664443727503,
+    "band": "rb-95",
+    "category": "Gols",
+    "leagueKey": "seriea",
+    "leagueName": "Serie A",
+    "date": "2026-05-10",
+    "source": "football_analytics (13).html"
+  }
+}

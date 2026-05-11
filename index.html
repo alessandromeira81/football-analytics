@@ -1774,9 +1774,11 @@ function fmtResumoDate(iso) {
 function computeAllInsights() {
   var sd = window.SCRAPED_DATA || {};
   var allBets = [];
+  var seenBetIds = {};
   var savedGames  = SCRAPED_GAMES;
   var savedByTeam = SCRAPED_BY_TEAM;
 
+  // ── PASSO 1: Insights do modelo atual (jogos em scheduledGames) ──────────────
   Object.keys(LEAGUES_META).forEach(function(key) {
     var data = sd[key];
     if (!data || !data.games || !data.games.length) return;
@@ -1793,7 +1795,6 @@ function computeAllInsights() {
       var gameOdds = sg.odds || {};
       result.bets.forEach(function(bet) {
         var betId = key + '|' + sg.homeTeam + '|' + sg.awayTeam + '|' + bet.label;
-        // Usa p_original (congelado) se existir em ASSERT_META — passado nao muda
         var savedMeta = ASSERT_META[betId];
         var frozenP = null;
         if (savedMeta && (savedMeta.p_original || savedMeta.p)) {
@@ -1810,45 +1811,54 @@ function computeAllInsights() {
           label:      bet.label,
           cat:        bet.cat,
           p:          frozenP !== null ? frozenP : bet.p,
-          pCurrent:   bet.p,  // mantem p atual para referencia
+          pCurrent:   bet.p,
           gameOdds:   gameOdds,
           betId:      betId
         });
-      });
-      // Tambem inclui bets que existem em ASSERT_META para esse jogo
-      // mas nao foram gerados pelo modelo atual (drift fez sair de 80%+)
-      var gamePrefix = key + '|' + sg.homeTeam + '|' + sg.awayTeam + '|';
-      var existingLabels = {};
-      result.bets.forEach(function(b) { existingLabels[b.label] = true; });
-      Object.keys(ASSERT_META).forEach(function(betId) {
-        if (betId.indexOf(gamePrefix) !== 0) return;
-        var label = betId.slice(gamePrefix.length);
-        if (existingLabels[label]) return;  // ja incluido acima
-        var m = ASSERT_META[betId];
-        var p = m.p_original || m.p || 0;
-        if (p > 1) p = p / 100;
-        if (p < 0.80) return;  // realmente nao era >= 80% nem na origem
-        var cat = getBetCategory(label);
-        allBets.push({
-          leagueKey:  key,
-          leagueName: meta.name,
-          flagCode:   meta.flagCode,
-          home:       sg.homeTeam,
-          away:       sg.awayTeam,
-          date:       sg.date || m.date || '',
-          label:      label,
-          cat:        cat,
-          p:          p,
-          pCurrent:   p,
-          gameOdds:   gameOdds,
-          betId:      betId
-        });
+        seenBetIds[betId] = true;
       });
     });
   });
 
   SCRAPED_GAMES   = savedGames;
   SCRAPED_BY_TEAM = savedByTeam;
+
+  // ── PASSO 2: Adiciona TODAS as bets de ASSERT_META nao incluidas acima ──────
+  // Garante que bets historicas (cujos jogos sumiram de scheduledGames ou
+  // cuja probabilidade atual caiu abaixo de 80%) continuem aparecendo
+  // com seus dados originais congelados. O passado nao muda.
+  Object.keys(ASSERT_META).forEach(function(betId) {
+    if (seenBetIds[betId]) return;
+    var m = ASSERT_META[betId];
+    var p = m.p_original || m.p || 0;
+    if (p > 1) p = p / 100;
+    if (p < 0.80) return;  // realmente nao era >=80% na origem
+
+    var parts = betId.split('|');
+    if (parts.length < 4) return;
+    var lk     = parts[0];
+    var home   = parts[1];
+    var away   = parts[2];
+    var label  = parts.slice(3).join('|');
+    var lmeta  = LEAGUES_META[lk] || {};
+
+    allBets.push({
+      leagueKey:  lk,
+      leagueName: m.leagueName || lmeta.name || lk,
+      flagCode:   lmeta.flagCode || 'un',
+      home:       home,
+      away:       away,
+      date:       m.date || '',
+      label:      label,
+      cat:        getBetCategory(label),
+      p:          p,
+      pCurrent:   p,
+      gameOdds:   {},
+      betId:      betId
+    });
+    seenBetIds[betId] = true;
+  });
+
   return allBets;
 }
 

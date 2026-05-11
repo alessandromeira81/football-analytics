@@ -1241,28 +1241,12 @@ function setAssertHistCat(cat) {
 function computeFilteredHistory(catFilter) {
   var today = new Date().toISOString().slice(0, 10);
 
-  // Ancora 1: total historico por data (do assertHistory do servidor).
-  var histTotals = {};
-  ASSERT_HISTORY.forEach(function(h) {
-    if (h.date && h.total) histTotals[h.date] = (h.total.verde || 0) + (h.total.vermelho || 0);
-  });
-
-  // Ancora 2: distribuicao por banda historica por data.
-  // Usamos isso para atribuir cada bet a sua banda original correta,
-  // mesmo que o p atual tenha derivado (model drift).
-  var histBands = {};
-  ASSERT_HISTORY.forEach(function(h) {
-    if (!h.date || !h.bands) return;
-    var counts = {};
-    RESUMO_BANDS.forEach(function(b) {
-      var bd = h.bands[b.cls];
-      counts[b.cls] = bd ? (bd.verde || 0) + (bd.vermelho || 0) : 0;
-    });
-    histBands[h.date] = counts;
-  });
-
-  // Agrupa todas as bets verde/vermelho por data (com metadados)
-  var byDate = {};
+  // Para cada aposta verde/vermelho, determina sua banda historica:
+  // 1) meta.band_hist  -> gravado pelo assertividade_sync.py (definitivo, nunca muda)
+  // 2) meta.p_original -> p congelado na apresentacao, convertido em banda
+  // 3) meta.p          -> fallback para bets sem p_original (bets recentes)
+  // Bets fora de qualquer banda (p < 80%) sao ignoradas.
+  var qualifyingBetIds = {};  // betId -> bandCls
   Object.keys(ASSERT_STATES).forEach(function(betId) {
     var st = ASSERT_STATES[betId];
     if (st !== 'verde' && st !== 'vermelho') return;
@@ -1270,48 +1254,25 @@ function computeFilteredHistory(catFilter) {
     if (!meta) return;
     var date = meta.date || '';
     if (!date || date > today) return;
-    var p = meta.p || 0;
-    if (p > 1) p = p / 100;
-    if (!byDate[date]) byDate[date] = [];
-    byDate[date].push({betId: betId, p: p, st: st, meta: meta});
-  });
 
-  // qualifyingBetIds: betId -> bandCls (banda historica correta).
-  // Para datas em assertHistory: ordena por p desc, pega exatamente histTotal bets,
-  // e atribui a banda de cima para baixo usando histBands como gabarito.
-  // Para datas sem assertHistory: filtra por banda atual (p>=80%).
-  var qualifyingBetIds = {};
-  Object.keys(byDate).forEach(function(date) {
-    var bets = byDate[date];
-    var histCount = histTotals[date];
-    if (histCount !== undefined) {
-      bets.sort(function(a, b) { return b.p - a.p; });
-      var take = Math.min(histCount, bets.length);
-      var bandDist = histBands[date] || {};
-      var idx = 0;
-      // Preenche bandas de cima (95%) para baixo (80%) usando distribuicao historica
-      RESUMO_BANDS.forEach(function(band) {
-        var n = bandDist[band.cls] || 0;
-        for (var k = 0; k < n && idx < take; k++, idx++) {
-          qualifyingBetIds[bets[idx].betId] = band.cls;
-        }
-      });
-      // Sobra (histCount > soma das bandas): atribui rb-80
-      for (; idx < take; idx++) {
-        if (!qualifyingBetIds[bets[idx].betId]) qualifyingBetIds[bets[idx].betId] = 'rb-80';
-      }
-    } else {
-      bets.forEach(function(bet) {
-        var pR = Math.round(bet.p * 100) / 100;
-        RESUMO_BANDS.forEach(function(b) {
-          if (pR >= b.min && pR < b.max) qualifyingBetIds[bet.betId] = b.cls;
-        });
+    // Banda historica congelada (fonte mais confiavel)
+    var bandCls = meta.band_hist || null;
+
+    if (!bandCls) {
+      // Computa banda a partir de p_original (congelado) ou p atual
+      var p = meta.p_original || meta.p || 0;
+      if (p > 1) p = p / 100;
+      var pR = Math.round(p * 100) / 100;
+      RESUMO_BANDS.forEach(function(b) {
+        if (pR >= b.min && pR < b.max) bandCls = b.cls;
       });
     }
+
+    if (!bandCls) return;  // fora das bandas (p < 80%), ignora
+    qualifyingBetIds[betId] = bandCls;
   });
 
-  // Constroi o dateMap aplicando filtro de categoria sobre as bets qualificadas.
-  // A banda usada e sempre a historica (qualifyingBetIds[betId]), nao o p atual.
+  // Constroi dateMap aplicando filtro de categoria
   var dateMap = {};
   Object.keys(qualifyingBetIds).forEach(function(betId) {
     var label = betId.split('|').slice(3).join('|');

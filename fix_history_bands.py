@@ -209,19 +209,33 @@ def main():
         ref = db.collection('betMeta').document(doc_id)
         snap = ref.get()
 
+        # Calcula band_hist a partir de p_original
+        p_pct = p_orig * 100
+        band_hist = None
+        if p_pct >= 95:   band_hist = 'rb-95'
+        elif p_pct >= 90: band_hist = 'rb-90'
+        elif p_pct >= 85: band_hist = 'rb-85'
+        elif p_pct >= 80: band_hist = 'rb-80'
+
         if snap.exists:
             existing_meta = snap.to_dict()
-            if 'p_original' in existing_meta:
+            already_has = 'p_original' in existing_meta and 'band_hist' in existing_meta
+            if already_has:
                 n_skipped += 1
                 continue
-            print(f'  SET p_original={p_orig:.4f} | {bet_id[:70]}', flush=True)
-            if not DRY_RUN:
-                batch.update(ref, {'p_original': p_orig})
+            updates = {}
+            if 'p_original' not in existing_meta:
+                updates['p_original'] = p_orig
+            if 'band_hist' not in existing_meta and band_hist:
+                updates['band_hist'] = band_hist
+            print(f'  SET {list(updates.keys())} p={p_orig:.4f} band={band_hist} | {bet_id[:60]}', flush=True)
+            if not DRY_RUN and updates:
+                batch.update(ref, updates)
             n_updated += 1
         else:
-            print(f'  CRIADO | {bet_id[:70]}', flush=True)
+            print(f'  CRIADO band={band_hist} | {bet_id[:70]}', flush=True)
             if not DRY_RUN:
-                batch.set(ref, {'p': p_orig, 'p_original': p_orig,
+                batch.set(ref, {'p': p_orig, 'p_original': p_orig, 'band_hist': band_hist,
                                 'date': m['date'], 'leagueKey': m['leagueKey'],
                                 'leagueName': m['leagueName']})
             n_updated += 1

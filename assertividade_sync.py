@@ -244,6 +244,7 @@ def main():
         print(f'  [SAMPLE ONLY_META] {list(only_meta)[:3]}', flush=True)
 
     date_map = {}
+    meta_band_updates = {}  # bet_id -> band_key para gravar band_hist em betMeta
 
     for bet_id, state in outcomes.items():
         if state not in ('verde', 'vermelho'):
@@ -263,27 +264,30 @@ def main():
                 print(f'  Corrigida data: {bet_id.split("|")[1]} x {bet_id.split("|")[2]} → {real_date}', flush=True)
             else:
                 continue  # ainda futura, pula
-        p           = b.get('p', 0) or 0
-        # Normaliza: bets antigas podem ter p salvo como porcentagem (ex: 82)
-        # em vez de probabilidade (ex: 0.82). Qualquer valor > 1 é normalizado.
+        # Usa p_original (congelado na apresentacao) se disponivel,
+        # senao usa p atual. O passado nao muda.
+        p = b.get('p_original') or b.get('p', 0) or 0
         if p > 1:
             p = p / 100
         league_key  = b.get('leagueKey', '')
         league_name = b.get('leagueName', league_key)
 
-        # Arredonda para o inteiro percentual mais próximo antes de classificar
-        # Ex: 0.946 → 95% → rb-95 | 0.944 → 94% → rb-90
-        p_rounded = round(p * 100) / 100
-
-        band_key = None
-        for band in BANDS:
-            if band['min'] <= p_rounded < band['max']:
-                band_key = band['cls']
-                break
+        # Se band_hist ja esta gravado no betMeta, usa direto (sem recalcular)
+        band_key = b.get('band_hist')
         if not band_key:
-            if p > 0:  # só loga se realmente tem p, mas fora das bandas
-                print(f'  [SKIP] p={p} fora das bandas (0.70-1.00): {bet_id[:60]}', flush=True)
+            p_rounded = round(p * 100) / 100
+            for band in BANDS:
+                if band['min'] <= p_rounded < band['max']:
+                    band_key = band['cls']
+                    break
+        if not band_key:
+            if p > 0:
+                print(f'  [SKIP] p={p} fora das bandas: {bet_id[:60]}', flush=True)
             continue
+
+        # Grava band_hist em betMeta se ainda nao definido (congela para sempre)
+        if 'band_hist' not in b:
+            meta_band_updates[bet_id] = band_key
 
         if bet_date not in date_map:
             date_map[bet_date] = {'bands': {}, 'leagues': {}}
@@ -297,6 +301,15 @@ def main():
         lg = leagues[league_key]
         lg['bands'].setdefault(band_key, {'verde': 0, 'vermelho': 0})[state] += 1
         lg['total'][state] += 1
+
+    # Grava band_hist em betMeta para bets que ainda nao tem (congela a banda historica)
+    if meta_band_updates:
+        print(f'\n── Gravando band_hist em {len(meta_band_updates)} betMeta(s) ──────────', flush=True)
+        mb_batch = db.batch()
+        for bid, bk in meta_band_updates.items():
+            mb_batch.update(db.collection('betMeta').document(encode_id(bid)), {'band_hist': bk})
+            print(f'  band_hist={bk} | {bid[:70]}', flush=True)
+        mb_batch.commit()
 
     # Lê assertHistory existente para evitar sobrescrever com dados menores (model drift).
     # Se o modelo hoje computar menos apostas ≥80% do que o registrado no passado

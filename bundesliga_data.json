@@ -6,7 +6,7 @@
     "seasonId": 77333,
     "lastRound": 33,
     "totalGames": 297,
-    "updatedAt": "2026-05-11T01:47:31Z",
+    "updatedAt": "2026-05-11T03:12:05Z",
     "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents."
   },
   "games": [
@@ -36002,7 +36002,7 @@
         "Both teams to score_Yes": 1.44,
         "Both teams to score_No": 2.62,
         "Match goals_0.5_Over": 1.02,
-        "Match goals_0.5_Under": 21.0,
+        "Match goals_0.5_Under": 19.0,
         "Match goals_1.5_Over": 1.12,
         "Match goals_1.5_Under": 6.0,
         "Match goals_2.5_Over": 1.44,
@@ -36019,8 +36019,8 @@
         "Match goals_7.5_Under": 1.01,
         "Match goals_8.5_Over": 41.0,
         "Match goals_8.5_Under": 1.0,
-        "Asian handicap_(0.5) SV Werder Bremen": 1.93,
-        "Asian handicap_(-0.5) Borussia Dortmund": 1.93,
+        "Asian handicap_(0.5) SV Werder Bremen": 1.9,
+        "Asian handicap_(-0.5) Borussia Dortmund": 1.95,
         "First team to score_SV Werder Bremen": 2.2,
         "First team to score_No goal": 21.0,
         "First team to score_Borussia Dortmund": 1.67

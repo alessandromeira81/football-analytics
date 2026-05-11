@@ -1,8 +1,7 @@
-name: Fix History Bands (one-time / manual)
+name: Fix History Bands
 
-# Corrige a distribuicao de bandas no assertHistory do Firestore
-# usando o gabarito extraido do HTML salvo.
-# Tambem grava p_original em betMeta para congelar o p historico.
+# Corrige bandas historicas + reconstroi 01-05 dos prints do usuario.
+# Roda fix_history_bands, complete_band_hist e rebuild_assert_data em sequencia.
 on:
   workflow_dispatch:
     inputs:

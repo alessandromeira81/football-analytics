@@ -48,7 +48,7 @@ jobs:
             python complete_band_hist.py
           }
 
-      - name: Rebuild assert data 01-05 (fonte UNICA: prints do usuario)
+      - name: Rebuild assert data 01-05 (prints do usuario)
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |

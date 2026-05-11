@@ -1792,6 +1792,14 @@ function computeAllInsights() {
       if (!result) return;
       var gameOdds = sg.odds || {};
       result.bets.forEach(function(bet) {
+        var betId = key + '|' + sg.homeTeam + '|' + sg.awayTeam + '|' + bet.label;
+        // Usa p_original (congelado) se existir em ASSERT_META — passado nao muda
+        var savedMeta = ASSERT_META[betId];
+        var frozenP = null;
+        if (savedMeta && (savedMeta.p_original || savedMeta.p)) {
+          frozenP = savedMeta.p_original || savedMeta.p;
+          if (frozenP > 1) frozenP = frozenP / 100;
+        }
         allBets.push({
           leagueKey:  key,
           leagueName: meta.name,
@@ -1801,9 +1809,39 @@ function computeAllInsights() {
           date:       sg.date || '',
           label:      bet.label,
           cat:        bet.cat,
-          p:          bet.p,
+          p:          frozenP !== null ? frozenP : bet.p,
+          pCurrent:   bet.p,  // mantem p atual para referencia
           gameOdds:   gameOdds,
-          betId:      key + '|' + sg.homeTeam + '|' + sg.awayTeam + '|' + bet.label
+          betId:      betId
+        });
+      });
+      // Tambem inclui bets que existem em ASSERT_META para esse jogo
+      // mas nao foram gerados pelo modelo atual (drift fez sair de 80%+)
+      var gamePrefix = key + '|' + sg.homeTeam + '|' + sg.awayTeam + '|';
+      var existingLabels = {};
+      result.bets.forEach(function(b) { existingLabels[b.label] = true; });
+      Object.keys(ASSERT_META).forEach(function(betId) {
+        if (betId.indexOf(gamePrefix) !== 0) return;
+        var label = betId.slice(gamePrefix.length);
+        if (existingLabels[label]) return;  // ja incluido acima
+        var m = ASSERT_META[betId];
+        var p = m.p_original || m.p || 0;
+        if (p > 1) p = p / 100;
+        if (p < 0.80) return;  // realmente nao era >= 80% nem na origem
+        var cat = getBetCategory(label);
+        allBets.push({
+          leagueKey:  key,
+          leagueName: meta.name,
+          flagCode:   meta.flagCode,
+          home:       sg.homeTeam,
+          away:       sg.awayTeam,
+          date:       sg.date || m.date || '',
+          label:      label,
+          cat:        cat,
+          p:          p,
+          pCurrent:   p,
+          gameOdds:   gameOdds,
+          betId:      betId
         });
       });
     });

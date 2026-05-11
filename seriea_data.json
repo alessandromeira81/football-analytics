@@ -6,7 +6,7 @@
     "seasonId": 76457,
     "lastRound": 36,
     "totalGames": 359,
-    "updatedAt": "2026-05-11T01:18:49Z",
+    "updatedAt": "2026-05-10T23:17:07Z",
     "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents."
   },
   "games": [
@@ -43599,15 +43599,15 @@
         "Match goals_6.5_Under": 1.01,
         "Match goals_7.5_Over": 51.0,
         "Match goals_7.5_Under": 1.0,
-        "Asian handicap_(-1) SSC Napoli": 1.95,
-        "Asian handicap_(1) Bologna": 1.9,
+        "Asian handicap_(-1) SSC Napoli": 1.93,
+        "Asian handicap_(1) Bologna": 1.93,
         "Cards in match_3.5_Over": 2.2,
         "Cards in match_3.5_Under": 1.62,
         "Corners 2-Way_8.5_Over": 1.73,
         "Corners 2-Way_8.5_Under": 2.0,
         "First team to score_SSC Napoli": 1.44,
         "First team to score_No goal": 11.0,
-        "First team to score_Bologna": 2.88
+        "First team to score_Bologna": 3.0
       }
     }
   ]

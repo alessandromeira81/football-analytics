@@ -2226,24 +2226,12 @@ function renderResumo() {
     html += '</div></div>';
   });
 
-  // ── Tabela histórica de assertividade ────────────────────────────────────────
-  // Estratégia de fonte de dados:
-  //   "Todos" (sem cat filter): usa ASSERT_HISTORY mesclado com computeFilteredHistory('').
-  //     ASSERT_HISTORY é a base (contém datas antigas mesmo sem ASSERT_META completo).
-  //     computeFilteredHistory adiciona datas novas que ainda não foram sincronizadas.
-  //   Com cat filter: usa computeFilteredHistory(cat) — único modo de filtrar por categoria.
-  //     Datas antigas sem ASSERT_META completo não aparecem nos filtros (sem metadados = sem cat).
-  var _computedAll = computeFilteredHistory('');
-  var _computedByDate = {};
-  _computedAll.forEach(function(e) { _computedByDate[e.date] = true; });
-  // Mescla: ASSERT_HISTORY como base + datas novas de computeFilteredHistory
-  var _allHistory = ASSERT_HISTORY.slice();
-  _computedAll.forEach(function(e) { if (!_computedByDate[e.date] || !ASSERT_HISTORY.some(function(h){ return h.date === e.date; })) _allHistory.push(e); });
-  // Garante que datas de computeFilteredHistory que já existem em ASSERT_HISTORY não são duplicadas
-  var _assertDates = {};
-  ASSERT_HISTORY.forEach(function(h) { _assertDates[h.date] = true; });
-  _allHistory = ASSERT_HISTORY.slice();
-  _computedAll.forEach(function(e) { if (!_assertDates[e.date]) _allHistory.push(e); });
+  // ── Tabela historica de assertividade ────────────────────────────────────────
+  // FONTE UNICA: computeFilteredHistory.
+  // Calcula a partir de ASSERT_STATES + ASSERT_META usando meta.band_hist.
+  // Global = computeFilteredHistory('') | Filtro = computeFilteredHistory(cat)
+  // Como ambos usam a mesma funcao, e impossivel divergir.
+  var _allHistory = computeFilteredHistory('');
   _allHistory.sort(function(a,b){ return b.date.localeCompare(a.date); });
 
   if (_allHistory.length > 0) {

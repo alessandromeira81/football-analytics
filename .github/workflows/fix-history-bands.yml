@@ -29,7 +29,7 @@ jobs:
       - name: Install Python dependencies
         run: pip install firebase-admin
 
-      - name: Run fix
+      - name: Run fix_history_bands (gabarito 01-05)
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
@@ -37,4 +37,14 @@ jobs:
             python fix_history_bands.py --dry-run
           } else {
             python fix_history_bands.py
+          }
+
+      - name: Run complete_band_hist (todos bets sem band_hist)
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          if ('${{ github.event.inputs.dry_run }}' -eq 'true') {
+            python complete_band_hist.py --dry-run
+          } else {
+            python complete_band_hist.py
           }

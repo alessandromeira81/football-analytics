@@ -185,9 +185,10 @@ def main():
     n_filled = 0
 
     for bet_id, meta in meta_map.items():
-        # Pula apostas com data futura (evita fantasmas)
+        # Pula apostas com data hoje ou futura.
+        # Jogos do dia atual so entram no historico no D+1 (apos todos terminarem).
         bet_date = meta.get('date', '')
-        if bet_date > TODAY:
+        if bet_date >= TODAY:
             continue
         # Pula se já tem resultado
         if outcomes.get(bet_id) in ('verde', 'vermelho'):
@@ -254,6 +255,9 @@ def main():
             continue
         b = meta_map.get(bet_id, {})
         bet_date = b.get('date', '—')
+        # Bloqueia data de hoje: jogos do dia atual so entram no D+1
+        if bet_date == TODAY:
+            continue
         # Se a data do meta é futura, tenta recuperar do JSON
         if bet_date > TODAY:
             real_date = find_game_date(bet_id, game_idx)

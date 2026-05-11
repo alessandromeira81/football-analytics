@@ -1764,6 +1764,56 @@ function setResumoDateFilter(date) {
   renderResumo();
 }
 
+// ── Helpers para o dropdown multi-select de datas ────────────────────────────
+var RESUMO_FILTER_DATES_INITIALIZED = false;
+var ALL_RESUMO_DATES = [];
+
+function initDefaultDateFilter() {
+  // Padrao: D-3 + datas futuras (rodada atual + proximas)
+  if (RESUMO_FILTER_DATES_INITIALIZED) return;
+  var d = new Date(); d.setDate(d.getDate() - 3);
+  var dminus3 = d.toISOString().slice(0, 10);
+  ALL_RESUMO_DATES.forEach(function(date) {
+    if (date >= dminus3) RESUMO_FILTER_DATES.add(date);
+  });
+  RESUMO_FILTER_DATES_INITIALIZED = true;
+}
+
+function toggleResumoDateDropdown() {
+  var dd = document.getElementById('resumo-date-dropdown');
+  if (dd) dd.style.display = (dd.style.display === 'none' || !dd.style.display) ? 'block' : 'none';
+}
+
+function setResumoDateAll() {
+  ALL_RESUMO_DATES.forEach(function(d) { RESUMO_FILTER_DATES.add(d); });
+  renderResumo();
+}
+
+function setResumoDateClear() {
+  RESUMO_FILTER_DATES.clear();
+  renderResumo();
+}
+
+function setResumoDateDefault() {
+  RESUMO_FILTER_DATES.clear();
+  var d = new Date(); d.setDate(d.getDate() - 3);
+  var dminus3 = d.toISOString().slice(0, 10);
+  ALL_RESUMO_DATES.forEach(function(date) {
+    if (date >= dminus3) RESUMO_FILTER_DATES.add(date);
+  });
+  renderResumo();
+}
+
+// Fecha dropdown ao clicar fora
+document.addEventListener('click', function(e) {
+  var dd = document.getElementById('resumo-date-dropdown');
+  var btn = document.getElementById('resumo-date-btn');
+  if (!dd || !btn) return;
+  if (dd.style.display === 'block' && !dd.contains(e.target) && !btn.contains(e.target)) {
+    dd.style.display = 'none';
+  }
+});
+
 function fmtResumoDate(iso) {
   if (!iso) return '';
   var d = new Date(iso + 'T12:00:00');
@@ -2165,13 +2215,35 @@ function renderResumo() {
   });
   uniqueDates.sort();
 
-  // Chips de data
-  var chipsHtml = '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">'
-    + '<button class="arb-chip' + (RESUMO_FILTER_DATES.size === 0 ? ' active' : '') + '" onclick="setResumoDateFilter(\'\')">Todos</button>';
-  uniqueDates.forEach(function(d) {
-    chipsHtml += '<button class="arb-chip' + (RESUMO_FILTER_DATES.has(d) ? ' active' : '') + '" onclick="setResumoDateFilter(\'' + d + '\')">' + fmtResumoDate(d) + '</button>';
+  // Dropdown multi-select de datas (padrao: D-3 + futuro)
+  ALL_RESUMO_DATES = uniqueDates.slice();
+  initDefaultDateFilter();
+
+  var nSel = RESUMO_FILTER_DATES.size;
+  var labelTxt;
+  if (nSel === 0)                      labelTxt = 'Nenhuma data';
+  else if (nSel === uniqueDates.length) labelTxt = 'Todas as datas (' + nSel + ')';
+  else                                  labelTxt = nSel + ' data' + (nSel > 1 ? 's' : '') + ' selecionada' + (nSel > 1 ? 's' : '');
+
+  var chipsHtml = '<div style="position:relative;display:inline-block;margin-bottom:12px">'
+    + '<button class="arb-chip active" id="resumo-date-btn" onclick="toggleResumoDateDropdown()" style="display:inline-flex;align-items:center;gap:6px">'
+    +   '<span>📅 ' + labelTxt + '</span><span style="opacity:.7;font-size:9px">▼</span>'
+    + '</button>'
+    + '<div id="resumo-date-dropdown" style="display:none;position:absolute;top:calc(100% + 4px);left:0;background:var(--bg2,#1a1a1a);border:1px solid var(--border2,#333);border-radius:8px;padding:8px;max-height:340px;overflow-y:auto;z-index:100;min-width:200px;box-shadow:0 6px 18px rgba(0,0,0,.5)">'
+    +   '<div style="display:flex;gap:4px;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border2,#333)">'
+    +     '<button class="arb-chip" style="font-size:9px;padding:2px 8px" onclick="setResumoDateDefault()">Padrão (D-3+)</button>'
+    +     '<button class="arb-chip" style="font-size:9px;padding:2px 8px" onclick="setResumoDateAll()">Todos</button>'
+    +     '<button class="arb-chip" style="font-size:9px;padding:2px 8px" onclick="setResumoDateClear()">Limpar</button>'
+    +   '</div>';
+  // Ordena datas: mais recentes primeiro
+  var sortedDates = uniqueDates.slice().sort(function(a,b){ return b.localeCompare(a); });
+  sortedDates.forEach(function(d) {
+    var checked = RESUMO_FILTER_DATES.has(d) ? 'checked' : '';
+    chipsHtml += '<label style="display:flex;align-items:center;gap:8px;padding:4px 6px;cursor:pointer;font-family:var(--mono);font-size:11px;border-radius:4px" onmouseover="this.style.background=\'rgba(255,255,255,.05)\'" onmouseout="this.style.background=\'\'">'
+      + '<input type="checkbox" ' + checked + ' onchange="setResumoDateFilter(\'' + d + '\')" style="cursor:pointer;accent-color:var(--accent)">'
+      + fmtResumoDate(d) + '</label>';
   });
-  chipsHtml += '</div>';
+  chipsHtml += '</div></div>';
 
   // Chips de liga (bandeiras)
   var uniqueLeagues = [];

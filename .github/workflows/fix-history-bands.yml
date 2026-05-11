@@ -57,3 +57,8 @@ jobs:
           } else {
             python rebuild_assert_data.py
           }
+
+      - name: Delete today entry from history
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: python delete_today_from_history.py

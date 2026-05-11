@@ -93,8 +93,8 @@ BETS = [
     ('2026-05-03', 'argentina',  'Club Atlético Platense',    'Estudiantes de La Plata', 'Under 3.5 gols',       'rb-95', 'verde',    1.00),
     ('2026-05-03', 'argentina',  'River Plate',               'Atlético Tucumán',        'Over 1.5 gols',        'rb-95', 'vermelho', 0.98),
     ('2026-05-03', 'saudi',      'Al-Qadsiah',                'Al-Nassr',                'Over 8.5 escanteios',  'rb-95', 'verde',    0.97),
-    ('2026-05-03', 'brasileirao','Internacional',             'Fluminense',              'Over 8.5 escanteios',  'rb-95', 'verde',    0.96),
-    ('2026-05-03', 'ligue1',     'Auxerre',                   'Angers',                  'Under 3.5 gols',       'rb-95', 'verde',    0.95),
+    ('2026-05-03', 'brasileirao','Internacional',             'Fluminense',              'Over 8.5 escanteios',  'rb-95', 'vermelho', 0.96),
+    ('2026-05-03', 'ligue1',     'Auxerre',                   'Angers',                  'Under 3.5 gols',       'rb-95', 'vermelho', 0.95),
     # 3 bets restantes do rb-95 (cobertos parcialmente nos prints, completando rb-95=8):
     ('2026-05-03', 'argentina',  'Aldosivi',                  'Independiente Rivadavia', 'Under 3.5 gols',       'rb-95', 'verde',    0.95),
     ('2026-05-03', 'saudi',      'Al-Qadsiah',                'Al-Nassr',                'Over 9.5 escanteios',  'rb-95', 'verde',    0.95),

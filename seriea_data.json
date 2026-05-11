@@ -5,8 +5,8 @@
     "tournamentId": 23,
     "seasonId": 76457,
     "lastRound": 36,
-    "totalGames": 351,
-    "updatedAt": "2026-05-08T22:19:03Z",
+    "totalGames": 359,
+    "updatedAt": "2026-05-11T00:57:51Z",
     "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents."
   },
   "games": [
@@ -42218,6 +42218,935 @@
         "id": 788392,
         "name": "Simone Galipo"
       }
+    },
+    {
+      "id": 13980088,
+      "round": 36,
+      "date": "2026-05-09",
+      "homeTeam": "Cagliari",
+      "awayTeam": "Udinese",
+      "homeId": 2719,
+      "awayId": 2695,
+      "score": {
+        "home": 0,
+        "away": 2
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 22,
+            "away": 9
+          },
+          "corners": {
+            "home": 8,
+            "away": 4
+          },
+          "fouls": {
+            "home": 10,
+            "away": 13
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 6
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 11,
+            "away": 2
+          },
+          "corners": {
+            "home": 3,
+            "away": 1
+          },
+          "fouls": {
+            "home": 4,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 11,
+            "away": 7
+          },
+          "corners": {
+            "home": 5,
+            "away": 3
+          },
+          "fouls": {
+            "home": 6,
+            "away": 7
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 5
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 53,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 44,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 604798,
+        "name": "Federico Dionisi"
+      }
+    },
+    {
+      "id": 13980090,
+      "round": 36,
+      "date": "2026-05-09",
+      "homeTeam": "Lazio",
+      "awayTeam": "Inter",
+      "homeId": 2699,
+      "awayId": 2697,
+      "score": {
+        "home": 0,
+        "away": 3
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 9,
+            "away": 14
+          },
+          "corners": {
+            "home": 5,
+            "away": 1
+          },
+          "fouls": {
+            "home": 10,
+            "away": 8
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 5
+          },
+          "redCards": {
+            "home": 1,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 1,
+            "away": 8
+          },
+          "corners": {
+            "home": 0,
+            "away": 1
+          },
+          "fouls": {
+            "home": 7,
+            "away": 5
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 2
+          },
+          "redCards": {
+            "home": 1,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 8,
+            "away": 6
+          },
+          "corners": {
+            "home": 5,
+            "away": 0
+          },
+          "fouls": {
+            "home": 3,
+            "away": 3
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 3
+          },
+          "redCards": {
+            "home": 1,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 85,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 74,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "red",
+          "minute": 59,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 48,
+          "isHome": true,
+          "period": "2t"
+        }
+      ],
+      "referee": {
+        "id": 172185,
+        "name": "Rosario Abisso"
+      }
+    },
+    {
+      "id": 13980092,
+      "round": 36,
+      "date": "2026-05-09",
+      "homeTeam": "Lecce",
+      "awayTeam": "Juventus",
+      "homeId": 2689,
+      "awayId": 2687,
+      "score": {
+        "home": 0,
+        "away": 1
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 8,
+            "away": 15
+          },
+          "corners": {
+            "home": 1,
+            "away": 7
+          },
+          "fouls": {
+            "home": 7,
+            "away": 18
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 6
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 2,
+            "away": 7
+          },
+          "corners": {
+            "home": 0,
+            "away": 5
+          },
+          "fouls": {
+            "home": 3,
+            "away": 7
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 6,
+            "away": 8
+          },
+          "corners": {
+            "home": 1,
+            "away": 2
+          },
+          "fouls": {
+            "home": 4,
+            "away": 11
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 4
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 82,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 80,
+          "isHome": false,
+          "period": "2t"
+        }
+      ],
+      "referee": {
+        "id": 786537,
+        "name": "Andrea Colombo"
+      }
+    },
+    {
+      "id": 13980059,
+      "round": 36,
+      "date": "2026-05-10",
+      "homeTeam": "Hellas Verona",
+      "awayTeam": "Como",
+      "homeId": 2701,
+      "awayId": 2704,
+      "score": {
+        "home": 0,
+        "away": 1
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 11,
+            "away": 11
+          },
+          "corners": {
+            "home": 7,
+            "away": 7
+          },
+          "fouls": {
+            "home": 17,
+            "away": 14
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 4
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 6,
+            "away": 4
+          },
+          "corners": {
+            "home": 4,
+            "away": 3
+          },
+          "fouls": {
+            "home": 7,
+            "away": 5
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 5,
+            "away": 7
+          },
+          "corners": {
+            "home": 3,
+            "away": 4
+          },
+          "fouls": {
+            "home": 10,
+            "away": 9
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 89,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 61,
+          "isHome": false,
+          "period": "2t"
+        }
+      ],
+      "referee": {
+        "id": 132573,
+        "name": "Marco Di Bello"
+      }
+    },
+    {
+      "id": 13980093,
+      "round": 36,
+      "date": "2026-05-10",
+      "homeTeam": "Cremonese",
+      "awayTeam": "Pisa",
+      "homeId": 2761,
+      "awayId": 2737,
+      "score": {
+        "home": 3,
+        "away": 0
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 10,
+            "away": 0
+          },
+          "corners": {
+            "home": 7,
+            "away": 1
+          },
+          "fouls": {
+            "home": 10,
+            "away": 12
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 4
+          },
+          "shotsOnTarget": {
+            "home": 6,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 2
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 6,
+            "away": 0
+          },
+          "corners": {
+            "home": 5,
+            "away": 0
+          },
+          "fouls": {
+            "home": 7,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 2
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 4,
+            "away": 0
+          },
+          "corners": {
+            "home": 2,
+            "away": 1
+          },
+          "fouls": {
+            "home": 3,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 2
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 89,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "red",
+          "minute": 57,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 49,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "red",
+          "minute": 23,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 16,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 785926,
+        "name": "Giovanni Ayroldi"
+      }
+    },
+    {
+      "id": 13980085,
+      "round": 36,
+      "date": "2026-05-10",
+      "homeTeam": "Fiorentina",
+      "awayTeam": "Genoa",
+      "homeId": 2693,
+      "awayId": 2713,
+      "score": {
+        "home": 0,
+        "away": 0
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 13,
+            "away": 9
+          },
+          "corners": {
+            "home": 4,
+            "away": 3
+          },
+          "fouls": {
+            "home": 13,
+            "away": 14
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 7,
+            "away": 5
+          },
+          "corners": {
+            "home": 2,
+            "away": 2
+          },
+          "fouls": {
+            "home": 9,
+            "away": 7
+          },
+          "shotsOnTarget": {
+            "home": 0,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 6,
+            "away": 4
+          },
+          "corners": {
+            "home": 2,
+            "away": 1
+          },
+          "fouls": {
+            "home": 4,
+            "away": 7
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [],
+      "referee": {
+        "id": 601974,
+        "name": "Luca Massimi"
+      }
+    },
+    {
+      "id": 13980062,
+      "round": 36,
+      "date": "2026-05-10",
+      "homeTeam": "Parma",
+      "awayTeam": "AS Roma",
+      "homeId": 2690,
+      "awayId": 2702,
+      "score": {
+        "home": 2,
+        "away": 3
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 11,
+            "away": 15
+          },
+          "corners": {
+            "home": 3,
+            "away": 6
+          },
+          "fouls": {
+            "home": 14,
+            "away": 8
+          },
+          "yellowCards": {
+            "home": 4,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 7
+          },
+          "redCards": {
+            "home": 1,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 7,
+            "away": 3
+          },
+          "corners": {
+            "home": 1,
+            "away": 0
+          },
+          "fouls": {
+            "home": 3,
+            "away": 5
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 1
+          },
+          "redCards": {
+            "home": 1,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 4,
+            "away": 12
+          },
+          "corners": {
+            "home": 2,
+            "away": 6
+          },
+          "fouls": {
+            "home": 11,
+            "away": 3
+          },
+          "yellowCards": {
+            "home": 4,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 6
+          },
+          "redCards": {
+            "home": 1,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "red",
+          "minute": 99,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 76,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 65,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 48,
+          "isHome": true,
+          "period": "2t"
+        }
+      ],
+      "referee": {
+        "id": 176669,
+        "name": "Daniele Chiffi"
+      }
+    },
+    {
+      "id": 13980096,
+      "round": 36,
+      "date": "2026-05-10",
+      "homeTeam": "Milan",
+      "awayTeam": "Atalanta",
+      "homeId": 2692,
+      "awayId": 2686,
+      "score": {
+        "home": 2,
+        "away": 3
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 20,
+            "away": 9
+          },
+          "corners": {
+            "home": 2,
+            "away": 2
+          },
+          "fouls": {
+            "home": 8,
+            "away": 17
+          },
+          "yellowCards": {
+            "home": 3,
+            "away": 3
+          },
+          "shotsOnTarget": {
+            "home": 9,
+            "away": 5
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 6,
+            "away": 5
+          },
+          "corners": {
+            "home": 0,
+            "away": 1
+          },
+          "fouls": {
+            "home": 2,
+            "away": 8
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 4
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 14,
+            "away": 4
+          },
+          "corners": {
+            "home": 2,
+            "away": 1
+          },
+          "fouls": {
+            "home": 6,
+            "away": 9
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 3
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 96,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 95,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 90,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 89,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 70,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 34,
+          "isHome": true,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 785903,
+        "name": "Luca Zufferli"
+      }
     }
   ],
   "scheduledGames": [
@@ -42275,11 +43204,11 @@
       "awayTeam": "Udinese",
       "date": "2026-05-09",
       "odds": {
-        "Full time_1": 2.55,
-        "Full time_X": 3.2,
+        "Full time_1": 2.63,
+        "Full time_X": 3.0,
         "Full time_2": 2.9,
         "Double chance_1X": 1.4,
-        "Double chance_X2": 1.5,
+        "Double chance_X2": 1.44,
         "Double chance_12": 1.36,
         "1st half_1": 3.2,
         "1st half_X": 2.05,
@@ -42290,26 +43219,26 @@
         "Both teams to score_No": 1.91,
         "Match goals_0.5_Over": 1.08,
         "Match goals_0.5_Under": 8.0,
-        "Match goals_1.5_Over": 1.4,
-        "Match goals_1.5_Under": 3.0,
+        "Match goals_1.5_Over": 1.36,
+        "Match goals_1.5_Under": 3.2,
         "Match goals_2.5_Over": 2.2,
         "Match goals_2.5_Under": 1.67,
         "Match goals_3.5_Over": 4.0,
         "Match goals_3.5_Under": 1.25,
         "Match goals_4.5_Over": 8.0,
         "Match goals_4.5_Under": 1.08,
-        "Match goals_5.5_Over": 19.0,
+        "Match goals_5.5_Over": 17.0,
         "Match goals_5.5_Under": 1.02,
-        "Match goals_6.5_Over": 41.0,
+        "Match goals_6.5_Over": 34.0,
         "Match goals_6.5_Under": 1.0,
         "Asian handicap_(0) Cagliari": 1.8,
-        "Asian handicap_(-0) Udinese": 2.05,
+        "Asian handicap_(0) Udinese": 2.05,
         "Cards in match_3.5_Over": 1.83,
         "Cards in match_3.5_Under": 1.83,
         "Corners 2-Way_9.5_Over": 2.0,
         "Corners 2-Way_9.5_Under": 1.73,
         "First team to score_Cagliari": 1.95,
-        "First team to score_No goal": 8.0,
+        "First team to score_No goal": 7.5,
         "First team to score_Udinese": 2.1
       }
     },
@@ -42320,19 +43249,19 @@
       "awayTeam": "Inter",
       "date": "2026-05-09",
       "odds": {
-        "Full time_1": 4.33,
-        "Full time_X": 3.6,
-        "Full time_2": 1.83,
+        "Full time_1": 4.2,
+        "Full time_X": 3.4,
+        "Full time_2": 1.9,
         "Double chance_1X": 1.91,
-        "Double chance_X2": 1.2,
-        "Double chance_12": 1.29,
-        "1st half_1": 4.5,
-        "1st half_X": 2.3,
-        "1st half_2": 2.38,
-        "Draw no bet_1": 3.25,
-        "Draw no bet_2": 1.33,
-        "Both teams to score_Yes": 1.67,
-        "Both teams to score_No": 2.1,
+        "Double chance_X2": 1.22,
+        "Double chance_12": 1.3,
+        "1st half_1": 4.33,
+        "1st half_X": 2.25,
+        "1st half_2": 2.5,
+        "Draw no bet_1": 3.0,
+        "Draw no bet_2": 1.36,
+        "Both teams to score_Yes": 1.75,
+        "Both teams to score_No": 2.0,
         "Match goals_0.5_Over": 1.05,
         "Match goals_0.5_Under": 11.0,
         "Match goals_1.5_Over": 1.25,
@@ -42345,19 +43274,19 @@
         "Match goals_4.5_Under": 1.14,
         "Match goals_5.5_Over": 11.0,
         "Match goals_5.5_Under": 1.05,
-        "Match goals_6.5_Over": 21.0,
-        "Match goals_6.5_Under": 1.02,
-        "Match goals_7.5_Over": 41.0,
+        "Match goals_6.5_Over": 23.0,
+        "Match goals_6.5_Under": 1.01,
+        "Match goals_7.5_Over": 51.0,
         "Match goals_7.5_Under": 1.0,
-        "Asian handicap_(0.5) Lazio": 2.0,
-        "Asian handicap_(-0.5) Inter": 1.85,
-        "Cards in match_3.5_Over": 1.73,
-        "Cards in match_3.5_Under": 2.0,
+        "Asian handicap_(0.5) Lazio": 1.95,
+        "Asian handicap_(-0.5) Inter": 1.9,
+        "Cards in match_3.5_Over": 1.8,
+        "Cards in match_3.5_Under": 1.91,
         "Corners 2-Way_8.5_Over": 1.67,
         "Corners 2-Way_8.5_Under": 2.1,
         "First team to score_Lazio": 2.4,
-        "First team to score_No goal": 12.0,
-        "First team to score_Inter": 1.62
+        "First team to score_No goal": 10.0,
+        "First team to score_Inter": 1.67
       }
     },
     {
@@ -42367,44 +43296,42 @@
       "awayTeam": "Juventus",
       "date": "2026-05-09",
       "odds": {
-        "Full time_1": 6.5,
-        "Full time_X": 4.75,
-        "Full time_2": 1.42,
+        "Full time_1": 9.0,
+        "Full time_X": 4.5,
+        "Full time_2": 1.4,
         "Double chance_1X": 2.75,
-        "Double chance_X2": 1.11,
+        "Double chance_X2": 1.07,
         "Double chance_12": 1.18,
-        "1st half_1": 7.0,
-        "1st half_X": 2.5,
+        "1st half_1": 8.0,
+        "1st half_X": 2.3,
         "1st half_2": 1.91,
-        "Draw no bet_1": 5.5,
-        "Draw no bet_2": 1.14,
-        "Both teams to score_Yes": 1.95,
-        "Both teams to score_No": 1.8,
-        "Match goals_0.5_Over": 1.04,
-        "Match goals_0.5_Under": 13.0,
-        "Match goals_1.5_Over": 1.22,
-        "Match goals_1.5_Under": 4.33,
-        "Match goals_2.5_Over": 1.73,
-        "Match goals_2.5_Under": 2.1,
-        "Match goals_3.5_Over": 2.75,
-        "Match goals_3.5_Under": 1.44,
-        "Match goals_4.5_Over": 5.0,
-        "Match goals_4.5_Under": 1.17,
-        "Match goals_5.5_Over": 10.0,
-        "Match goals_5.5_Under": 1.06,
-        "Match goals_6.5_Over": 21.0,
-        "Match goals_6.5_Under": 1.02,
-        "Match goals_7.5_Over": 41.0,
-        "Match goals_7.5_Under": 1.0,
-        "Asian handicap_(1.25) Lecce": 1.88,
-        "Asian handicap_(-1.25) Juventus": 1.98,
-        "Cards in match_3.5_Over": 1.83,
-        "Cards in match_3.5_Under": 1.83,
+        "Draw no bet_1": 6.5,
+        "Draw no bet_2": 1.11,
+        "Both teams to score_Yes": 2.2,
+        "Both teams to score_No": 1.62,
+        "Match goals_0.5_Over": 1.06,
+        "Match goals_0.5_Under": 10.0,
+        "Match goals_1.5_Over": 1.3,
+        "Match goals_1.5_Under": 3.5,
+        "Match goals_2.5_Over": 1.91,
+        "Match goals_2.5_Under": 1.91,
+        "Match goals_3.5_Over": 3.4,
+        "Match goals_3.5_Under": 1.33,
+        "Match goals_4.5_Over": 6.5,
+        "Match goals_4.5_Under": 1.11,
+        "Match goals_5.5_Over": 13.0,
+        "Match goals_5.5_Under": 1.04,
+        "Match goals_6.5_Over": 26.0,
+        "Match goals_6.5_Under": 1.01,
+        "Asian handicap_(1.25) Lecce": 1.93,
+        "Asian handicap_(-1.25) Juventus": 1.93,
+        "Cards in match_3.5_Over": 1.73,
+        "Cards in match_3.5_Under": 2.0,
         "Corners 2-Way_9.5_Over": 1.91,
         "Corners 2-Way_9.5_Under": 1.8,
-        "First team to score_Lecce": 3.1,
-        "First team to score_No goal": 13.0,
-        "First team to score_Juventus": 1.4
+        "First team to score_Lecce": 3.5,
+        "First team to score_No goal": 10.0,
+        "First team to score_Juventus": 1.36
       }
     },
     {
@@ -42420,13 +43347,13 @@
         "Double chance_1X": 3.0,
         "Double chance_X2": 1.08,
         "Double chance_12": 1.18,
-        "1st half_1": 8.5,
+        "1st half_1": 8.0,
         "1st half_X": 2.38,
-        "1st half_2": 1.83,
-        "Draw no bet_1": 6.5,
-        "Draw no bet_2": 1.11,
-        "Both teams to score_Yes": 2.2,
-        "Both teams to score_No": 1.62,
+        "1st half_2": 1.91,
+        "Draw no bet_1": 6.0,
+        "Draw no bet_2": 1.12,
+        "Both teams to score_Yes": 2.1,
+        "Both teams to score_No": 1.67,
         "Match goals_0.5_Over": 1.05,
         "Match goals_0.5_Under": 11.0,
         "Match goals_1.5_Over": 1.29,
@@ -42443,13 +43370,13 @@
         "Match goals_6.5_Under": 1.01,
         "Match goals_7.5_Over": 51.0,
         "Match goals_7.5_Under": 1.0,
-        "Asian handicap_(1.25) Hellas Verona": 1.98,
-        "Asian handicap_(-1.25) Como": 1.88,
-        "Cards in match_3.5_Over": 1.83,
-        "Cards in match_3.5_Under": 1.83,
+        "Asian handicap_(1.25) Hellas Verona": 1.93,
+        "Asian handicap_(-1.25) Como": 1.93,
+        "Cards in match_3.5_Over": 2.2,
+        "Cards in match_3.5_Under": 1.62,
         "Corners 2-Way_8.5_Over": 1.83,
         "Corners 2-Way_8.5_Under": 1.83,
-        "First team to score_Hellas Verona": 3.5,
+        "First team to score_Hellas Verona": 3.4,
         "First team to score_No goal": 11.0,
         "First team to score_Como": 1.36
       }
@@ -42461,42 +43388,42 @@
       "awayTeam": "Pisa",
       "date": "2026-05-10",
       "odds": {
-        "Full time_1": 1.7,
-        "Full time_X": 3.75,
-        "Full time_2": 5.0,
-        "Double chance_1X": 1.17,
-        "Double chance_X2": 2.1,
-        "Double chance_12": 1.25,
-        "1st half_1": 2.3,
-        "1st half_X": 2.1,
-        "1st half_2": 5.5,
-        "Draw no bet_1": 1.25,
-        "Draw no bet_2": 3.75,
-        "Both teams to score_Yes": 2.05,
-        "Both teams to score_No": 1.7,
-        "Match goals_0.5_Over": 1.07,
-        "Match goals_0.5_Under": 9.0,
-        "Match goals_1.5_Over": 1.36,
-        "Match goals_1.5_Under": 3.2,
-        "Match goals_2.5_Over": 2.1,
-        "Match goals_2.5_Under": 1.73,
-        "Match goals_3.5_Over": 4.0,
-        "Match goals_3.5_Under": 1.25,
-        "Match goals_4.5_Over": 8.0,
-        "Match goals_4.5_Under": 1.08,
-        "Match goals_5.5_Over": 17.0,
-        "Match goals_5.5_Under": 1.02,
-        "Match goals_6.5_Over": 34.0,
-        "Match goals_6.5_Under": 1.0,
-        "Asian handicap_(-0.75) Cremonese": 1.93,
-        "Asian handicap_(0.75) Pisa": 1.93,
-        "Cards in match_3.5_Over": 1.67,
-        "Cards in match_3.5_Under": 2.1,
-        "Corners 2-Way_8.5_Over": 1.8,
-        "Corners 2-Way_8.5_Under": 1.91,
-        "First team to score_Cremonese": 1.57,
-        "First team to score_No goal": 8.5,
-        "First team to score_Pisa": 2.75
+        "Full time_1": 1.85,
+        "Full time_X": 3.6,
+        "Full time_2": 4.1,
+        "Double chance_1X": 1.22,
+        "Double chance_X2": 1.91,
+        "Double chance_12": 1.29,
+        "1st half_1": 2.5,
+        "1st half_X": 2.2,
+        "1st half_2": 4.75,
+        "Draw no bet_1": 1.33,
+        "Draw no bet_2": 3.25,
+        "Both teams to score_Yes": 1.91,
+        "Both teams to score_No": 1.91,
+        "Match goals_0.5_Over": 1.06,
+        "Match goals_0.5_Under": 9.5,
+        "Match goals_1.5_Over": 1.33,
+        "Match goals_1.5_Under": 3.4,
+        "Match goals_2.5_Over": 2.0,
+        "Match goals_2.5_Under": 1.8,
+        "Match goals_3.5_Over": 3.5,
+        "Match goals_3.5_Under": 1.3,
+        "Match goals_4.5_Over": 7.0,
+        "Match goals_4.5_Under": 1.1,
+        "Match goals_5.5_Over": 15.0,
+        "Match goals_5.5_Under": 1.03,
+        "Match goals_6.5_Over": 29.0,
+        "Match goals_6.5_Under": 1.01,
+        "Asian handicap_(-0.5) Cremonese": 1.85,
+        "Asian handicap_(0.5) Pisa": 2.0,
+        "Cards in match_4.5_Over": 2.0,
+        "Cards in match_4.5_Under": 1.73,
+        "Corners 2-Way_8.5_Over": 1.67,
+        "Corners 2-Way_8.5_Under": 2.1,
+        "First team to score_Cremonese": 1.62,
+        "First team to score_No goal": 9.5,
+        "First team to score_Pisa": 2.5
       }
     },
     {
@@ -42517,20 +43444,20 @@
         "1st half_2": 4.0,
         "Draw no bet_1": 1.5,
         "Draw no bet_2": 2.5,
-        "Both teams to score_Yes": 1.91,
-        "Both teams to score_No": 1.91,
+        "Both teams to score_Yes": 1.8,
+        "Both teams to score_No": 1.95,
         "Match goals_0.5_Over": 1.07,
         "Match goals_0.5_Under": 9.0,
-        "Match goals_1.5_Over": 1.36,
-        "Match goals_1.5_Under": 3.2,
-        "Match goals_2.5_Over": 2.1,
-        "Match goals_2.5_Under": 1.73,
+        "Match goals_1.5_Over": 1.33,
+        "Match goals_1.5_Under": 3.4,
+        "Match goals_2.5_Over": 2.0,
+        "Match goals_2.5_Under": 1.8,
         "Match goals_3.5_Over": 3.75,
         "Match goals_3.5_Under": 1.29,
-        "Match goals_4.5_Over": 8.0,
-        "Match goals_4.5_Under": 1.08,
-        "Match goals_5.5_Over": 17.0,
-        "Match goals_5.5_Under": 1.02,
+        "Match goals_4.5_Over": 7.0,
+        "Match goals_4.5_Under": 1.1,
+        "Match goals_5.5_Over": 15.0,
+        "Match goals_5.5_Under": 1.03,
         "Match goals_6.5_Over": 29.0,
         "Match goals_6.5_Under": 1.01,
         "Asian handicap_(-0.25) Fiorentina": 1.8,
@@ -42551,42 +43478,42 @@
       "awayTeam": "AS Roma",
       "date": "2026-05-10",
       "odds": {
-        "Full time_1": 6.5,
-        "Full time_X": 4.1,
-        "Full time_2": 1.5,
-        "Double chance_1X": 2.5,
-        "Double chance_X2": 1.11,
-        "Double chance_12": 1.22,
-        "1st half_1": 7.0,
-        "1st half_X": 2.25,
-        "1st half_2": 2.05,
-        "Draw no bet_1": 5.0,
-        "Draw no bet_2": 1.17,
-        "Both teams to score_Yes": 2.1,
-        "Both teams to score_No": 1.67,
+        "Full time_1": 8.0,
+        "Full time_X": 4.5,
+        "Full time_2": 1.4,
+        "Double chance_1X": 2.75,
+        "Double chance_X2": 1.08,
+        "Double chance_12": 1.18,
+        "1st half_1": 8.5,
+        "1st half_X": 2.3,
+        "1st half_2": 1.91,
+        "Draw no bet_1": 6.5,
+        "Draw no bet_2": 1.11,
+        "Both teams to score_Yes": 2.25,
+        "Both teams to score_No": 1.57,
         "Match goals_0.5_Over": 1.06,
-        "Match goals_0.5_Under": 9.5,
-        "Match goals_1.5_Over": 1.33,
-        "Match goals_1.5_Under": 3.4,
-        "Match goals_2.5_Over": 2.0,
-        "Match goals_2.5_Under": 1.8,
-        "Match goals_3.5_Over": 3.75,
-        "Match goals_3.5_Under": 1.29,
-        "Match goals_4.5_Over": 7.0,
-        "Match goals_4.5_Under": 1.1,
+        "Match goals_0.5_Under": 10.0,
+        "Match goals_1.5_Over": 1.3,
+        "Match goals_1.5_Under": 3.5,
+        "Match goals_2.5_Over": 1.91,
+        "Match goals_2.5_Under": 1.91,
+        "Match goals_3.5_Over": 3.5,
+        "Match goals_3.5_Under": 1.3,
+        "Match goals_4.5_Over": 6.5,
+        "Match goals_4.5_Under": 1.11,
         "Match goals_5.5_Over": 15.0,
         "Match goals_5.5_Under": 1.03,
         "Match goals_6.5_Over": 29.0,
         "Match goals_6.5_Under": 1.01,
-        "Asian handicap_(1) Parma": 1.95,
-        "Asian handicap_(-1) AS Roma": 1.9,
-        "Cards in match_3.5_Over": 1.83,
-        "Cards in match_3.5_Under": 1.83,
+        "Asian handicap_(1.25) Parma": 1.88,
+        "Asian handicap_(-1.25) AS Roma": 1.98,
+        "Cards in match_2.5_Over": 1.62,
+        "Cards in match_2.5_Under": 2.2,
         "Corners 2-Way_8.5_Over": 1.67,
         "Corners 2-Way_8.5_Under": 2.1,
-        "First team to score_Parma": 3.1,
+        "First team to score_Parma": 3.6,
         "First team to score_No goal": 9.5,
-        "First team to score_AS Roma": 1.44
+        "First team to score_AS Roma": 1.36
       }
     },
     {
@@ -42596,44 +43523,44 @@
       "awayTeam": "Atalanta",
       "date": "2026-05-10",
       "odds": {
-        "Full time_1": 2.05,
+        "Full time_1": 2.25,
         "Full time_X": 3.3,
-        "Full time_2": 3.75,
-        "Double chance_1X": 1.25,
-        "Double chance_X2": 1.73,
+        "Full time_2": 3.25,
+        "Double chance_1X": 1.33,
+        "Double chance_X2": 1.62,
         "Double chance_12": 1.33,
-        "1st half_1": 2.62,
-        "1st half_X": 2.25,
-        "1st half_2": 4.0,
-        "Draw no bet_1": 1.44,
-        "Draw no bet_2": 2.62,
+        "1st half_1": 2.88,
+        "1st half_X": 2.2,
+        "1st half_2": 3.6,
+        "Draw no bet_1": 1.57,
+        "Draw no bet_2": 2.25,
         "Both teams to score_Yes": 1.67,
         "Both teams to score_No": 2.1,
         "Match goals_0.5_Over": 1.05,
         "Match goals_0.5_Under": 11.0,
         "Match goals_1.5_Over": 1.25,
         "Match goals_1.5_Under": 4.0,
-        "Match goals_2.5_Over": 1.8,
-        "Match goals_2.5_Under": 2.0,
-        "Match goals_3.5_Over": 3.0,
-        "Match goals_3.5_Under": 1.4,
-        "Match goals_4.5_Over": 5.5,
-        "Match goals_4.5_Under": 1.14,
+        "Match goals_2.5_Over": 1.91,
+        "Match goals_2.5_Under": 1.91,
+        "Match goals_3.5_Over": 3.2,
+        "Match goals_3.5_Under": 1.36,
+        "Match goals_4.5_Over": 6.0,
+        "Match goals_4.5_Under": 1.12,
         "Match goals_5.5_Over": 11.0,
         "Match goals_5.5_Under": 1.05,
         "Match goals_6.5_Over": 23.0,
         "Match goals_6.5_Under": 1.01,
         "Match goals_7.5_Over": 51.0,
         "Match goals_7.5_Under": 1.0,
-        "Asian handicap_(-0.5) Milan": 2.05,
-        "Asian handicap_(0.5) Atalanta": 1.8,
-        "Cards in match_3.5_Over": 1.83,
-        "Cards in match_3.5_Under": 1.83,
+        "Asian handicap_(-0.25) Milan": 1.95,
+        "Asian handicap_(0.25) Atalanta": 1.9,
+        "Cards in match_2.5_Over": 1.57,
+        "Cards in match_2.5_Under": 2.25,
         "Corners 2-Way_9.5_Over": 1.91,
         "Corners 2-Way_9.5_Under": 1.8,
-        "First team to score_Milan": 1.73,
+        "First team to score_Milan": 1.8,
         "First team to score_No goal": 11.0,
-        "First team to score_Atalanta": 2.3
+        "First team to score_Atalanta": 2.2
       }
     },
     {
@@ -42658,27 +43585,29 @@
         "Both teams to score_No": 1.75,
         "Match goals_0.5_Over": 1.05,
         "Match goals_0.5_Under": 11.0,
-        "Match goals_1.5_Over": 1.3,
-        "Match goals_1.5_Under": 3.5,
+        "Match goals_1.5_Over": 1.29,
+        "Match goals_1.5_Under": 3.75,
         "Match goals_2.5_Over": 1.91,
         "Match goals_2.5_Under": 1.91,
         "Match goals_3.5_Over": 3.4,
         "Match goals_3.5_Under": 1.33,
-        "Match goals_4.5_Over": 6.5,
-        "Match goals_4.5_Under": 1.11,
+        "Match goals_4.5_Over": 6.0,
+        "Match goals_4.5_Under": 1.12,
         "Match goals_5.5_Over": 13.0,
         "Match goals_5.5_Under": 1.04,
         "Match goals_6.5_Over": 26.0,
         "Match goals_6.5_Under": 1.01,
-        "Asian handicap_(-1) SSC Napoli": 1.93,
-        "Asian handicap_(1) Bologna": 1.93,
+        "Match goals_7.5_Over": 51.0,
+        "Match goals_7.5_Under": 1.0,
+        "Asian handicap_(-1) SSC Napoli": 1.95,
+        "Asian handicap_(1) Bologna": 1.9,
         "Cards in match_3.5_Over": 2.2,
         "Cards in match_3.5_Under": 1.62,
         "Corners 2-Way_8.5_Over": 1.73,
         "Corners 2-Way_8.5_Under": 2.0,
         "First team to score_SSC Napoli": 1.44,
         "First team to score_No goal": 11.0,
-        "First team to score_Bologna": 3.0
+        "First team to score_Bologna": 2.88
       }
     }
   ]

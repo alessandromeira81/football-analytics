@@ -114,14 +114,29 @@ def evaluate_bet(label, game):
 
 def load_league_games():
     """Retorna dict: league_key → { 'homeTeam_awayTeam': game }"""
+    # Mapeia leagueKey -> possiveis nomes de arquivo JSON (na ordem de prioridade)
+    FILE_PATTERNS = {
+        'premier': ['premier_league_data.json', 'premier_2026_data.json', 'premier_data.json'],
+    }
     game_idx = {}
     for league in LEAGUES:
-        fname = f'{league}_2026_data.json'
-        if not os.path.exists(fname):
-            fname_alt = f'{league}_data.json'
-            if not os.path.exists(fname_alt):
-                continue
-            fname = fname_alt
+        fname = None
+        # 1) Tenta padroes especificos da liga
+        for pat in FILE_PATTERNS.get(league, []):
+            if os.path.exists(pat):
+                fname = pat
+                break
+        # 2) Fallback: <league>_2026_data.json -> <league>_data.json
+        if not fname:
+            f1 = f'{league}_2026_data.json'
+            f2 = f'{league}_data.json'
+            if os.path.exists(f1):
+                fname = f1
+            elif os.path.exists(f2):
+                fname = f2
+        if not fname:
+            print(f'  [{league}] nenhum arquivo JSON encontrado, pulando.', flush=True)
+            continue
         try:
             with open(fname, encoding='utf-8') as f:
                 data = json.load(f)

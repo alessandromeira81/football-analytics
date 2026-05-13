@@ -6,7 +6,7 @@
     "seasonId": 76457,
     "lastRound": 36,
     "totalGames": 360,
-    "updatedAt": "2026-05-13T14:17:03Z",
+    "updatedAt": "2026-05-13T14:44:32Z",
     "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents."
   },
   "games": [
@@ -43360,8 +43360,8 @@
         "Match goals_6.5_Under": 1.02,
         "Match goals_7.5_Over": 34.0,
         "Match goals_7.5_Under": 1.0,
-        "Asian handicap_(-1.75) Como": 2.0,
-        "Asian handicap_(1.75) Parma": 1.85,
+        "Asian handicap_(-1.75) Como": 1.98,
+        "Asian handicap_(1.75) Parma": 1.88,
         "Corners 2-Way_8.5_Over": 1.8,
         "Corners 2-Way_8.5_Under": 1.91,
         "First team to score_Como": 1.29,

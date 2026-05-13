@@ -1766,6 +1766,7 @@ function setResumoDateFilter(date) {
 
 // ── Helpers para o dropdown multi-select de datas ────────────────────────────
 var RESUMO_FILTER_DATES_INITIALIZED = false;
+var RESUMO_DATE_DROPDOWN_OPEN = false;
 var ALL_RESUMO_DATES = [];
 
 function initDefaultDateFilter() {
@@ -1780,8 +1781,9 @@ function initDefaultDateFilter() {
 }
 
 function toggleResumoDateDropdown() {
+  RESUMO_DATE_DROPDOWN_OPEN = !RESUMO_DATE_DROPDOWN_OPEN;
   var dd = document.getElementById('resumo-date-dropdown');
-  if (dd) dd.style.display = (dd.style.display === 'none' || !dd.style.display) ? 'block' : 'none';
+  if (dd) dd.style.display = RESUMO_DATE_DROPDOWN_OPEN ? 'block' : 'none';
 }
 
 function setResumoDateAll() {
@@ -1809,7 +1811,8 @@ document.addEventListener('click', function(e) {
   var dd = document.getElementById('resumo-date-dropdown');
   var btn = document.getElementById('resumo-date-btn');
   if (!dd || !btn) return;
-  if (dd.style.display === 'block' && !dd.contains(e.target) && !btn.contains(e.target)) {
+  if (RESUMO_DATE_DROPDOWN_OPEN && !dd.contains(e.target) && !btn.contains(e.target)) {
+    RESUMO_DATE_DROPDOWN_OPEN = false;
     dd.style.display = 'none';
   }
 });
@@ -2229,7 +2232,7 @@ function renderResumo() {
     + '<button class="arb-chip active" id="resumo-date-btn" onclick="toggleResumoDateDropdown()" style="display:inline-flex;align-items:center;gap:6px">'
     +   '<span>📅 ' + labelTxt + '</span><span style="opacity:.7;font-size:9px">▼</span>'
     + '</button>'
-    + '<div id="resumo-date-dropdown" style="display:none;position:absolute;top:calc(100% + 4px);left:0;background:var(--bg2,#1a1a1a);border:1px solid var(--border2,#333);border-radius:8px;padding:8px;max-height:340px;overflow-y:auto;z-index:100;min-width:200px;box-shadow:0 6px 18px rgba(0,0,0,.5)">'
+    + '<div id="resumo-date-dropdown" style="display:' + (RESUMO_DATE_DROPDOWN_OPEN ? 'block' : 'none') + ';position:absolute;top:calc(100% + 4px);left:0;background:var(--bg2,#1a1a1a);border:1px solid var(--border2,#333);border-radius:8px;padding:8px;max-height:340px;overflow-y:auto;z-index:100;min-width:200px;box-shadow:0 6px 18px rgba(0,0,0,.5)">'
     +   '<div style="display:flex;gap:4px;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border2,#333)">'
     +     '<button class="arb-chip" style="font-size:9px;padding:2px 8px" onclick="setResumoDateDefault()">Padrão (D-3+)</button>'
     +     '<button class="arb-chip" style="font-size:9px;padding:2px 8px" onclick="setResumoDateAll()">Todos</button>'

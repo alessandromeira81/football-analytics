@@ -5,8 +5,8 @@
     "tournamentId": 8,
     "seasonId": 77559,
     "lastRound": 36,
-    "totalGames": 353,
-    "updatedAt": "2026-05-13T14:42:56Z",
+    "totalGames": 357,
+    "updatedAt": "2026-05-14T14:23:26Z",
     "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents."
   },
   "games": [
@@ -43721,6 +43721,467 @@
         "id": 786379,
         "name": "Jose Luis Guzman Mansilla"
       }
+    },
+    {
+      "id": 14083629,
+      "round": 36,
+      "date": "2026-05-13",
+      "homeTeam": "Espanyol",
+      "awayTeam": "Athletic Club",
+      "homeId": 2814,
+      "awayId": 2825,
+      "score": {
+        "home": 2,
+        "away": 0
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 12,
+            "away": 11
+          },
+          "corners": {
+            "home": 8,
+            "away": 9
+          },
+          "fouls": {
+            "home": 9,
+            "away": 14
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 4
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 8,
+            "away": 8
+          },
+          "corners": {
+            "home": 6,
+            "away": 6
+          },
+          "fouls": {
+            "home": 3,
+            "away": 8
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 4,
+            "away": 3
+          },
+          "corners": {
+            "home": 2,
+            "away": 3
+          },
+          "fouls": {
+            "home": 6,
+            "away": 6
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [],
+      "referee": {
+        "id": 134753,
+        "name": "Francisco Hernandez Maeso"
+      }
+    },
+    {
+      "id": 14083644,
+      "round": 36,
+      "date": "2026-05-13",
+      "homeTeam": "Villarreal",
+      "awayTeam": "Sevilla",
+      "homeId": 2819,
+      "awayId": 2833,
+      "score": {
+        "home": 2,
+        "away": 3
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 6,
+            "away": 13
+          },
+          "corners": {
+            "home": 6,
+            "away": 4
+          },
+          "fouls": {
+            "home": 11,
+            "away": 9
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 5
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 3,
+            "away": 7
+          },
+          "corners": {
+            "home": 2,
+            "away": 2
+          },
+          "fouls": {
+            "home": 4,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 3,
+            "away": 6
+          },
+          "corners": {
+            "home": 4,
+            "away": 2
+          },
+          "fouls": {
+            "home": 7,
+            "away": 3
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 93,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 92,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 81,
+          "isHome": true,
+          "period": "2t"
+        }
+      ],
+      "referee": {
+        "id": 788348,
+        "name": "Mateo Busquets Ferrer"
+      }
+    },
+    {
+      "id": 14083603,
+      "round": 36,
+      "date": "2026-05-13",
+      "homeTeam": "Deportivo Alavés",
+      "awayTeam": "FC Barcelona",
+      "homeId": 2885,
+      "awayId": 2817,
+      "score": {
+        "home": 1,
+        "away": 0
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 9,
+            "away": 8
+          },
+          "corners": {
+            "home": 6,
+            "away": 4
+          },
+          "fouls": {
+            "home": 14,
+            "away": 8
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 7,
+            "away": 6
+          },
+          "corners": {
+            "home": 5,
+            "away": 2
+          },
+          "fouls": {
+            "home": 5,
+            "away": 4
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 2,
+            "away": 2
+          },
+          "corners": {
+            "home": 1,
+            "away": 2
+          },
+          "fouls": {
+            "home": 9,
+            "away": 4
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 89,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 81,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 46,
+          "isHome": false,
+          "period": "2t"
+        }
+      ],
+      "referee": {
+        "id": 129910,
+        "name": "José María Sánchez Martínez"
+      }
+    },
+    {
+      "id": 14083618,
+      "round": 36,
+      "date": "2026-05-13",
+      "homeTeam": "Getafe",
+      "awayTeam": "Mallorca",
+      "homeId": 2859,
+      "awayId": 2826,
+      "score": {
+        "home": 3,
+        "away": 1
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 6,
+            "away": 9
+          },
+          "corners": {
+            "home": 3,
+            "away": 3
+          },
+          "fouls": {
+            "home": 17,
+            "away": 18
+          },
+          "yellowCards": {
+            "home": 3,
+            "away": 4
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 3,
+            "away": 4
+          },
+          "corners": {
+            "home": 2,
+            "away": 3
+          },
+          "fouls": {
+            "home": 5,
+            "away": 9
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 3,
+            "away": 5
+          },
+          "corners": {
+            "home": 1,
+            "away": 0
+          },
+          "fouls": {
+            "home": 12,
+            "away": 9
+          },
+          "yellowCards": {
+            "home": 3,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 86,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 81,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 80,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 78,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 74,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 43,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 31,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 90852,
+        "name": "Juan Martinez Munuera"
+      }
     }
   ],
   "scheduledGames": [
@@ -43872,42 +44333,42 @@
       "awayTeam": "Athletic Club",
       "date": "2026-05-13",
       "odds": {
-        "Full time_1": 2.88,
-        "Full time_X": 3.2,
-        "Full time_2": 2.6,
-        "Double chance_1X": 1.5,
+        "Full time_1": 2.75,
+        "Full time_X": 3.0,
+        "Full time_2": 2.75,
+        "Double chance_1X": 1.4,
         "Double chance_X2": 1.4,
         "Double chance_12": 1.36,
         "1st half_1": 3.5,
-        "1st half_X": 2.05,
-        "1st half_2": 3.25,
-        "Draw no bet_1": 1.91,
-        "Draw no bet_2": 1.8,
-        "Both teams to score_Yes": 1.91,
-        "Both teams to score_No": 1.91,
-        "Match goals_0.5_Over": 1.08,
-        "Match goals_0.5_Under": 8.0,
-        "Match goals_1.5_Over": 1.4,
-        "Match goals_1.5_Under": 3.0,
-        "Match goals_2.5_Over": 2.2,
-        "Match goals_2.5_Under": 1.67,
-        "Match goals_3.5_Over": 4.0,
-        "Match goals_3.5_Under": 1.25,
-        "Match goals_4.5_Over": 8.0,
-        "Match goals_4.5_Under": 1.08,
-        "Match goals_5.5_Over": 19.0,
-        "Match goals_5.5_Under": 1.02,
-        "Match goals_6.5_Over": 41.0,
+        "1st half_X": 1.95,
+        "1st half_2": 3.5,
+        "Draw no bet_1": 1.83,
+        "Draw no bet_2": 1.83,
+        "Both teams to score_Yes": 2.0,
+        "Both teams to score_No": 1.75,
+        "Match goals_0.5_Over": 1.11,
+        "Match goals_0.5_Under": 6.5,
+        "Match goals_1.5_Over": 1.5,
+        "Match goals_1.5_Under": 2.62,
+        "Match goals_2.5_Over": 2.5,
+        "Match goals_2.5_Under": 1.53,
+        "Match goals_3.5_Over": 5.0,
+        "Match goals_3.5_Under": 1.17,
+        "Match goals_4.5_Over": 11.0,
+        "Match goals_4.5_Under": 1.05,
+        "Match goals_5.5_Over": 23.0,
+        "Match goals_5.5_Under": 1.01,
+        "Match goals_6.5_Over": 51.0,
         "Match goals_6.5_Under": 1.0,
-        "Asian handicap_(0) Espanyol": 2.02,
-        "Asian handicap_(-0) Athletic Club": 1.82,
+        "Asian handicap_(0) Espanyol": 1.9,
+        "Asian handicap_(-0) Athletic Club": 1.95,
         "Cards in match_4.5_Over": 1.83,
         "Cards in match_4.5_Under": 1.83,
         "Corners 2-Way_9.5_Over": 1.83,
         "Corners 2-Way_9.5_Under": 1.83,
         "First team to score_Espanyol": 2.1,
-        "First team to score_No goal": 8.0,
-        "First team to score_Athletic Club": 1.95
+        "First team to score_No goal": 6.5,
+        "First team to score_Athletic Club": 2.1
       }
     },
     {
@@ -43917,19 +44378,19 @@
       "awayTeam": "Sevilla",
       "date": "2026-05-13",
       "odds": {
-        "Full time_1": 1.95,
-        "Full time_X": 3.5,
-        "Full time_2": 3.9,
-        "Double chance_1X": 1.25,
-        "Double chance_X2": 1.8,
-        "Double chance_12": 1.29,
-        "1st half_1": 2.5,
+        "Full time_1": 2.1,
+        "Full time_X": 3.4,
+        "Full time_2": 3.6,
+        "Double chance_1X": 1.29,
+        "Double chance_X2": 1.7,
+        "Double chance_12": 1.3,
+        "1st half_1": 2.62,
         "1st half_X": 2.25,
         "1st half_2": 4.0,
-        "Draw no bet_1": 1.4,
-        "Draw no bet_2": 2.75,
-        "Both teams to score_Yes": 1.7,
-        "Both teams to score_No": 2.05,
+        "Draw no bet_1": 1.5,
+        "Draw no bet_2": 2.5,
+        "Both teams to score_Yes": 1.67,
+        "Both teams to score_No": 2.1,
         "Match goals_0.5_Over": 1.05,
         "Match goals_0.5_Under": 11.0,
         "Match goals_1.5_Over": 1.25,
@@ -43946,15 +44407,15 @@
         "Match goals_6.5_Under": 1.01,
         "Match goals_7.5_Over": 51.0,
         "Match goals_7.5_Under": 1.0,
-        "Asian handicap_(-0.5) Villarreal": 2.0,
-        "Asian handicap_(0.5) Sevilla": 1.85,
-        "Cards in match_4.5_Over": 1.67,
-        "Cards in match_4.5_Under": 2.1,
+        "Asian handicap_(-0.25) Villarreal": 1.8,
+        "Asian handicap_(0.25) Sevilla": 2.05,
+        "Cards in match_5.5_Over": 2.1,
+        "Cards in match_5.5_Under": 1.67,
         "Corners 2-Way_9.5_Over": 1.83,
         "Corners 2-Way_9.5_Under": 1.83,
-        "First team to score_Villarreal": 1.67,
+        "First team to score_Villarreal": 1.73,
         "First team to score_No goal": 11.0,
-        "First team to score_Sevilla": 2.3
+        "First team to score_Sevilla": 2.25
       }
     },
     {
@@ -43964,44 +44425,44 @@
       "awayTeam": "FC Barcelona",
       "date": "2026-05-13",
       "odds": {
-        "Full time_1": 3.2,
-        "Full time_X": 3.9,
-        "Full time_2": 2.05,
-        "Double chance_1X": 1.73,
-        "Double chance_X2": 1.36,
+        "Full time_1": 2.9,
+        "Full time_X": 3.75,
+        "Full time_2": 2.25,
+        "Double chance_1X": 1.62,
+        "Double chance_X2": 1.4,
         "Double chance_12": 1.25,
-        "1st half_1": 3.6,
-        "1st half_X": 2.38,
-        "1st half_2": 2.6,
-        "Draw no bet_1": 2.38,
-        "Draw no bet_2": 1.53,
-        "Both teams to score_Yes": 1.53,
-        "Both teams to score_No": 2.38,
-        "Match goals_0.5_Over": 1.03,
-        "Match goals_0.5_Under": 15.0,
-        "Match goals_1.5_Over": 1.2,
-        "Match goals_1.5_Under": 4.5,
-        "Match goals_2.5_Over": 1.62,
-        "Match goals_2.5_Under": 2.3,
-        "Match goals_3.5_Over": 2.5,
-        "Match goals_3.5_Under": 1.53,
-        "Match goals_4.5_Over": 4.5,
-        "Match goals_4.5_Under": 1.2,
-        "Match goals_5.5_Over": 9.0,
-        "Match goals_5.5_Under": 1.07,
+        "1st half_1": 3.4,
+        "1st half_X": 2.4,
+        "1st half_2": 2.75,
+        "Draw no bet_1": 2.2,
+        "Draw no bet_2": 1.62,
+        "Both teams to score_Yes": 1.5,
+        "Both teams to score_No": 2.5,
+        "Match goals_0.5_Over": 1.02,
+        "Match goals_0.5_Under": 17.0,
+        "Match goals_1.5_Over": 1.17,
+        "Match goals_1.5_Under": 5.0,
+        "Match goals_2.5_Over": 1.57,
+        "Match goals_2.5_Under": 2.38,
+        "Match goals_3.5_Over": 2.38,
+        "Match goals_3.5_Under": 1.57,
+        "Match goals_4.5_Over": 4.33,
+        "Match goals_4.5_Under": 1.22,
+        "Match goals_5.5_Over": 8.0,
+        "Match goals_5.5_Under": 1.08,
         "Match goals_6.5_Over": 17.0,
         "Match goals_6.5_Under": 1.02,
-        "Match goals_7.5_Over": 34.0,
-        "Match goals_7.5_Under": 1.0,
-        "Asian handicap_(0.25) Deportivo Alavés": 2.02,
-        "Asian handicap_(-0.25) FC Barcelona": 1.82,
+        "Match goals_7.5_Over": 29.0,
+        "Match goals_7.5_Under": 1.01,
+        "Asian handicap_(0.25) Deportivo Alavés": 1.9,
+        "Asian handicap_(-0.25) FC Barcelona": 1.95,
         "Cards in match_4.5_Over": 2.1,
         "Cards in match_4.5_Under": 1.67,
         "Corners 2-Way_10.5_Over": 2.1,
         "Corners 2-Way_10.5_Under": 1.67,
-        "First team to score_Deportivo Alavés": 2.1,
-        "First team to score_No goal": 15.0,
-        "First team to score_FC Barcelona": 1.73
+        "First team to score_Deportivo Alavés": 2.05,
+        "First team to score_No goal": 17.0,
+        "First team to score_FC Barcelona": 1.8
       }
     },
     {
@@ -44011,40 +44472,40 @@
       "awayTeam": "Mallorca",
       "date": "2026-05-13",
       "odds": {
-        "Full time_1": 2.3,
-        "Full time_X": 3.0,
-        "Full time_2": 3.5,
+        "Full time_1": 2.35,
+        "Full time_X": 2.9,
+        "Full time_2": 3.6,
         "Double chance_1X": 1.29,
         "Double chance_X2": 1.57,
-        "Double chance_12": 1.36,
-        "1st half_1": 3.1,
-        "1st half_X": 1.91,
-        "1st half_2": 4.33,
+        "Double chance_12": 1.4,
+        "1st half_1": 3.2,
+        "1st half_X": 1.83,
+        "1st half_2": 4.5,
         "Draw no bet_1": 1.53,
         "Draw no bet_2": 2.38,
-        "Both teams to score_Yes": 2.2,
-        "Both teams to score_No": 1.62,
-        "Match goals_0.5_Over": 1.12,
-        "Match goals_0.5_Under": 6.0,
-        "Match goals_1.5_Over": 1.57,
-        "Match goals_1.5_Under": 2.38,
-        "Match goals_2.5_Over": 2.75,
-        "Match goals_2.5_Under": 1.44,
-        "Match goals_3.5_Over": 5.5,
-        "Match goals_3.5_Under": 1.14,
-        "Match goals_4.5_Over": 13.0,
-        "Match goals_4.5_Under": 1.04,
-        "Match goals_5.5_Over": 26.0,
+        "Both teams to score_Yes": 2.38,
+        "Both teams to score_No": 1.53,
+        "Match goals_0.5_Over": 1.14,
+        "Match goals_0.5_Under": 5.5,
+        "Match goals_1.5_Over": 1.67,
+        "Match goals_1.5_Under": 2.2,
+        "Match goals_2.5_Over": 3.2,
+        "Match goals_2.5_Under": 1.36,
+        "Match goals_3.5_Over": 6.0,
+        "Match goals_3.5_Under": 1.12,
+        "Match goals_4.5_Over": 15.0,
+        "Match goals_4.5_Under": 1.03,
+        "Match goals_5.5_Over": 29.0,
         "Match goals_5.5_Under": 1.01,
         "Asian handicap_(-0.25) Getafe": 1.95,
         "Asian handicap_(0.25) Mallorca": 1.9,
-        "Cards in match_5.5_Over": 1.8,
-        "Cards in match_5.5_Under": 1.91,
+        "Cards in match_5.5_Over": 1.91,
+        "Cards in match_5.5_Under": 1.8,
         "Corners 2-Way_9.5_Over": 2.1,
         "Corners 2-Way_9.5_Under": 1.67,
         "First team to score_Getafe": 1.91,
-        "First team to score_No goal": 6.0,
-        "First team to score_Mallorca": 2.4
+        "First team to score_No goal": 5.5,
+        "First team to score_Mallorca": 2.5
       }
     },
     {
@@ -44055,41 +44516,41 @@
       "date": "2026-05-14",
       "odds": {
         "Full time_1": 2.25,
-        "Full time_X": 3.3,
-        "Full time_2": 3.3,
-        "Double chance_1X": 1.33,
+        "Full time_X": 3.0,
+        "Full time_2": 3.6,
+        "Double chance_1X": 1.29,
         "Double chance_X2": 1.62,
-        "Double chance_12": 1.33,
+        "Double chance_12": 1.36,
         "1st half_1": 2.88,
-        "1st half_X": 2.1,
-        "1st half_2": 3.75,
-        "Draw no bet_1": 1.57,
-        "Draw no bet_2": 2.25,
-        "Both teams to score_Yes": 1.8,
-        "Both teams to score_No": 1.95,
-        "Match goals_0.5_Over": 1.07,
-        "Match goals_0.5_Under": 9.0,
-        "Match goals_1.5_Over": 1.33,
-        "Match goals_1.5_Under": 3.4,
-        "Match goals_2.5_Over": 2.1,
-        "Match goals_2.5_Under": 1.73,
-        "Match goals_3.5_Over": 3.75,
-        "Match goals_3.5_Under": 1.29,
-        "Match goals_4.5_Over": 7.0,
-        "Match goals_4.5_Under": 1.1,
-        "Match goals_5.5_Over": 15.0,
-        "Match goals_5.5_Under": 1.03,
-        "Match goals_6.5_Over": 29.0,
-        "Match goals_6.5_Under": 1.01,
-        "Asian handicap_(-0.25) Valencia": 1.93,
-        "Asian handicap_(0.25) Rayo Vallecano": 1.93,
-        "Cards in match_5.5_Over": 1.83,
-        "Cards in match_5.5_Under": 1.83,
+        "1st half_X": 2.05,
+        "1st half_2": 4.0,
+        "Draw no bet_1": 1.53,
+        "Draw no bet_2": 2.38,
+        "Both teams to score_Yes": 1.91,
+        "Both teams to score_No": 1.91,
+        "Match goals_0.5_Over": 1.08,
+        "Match goals_0.5_Under": 7.5,
+        "Match goals_1.5_Over": 1.36,
+        "Match goals_1.5_Under": 3.2,
+        "Match goals_2.5_Over": 2.2,
+        "Match goals_2.5_Under": 1.67,
+        "Match goals_3.5_Over": 4.0,
+        "Match goals_3.5_Under": 1.25,
+        "Match goals_4.5_Over": 8.0,
+        "Match goals_4.5_Under": 1.08,
+        "Match goals_5.5_Over": 17.0,
+        "Match goals_5.5_Under": 1.02,
+        "Match goals_6.5_Over": 34.0,
+        "Match goals_6.5_Under": 1.0,
+        "Asian handicap_(-0.25) Valencia": 1.95,
+        "Asian handicap_(0.25) Rayo Vallecano": 1.9,
+        "Cards in match_5.5_Over": 2.1,
+        "Cards in match_5.5_Under": 1.67,
         "Corners 2-Way_9.5_Over": 1.8,
         "Corners 2-Way_9.5_Under": 1.91,
         "First team to score_Valencia": 1.8,
-        "First team to score_No goal": 9.0,
-        "First team to score_Rayo Vallecano": 2.25
+        "First team to score_No goal": 7.5,
+        "First team to score_Rayo Vallecano": 2.3
       }
     },
     {
@@ -44101,12 +44562,12 @@
       "odds": {
         "Full time_1": 1.95,
         "Full time_X": 3.9,
-        "Full time_2": 3.5,
+        "Full time_2": 3.6,
         "Double chance_1X": 1.29,
         "Double chance_X2": 1.8,
         "Double chance_12": 1.25,
         "1st half_1": 2.5,
-        "1st half_X": 2.38,
+        "1st half_X": 2.3,
         "1st half_2": 4.0,
         "Draw no bet_1": 1.44,
         "Draw no bet_2": 2.62,
@@ -44116,22 +44577,22 @@
         "Match goals_0.5_Under": 15.0,
         "Match goals_1.5_Over": 1.22,
         "Match goals_1.5_Under": 4.33,
-        "Match goals_2.5_Over": 1.67,
-        "Match goals_2.5_Under": 2.2,
+        "Match goals_2.5_Over": 1.73,
+        "Match goals_2.5_Under": 2.1,
         "Match goals_3.5_Over": 2.75,
         "Match goals_3.5_Under": 1.44,
         "Match goals_4.5_Over": 5.0,
         "Match goals_4.5_Under": 1.17,
         "Match goals_5.5_Over": 10.0,
         "Match goals_5.5_Under": 1.06,
-        "Match goals_6.5_Over": 19.0,
+        "Match goals_6.5_Over": 21.0,
         "Match goals_6.5_Under": 1.02,
         "Match goals_7.5_Over": 41.0,
         "Match goals_7.5_Under": 1.0,
-        "Asian handicap_(-0.5) Girona FC": 1.98,
-        "Asian handicap_(0.5) Real Sociedad": 1.88,
-        "Cards in match_3.5_Over": 1.62,
-        "Cards in match_3.5_Under": 2.2,
+        "Asian handicap_(-0.5) Girona FC": 1.95,
+        "Asian handicap_(0.5) Real Sociedad": 1.9,
+        "Cards in match_3.5_Over": 1.67,
+        "Cards in match_3.5_Under": 2.1,
         "Corners 2-Way_9.5_Over": 1.83,
         "Corners 2-Way_9.5_Under": 1.83,
         "First team to score_Girona FC": 1.67,
@@ -44146,46 +44607,46 @@
       "awayTeam": "Real Oviedo",
       "date": "2026-05-14",
       "odds": {
-        "Full time_1": 1.25,
+        "Full time_1": 1.22,
         "Full time_X": 6.5,
-        "Full time_2": 10.0,
-        "Double chance_1X": 1.06,
-        "Double chance_X2": 3.75,
+        "Full time_2": 12.0,
+        "Double chance_1X": 1.05,
+        "Double chance_X2": 4.0,
         "Double chance_12": 1.11,
-        "1st half_1": 1.67,
-        "1st half_X": 2.75,
-        "1st half_2": 7.5,
-        "Draw no bet_1": 1.1,
-        "Draw no bet_2": 7.0,
-        "Both teams to score_Yes": 1.8,
-        "Both teams to score_No": 1.95,
+        "1st half_1": 1.57,
+        "1st half_X": 2.88,
+        "1st half_2": 9.0,
+        "Draw no bet_1": 1.07,
+        "Draw no bet_2": 9.0,
+        "Both teams to score_Yes": 1.95,
+        "Both teams to score_No": 1.8,
         "Match goals_0.5_Over": 1.02,
         "Match goals_0.5_Under": 21.0,
         "Match goals_1.5_Over": 1.14,
         "Match goals_1.5_Under": 5.5,
         "Match goals_2.5_Over": 1.44,
         "Match goals_2.5_Under": 2.75,
-        "Match goals_3.5_Over": 2.2,
-        "Match goals_3.5_Under": 1.67,
-        "Match goals_4.5_Over": 3.75,
-        "Match goals_4.5_Under": 1.29,
-        "Match goals_5.5_Over": 6.5,
-        "Match goals_5.5_Under": 1.11,
+        "Match goals_3.5_Over": 2.1,
+        "Match goals_3.5_Under": 1.73,
+        "Match goals_4.5_Over": 3.5,
+        "Match goals_4.5_Under": 1.3,
+        "Match goals_5.5_Over": 6.0,
+        "Match goals_5.5_Under": 1.12,
         "Match goals_6.5_Over": 13.0,
         "Match goals_6.5_Under": 1.04,
         "Match goals_7.5_Over": 23.0,
         "Match goals_7.5_Under": 1.01,
         "Match goals_8.5_Over": 51.0,
         "Match goals_8.5_Under": 1.0,
-        "Asian handicap_(-1.5) Real Madrid": 1.82,
-        "Asian handicap_(1.5) Real Oviedo": 2.02,
-        "Cards in match_3.5_Over": 2.2,
-        "Cards in match_3.5_Under": 1.62,
+        "Asian handicap_(-1.75) Real Madrid": 1.82,
+        "Asian handicap_(1.75) Real Oviedo": 2.02,
+        "Cards in match_2.5_Over": 1.73,
+        "Cards in match_2.5_Under": 2.0,
         "Corners 2-Way_10.5_Over": 1.83,
         "Corners 2-Way_10.5_Under": 1.83,
-        "First team to score_Real Madrid": 1.33,
+        "First team to score_Real Madrid": 1.29,
         "First team to score_No goal": 21.0,
-        "First team to score_Real Oviedo": 3.25
+        "First team to score_Real Oviedo": 3.5
       }
     }
   ]

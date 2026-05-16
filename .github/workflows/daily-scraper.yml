@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '0 12 * * *'  # 12h UTC = 9h BRT (self-hosted: PC precisa estar ligado)
   workflow_dispatch:       # permite rodar manualmente
+  push:                    # trigger manual via push do arquivo marcador
+    branches: [main]
+    paths:
+      - '.github/trigger-scraper'
 
 permissions:
   contents: write

@@ -61,4 +61,18 @@ jobs:
           } else {
             Write-Host "Nada novo para commitar."
           }
-          git push
+          # Tenta push; se rejeitar (porque remote tem commits novos),
+          # faz pull --rebase e tenta de novo. Repete ate 3 vezes.
+          $attempt = 0
+          while ($attempt -lt 3) {
+            git push
+            if ($LASTEXITCODE -eq 0) { break }
+            Write-Host "Push rejeitado (tentativa $($attempt+1)). Fazendo rebase..."
+            git pull --rebase origin main
+            if ($LASTEXITCODE -ne 0) {
+              Write-Host "Rebase falhou (conflito). Abortando."
+              git rebase --abort
+              exit 1
+            }
+            $attempt++
+          }

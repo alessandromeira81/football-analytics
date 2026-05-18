@@ -1,9 +1,9 @@
 {
   "service": "Football Analytics Public API",
-  "base_url": "https://alessandromeira81.github.io/football-analytics/api",
+  "base_url": "https://cdn.jsdelivr.net/gh/alessandromeira81/football-analytics@main/api",
   "cors": "open (Access-Control-Allow-Origin: *)",
   "auth": "none",
-  "updated_at": "2026-05-18T18:45:53Z",
+  "updated_at": "2026-05-18T19:03:43Z",
   "endpoints": [
     {
       "name": "daily-picks",
@@ -18,12 +18,22 @@
     },
     {
       "name": "track-record",
-      "description": "Historico de assertividade agregado por periodo",
+      "description": "Historico de desempenho — TODAS as probabilidades",
       "urls": {
         "default (7d)": "/track-record.json",
         "7 dias": "/track-record/7d.json",
         "30 dias": "/track-record/30d.json",
-        "completo": "/track-record/all.json"
+        "tudo": "/track-record/all.json"
+      }
+    },
+    {
+      "name": "track-record-90",
+      "description": "Historico de desempenho — APENAS picks 90%+",
+      "urls": {
+        "default (7d)": "/track-record-90.json",
+        "7 dias": "/track-record-90/7d.json",
+        "30 dias": "/track-record-90/30d.json",
+        "tudo": "/track-record-90/all.json"
       }
     }
   ]

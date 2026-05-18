@@ -1,15 +1,16 @@
 """
 Gera endpoints publicos estaticos para consumo externo:
-  api/daily-picks/{prob}.json  → picks com probabilidade >= prob (80, 85, 90, 95)
-  api/track-record/{period}.json → 7d, 30d, all
+  api/daily-picks/{prob}.json         → picks com probabilidade >= prob
+  api/track-record/{period}.json      → track-record TOTAL (todas probs)
+  api/track-record-90/{period}.json   → track-record SO 90%+
 
 Estrategia: abre index.html em headless Chrome (via Playwright), aguarda
-o JS computar os insights e extrai via window.computeAllInsights().
-Isso garante que os dados batem EXATAMENTE com o que o dashboard mostra.
+o JS computar os insights e extrai via window.computeAllInsights() +
+ASSERT_META + ASSERT_STATES. Isso garante que os dados batem 100% com
+o que o dashboard mostra.
 
-URLs publicas finais (GitHub Pages, CORS aberto):
-  https://alessandromeira81.github.io/football-analytics/api/daily-picks/90.json
-  https://alessandromeira81.github.io/football-analytics/api/track-record/7d.json
+URLs publicas finais (jsDelivr CDN, CORS aberto):
+  https://cdn.jsdelivr.net/gh/alessandromeira81/football-analytics@main/api/<path>
 """
 import json, os, sys
 from datetime import date, datetime, timedelta, timezone
@@ -29,16 +30,16 @@ CONFIDENCE_BANDS = [
 ]
 
 
-def category_to_market(cat):
-    return {
-        'Resultado':    'Resultado',
-        'BTTS':         'BTTS',
-        'Gols':         'Gols',
-        'Escanteios':   'Escanteios',
-        'Cartoes':      'Cartoes',
-        'Faltas':       'Faltas',
-        'Finalizacoes': 'Finalizacoes',
-    }.get(cat, cat)
+def get_category(label):
+    if label in ('Vitoria Mandante', 'Empate', 'Vitoria Visitante'): return 'Resultado'
+    if label.startswith('BTTS'): return 'BTTS'
+    ll = label.lower()
+    if 'gols' in ll: return 'Gols'
+    if 'escanteios' in ll: return 'Escanteios'
+    if 'cartoes' in ll: return 'Cartoes'
+    if 'faltas' in ll: return 'Faltas'
+    if 'finalizacoes' in ll: return 'Finalizacoes'
+    return 'Outros'
 
 
 def confidence_band(prob_pct):
@@ -49,7 +50,7 @@ def confidence_band(prob_pct):
 
 
 def extract_via_playwright():
-    """Abre index.html em headless Chrome e extrai insights + history."""
+    """Abre index.html em headless Chrome e extrai dados granulares."""
     from playwright.sync_api import sync_playwright
 
     file_url = HTML_PATH.as_uri()
@@ -59,99 +60,72 @@ def extract_via_playwright():
         browser = p.chromium.launch(headless=True)
         ctx = browser.new_context()
         page = ctx.new_page()
-
-        # Silencia erros do console pra nao poluir log
         page.on('pageerror', lambda e: None)
 
-        # Usa domcontentloaded em vez de networkidle (Firebase listener fica streamando)
         page.goto(file_url, wait_until='domcontentloaded', timeout=30000)
-
-        # Aguarda SCRAPED_DATA e computeAllInsights estarem disponiveis
         page.wait_for_function(
             'window.SCRAPED_DATA && '
             'typeof window.computeAllInsights === "function" && '
             'Object.keys(window.SCRAPED_DATA).length > 0',
             timeout=30000
         )
-        # Espera Firestore terminar (best-effort) — 5s e suficiente pra dados embutidos
         page.wait_for_timeout(5000)
 
-        # Extrai todos os insights computados pelo modelo
-        all_bets = page.evaluate('computeAllInsights()')
-        # Extrai historico — MESMA logica de merge do renderResumo:
-        # ASSERT_HISTORY (servidor) + computeFilteredHistory('') (datas nao sincronizadas)
-        history  = page.evaluate('''
-          (function() {
-            var computedAll = (typeof computeFilteredHistory === 'function')
-                              ? computeFilteredHistory('') : [];
-            var computedByDate = {};
-            computedAll.forEach(function(e) { computedByDate[e.date] = e; });
-            var allHistory = [];
-            var seenDates = {};
-            (window.ASSERT_HISTORY || []).forEach(function(h) {
-              if (!h.date) return;
-              seenDates[h.date] = true;
-              allHistory.push(computedByDate[h.date] || h);
-            });
-            computedAll.forEach(function(e) {
-              if (!seenDates[e.date]) allHistory.push(e);
-            });
-            return allHistory;
-          })()
-        ''')
-        # Extrai outcomes
-        states   = page.evaluate('ASSERT_STATES || {}')
+        all_bets    = page.evaluate('computeAllInsights()')
+        assert_meta = page.evaluate('ASSERT_META || {}')
+        states      = page.evaluate('ASSERT_STATES || {}')
 
         browser.close()
 
-    print(f'  Extraidos: {len(all_bets)} bets, {len(history)} entradas historicas', flush=True)
-    return all_bets, history, states
+    print(f'  Extraidos: {len(all_bets)} bets atuais, {len(assert_meta)} meta, {len(states)} states', flush=True)
+    return all_bets, assert_meta, states
 
 
-def build_daily_picks(all_bets, states, min_prob):
-    """Gera lista de picks para hoje filtrada por probabilidade minima."""
+def get_bet_p(meta):
+    """Retorna p (decimal 0-1) priorizando p_original."""
+    p = meta.get('p_original') or meta.get('p', 0) or 0
+    if p > 1:
+        p = p / 100
+    return p
+
+
+def build_daily_picks(all_bets, min_prob):
+    """Picks de hoje filtrados por min_prob."""
     today = date.today().isoformat()
     picks = []
 
     for b in all_bets:
         if b.get('date') != today:
             continue
-        # p eh decimal (0-1); converte pra %
         p = b.get('p', 0)
-        if p <= 1:
-            prob_pct = round(p * 100)
-        else:
-            prob_pct = round(p)
+        if p > 1:
+            p = p / 100
+        prob_pct = round(p * 100)
         if prob_pct < min_prob:
             continue
 
-        label    = b.get('label', '')
-        home     = b.get('home', '')
-        away     = b.get('away', '')
-        cat      = b.get('cat', '')
-        market   = category_to_market(cat)
-        odds     = None
+        label  = b.get('label', '')
+        home   = b.get('home', '')
+        away   = b.get('away', '')
+        cat    = b.get('cat', '') or get_category(label)
+        market = cat
+
+        # Odd: pega a primeira odd numerica do gameOdds dict
+        odds = None
         game_odds = b.get('gameOdds') or {}
-        # gameOdds pode estar como dict — tenta extrair melhor odd
         if isinstance(game_odds, dict):
             for v in game_odds.values():
                 if isinstance(v, (int, float)) and v > 1:
                     odds = v
                     break
 
-        # "pick" e a aposta legivel — derivacao simples a partir do label
-        if label == 'Vitoria Mandante':
-            pick_text = f'{home} vence'
-        elif label == 'Vitoria Visitante':
-            pick_text = f'{away} vence'
-        elif label == 'Empate':
-            pick_text = 'Empate'
-        elif label == 'BTTS - Sim':
-            pick_text = 'Ambas marcam'
-        elif label == 'BTTS - Nao':
-            pick_text = 'Pelo menos um time nao marca'
-        else:
-            pick_text = label
+        # Pick legivel
+        if label == 'Vitoria Mandante':       pick_text = f'{home} vence'
+        elif label == 'Vitoria Visitante':    pick_text = f'{away} vence'
+        elif label == 'Empate':               pick_text = 'Empate'
+        elif label == 'BTTS - Sim':           pick_text = 'Ambas marcam'
+        elif label == 'BTTS - Nao':           pick_text = 'Pelo menos um time nao marca'
+        else:                                  pick_text = label
 
         picks.append({
             'league':          b.get('leagueName', b.get('leagueKey', '')),
@@ -168,68 +142,152 @@ def build_daily_picks(all_bets, states, min_prob):
             'bet_id':          b.get('betId', ''),
         })
 
-    # Ordena por probabilidade desc
     picks.sort(key=lambda x: x['probability'], reverse=True)
     return picks
 
 
-def build_track_record(history, period):
-    """Agrega historico por periodo (7d, 30d, all)."""
+def normalize_bets(assert_meta, states):
+    """
+    Combina ASSERT_META + ASSERT_STATES em uma lista de bets resolvidos.
+    Filtra para apenas bets com probabilidade >= 80% (mesma logica do dashboard).
+    Retorna lista de dicts: {date, league_key, league_name, label, market, state, p_pct}
+    """
+    bets = []
+    for bet_id, meta in assert_meta.items():
+        state = states.get(bet_id)
+        if state not in ('verde', 'vermelho'):
+            continue
+        date_str = meta.get('date') or ''
+        if not date_str:
+            continue
+        parts = bet_id.split('|')
+        if len(parts) < 4:
+            continue
+        label = '|'.join(parts[3:])
+        league_key = parts[0]
+
+        p = get_bet_p(meta)
+        p_pct = round(p * 100)
+        # Sistema so rastreia bets >= 80% como insights. Bets abaixo
+        # podem estar no ASSERT_META por outros motivos mas nao contam.
+        if p_pct < 80:
+            continue
+
+        bets.append({
+            'date':        date_str,
+            'league_key':  league_key,
+            'league_name': meta.get('leagueName', league_key),
+            'label':       label,
+            'market':      get_category(label),
+            'state':       state,
+            'p_pct':       p_pct,
+        })
+    return bets
+
+
+def build_track_record(bets, period, min_prob=None):
+    """
+    bets: lista normalizada (de normalize_bets)
+    period: '7d', '30d', 'all'
+    min_prob: int (filtra bets com p_pct >= min_prob) ou None
+    """
     today = date.today()
 
     if period == 'all':
-        filtered = history
+        start_date = None  # sem limite inferior
+        end_date   = today
+        day_list   = None
     else:
         days = int(period.rstrip('d'))
-        cutoff = (today - timedelta(days=days)).isoformat()
-        filtered = [h for h in history if h.get('date', '') >= cutoff and h.get('date', '') < today.isoformat()]
+        end_date   = today
+        start_date = today - timedelta(days=days - 1)
+        # Lista completa de dias do periodo (oldest -> newest)
+        day_list = [(start_date + timedelta(days=i)).isoformat() for i in range(days)]
 
-    total_v = sum((h.get('total') or {}).get('verde', 0) for h in filtered)
-    total_r = sum((h.get('total') or {}).get('vermelho', 0) for h in filtered)
-    total   = total_v + total_r
-    win_rate = round(total_v / total * 100, 1) if total else 0
+    # Filtra bets pelo periodo e min_prob
+    filtered = []
+    for b in bets:
+        try:
+            d = date.fromisoformat(b['date'])
+        except (ValueError, TypeError):
+            continue
+        if start_date and d < start_date:
+            continue
+        if d > end_date:
+            continue
+        if min_prob is not None and b['p_pct'] < min_prob:
+            continue
+        filtered.append(b)
 
-    # Por liga (agrega leagues de cada entrada)
-    league_agg = {}
-    for h in filtered:
-        for lk, ldata in (h.get('leagues') or {}).items():
-            if lk not in league_agg:
-                league_agg[lk] = {'name': ldata.get('name', lk), 'wins': 0, 'losses': 0}
-            tot = ldata.get('total') or {}
-            league_agg[lk]['wins']   += tot.get('verde', 0)
-            league_agg[lk]['losses'] += tot.get('vermelho', 0)
+    # Agregacoes
+    summary    = {'total': 0, 'wins': 0, 'losses': 0, 'win_rate': 0.0}
+    league_agg = {}  # league_key -> {league, total, wins, losses}
+    market_agg = {}  # market -> {market, total, wins, losses}
+    daily_agg  = {}  # date -> {date, wins, losses}
 
-    by_league = [
-        {'league': v['name'], 'wins': v['wins'], 'losses': v['losses']}
-        for v in sorted(league_agg.values(), key=lambda x: x['wins'] + x['losses'], reverse=True)
-    ]
+    for b in filtered:
+        is_win = b['state'] == 'verde'
 
-    # Por mercado: nao temos breakdown direto, agrega por banda (proxy)
-    band_agg = {'rb-95': {'wins': 0, 'losses': 0},
-                'rb-90': {'wins': 0, 'losses': 0},
-                'rb-85': {'wins': 0, 'losses': 0},
-                'rb-80': {'wins': 0, 'losses': 0}}
-    for h in filtered:
-        for bk, bv in (h.get('bands') or {}).items():
-            if bk in band_agg:
-                band_agg[bk]['wins']   += bv.get('verde', 0)
-                band_agg[bk]['losses'] += bv.get('vermelho', 0)
+        summary['total'] += 1
+        if is_win: summary['wins']   += 1
+        else:      summary['losses'] += 1
 
-    by_band = [
-        {'band': k.replace('rb-', '') + '%+', 'wins': v['wins'], 'losses': v['losses']}
-        for k, v in band_agg.items() if (v['wins'] + v['losses']) > 0
-    ]
+        # by_league
+        lk = b['league_key']
+        if lk not in league_agg:
+            league_agg[lk] = {'league': b['league_name'], 'total': 0, 'wins': 0, 'losses': 0}
+        league_agg[lk]['total'] += 1
+        if is_win: league_agg[lk]['wins']   += 1
+        else:      league_agg[lk]['losses'] += 1
+
+        # by_market
+        mk = b['market']
+        if mk not in market_agg:
+            market_agg[mk] = {'market': mk, 'total': 0, 'wins': 0, 'losses': 0}
+        market_agg[mk]['total'] += 1
+        if is_win: market_agg[mk]['wins']   += 1
+        else:      market_agg[mk]['losses'] += 1
+
+        # daily
+        ds = b['date']
+        if ds not in daily_agg:
+            daily_agg[ds] = {'date': ds, 'wins': 0, 'losses': 0}
+        if is_win: daily_agg[ds]['wins']   += 1
+        else:      daily_agg[ds]['losses'] += 1
+
+    # win_rate em decimal (0.81 = 81%)
+    def wr(w, t): return round(w / t, 2) if t else 0.0
+    summary['win_rate'] = wr(summary['wins'], summary['total'])
+
+    by_league = []
+    for v in league_agg.values():
+        v['win_rate'] = wr(v['wins'], v['total'])
+        by_league.append(v)
+    by_league.sort(key=lambda x: (x['total'], x['wins']), reverse=True)
+
+    by_market = []
+    for v in market_agg.values():
+        v['win_rate'] = wr(v['wins'], v['total'])
+        by_market.append(v)
+    by_market.sort(key=lambda x: (x['total'], x['wins']), reverse=True)
+
+    # daily_results: para periodos N dias, garante TODOS os dias presentes
+    if day_list is not None:
+        daily_results = [
+            daily_agg.get(d, {'date': d, 'wins': 0, 'losses': 0})
+            for d in day_list
+        ]
+    else:
+        # 'all': so dias com dados, oldest -> newest
+        daily_results = sorted(daily_agg.values(), key=lambda x: x['date'])
 
     return {
-        'period':  period,
-        'summary': {
-            'total':    total,
-            'wins':     total_v,
-            'losses':   total_r,
-            'win_rate': win_rate,
-        },
-        'by_league': by_league,
-        'by_band':   by_band,
+        'period':        period,
+        'min_prob':      min_prob,
+        'summary':       summary,
+        'by_league':     by_league,
+        'by_market':     by_market,
+        'daily_results': daily_results,
     }
 
 
@@ -243,15 +301,15 @@ def write_json(path, data):
 def main():
     print('=== generate_api.py ===', flush=True)
     print('Extraindo dados via Playwright headless...', flush=True)
-    all_bets, history, states = extract_via_playwright()
+    all_bets, assert_meta, states = extract_via_playwright()
 
     today = date.today().isoformat()
     generated_at = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
-    # ─── DAILY PICKS (4 variantes: 80, 85, 90, 95) ────────────────────
+    # ─── DAILY PICKS ──────────────────────────────────────────────────
     print('\n→ Gerando daily-picks...', flush=True)
     for min_prob in [80, 85, 90, 95]:
-        picks = build_daily_picks(all_bets, states, min_prob)
+        picks = build_daily_picks(all_bets, min_prob)
         write_json(API_DIR / 'daily-picks' / f'{min_prob}.json', {
             'date':         today,
             'generated_at': generated_at,
@@ -260,8 +318,7 @@ def main():
             'picks':        picks,
         })
 
-    # Default: min_prob = 90 (atalho)
-    default_picks = build_daily_picks(all_bets, states, 90)
+    default_picks = build_daily_picks(all_bets, 90)
     write_json(API_DIR / 'daily-picks.json', {
         'date':         today,
         'generated_at': generated_at,
@@ -270,46 +327,69 @@ def main():
         'picks':        default_picks,
     })
 
-    # ─── TRACK RECORD (3 variantes: 7d, 30d, all) ─────────────────────
-    print('\n→ Gerando track-record...', flush=True)
+    # ─── TRACK RECORD ─────────────────────────────────────────────────
+    print('\n→ Normalizando bets para track-record...', flush=True)
+    bets_norm = normalize_bets(assert_meta, states)
+    print(f'  {len(bets_norm)} bets resolvidos (verde/vermelho com meta)', flush=True)
+
+    print('\n→ Gerando track-record (TOTAL — todas probabilidades)...', flush=True)
     for period in ['7d', '30d', 'all']:
-        tr = build_track_record(history, period)
+        tr = build_track_record(bets_norm, period, min_prob=None)
         tr['generated_at'] = generated_at
         write_json(API_DIR / 'track-record' / f'{period}.json', tr)
 
-    # Default: 7d (atalho)
-    write_json(API_DIR / 'track-record.json', {
-        **build_track_record(history, '7d'),
-        'generated_at': generated_at,
-    })
+    # Default: 7d
+    tr_default = build_track_record(bets_norm, '7d', min_prob=None)
+    tr_default['generated_at'] = generated_at
+    write_json(API_DIR / 'track-record.json', tr_default)
 
-    # ─── Index README listando endpoints ──────────────────────────────
+    print('\n→ Gerando track-record-90 (apenas 90%+)...', flush=True)
+    for period in ['7d', '30d', 'all']:
+        tr = build_track_record(bets_norm, period, min_prob=90)
+        tr['generated_at'] = generated_at
+        write_json(API_DIR / 'track-record-90' / f'{period}.json', tr)
+
+    tr90_default = build_track_record(bets_norm, '7d', min_prob=90)
+    tr90_default['generated_at'] = generated_at
+    write_json(API_DIR / 'track-record-90.json', tr90_default)
+
+    # ─── INDEX descobrir endpoints ────────────────────────────────────
     write_json(API_DIR / 'index.json', {
-        'service':     'Football Analytics Public API',
-        'base_url':    'https://alessandromeira81.github.io/football-analytics/api',
-        'cors':        'open (Access-Control-Allow-Origin: *)',
-        'auth':        'none',
-        'updated_at':  generated_at,
+        'service':    'Football Analytics Public API',
+        'base_url':   'https://cdn.jsdelivr.net/gh/alessandromeira81/football-analytics@main/api',
+        'cors':       'open (Access-Control-Allow-Origin: *)',
+        'auth':       'none',
+        'updated_at': generated_at,
         'endpoints': [
             {
                 'name': 'daily-picks',
                 'description': 'Picks do dia filtrados por probabilidade minima',
                 'urls': {
                     'default (90%+)': '/daily-picks.json',
-                    '80%+':           '/daily-picks/80.json',
-                    '85%+':           '/daily-picks/85.json',
-                    '90%+':           '/daily-picks/90.json',
-                    '95%+':           '/daily-picks/95.json',
+                    '80%+': '/daily-picks/80.json',
+                    '85%+': '/daily-picks/85.json',
+                    '90%+': '/daily-picks/90.json',
+                    '95%+': '/daily-picks/95.json',
                 },
             },
             {
                 'name': 'track-record',
-                'description': 'Historico de assertividade agregado por periodo',
+                'description': 'Historico de desempenho — TODAS as probabilidades',
                 'urls': {
                     'default (7d)': '/track-record.json',
-                    '7 dias':       '/track-record/7d.json',
-                    '30 dias':      '/track-record/30d.json',
-                    'completo':     '/track-record/all.json',
+                    '7 dias':  '/track-record/7d.json',
+                    '30 dias': '/track-record/30d.json',
+                    'tudo':    '/track-record/all.json',
+                },
+            },
+            {
+                'name': 'track-record-90',
+                'description': 'Historico de desempenho — APENAS picks 90%+',
+                'urls': {
+                    'default (7d)': '/track-record-90.json',
+                    '7 dias':  '/track-record-90/7d.json',
+                    '30 dias': '/track-record-90/30d.json',
+                    'tudo':    '/track-record-90/all.json',
                 },
             },
         ],

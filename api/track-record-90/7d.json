@@ -1,24 +1,17 @@
 {
   "period": "7d",
-  "min_prob": null,
+  "min_prob": 90,
   "summary": {
-    "total": 9,
-    "wins": 9,
+    "total": 1,
+    "wins": 1,
     "losses": 0,
     "win_rate": 1.0
   },
   "by_league": [
     {
-      "league": "Saudi Pro League",
-      "total": 5,
-      "wins": 5,
-      "losses": 0,
-      "win_rate": 1.0
-    },
-    {
       "league": "Premier League",
-      "total": 4,
-      "wins": 4,
+      "total": 1,
+      "wins": 1,
       "losses": 0,
       "win_rate": 1.0
     }
@@ -26,13 +19,6 @@
   "by_market": [
     {
       "market": "Gols",
-      "total": 8,
-      "wins": 8,
-      "losses": 0,
-      "win_rate": 1.0
-    },
-    {
-      "market": "Escanteios",
       "total": 1,
       "wins": 1,
       "losses": 0,
@@ -52,22 +38,22 @@
     },
     {
       "date": "2026-05-14",
-      "wins": 2,
+      "wins": 0,
       "losses": 0
     },
     {
       "date": "2026-05-15",
-      "wins": 3,
+      "wins": 1,
       "losses": 0
     },
     {
       "date": "2026-05-16",
-      "wins": 2,
+      "wins": 0,
       "losses": 0
     },
     {
       "date": "2026-05-17",
-      "wins": 2,
+      "wins": 0,
       "losses": 0
     },
     {

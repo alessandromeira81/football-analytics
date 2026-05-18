@@ -80,3 +80,31 @@ jobs:
             }
             $attempt++
           }
+
+      - name: Purge jsDelivr CDN cache
+        if: success()
+        continue-on-error: true
+        run: |
+          # Aguarda 5s pro GitHub propagar o commit antes do CDN buscar
+          Start-Sleep -Seconds 5
+          $files = @(
+            'api/daily-picks.json',
+            'api/daily-picks/80.json',
+            'api/daily-picks/85.json',
+            'api/daily-picks/90.json',
+            'api/daily-picks/95.json',
+            'api/track-record.json',
+            'api/track-record/7d.json',
+            'api/track-record/30d.json',
+            'api/track-record/all.json',
+            'api/index.json'
+          )
+          foreach ($f in $files) {
+            $url = "https://purge.jsdelivr.net/gh/alessandromeira81/football-analytics@main/$f"
+            try {
+              Invoke-RestMethod -Uri $url -Method Get -TimeoutSec 10 | Out-Null
+              Write-Host "Purged: $f"
+            } catch {
+              Write-Host "Purge warning ($f): $_"
+            }
+          }

@@ -1,0 +1,36 @@
+{
+  "date": "2026-05-18",
+  "generated_at": "2026-05-18T18:07:00Z",
+  "min_prob": 80,
+  "count": 2,
+  "picks": [
+    {
+      "league": "Premier League",
+      "league_key": "premier",
+      "home_team": "Arsenal",
+      "away_team": "Burnley",
+      "kickoff": "2026-05-18T00:00:00Z",
+      "market": "Gols",
+      "pick": "Over 1.5 gols",
+      "label": "Over 1.5 gols",
+      "probability": 90,
+      "confidence_band": "90%",
+      "odds": 1.09,
+      "bet_id": "premier|Arsenal|Burnley|Over 1.5 gols"
+    },
+    {
+      "league": "Premier League",
+      "league_key": "premier",
+      "home_team": "Arsenal",
+      "away_team": "Burnley",
+      "kickoff": "2026-05-18T00:00:00Z",
+      "market": "Resultado",
+      "pick": "Arsenal vence",
+      "label": "Vitoria Mandante",
+      "probability": 85,
+      "confidence_band": "85%",
+      "odds": 1.09,
+      "bet_id": "premier|Arsenal|Burnley|Vitoria Mandante"
+    }
+  ]
+}

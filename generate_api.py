@@ -59,16 +59,22 @@ def extract_via_playwright():
         browser = p.chromium.launch(headless=True)
         ctx = browser.new_context()
         page = ctx.new_page()
-        page.goto(file_url, wait_until='networkidle', timeout=60000)
-        # Garante que SCRAPED_DATA e funcoes estao prontas
+
+        # Silencia erros do console pra nao poluir log
+        page.on('pageerror', lambda e: None)
+
+        # Usa domcontentloaded em vez de networkidle (Firebase listener fica streamando)
+        page.goto(file_url, wait_until='domcontentloaded', timeout=30000)
+
+        # Aguarda SCRAPED_DATA e computeAllInsights estarem disponiveis
         page.wait_for_function(
             'window.SCRAPED_DATA && '
             'typeof window.computeAllInsights === "function" && '
             'Object.keys(window.SCRAPED_DATA).length > 0',
             timeout=30000
         )
-        # Espera mais 3s pra Firestore terminar de carregar (best-effort)
-        page.wait_for_timeout(3000)
+        # Espera Firestore terminar (best-effort) — 5s e suficiente pra dados embutidos
+        page.wait_for_timeout(5000)
 
         # Extrai todos os insights computados pelo modelo
         all_bets = page.evaluate('computeAllInsights()')

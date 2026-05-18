@@ -1,21 +1,26 @@
 {
   "period": "30d",
   "summary": {
-    "total": 151,
-    "wins": 95,
-    "losses": 56,
-    "win_rate": 62.9
+    "total": 157,
+    "wins": 99,
+    "losses": 58,
+    "win_rate": 63.1
   },
   "by_league": [
     {
       "league": "Liga Profesional",
       "wins": 22,
-      "losses": 12
+      "losses": 13
     },
     {
       "league": "Brasileirao Serie A",
       "wins": 10,
-      "losses": 13
+      "losses": 14
+    },
+    {
+      "league": "Premier League",
+      "wins": 14,
+      "losses": 6
     },
     {
       "league": "Saudi Pro League",
@@ -26,11 +31,6 @@
       "league": "Serie A",
       "wins": 8,
       "losses": 11
-    },
-    {
-      "league": "Premier League",
-      "wins": 10,
-      "losses": 6
     },
     {
       "league": "La Liga",
@@ -51,24 +51,24 @@
   "by_band": [
     {
       "band": "95%+",
-      "wins": 12,
+      "wins": 13,
       "losses": 5
     },
     {
       "band": "90%+",
-      "wins": 15,
+      "wins": 14,
       "losses": 7
     },
     {
       "band": "85%+",
-      "wins": 22,
+      "wins": 26,
       "losses": 17
     },
     {
       "band": "80%+",
       "wins": 46,
-      "losses": 27
+      "losses": 29
     }
   ],
-  "generated_at": "2026-05-18T18:07:00Z"
+  "generated_at": "2026-05-18T18:45:53Z"
 }

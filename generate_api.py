@@ -78,8 +78,27 @@ def extract_via_playwright():
 
         # Extrai todos os insights computados pelo modelo
         all_bets = page.evaluate('computeAllInsights()')
-        # Extrai historico (ja agregado por data, bandas e ligas)
-        history  = page.evaluate('ASSERT_HISTORY || []')
+        # Extrai historico — MESMA logica de merge do renderResumo:
+        # ASSERT_HISTORY (servidor) + computeFilteredHistory('') (datas nao sincronizadas)
+        history  = page.evaluate('''
+          (function() {
+            var computedAll = (typeof computeFilteredHistory === 'function')
+                              ? computeFilteredHistory('') : [];
+            var computedByDate = {};
+            computedAll.forEach(function(e) { computedByDate[e.date] = e; });
+            var allHistory = [];
+            var seenDates = {};
+            (window.ASSERT_HISTORY || []).forEach(function(h) {
+              if (!h.date) return;
+              seenDates[h.date] = true;
+              allHistory.push(computedByDate[h.date] || h);
+            });
+            computedAll.forEach(function(e) {
+              if (!seenDates[e.date]) allHistory.push(e);
+            });
+            return allHistory;
+          })()
+        ''')
         # Extrai outcomes
         states   = page.evaluate('ASSERT_STATES || {}')
 

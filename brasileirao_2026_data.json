@@ -5,8 +5,8 @@
     "tournamentId": 325,
     "seasonId": 87678,
     "lastRound": 16,
-    "totalGames": 147,
-    "updatedAt": "2026-05-16T13:38:31Z",
+    "totalGames": 157,
+    "updatedAt": "2026-05-18T15:40:01Z",
     "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents."
   },
   "games": [
@@ -19108,53 +19108,107 @@
         "id": 243495,
         "name": "Raphael Claus"
       }
-    }
-  ],
-  "scheduledGames": [
+    },
     {
       "id": 15235566,
       "round": 16,
+      "date": "2026-05-16",
       "homeTeam": "Atlético Mineiro",
       "awayTeam": "Mirassol",
-      "date": "2026-05-16",
-      "odds": {
-        "Full time_1": 2.01,
-        "Full time_X": 3.5,
-        "Full time_2": 3.7,
-        "Double chance_1X": 1.29,
-        "Double chance_X2": 1.73,
-        "Double chance_12": 1.29,
-        "1st half_1": 2.75,
-        "1st half_X": 2.1,
-        "1st half_2": 4.33,
-        "Draw no bet_1": 1.44,
-        "Draw no bet_2": 2.62,
-        "Both teams to score_Yes": 1.95,
-        "Both teams to score_No": 1.8,
-        "Match goals_0.5_Over": 1.07,
-        "Match goals_0.5_Under": 8.5,
-        "Match goals_1.5_Over": 1.36,
-        "Match goals_1.5_Under": 3.2,
-        "Match goals_2.5_Over": 2.15,
-        "Match goals_2.5_Under": 1.67,
-        "Match goals_3.5_Over": 4.0,
-        "Match goals_3.5_Under": 1.25,
-        "Match goals_4.5_Over": 8.0,
-        "Match goals_4.5_Under": 1.08,
-        "Match goals_5.5_Over": 17.0,
-        "Match goals_5.5_Under": 1.02,
-        "Match goals_6.5_Over": 34.0,
-        "Match goals_6.5_Under": 1.0,
-        "Asian handicap_(-0.5) Atlético Mineiro": 2.05,
-        "Asian handicap_(0.5) Mirassol": 1.8,
-        "Cards in match_4.5_Over": 1.83,
-        "Cards in match_4.5_Under": 1.83,
-        "Corners 2-Way_10.5_Over": 2.1,
-        "Corners 2-Way_10.5_Under": 1.67,
-        "First team to score_Atlético Mineiro": 1.73,
-        "First team to score_No goal": 8.5,
-        "First team to score_Mirassol": 2.38
+      "homeId": 1977,
+      "awayId": 21982,
+      "score": {
+        "home": 3,
+        "away": 1
       },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 14,
+            "away": 7
+          },
+          "corners": {
+            "home": 5,
+            "away": 6
+          },
+          "fouls": {
+            "home": 6,
+            "away": 14
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 6,
+            "away": 4
+          },
+          "corners": {
+            "home": 2,
+            "away": 4
+          },
+          "fouls": {
+            "home": 3,
+            "away": 7
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 8,
+            "away": 3
+          },
+          "corners": {
+            "home": 3,
+            "away": 2
+          },
+          "fouls": {
+            "home": 3,
+            "away": 7
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 86,
+          "isHome": false,
+          "period": "2t"
+        }
+      ],
       "referee": {
         "id": 789502,
         "name": "Lucas Casagrande"
@@ -19163,47 +19217,127 @@
     {
       "id": 15235567,
       "round": 16,
+      "date": "2026-05-16",
       "homeTeam": "Internacional",
       "awayTeam": "Vasco da Gama",
-      "date": "2026-05-16",
-      "odds": {
-        "Full time_1": 1.91,
-        "Full time_X": 3.4,
-        "Full time_2": 4.1,
-        "Double chance_1X": 1.22,
-        "Double chance_X2": 1.8,
-        "Double chance_12": 1.3,
-        "1st half_1": 2.6,
-        "1st half_X": 2.1,
-        "1st half_2": 4.5,
-        "Draw no bet_1": 1.4,
-        "Draw no bet_2": 2.75,
-        "Both teams to score_Yes": 1.95,
-        "Both teams to score_No": 1.8,
-        "Match goals_0.5_Over": 1.07,
-        "Match goals_0.5_Under": 8.5,
-        "Match goals_1.5_Over": 1.36,
-        "Match goals_1.5_Under": 3.2,
-        "Match goals_2.5_Over": 2.1,
-        "Match goals_2.5_Under": 1.7,
-        "Match goals_3.5_Over": 4.0,
-        "Match goals_3.5_Under": 1.25,
-        "Match goals_4.5_Over": 8.0,
-        "Match goals_4.5_Under": 1.08,
-        "Match goals_5.5_Over": 17.0,
-        "Match goals_5.5_Under": 1.02,
-        "Match goals_6.5_Over": 34.0,
-        "Match goals_6.5_Under": 1.0,
-        "Asian handicap_(-0.5) Internacional": 1.98,
-        "Asian handicap_(0.5) Vasco da Gama": 1.88,
-        "Cards in match_4.5_Over": 1.62,
-        "Cards in match_4.5_Under": 2.2,
-        "Corners 2-Way_9.5_Over": 1.8,
-        "Corners 2-Way_9.5_Under": 1.91,
-        "First team to score_Internacional": 1.67,
-        "First team to score_No goal": 8.5,
-        "First team to score_Vasco da Gama": 2.5
+      "homeId": 1966,
+      "awayId": 1974,
+      "score": {
+        "home": 4,
+        "away": 1
       },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 12,
+            "away": 14
+          },
+          "corners": {
+            "home": 3,
+            "away": 4
+          },
+          "fouls": {
+            "home": 17,
+            "away": 11
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 7,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 4,
+            "away": 5
+          },
+          "corners": {
+            "home": 1,
+            "away": 0
+          },
+          "fouls": {
+            "home": 11,
+            "away": 5
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 8,
+            "away": 9
+          },
+          "corners": {
+            "home": 2,
+            "away": 4
+          },
+          "fouls": {
+            "home": 6,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "red",
+          "minute": 92,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 48,
+          "isHome": true,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 48,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 32,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 22,
+          "isHome": true,
+          "period": "1t"
+        }
+      ],
       "referee": {
         "id": 787576,
         "name": "Ramon Abatti Abel"
@@ -19212,47 +19346,139 @@
     {
       "id": 15235560,
       "round": 16,
+      "date": "2026-05-16",
       "homeTeam": "Fluminense",
       "awayTeam": "São Paulo",
-      "date": "2026-05-16",
-      "odds": {
-        "Full time_1": 1.76,
-        "Full time_X": 3.6,
-        "Full time_2": 4.5,
-        "Double chance_1X": 1.18,
-        "Double chance_X2": 1.95,
-        "Double chance_12": 1.29,
-        "1st half_1": 2.4,
-        "1st half_X": 2.2,
-        "1st half_2": 5.0,
-        "Draw no bet_1": 1.3,
-        "Draw no bet_2": 3.4,
-        "Both teams to score_Yes": 1.95,
-        "Both teams to score_No": 1.8,
-        "Match goals_0.5_Over": 1.06,
-        "Match goals_0.5_Under": 9.5,
-        "Match goals_1.5_Over": 1.33,
-        "Match goals_1.5_Under": 3.4,
-        "Match goals_2.5_Over": 2.05,
-        "Match goals_2.5_Under": 1.75,
-        "Match goals_3.5_Over": 3.75,
-        "Match goals_3.5_Under": 1.29,
-        "Match goals_4.5_Over": 7.0,
-        "Match goals_4.5_Under": 1.1,
-        "Match goals_5.5_Over": 15.0,
-        "Match goals_5.5_Under": 1.03,
-        "Match goals_6.5_Over": 29.0,
-        "Match goals_6.5_Under": 1.01,
-        "Asian handicap_(-0.75) Fluminense": 2.05,
-        "Asian handicap_(0.75) São Paulo": 1.8,
-        "Cards in match_5.5_Over": 1.91,
-        "Cards in match_5.5_Under": 1.8,
-        "Corners 2-Way_10.5_Over": 2.0,
-        "Corners 2-Way_10.5_Under": 1.73,
-        "First team to score_Fluminense": 1.62,
-        "First team to score_No goal": 9.5,
-        "First team to score_São Paulo": 2.6
+      "homeId": 1961,
+      "awayId": 1981,
+      "score": {
+        "home": 2,
+        "away": 1
       },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 10,
+            "away": 14
+          },
+          "corners": {
+            "home": 3,
+            "away": 5
+          },
+          "fouls": {
+            "home": 13,
+            "away": 10
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 5
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 7
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 5,
+            "away": 6
+          },
+          "corners": {
+            "home": 1,
+            "away": 3
+          },
+          "fouls": {
+            "home": 3,
+            "away": 4
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 5,
+            "away": 8
+          },
+          "corners": {
+            "home": 2,
+            "away": 2
+          },
+          "fouls": {
+            "home": 10,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 4
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 5
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 98,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 96,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 90,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 86,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 76,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 67,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 30,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
       "referee": {
         "id": 243701,
         "name": "Wilton Pereira Sampaio"
@@ -19261,47 +19487,133 @@
     {
       "id": 15235564,
       "round": 16,
+      "date": "2026-05-17",
       "homeTeam": "Palmeiras",
       "awayTeam": "Cruzeiro",
-      "date": "2026-05-17",
-      "odds": {
-        "Full time_1": 1.76,
-        "Full time_X": 3.6,
-        "Full time_2": 4.5,
-        "Double chance_1X": 1.18,
-        "Double chance_X2": 1.95,
-        "Double chance_12": 1.29,
-        "1st half_1": 2.4,
-        "1st half_X": 2.1,
-        "1st half_2": 5.0,
-        "Draw no bet_1": 1.3,
-        "Draw no bet_2": 3.4,
-        "Both teams to score_Yes": 2.0,
-        "Both teams to score_No": 1.75,
-        "Match goals_0.5_Over": 1.07,
-        "Match goals_0.5_Under": 8.5,
-        "Match goals_1.5_Over": 1.36,
-        "Match goals_1.5_Under": 3.2,
-        "Match goals_2.5_Over": 2.1,
-        "Match goals_2.5_Under": 1.7,
-        "Match goals_3.5_Over": 4.0,
-        "Match goals_3.5_Under": 1.25,
-        "Match goals_4.5_Over": 8.0,
-        "Match goals_4.5_Under": 1.08,
-        "Match goals_5.5_Over": 17.0,
-        "Match goals_5.5_Under": 1.02,
-        "Match goals_6.5_Over": 34.0,
-        "Match goals_6.5_Under": 1.0,
-        "Asian handicap_(-0.75) Palmeiras": 2.05,
-        "Asian handicap_(0.75) Cruzeiro": 1.8,
-        "Cards in match_5.5_Over": 2.1,
-        "Cards in match_5.5_Under": 1.67,
-        "Corners 2-Way_10.5_Over": 2.0,
-        "Corners 2-Way_10.5_Under": 1.73,
-        "First team to score_Palmeiras": 1.62,
-        "First team to score_No goal": 8.5,
-        "First team to score_Cruzeiro": 2.62
+      "homeId": 1963,
+      "awayId": 1954,
+      "score": {
+        "home": 1,
+        "away": 1
       },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 16,
+            "away": 11
+          },
+          "corners": {
+            "home": 6,
+            "away": 5
+          },
+          "fouls": {
+            "home": 19,
+            "away": 14
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 4
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 4
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 5,
+            "away": 3
+          },
+          "corners": {
+            "home": 3,
+            "away": 2
+          },
+          "fouls": {
+            "home": 9,
+            "away": 8
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 11,
+            "away": 8
+          },
+          "corners": {
+            "home": 3,
+            "away": 3
+          },
+          "fouls": {
+            "home": 10,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 92,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 88,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 75,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 72,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 41,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 12,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
       "referee": {
         "id": 785914,
         "name": "Savio Pereira Sampaio"
@@ -19310,47 +19622,133 @@
     {
       "id": 15235562,
       "round": 16,
+      "date": "2026-05-17",
       "homeTeam": "Santos",
       "awayTeam": "Coritiba",
-      "date": "2026-05-17",
-      "odds": {
-        "Full time_1": 1.71,
-        "Full time_X": 3.4,
-        "Full time_2": 5.5,
-        "Double chance_1X": 1.14,
-        "Double chance_X2": 2.0,
-        "Double chance_12": 1.3,
-        "1st half_1": 2.38,
-        "1st half_X": 2.1,
-        "1st half_2": 5.5,
-        "Draw no bet_1": 1.25,
-        "Draw no bet_2": 3.75,
-        "Both teams to score_Yes": 2.0,
-        "Both teams to score_No": 1.75,
-        "Match goals_0.5_Over": 1.08,
-        "Match goals_0.5_Under": 8.0,
-        "Match goals_1.5_Over": 1.4,
-        "Match goals_1.5_Under": 3.0,
-        "Match goals_2.5_Over": 2.15,
-        "Match goals_2.5_Under": 1.67,
-        "Match goals_3.5_Over": 4.0,
-        "Match goals_3.5_Under": 1.25,
-        "Match goals_4.5_Over": 8.0,
-        "Match goals_4.5_Under": 1.08,
-        "Match goals_5.5_Over": 17.0,
-        "Match goals_5.5_Under": 1.02,
-        "Match goals_6.5_Over": 34.0,
-        "Match goals_6.5_Under": 1.0,
-        "Asian handicap_(-0.75) Santos": 2.0,
-        "Asian handicap_(0.75) Coritiba": 1.85,
-        "Cards in match_5.5_Over": 1.91,
-        "Cards in match_5.5_Under": 1.8,
-        "Corners 2-Way_10.5_Over": 2.1,
-        "Corners 2-Way_10.5_Under": 1.67,
-        "First team to score_Santos": 1.57,
-        "First team to score_No goal": 8.0,
-        "First team to score_Coritiba": 2.75
+      "homeId": 1968,
+      "awayId": 1982,
+      "score": {
+        "home": 0,
+        "away": 3
       },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 13,
+            "away": 9
+          },
+          "corners": {
+            "home": 3,
+            "away": 3
+          },
+          "fouls": {
+            "home": 13,
+            "away": 15
+          },
+          "yellowCards": {
+            "home": 4,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 5
+          },
+          "redCards": {
+            "home": 1,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 5,
+            "away": 5
+          },
+          "corners": {
+            "home": 2,
+            "away": 2
+          },
+          "fouls": {
+            "home": 5,
+            "away": 9
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 5
+          },
+          "redCards": {
+            "home": 1,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 8,
+            "away": 4
+          },
+          "corners": {
+            "home": 1,
+            "away": 1
+          },
+          "fouls": {
+            "home": 8,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 3,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 0
+          },
+          "redCards": {
+            "home": 1,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 95,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 93,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 84,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "red",
+          "minute": 73,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 37,
+          "isHome": true,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 16,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
       "referee": {
         "id": 787819,
         "name": "Paulo Cesar Zanovelli da Silva"
@@ -19359,23 +19757,694 @@
     {
       "id": 15235573,
       "round": 16,
+      "date": "2026-05-17",
       "homeTeam": "Bahia",
       "awayTeam": "Grêmio",
+      "homeId": 1955,
+      "awayId": 5926,
+      "score": {
+        "home": 1,
+        "away": 1
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 17,
+            "away": 3
+          },
+          "corners": {
+            "home": 7,
+            "away": 3
+          },
+          "fouls": {
+            "home": 18,
+            "away": 14
+          },
+          "yellowCards": {
+            "home": 4,
+            "away": 5
+          },
+          "shotsOnTarget": {
+            "home": 6,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 9,
+            "away": 1
+          },
+          "corners": {
+            "home": 3,
+            "away": 1
+          },
+          "fouls": {
+            "home": 9,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 8,
+            "away": 2
+          },
+          "corners": {
+            "home": 4,
+            "away": 2
+          },
+          "fouls": {
+            "home": 9,
+            "away": 8
+          },
+          "yellowCards": {
+            "home": 4,
+            "away": 4
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 91,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 91,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 80,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 79,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 74,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 65,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 57,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 36,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 789411,
+        "name": "Fernando Antonio Mendes de Salles Nascimento Filho"
+      }
+    },
+    {
+      "id": 15235561,
+      "round": 16,
       "date": "2026-05-17",
+      "homeTeam": "Botafogo",
+      "awayTeam": "Corinthians",
+      "homeId": 1958,
+      "awayId": 1957,
+      "score": {
+        "home": 3,
+        "away": 1
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 13,
+            "away": 19
+          },
+          "corners": {
+            "home": 3,
+            "away": 2
+          },
+          "fouls": {
+            "home": 22,
+            "away": 8
+          },
+          "yellowCards": {
+            "home": 6,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 7,
+            "away": 5
+          },
+          "corners": {
+            "home": 1,
+            "away": 1
+          },
+          "fouls": {
+            "home": 11,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 6,
+            "away": 14
+          },
+          "corners": {
+            "home": 2,
+            "away": 1
+          },
+          "fouls": {
+            "home": 11,
+            "away": 2
+          },
+          "yellowCards": {
+            "home": 4,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 91,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 81,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 73,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 71,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 51,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 39,
+          "isHome": true,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 20,
+          "isHome": true,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 787245,
+        "name": "Felipe Fernandes de Lima"
+      }
+    },
+    {
+      "id": 15235568,
+      "round": 16,
+      "date": "2026-05-17",
+      "homeTeam": "Chapecoense",
+      "awayTeam": "Remo",
+      "homeId": 21845,
+      "awayId": 2012,
+      "score": {
+        "home": 2,
+        "away": 3
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 18,
+            "away": 11
+          },
+          "corners": {
+            "home": 3,
+            "away": 9
+          },
+          "fouls": {
+            "home": 10,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 8,
+            "away": 4
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 7,
+            "away": 7
+          },
+          "corners": {
+            "home": 0,
+            "away": 7
+          },
+          "fouls": {
+            "home": 6,
+            "away": 2
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 11,
+            "away": 4
+          },
+          "corners": {
+            "home": 3,
+            "away": 2
+          },
+          "fouls": {
+            "home": 4,
+            "away": 4
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 92,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 69,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 65,
+          "isHome": true,
+          "period": "2t"
+        }
+      ],
+      "referee": {
+        "id": 789405,
+        "name": "Alex Gomes Stefano"
+      }
+    },
+    {
+      "id": 15235587,
+      "round": 16,
+      "date": "2026-05-17",
+      "homeTeam": "Red Bull Bragantino",
+      "awayTeam": "Vitória",
+      "homeId": 1999,
+      "awayId": 1962,
+      "score": {
+        "home": 2,
+        "away": 0
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 23,
+            "away": 7
+          },
+          "corners": {
+            "home": 7,
+            "away": 6
+          },
+          "fouls": {
+            "home": 21,
+            "away": 11
+          },
+          "yellowCards": {
+            "home": 4,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 11,
+            "away": 1
+          },
+          "corners": {
+            "home": 3,
+            "away": 1
+          },
+          "fouls": {
+            "home": 10,
+            "away": 7
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 12,
+            "away": 6
+          },
+          "corners": {
+            "home": 4,
+            "away": 5
+          },
+          "fouls": {
+            "home": 11,
+            "away": 4
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 72,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 65,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 46,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 47,
+          "isHome": true,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 23,
+          "isHome": true,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 15,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 243151,
+        "name": "Wagner do Nascimento Magalhaes"
+      }
+    },
+    {
+      "id": 15235588,
+      "round": 16,
+      "date": "2026-05-17",
+      "homeTeam": "Athletico",
+      "awayTeam": "Flamengo",
+      "homeId": 1967,
+      "awayId": 5981,
+      "score": {
+        "home": 1,
+        "away": 1
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 18,
+            "away": 12
+          },
+          "corners": {
+            "home": 9,
+            "away": 7
+          },
+          "fouls": {
+            "home": 9,
+            "away": 12
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 3
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 7,
+            "away": 6
+          },
+          "corners": {
+            "home": 6,
+            "away": 1
+          },
+          "fouls": {
+            "home": 5,
+            "away": 5
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 11,
+            "away": 6
+          },
+          "corners": {
+            "home": 3,
+            "away": 6
+          },
+          "fouls": {
+            "home": 4,
+            "away": 7
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "red",
+          "minute": 92,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 70,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 56,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 40,
+          "isHome": true,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 25,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 788516,
+        "name": "Rafael Rodrigo Klein"
+      }
+    }
+  ],
+  "scheduledGames": [
+    {
+      "id": 15235570,
+      "round": 17,
+      "homeTeam": "São Paulo",
+      "awayTeam": "Botafogo",
+      "date": "2026-05-23",
       "odds": {
-        "Full time_1": 1.76,
-        "Full time_X": 3.75,
-        "Full time_2": 4.33,
-        "Double chance_1X": 1.2,
-        "Double chance_X2": 1.95,
-        "Double chance_12": 1.25,
-        "1st half_1": 2.4,
+        "Full time_1": 1.86,
+        "Full time_X": 3.4,
+        "Full time_2": 4.0,
+        "Double chance_1X": 1.22,
+        "Double chance_X2": 1.91,
+        "Double chance_12": 1.3,
+        "1st half_1": 2.5,
         "1st half_X": 2.25,
-        "1st half_2": 4.5,
-        "Draw no bet_1": 1.33,
-        "Draw no bet_2": 3.25,
-        "Both teams to score_Yes": 1.8,
-        "Both teams to score_No": 1.95,
+        "1st half_2": 4.33,
+        "Draw no bet_1": 1.4,
+        "Draw no bet_2": 2.75,
+        "Both teams to score_Yes": 1.75,
+        "Both teams to score_No": 2.0,
         "Match goals_0.5_Over": 1.05,
         "Match goals_0.5_Under": 11.0,
         "Match goals_1.5_Over": 1.29,
@@ -19392,188 +20461,33 @@
         "Match goals_6.5_Under": 1.01,
         "Match goals_7.5_Over": 51.0,
         "Match goals_7.5_Under": 1.0,
-        "Asian handicap_(-0.5) Bahia": 1.82,
-        "Asian handicap_(0.5) Grêmio": 2.02,
-        "Cards in match_5.5_Over": 1.67,
-        "Cards in match_5.5_Under": 2.1,
-        "Corners 2-Way_10.5_Over": 2.1,
-        "Corners 2-Way_10.5_Under": 1.67,
-        "First team to score_Bahia": 1.62,
+        "Asian handicap_(-0.5) São Paulo": 1.93,
+        "Asian handicap_(0.5) Botafogo": 1.93,
+        "First team to score_São Paulo": 1.67,
         "First team to score_No goal": 11.0,
-        "First team to score_Grêmio": 2.5
-      },
-      "referee": {
-        "id": 789411,
-        "name": "Fernando Antonio Mendes de Salles Nascimento Filho"
+        "First team to score_Botafogo": 2.4
       }
     },
     {
-      "id": 15235561,
-      "round": 16,
-      "homeTeam": "Botafogo",
-      "awayTeam": "Corinthians",
-      "date": "2026-05-17",
+      "id": 15235576,
+      "round": 17,
+      "homeTeam": "Vitória",
+      "awayTeam": "Internacional",
+      "date": "2026-05-23",
       "odds": {
-        "Full time_1": 2.32,
-        "Full time_X": 3.2,
-        "Full time_2": 3.2,
-        "Double chance_1X": 1.36,
-        "Double chance_X2": 1.53,
+        "Full time_1": 2.82,
+        "Full time_X": 3.1,
+        "Full time_2": 2.45,
+        "Double chance_1X": 1.5,
+        "Double chance_X2": 1.4,
         "Double chance_12": 1.36,
-        "1st half_1": 3.0,
+        "1st half_1": 3.5,
         "1st half_X": 2.05,
-        "1st half_2": 3.75,
-        "Draw no bet_1": 1.62,
-        "Draw no bet_2": 2.2,
+        "1st half_2": 3.2,
+        "Draw no bet_1": 2.0,
+        "Draw no bet_2": 1.73,
         "Both teams to score_Yes": 1.91,
         "Both teams to score_No": 1.91,
-        "Match goals_0.5_Over": 1.08,
-        "Match goals_0.5_Under": 8.0,
-        "Match goals_1.5_Over": 1.36,
-        "Match goals_1.5_Under": 3.2,
-        "Match goals_2.5_Over": 2.15,
-        "Match goals_2.5_Under": 1.67,
-        "Match goals_3.5_Over": 4.0,
-        "Match goals_3.5_Under": 1.25,
-        "Match goals_4.5_Over": 8.0,
-        "Match goals_4.5_Under": 1.08,
-        "Match goals_5.5_Over": 17.0,
-        "Match goals_5.5_Under": 1.02,
-        "Match goals_6.5_Over": 34.0,
-        "Match goals_6.5_Under": 1.0,
-        "Asian handicap_(-0.25) Botafogo": 2.02,
-        "Asian handicap_(0.25) Corinthians": 1.82,
-        "Cards in match_6.5_Over": 1.91,
-        "Cards in match_6.5_Under": 1.8,
-        "Corners 2-Way_9.5_Over": 1.83,
-        "Corners 2-Way_9.5_Under": 1.83,
-        "First team to score_Botafogo": 1.83,
-        "First team to score_No goal": 8.0,
-        "First team to score_Corinthians": 2.2
-      },
-      "referee": {
-        "id": 787245,
-        "name": "Felipe Fernandes de Lima"
-      }
-    },
-    {
-      "id": 15235568,
-      "round": 16,
-      "homeTeam": "Chapecoense",
-      "awayTeam": "Remo",
-      "date": "2026-05-17",
-      "odds": {
-        "Full time_1": 2.32,
-        "Full time_X": 3.3,
-        "Full time_2": 3.0,
-        "Double chance_1X": 1.36,
-        "Double chance_X2": 1.53,
-        "Double chance_12": 1.33,
-        "1st half_1": 3.0,
-        "1st half_X": 2.1,
-        "1st half_2": 3.5,
-        "Draw no bet_1": 1.67,
-        "Draw no bet_2": 2.1,
-        "Both teams to score_Yes": 1.75,
-        "Both teams to score_No": 2.0,
-        "Match goals_0.5_Over": 1.06,
-        "Match goals_0.5_Under": 9.5,
-        "Match goals_1.5_Over": 1.3,
-        "Match goals_1.5_Under": 3.5,
-        "Match goals_2.5_Over": 2.0,
-        "Match goals_2.5_Under": 1.8,
-        "Match goals_3.5_Over": 3.5,
-        "Match goals_3.5_Under": 1.3,
-        "Match goals_4.5_Over": 6.5,
-        "Match goals_4.5_Under": 1.11,
-        "Match goals_5.5_Over": 15.0,
-        "Match goals_5.5_Under": 1.03,
-        "Match goals_6.5_Over": 29.0,
-        "Match goals_6.5_Under": 1.01,
-        "Asian handicap_(-0.25) Chapecoense": 2.05,
-        "Asian handicap_(0.25) Remo": 1.8,
-        "Cards in match_5.5_Over": 2.1,
-        "Cards in match_5.5_Under": 1.67,
-        "Corners 2-Way_9.5_Over": 1.67,
-        "Corners 2-Way_9.5_Under": 2.1,
-        "First team to score_Chapecoense": 1.83,
-        "First team to score_No goal": 9.5,
-        "First team to score_Remo": 2.1
-      },
-      "referee": {
-        "id": 789405,
-        "name": "Alex Gomes Stefano"
-      }
-    },
-    {
-      "id": 15235587,
-      "round": 16,
-      "homeTeam": "Red Bull Bragantino",
-      "awayTeam": "Vitória",
-      "date": "2026-05-17",
-      "odds": {
-        "Full time_1": 1.66,
-        "Full time_X": 3.75,
-        "Full time_2": 5.0,
-        "Double chance_1X": 1.17,
-        "Double chance_X2": 2.1,
-        "Double chance_12": 1.25,
-        "1st half_1": 2.3,
-        "1st half_X": 2.2,
-        "1st half_2": 5.5,
-        "Draw no bet_1": 1.25,
-        "Draw no bet_2": 3.75,
-        "Both teams to score_Yes": 1.95,
-        "Both teams to score_No": 1.8,
-        "Match goals_0.5_Over": 1.06,
-        "Match goals_0.5_Under": 9.5,
-        "Match goals_1.5_Over": 1.33,
-        "Match goals_1.5_Under": 3.4,
-        "Match goals_2.5_Over": 2.05,
-        "Match goals_2.5_Under": 1.75,
-        "Match goals_3.5_Over": 3.75,
-        "Match goals_3.5_Under": 1.29,
-        "Match goals_4.5_Over": 7.0,
-        "Match goals_4.5_Under": 1.1,
-        "Match goals_5.5_Over": 15.0,
-        "Match goals_5.5_Under": 1.03,
-        "Match goals_6.5_Over": 29.0,
-        "Match goals_6.5_Under": 1.01,
-        "Asian handicap_(-0.75) Red Bull Bragantino": 1.95,
-        "Asian handicap_(0.75) Vitória": 1.9,
-        "Cards in match_5.5_Over": 1.83,
-        "Cards in match_5.5_Under": 1.83,
-        "Corners 2-Way_9.5_Over": 1.73,
-        "Corners 2-Way_9.5_Under": 2.0,
-        "First team to score_Red Bull Bragantino": 1.57,
-        "First team to score_No goal": 9.5,
-        "First team to score_Vitória": 2.75
-      },
-      "referee": {
-        "id": 243151,
-        "name": "Wagner do Nascimento Magalhaes"
-      }
-    },
-    {
-      "id": 15235588,
-      "round": 16,
-      "homeTeam": "Athletico",
-      "awayTeam": "Flamengo",
-      "date": "2026-05-17",
-      "odds": {
-        "Full time_1": 3.3,
-        "Full time_X": 3.4,
-        "Full time_2": 2.15,
-        "Double chance_1X": 1.67,
-        "Double chance_X2": 1.33,
-        "Double chance_12": 1.3,
-        "1st half_1": 4.0,
-        "1st half_X": 2.1,
-        "1st half_2": 2.88,
-        "Draw no bet_1": 2.25,
-        "Draw no bet_2": 1.57,
-        "Both teams to score_Yes": 1.95,
-        "Both teams to score_No": 1.8,
         "Match goals_0.5_Over": 1.07,
         "Match goals_0.5_Under": 8.5,
         "Match goals_1.5_Over": 1.36,
@@ -19588,19 +20502,312 @@
         "Match goals_5.5_Under": 1.02,
         "Match goals_6.5_Over": 34.0,
         "Match goals_6.5_Under": 1.0,
-        "Asian handicap_(0.25) Athletico": 1.95,
-        "Asian handicap_(-0.25) Flamengo": 1.9,
-        "Cards in match_5.5_Over": 2.1,
-        "Cards in match_5.5_Under": 1.67,
-        "Corners 2-Way_9.5_Over": 1.73,
-        "Corners 2-Way_9.5_Under": 2.0,
-        "First team to score_Athletico": 2.25,
+        "Asian handicap_(0) Vitória": 2.05,
+        "Asian handicap_(-0) Internacional": 1.8,
+        "First team to score_Vitória": 2.1,
         "First team to score_No goal": 8.5,
-        "First team to score_Flamengo": 1.8
-      },
-      "referee": {
-        "id": 788516,
-        "name": "Rafael Rodrigo Klein"
+        "First team to score_Internacional": 1.95
+      }
+    },
+    {
+      "id": 15235575,
+      "round": 17,
+      "homeTeam": "Grêmio",
+      "awayTeam": "Santos",
+      "date": "2026-05-23",
+      "odds": {
+        "Full time_1": 2.15,
+        "Full time_X": 3.2,
+        "Full time_2": 3.3,
+        "Double chance_1X": 1.33,
+        "Double chance_X2": 1.67,
+        "Double chance_12": 1.36,
+        "1st half_1": 2.88,
+        "1st half_X": 2.05,
+        "1st half_2": 4.0,
+        "Draw no bet_1": 1.53,
+        "Draw no bet_2": 2.38,
+        "Both teams to score_Yes": 1.95,
+        "Both teams to score_No": 1.8,
+        "Match goals_0.5_Over": 1.08,
+        "Match goals_0.5_Under": 8.0,
+        "Match goals_1.5_Over": 1.4,
+        "Match goals_1.5_Under": 3.0,
+        "Match goals_2.5_Over": 2.2,
+        "Match goals_2.5_Under": 1.65,
+        "Match goals_3.5_Over": 4.0,
+        "Match goals_3.5_Under": 1.25,
+        "Match goals_4.5_Over": 8.0,
+        "Match goals_4.5_Under": 1.08,
+        "Match goals_5.5_Over": 19.0,
+        "Match goals_5.5_Under": 1.02,
+        "Match goals_6.5_Over": 41.0,
+        "Match goals_6.5_Under": 1.0,
+        "Asian handicap_(-0.25) Grêmio": 1.9,
+        "Asian handicap_(0.25) Santos": 1.95,
+        "First team to score_Grêmio": 1.8,
+        "First team to score_No goal": 8.0,
+        "First team to score_Santos": 2.3
+      }
+    },
+    {
+      "id": 15235577,
+      "round": 17,
+      "homeTeam": "Mirassol",
+      "awayTeam": "Fluminense",
+      "date": "2026-05-23",
+      "odds": {
+        "Full time_1": 2.65,
+        "Full time_X": 3.1,
+        "Full time_2": 2.55,
+        "Double chance_1X": 1.5,
+        "Double chance_X2": 1.44,
+        "Double chance_12": 1.36,
+        "1st half_1": 3.4,
+        "1st half_X": 2.05,
+        "1st half_2": 3.4,
+        "Draw no bet_1": 1.83,
+        "Draw no bet_2": 1.83,
+        "Both teams to score_Yes": 1.95,
+        "Both teams to score_No": 1.8,
+        "Match goals_0.5_Over": 1.08,
+        "Match goals_0.5_Under": 8.0,
+        "Match goals_1.5_Over": 1.4,
+        "Match goals_1.5_Under": 3.0,
+        "Match goals_2.5_Over": 2.25,
+        "Match goals_2.5_Under": 1.62,
+        "Match goals_3.5_Over": 4.33,
+        "Match goals_3.5_Under": 1.22,
+        "Match goals_4.5_Over": 9.0,
+        "Match goals_4.5_Under": 1.07,
+        "Match goals_5.5_Over": 19.0,
+        "Match goals_5.5_Under": 1.02,
+        "Match goals_6.5_Over": 41.0,
+        "Match goals_6.5_Under": 1.0,
+        "Asian handicap_(0) Mirassol": 1.98,
+        "Asian handicap_(-0) Fluminense": 1.88,
+        "First team to score_Mirassol": 2.05,
+        "First team to score_No goal": 8.0,
+        "First team to score_Fluminense": 2.0
+      }
+    },
+    {
+      "id": 15235572,
+      "round": 17,
+      "homeTeam": "Flamengo",
+      "awayTeam": "Palmeiras",
+      "date": "2026-05-24",
+      "odds": {
+        "Full time_1": 1.71,
+        "Full time_X": 3.4,
+        "Full time_2": 4.75,
+        "Double chance_1X": 1.18,
+        "Double chance_X2": 2.0,
+        "Double chance_12": 1.3,
+        "1st half_1": 2.4,
+        "1st half_X": 2.1,
+        "1st half_2": 5.0,
+        "Draw no bet_1": 1.3,
+        "Draw no bet_2": 3.4,
+        "Both teams to score_Yes": 1.95,
+        "Both teams to score_No": 1.8,
+        "Match goals_0.5_Over": 1.07,
+        "Match goals_0.5_Under": 9.0,
+        "Match goals_1.5_Over": 1.33,
+        "Match goals_1.5_Under": 3.4,
+        "Match goals_2.5_Over": 2.05,
+        "Match goals_2.5_Under": 1.75,
+        "Match goals_3.5_Over": 3.75,
+        "Match goals_3.5_Under": 1.29,
+        "Match goals_4.5_Over": 7.0,
+        "Match goals_4.5_Under": 1.1,
+        "Match goals_5.5_Over": 15.0,
+        "Match goals_5.5_Under": 1.03,
+        "Match goals_6.5_Over": 29.0,
+        "Match goals_6.5_Under": 1.01,
+        "Asian handicap_(-0.5) Flamengo": 1.82,
+        "Asian handicap_(0.5) Palmeiras": 2.02,
+        "First team to score_Flamengo": 1.62,
+        "First team to score_No goal": 9.0,
+        "First team to score_Palmeiras": 2.62
+      }
+    },
+    {
+      "id": 15235574,
+      "round": 17,
+      "homeTeam": "Cruzeiro",
+      "awayTeam": "Chapecoense",
+      "date": "2026-05-24",
+      "odds": {
+        "Full time_1": 1.33,
+        "Full time_X": 4.75,
+        "Full time_2": 7.5,
+        "Double chance_1X": 1.1,
+        "Double chance_X2": 3.0,
+        "Double chance_12": 1.18,
+        "1st half_1": 1.83,
+        "1st half_X": 2.5,
+        "1st half_2": 8.0,
+        "Draw no bet_1": 1.11,
+        "Draw no bet_2": 6.5,
+        "Both teams to score_Yes": 2.05,
+        "Both teams to score_No": 1.7,
+        "Match goals_0.5_Over": 1.04,
+        "Match goals_0.5_Under": 13.0,
+        "Match goals_1.5_Over": 1.25,
+        "Match goals_1.5_Under": 4.0,
+        "Match goals_2.5_Over": 1.75,
+        "Match goals_2.5_Under": 2.05,
+        "Match goals_3.5_Over": 3.0,
+        "Match goals_3.5_Under": 1.4,
+        "Match goals_4.5_Over": 5.5,
+        "Match goals_4.5_Under": 1.14,
+        "Match goals_5.5_Over": 11.0,
+        "Match goals_5.5_Under": 1.05,
+        "Match goals_6.5_Over": 21.0,
+        "Match goals_6.5_Under": 1.02,
+        "Match goals_7.5_Over": 51.0,
+        "Match goals_7.5_Under": 1.0,
+        "Asian handicap_(-1.25) Cruzeiro": 1.82,
+        "Asian handicap_(1.25) Chapecoense": 2.02,
+        "First team to score_Cruzeiro": 1.36,
+        "First team to score_No goal": 13.0,
+        "First team to score_Chapecoense": 3.4
+      }
+    },
+    {
+      "id": 15235582,
+      "round": 17,
+      "homeTeam": "Remo",
+      "awayTeam": "Athletico",
+      "date": "2026-05-24",
+      "odds": {
+        "Full time_1": 2.65,
+        "Full time_X": 3.1,
+        "Full time_2": 2.57,
+        "Double chance_1X": 1.44,
+        "Double chance_X2": 1.44,
+        "Double chance_12": 1.36,
+        "1st half_1": 3.25,
+        "1st half_X": 2.1,
+        "1st half_2": 3.25,
+        "Draw no bet_1": 1.83,
+        "Draw no bet_2": 1.83,
+        "Both teams to score_Yes": 1.75,
+        "Both teams to score_No": 2.0,
+        "Match goals_0.5_Over": 1.06,
+        "Match goals_0.5_Under": 9.5,
+        "Match goals_1.5_Over": 1.33,
+        "Match goals_1.5_Under": 3.4,
+        "Match goals_2.5_Over": 2.0,
+        "Match goals_2.5_Under": 1.8,
+        "Match goals_3.5_Over": 3.5,
+        "Match goals_3.5_Under": 1.3,
+        "Match goals_4.5_Over": 7.0,
+        "Match goals_4.5_Under": 1.1,
+        "Match goals_5.5_Over": 15.0,
+        "Match goals_5.5_Under": 1.03,
+        "Match goals_6.5_Over": 29.0,
+        "Match goals_6.5_Under": 1.01,
+        "Asian handicap_(0) Remo": 1.95,
+        "Asian handicap_(0) Athletico": 1.9,
+        "First team to score_Remo": 2.0,
+        "First team to score_No goal": 9.5,
+        "First team to score_Athletico": 1.95
+      }
+    },
+    {
+      "id": 15235571,
+      "round": 17,
+      "homeTeam": "Corinthians",
+      "awayTeam": "Atlético Mineiro",
+      "date": "2026-05-24",
+      "odds": {
+        "Full time_1": 1.71,
+        "Full time_X": 3.4,
+        "Full time_2": 4.75,
+        "Double chance_1X": 1.18,
+        "Double chance_X2": 2.0,
+        "Double chance_12": 1.3,
+        "1st half_1": 2.5,
+        "1st half_X": 2.0,
+        "1st half_2": 5.5,
+        "Draw no bet_1": 1.3,
+        "Draw no bet_2": 3.4,
+        "Both teams to score_Yes": 2.25,
+        "Both teams to score_No": 1.57,
+        "Match goals_0.5_Over": 1.1,
+        "Match goals_0.5_Under": 7.0,
+        "Match goals_1.5_Over": 1.5,
+        "Match goals_1.5_Under": 2.62,
+        "Match goals_2.5_Over": 2.4,
+        "Match goals_2.5_Under": 1.53,
+        "Match goals_3.5_Over": 4.5,
+        "Match goals_3.5_Under": 1.2,
+        "Match goals_4.5_Over": 11.0,
+        "Match goals_4.5_Under": 1.05,
+        "Match goals_5.5_Over": 23.0,
+        "Match goals_5.5_Under": 1.01,
+        "Match goals_6.5_Over": 51.0,
+        "Match goals_6.5_Under": 1.0,
+        "Asian handicap_(-0.75) Corinthians": 2.05,
+        "Asian handicap_(0.75) Atlético Mineiro": 1.8,
+        "First team to score_Corinthians": 1.62,
+        "First team to score_No goal": 7.0,
+        "First team to score_Atlético Mineiro": 2.88
+      }
+    },
+    {
+      "id": 15235569,
+      "round": 17,
+      "homeTeam": "Vasco da Gama",
+      "awayTeam": "Red Bull Bragantino",
+      "date": "2026-05-24",
+      "odds": {
+        "Full time_1": 1.96,
+        "Full time_X": 3.3,
+        "Full time_2": 3.75,
+        "Double chance_1X": 1.25,
+        "Double chance_X2": 1.8,
+        "Double chance_12": 1.33,
+        "1st half_1": 2.62,
+        "1st half_X": 2.1,
+        "1st half_2": 4.33,
+        "Draw no bet_1": 1.44,
+        "Draw no bet_2": 2.62,
+        "Both teams to score_Yes": 1.91,
+        "Both teams to score_No": 1.91,
+        "Match goals_0.5_Over": 1.07,
+        "Match goals_0.5_Under": 9.0,
+        "Match goals_1.5_Over": 1.36,
+        "Match goals_1.5_Under": 3.2,
+        "Match goals_2.5_Over": 2.08,
+        "Match goals_2.5_Under": 1.73,
+        "Match goals_3.5_Over": 3.75,
+        "Match goals_3.5_Under": 1.29,
+        "Match goals_4.5_Over": 8.0,
+        "Match goals_4.5_Under": 1.08,
+        "Match goals_5.5_Over": 17.0,
+        "Match goals_5.5_Under": 1.02,
+        "Match goals_6.5_Over": 29.0,
+        "Match goals_6.5_Under": 1.01,
+        "Asian handicap_(-0.5) Vasco da Gama": 2.02,
+        "Asian handicap_(0.5) Red Bull Bragantino": 1.82,
+        "First team to score_Vasco da Gama": 1.73,
+        "First team to score_No goal": 9.0,
+        "First team to score_Red Bull Bragantino": 2.4
+      }
+    },
+    {
+      "id": 15235578,
+      "round": 17,
+      "homeTeam": "Coritiba",
+      "awayTeam": "Bahia",
+      "date": "2026-05-25",
+      "odds": {
+        "Full time_1": 2.65,
+        "Full time_X": 3.1,
+        "Full time_2": 2.57
       }
     }
   ]

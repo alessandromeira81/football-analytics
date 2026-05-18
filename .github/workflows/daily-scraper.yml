@@ -85,8 +85,26 @@ jobs:
         if: success()
         continue-on-error: true
         run: |
-          # Aguarda 10s pro GitHub propagar o commit antes do CDN buscar
-          Start-Sleep -Seconds 10
+          # 1) Aguarda raw.githubusercontent.com ter o conteudo novo
+          #    (raw.github tambem tem cache de ~5min, precisa atualizar antes)
+          $rawUrl = 'https://raw.githubusercontent.com/alessandromeira81/football-analytics/main/api/track-record.json'
+          $expectedDate = (Get-Date).ToString('yyyy-MM-dd')
+          Write-Host "Aguardando raw.github refletir commit (timeout 3min)..."
+          $i = 0
+          while ($i -lt 18) {
+            try {
+              $r = Invoke-WebRequest -Uri $rawUrl -Headers @{'Cache-Control'='no-cache'} -TimeoutSec 10
+              $data = $r.Content | ConvertFrom-Json
+              if ($data.generated_at -and $data.generated_at.StartsWith($expectedDate)) {
+                Write-Host "Raw github OK (generated_at=$($data.generated_at))"
+                break
+              }
+            } catch { }
+            Start-Sleep -Seconds 10
+            $i++
+          }
+
+          # 2) Purge jsDelivr (POST bulk)
           $paths = @(
             '/gh/alessandromeira81/football-analytics@main/api/daily-picks.json',
             '/gh/alessandromeira81/football-analytics@main/api/daily-picks/80.json',
@@ -97,6 +115,10 @@ jobs:
             '/gh/alessandromeira81/football-analytics@main/api/track-record/7d.json',
             '/gh/alessandromeira81/football-analytics@main/api/track-record/30d.json',
             '/gh/alessandromeira81/football-analytics@main/api/track-record/all.json',
+            '/gh/alessandromeira81/football-analytics@main/api/track-record-90.json',
+            '/gh/alessandromeira81/football-analytics@main/api/track-record-90/7d.json',
+            '/gh/alessandromeira81/football-analytics@main/api/track-record-90/30d.json',
+            '/gh/alessandromeira81/football-analytics@main/api/track-record-90/all.json',
             '/gh/alessandromeira81/football-analytics@main/api/index.json'
           )
           $body = @{ path = $paths } | ConvertTo-Json

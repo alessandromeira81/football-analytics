@@ -49,11 +49,15 @@ jobs:
         run: python assertividade_sync.py
         timeout-minutes: 5
 
+      - name: Gerar API publica (daily-picks + track-record)
+        run: python generate_api.py
+        timeout-minutes: 5
+
       - name: Commit updated data
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add *.json index.html
+          git add *.json index.html api/
           git diff --cached --quiet
           if ($LASTEXITCODE -ne 0) {
             $today = Get-Date -Format 'yyyy-MM-dd'

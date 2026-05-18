@@ -188,20 +188,21 @@ def normalize_bets(assert_meta, states):
 def build_track_record(bets, period, min_prob=None):
     """
     bets: lista normalizada (de normalize_bets)
-    period: '7d', '30d', 'all'
+    period: '7d', '30d', 'all' — periodo termina ONTEM (hoje exclusivo)
     min_prob: int (filtra bets com p_pct >= min_prob) ou None
     """
-    today = date.today()
+    today    = date.today()
+    yesterday = today - timedelta(days=1)
 
     if period == 'all':
-        start_date = None  # sem limite inferior
-        end_date   = today
+        start_date = None
+        end_date   = yesterday  # exclui hoje
         day_list   = None
     else:
         days = int(period.rstrip('d'))
-        end_date   = today
-        start_date = today - timedelta(days=days - 1)
-        # Lista completa de dias do periodo (oldest -> newest)
+        end_date   = yesterday                       # ultimo dia = ontem
+        start_date = yesterday - timedelta(days=days - 1)
+        # Lista completa de dias (oldest -> newest), N dias terminando ontem
         day_list = [(start_date + timedelta(days=i)).isoformat() for i in range(days)]
 
     # Filtra bets pelo periodo e min_prob

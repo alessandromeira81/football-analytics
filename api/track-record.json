@@ -2,16 +2,51 @@
   "period": "7d",
   "min_prob": null,
   "summary": {
-    "total": 5,
-    "wins": 5,
-    "losses": 0,
-    "win_rate": 1.0
+    "total": 30,
+    "wins": 27,
+    "losses": 3,
+    "win_rate": 0.9
   },
   "by_league": [
+    {
+      "league": "Serie A",
+      "total": 8,
+      "wins": 7,
+      "losses": 1,
+      "win_rate": 0.88
+    },
+    {
+      "league": "La Liga",
+      "total": 6,
+      "wins": 6,
+      "losses": 0,
+      "win_rate": 1.0
+    },
     {
       "league": "Saudi Pro League",
       "total": 5,
       "wins": 5,
+      "losses": 0,
+      "win_rate": 1.0
+    },
+    {
+      "league": "Ligue 1",
+      "total": 5,
+      "wins": 4,
+      "losses": 1,
+      "win_rate": 0.8
+    },
+    {
+      "league": "Premier League",
+      "total": 4,
+      "wins": 3,
+      "losses": 1,
+      "win_rate": 0.75
+    },
+    {
+      "league": "Brasileirao Serie A",
+      "total": 2,
+      "wins": 2,
       "losses": 0,
       "win_rate": 1.0
     }
@@ -19,17 +54,31 @@
   "by_market": [
     {
       "market": "Gols",
-      "total": 4,
-      "wins": 4,
+      "total": 24,
+      "wins": 22,
+      "losses": 2,
+      "win_rate": 0.92
+    },
+    {
+      "market": "Escanteios",
+      "total": 2,
+      "wins": 2,
       "losses": 0,
       "win_rate": 1.0
     },
     {
-      "market": "Escanteios",
-      "total": 1,
-      "wins": 1,
+      "market": "BTTS",
+      "total": 2,
+      "wins": 2,
       "losses": 0,
       "win_rate": 1.0
+    },
+    {
+      "market": "Resultado",
+      "total": 2,
+      "wins": 1,
+      "losses": 1,
+      "win_rate": 0.5
     }
   ],
   "daily_results": [
@@ -55,13 +104,13 @@
     },
     {
       "date": "2026-05-17",
-      "wins": 0,
-      "losses": 0
+      "wins": 21,
+      "losses": 2
     },
     {
       "date": "2026-05-18",
-      "wins": 0,
-      "losses": 0
+      "wins": 1,
+      "losses": 1
     },
     {
       "date": "2026-05-19",
@@ -69,5 +118,5 @@
       "losses": 0
     }
   ],
-  "generated_at": "2026-05-21T00:10:19Z"
+  "generated_at": "2026-05-21T00:23:40Z"
 }

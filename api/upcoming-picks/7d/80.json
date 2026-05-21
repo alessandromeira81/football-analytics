@@ -1,10 +1,10 @@
 {
-  "from_date": "2026-05-20",
-  "to_date": "2026-05-26",
+  "from_date": "2026-05-21",
+  "to_date": "2026-05-27",
   "days": 7,
-  "generated_at": "2026-05-21T01:12:37Z",
+  "generated_at": "2026-05-21T20:10:54Z",
   "min_prob": 80,
-  "count": 32,
+  "count": 31,
   "picks": [
     {
       "league": "Saudi Pro League",
@@ -18,7 +18,7 @@
       "label": "Over 8.5 escanteios",
       "probability": 87,
       "confidence_band": "85%",
-      "odds": 2.63,
+      "odds": null,
       "bet_id": "saudi|Al-Ittihad|Al-Qadsiah|Over 8.5 escanteios"
     },
     {
@@ -33,7 +33,7 @@
       "label": "Over 1.5 gols",
       "probability": 87,
       "confidence_band": "85%",
-      "odds": 1.1,
+      "odds": null,
       "bet_id": "saudi|Al-Nassr|Damac FC|Over 1.5 gols"
     },
     {
@@ -48,7 +48,7 @@
       "label": "Over 1.5 gols",
       "probability": 85,
       "confidence_band": "85%",
-      "odds": 3.6,
+      "odds": null,
       "bet_id": "saudi|Al-Hazem|Al-Taawoun|Over 1.5 gols"
     },
     {
@@ -63,7 +63,7 @@
       "label": "Vitoria Mandante",
       "probability": 83,
       "confidence_band": "80%",
-      "odds": 1.1,
+      "odds": null,
       "bet_id": "saudi|Al-Nassr|Damac FC|Vitoria Mandante"
     },
     {
@@ -78,7 +78,7 @@
       "label": "Under 3.5 gols",
       "probability": 83,
       "confidence_band": "80%",
-      "odds": 1.4,
+      "odds": null,
       "bet_id": "saudi|Al-Riyadh|Al-Okhdood|Under 3.5 gols"
     },
     {
@@ -93,23 +93,8 @@
       "label": "Over 1.5 gols",
       "probability": 82,
       "confidence_band": "80%",
-      "odds": 9,
+      "odds": null,
       "bet_id": "saudi|Al-Fayha|Al-Hilal|Over 1.5 gols"
-    },
-    {
-      "league": "Saudi Pro League",
-      "league_key": "saudi",
-      "home_team": "Al-Ittihad",
-      "away_team": "Al-Qadsiah",
-      "kickoff": "2026-05-21T00:00:00Z",
-      "date": "2026-05-21",
-      "market": "Escanteios",
-      "pick": "Over 9.5 escanteios",
-      "label": "Over 9.5 escanteios",
-      "probability": 80,
-      "confidence_band": "80%",
-      "odds": 2.63,
-      "bet_id": "saudi|Al-Ittihad|Al-Qadsiah|Over 9.5 escanteios"
     },
     {
       "league": "La Liga",
@@ -123,7 +108,7 @@
       "label": "Under 3.5 gols",
       "probability": 91,
       "confidence_band": "90%",
-      "odds": 2.35,
+      "odds": 2.4,
       "bet_id": "laliga|Getafe|Osasuna|Under 3.5 gols"
     },
     {
@@ -198,7 +183,7 @@
       "label": "Under 3.5 gols",
       "probability": 83,
       "confidence_band": "80%",
-      "odds": 2.82,
+      "odds": 3.1,
       "bet_id": "brasileirao|Vitória|Internacional|Under 3.5 gols"
     },
     {
@@ -303,7 +288,7 @@
       "label": "Under 3.5 gols",
       "probability": 88,
       "confidence_band": "85%",
-      "odds": 2.5,
+      "odds": 2.35,
       "bet_id": "premier|Burnley|Wolverhampton|Under 3.5 gols"
     },
     {
@@ -393,7 +378,7 @@
       "label": "Under 3.5 gols",
       "probability": 80,
       "confidence_band": "80%",
-      "odds": 1.81,
+      "odds": 1.79,
       "bet_id": "brasileirao|Flamengo|Palmeiras|Under 3.5 gols"
     },
     {
@@ -423,7 +408,7 @@
       "label": "Over 8.5 escanteios",
       "probability": 80,
       "confidence_band": "80%",
-      "odds": 1.33,
+      "odds": 1.29,
       "bet_id": "premier|Manchester City|Aston Villa|Over 8.5 escanteios"
     },
     {
@@ -453,7 +438,7 @@
       "label": "Under 3.5 gols",
       "probability": 80,
       "confidence_band": "80%",
-      "odds": 2.63,
+      "odds": 2.7,
       "bet_id": "seriea|Parma|Sassuolo|Under 3.5 gols"
     },
     {
@@ -468,7 +453,7 @@
       "label": "Under 3.5 gols",
       "probability": 80,
       "confidence_band": "80%",
-      "odds": 5,
+      "odds": 5.25,
       "bet_id": "seriea|Cremonese|Como|Under 3.5 gols"
     },
     {

@@ -43,6 +43,12 @@ jobs:
       - name: Re-inject JSON into HTML (refs now included)
         run: python scraper.py --inject --liga all
 
+      - name: Salva bets >=80% em betMeta (server-side)
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: python save_upcoming_bets.py
+        timeout-minutes: 5
+
       - name: Sync assertividade → Firestore
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}

@@ -3,7 +3,7 @@
   "base_url": "https://cdn.jsdelivr.net/gh/alessandromeira81/football-analytics@main/api",
   "cors": "open (Access-Control-Allow-Origin: *)",
   "auth": "none",
-  "updated_at": "2026-05-21T00:23:40Z",
+  "updated_at": "2026-05-21T01:12:37Z",
   "endpoints": [
     {
       "name": "daily-picks",
@@ -14,6 +14,21 @@
         "85%+": "/daily-picks/85.json",
         "90%+": "/daily-picks/90.json",
         "95%+": "/daily-picks/95.json"
+      }
+    },
+    {
+      "name": "upcoming-picks",
+      "description": "Picks dos proximos dias filtrados por probabilidade minima",
+      "urls": {
+        "default (3d, 90%+)": "/upcoming-picks.json",
+        "3 dias 80%+": "/upcoming-picks/3d/80.json",
+        "3 dias 85%+": "/upcoming-picks/3d/85.json",
+        "3 dias 90%+": "/upcoming-picks/3d/90.json",
+        "3 dias 95%+": "/upcoming-picks/3d/95.json",
+        "7 dias 80%+": "/upcoming-picks/7d/80.json",
+        "7 dias 85%+": "/upcoming-picks/7d/85.json",
+        "7 dias 90%+": "/upcoming-picks/7d/90.json",
+        "7 dias 95%+": "/upcoming-picks/7d/95.json"
       }
     },
     {

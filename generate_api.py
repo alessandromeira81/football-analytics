@@ -89,8 +89,49 @@ def get_bet_p(meta):
     return p
 
 
+def _format_pick(b, prob_pct):
+    """Formata um bet em um pick legivel."""
+    label  = b.get('label', '')
+    home   = b.get('home', '')
+    away   = b.get('away', '')
+    cat    = b.get('cat', '') or get_category(label)
+
+    # Odd: pega a primeira odd numerica do gameOdds dict
+    odds = None
+    game_odds = b.get('gameOdds') or {}
+    if isinstance(game_odds, dict):
+        for v in game_odds.values():
+            if isinstance(v, (int, float)) and v > 1:
+                odds = v
+                break
+
+    # Pick legivel
+    if   label == 'Vitoria Mandante':  pick_text = f'{home} vence'
+    elif label == 'Vitoria Visitante': pick_text = f'{away} vence'
+    elif label == 'Empate':            pick_text = 'Empate'
+    elif label == 'BTTS - Sim':        pick_text = 'Ambas marcam'
+    elif label == 'BTTS - Nao':        pick_text = 'Pelo menos um time nao marca'
+    else:                              pick_text = label
+
+    return {
+        'league':          b.get('leagueName', b.get('leagueKey', '')),
+        'league_key':      b.get('leagueKey', ''),
+        'home_team':       home,
+        'away_team':       away,
+        'kickoff':         b.get('date', '') + 'T00:00:00Z',
+        'date':            b.get('date', ''),
+        'market':          cat,
+        'pick':            pick_text,
+        'label':           label,
+        'probability':     prob_pct,
+        'confidence_band': confidence_band(prob_pct),
+        'odds':            odds,
+        'bet_id':          b.get('betId', ''),
+    }
+
+
 def build_daily_picks(all_bets, min_prob):
-    """Picks de hoje filtrados por min_prob."""
+    """Picks de HOJE filtrados por min_prob (ordenado por probabilidade desc)."""
     today = date.today().isoformat()
     picks = []
 
@@ -98,51 +139,39 @@ def build_daily_picks(all_bets, min_prob):
         if b.get('date') != today:
             continue
         p = b.get('p', 0)
-        if p > 1:
-            p = p / 100
+        if p > 1: p = p / 100
         prob_pct = round(p * 100)
         if prob_pct < min_prob:
             continue
-
-        label  = b.get('label', '')
-        home   = b.get('home', '')
-        away   = b.get('away', '')
-        cat    = b.get('cat', '') or get_category(label)
-        market = cat
-
-        # Odd: pega a primeira odd numerica do gameOdds dict
-        odds = None
-        game_odds = b.get('gameOdds') or {}
-        if isinstance(game_odds, dict):
-            for v in game_odds.values():
-                if isinstance(v, (int, float)) and v > 1:
-                    odds = v
-                    break
-
-        # Pick legivel
-        if label == 'Vitoria Mandante':       pick_text = f'{home} vence'
-        elif label == 'Vitoria Visitante':    pick_text = f'{away} vence'
-        elif label == 'Empate':               pick_text = 'Empate'
-        elif label == 'BTTS - Sim':           pick_text = 'Ambas marcam'
-        elif label == 'BTTS - Nao':           pick_text = 'Pelo menos um time nao marca'
-        else:                                  pick_text = label
-
-        picks.append({
-            'league':          b.get('leagueName', b.get('leagueKey', '')),
-            'league_key':      b.get('leagueKey', ''),
-            'home_team':       home,
-            'away_team':       away,
-            'kickoff':         b.get('date', '') + 'T00:00:00Z',
-            'market':          market,
-            'pick':            pick_text,
-            'label':           label,
-            'probability':     prob_pct,
-            'confidence_band': confidence_band(prob_pct),
-            'odds':            odds,
-            'bet_id':          b.get('betId', ''),
-        })
+        picks.append(_format_pick(b, prob_pct))
 
     picks.sort(key=lambda x: x['probability'], reverse=True)
+    return picks
+
+
+def build_upcoming_picks(all_bets, days, min_prob):
+    """
+    Picks dos PROXIMOS N dias (hoje inclusive ate hoje+days-1) filtrados por min_prob.
+    Ordem: data asc, depois probabilidade desc.
+    """
+    today      = date.today()
+    end_date   = today + timedelta(days=days - 1)
+    today_str  = today.isoformat()
+    end_str    = end_date.isoformat()
+
+    picks = []
+    for b in all_bets:
+        bet_date = b.get('date', '')
+        if not bet_date or bet_date < today_str or bet_date > end_str:
+            continue
+        p = b.get('p', 0)
+        if p > 1: p = p / 100
+        prob_pct = round(p * 100)
+        if prob_pct < min_prob:
+            continue
+        picks.append(_format_pick(b, prob_pct))
+
+    picks.sort(key=lambda x: (x['date'], -x['probability']))
     return picks
 
 
@@ -328,6 +357,35 @@ def main():
         'picks':        default_picks,
     })
 
+    # ─── UPCOMING PICKS (proximos N dias) ─────────────────────────────
+    print('\n→ Gerando upcoming-picks (proximos dias)...', flush=True)
+    today_d   = date.today()
+    for days in [3, 7]:
+        end_d = today_d + timedelta(days=days - 1)
+        for min_prob in [80, 85, 90, 95]:
+            picks = build_upcoming_picks(all_bets, days, min_prob)
+            write_json(API_DIR / 'upcoming-picks' / f'{days}d' / f'{min_prob}.json', {
+                'from_date':    today_d.isoformat(),
+                'to_date':      end_d.isoformat(),
+                'days':         days,
+                'generated_at': generated_at,
+                'min_prob':     min_prob,
+                'count':        len(picks),
+                'picks':        picks,
+            })
+
+    # Default: 3 dias, 90%+
+    default_upcoming = build_upcoming_picks(all_bets, 3, 90)
+    write_json(API_DIR / 'upcoming-picks.json', {
+        'from_date':    today_d.isoformat(),
+        'to_date':      (today_d + timedelta(days=2)).isoformat(),
+        'days':         3,
+        'generated_at': generated_at,
+        'min_prob':     90,
+        'count':        len(default_upcoming),
+        'picks':        default_upcoming,
+    })
+
     # ─── TRACK RECORD ─────────────────────────────────────────────────
     print('\n→ Normalizando bets para track-record...', flush=True)
     bets_norm = normalize_bets(assert_meta, states)
@@ -371,6 +429,21 @@ def main():
                     '85%+': '/daily-picks/85.json',
                     '90%+': '/daily-picks/90.json',
                     '95%+': '/daily-picks/95.json',
+                },
+            },
+            {
+                'name': 'upcoming-picks',
+                'description': 'Picks dos proximos dias filtrados por probabilidade minima',
+                'urls': {
+                    'default (3d, 90%+)': '/upcoming-picks.json',
+                    '3 dias 80%+': '/upcoming-picks/3d/80.json',
+                    '3 dias 85%+': '/upcoming-picks/3d/85.json',
+                    '3 dias 90%+': '/upcoming-picks/3d/90.json',
+                    '3 dias 95%+': '/upcoming-picks/3d/95.json',
+                    '7 dias 80%+': '/upcoming-picks/7d/80.json',
+                    '7 dias 85%+': '/upcoming-picks/7d/85.json',
+                    '7 dias 90%+': '/upcoming-picks/7d/90.json',
+                    '7 dias 95%+': '/upcoming-picks/7d/95.json',
                 },
             },
             {

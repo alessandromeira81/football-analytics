@@ -1,53 +1,7 @@
 {
-  "date": "2026-05-21",
-  "generated_at": "2026-05-21T20:10:54Z",
+  "date": "2026-05-22",
+  "generated_at": "2026-05-22T14:48:24Z",
   "min_prob": 85,
-  "count": 3,
-  "picks": [
-    {
-      "league": "Saudi Pro League",
-      "league_key": "saudi",
-      "home_team": "Al-Ittihad",
-      "away_team": "Al-Qadsiah",
-      "kickoff": "2026-05-21T00:00:00Z",
-      "date": "2026-05-21",
-      "market": "Escanteios",
-      "pick": "Over 8.5 escanteios",
-      "label": "Over 8.5 escanteios",
-      "probability": 87,
-      "confidence_band": "85%",
-      "odds": null,
-      "bet_id": "saudi|Al-Ittihad|Al-Qadsiah|Over 8.5 escanteios"
-    },
-    {
-      "league": "Saudi Pro League",
-      "league_key": "saudi",
-      "home_team": "Al-Nassr",
-      "away_team": "Damac FC",
-      "kickoff": "2026-05-21T00:00:00Z",
-      "date": "2026-05-21",
-      "market": "Gols",
-      "pick": "Over 1.5 gols",
-      "label": "Over 1.5 gols",
-      "probability": 87,
-      "confidence_band": "85%",
-      "odds": null,
-      "bet_id": "saudi|Al-Nassr|Damac FC|Over 1.5 gols"
-    },
-    {
-      "league": "Saudi Pro League",
-      "league_key": "saudi",
-      "home_team": "Al-Hazem",
-      "away_team": "Al-Taawoun",
-      "kickoff": "2026-05-21T00:00:00Z",
-      "date": "2026-05-21",
-      "market": "Gols",
-      "pick": "Over 1.5 gols",
-      "label": "Over 1.5 gols",
-      "probability": 85,
-      "confidence_band": "85%",
-      "odds": null,
-      "bet_id": "saudi|Al-Hazem|Al-Taawoun|Over 1.5 gols"
-    }
-  ]
+  "count": 0,
+  "picks": []
 }

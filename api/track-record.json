@@ -2,12 +2,19 @@
   "period": "7d",
   "min_prob": null,
   "summary": {
-    "total": 30,
-    "wins": 27,
-    "losses": 3,
-    "win_rate": 0.9
+    "total": 34,
+    "wins": 30,
+    "losses": 4,
+    "win_rate": 0.88
   },
   "by_league": [
+    {
+      "league": "Saudi Pro League",
+      "total": 9,
+      "wins": 8,
+      "losses": 1,
+      "win_rate": 0.89
+    },
     {
       "league": "Serie A",
       "total": 8,
@@ -19,13 +26,6 @@
       "league": "La Liga",
       "total": 6,
       "wins": 6,
-      "losses": 0,
-      "win_rate": 1.0
-    },
-    {
-      "league": "Saudi Pro League",
-      "total": 5,
-      "wins": 5,
       "losses": 0,
       "win_rate": 1.0
     },
@@ -54,10 +54,17 @@
   "by_market": [
     {
       "market": "Gols",
-      "total": 24,
-      "wins": 22,
-      "losses": 2,
-      "win_rate": 0.92
+      "total": 27,
+      "wins": 24,
+      "losses": 3,
+      "win_rate": 0.89
+    },
+    {
+      "market": "Resultado",
+      "total": 3,
+      "wins": 2,
+      "losses": 1,
+      "win_rate": 0.67
     },
     {
       "market": "Escanteios",
@@ -72,21 +79,9 @@
       "wins": 2,
       "losses": 0,
       "win_rate": 1.0
-    },
-    {
-      "market": "Resultado",
-      "total": 2,
-      "wins": 1,
-      "losses": 1,
-      "win_rate": 0.5
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-14",
-      "wins": 2,
-      "losses": 0
-    },
     {
       "date": "2026-05-15",
       "wins": 1,
@@ -116,7 +111,12 @@
       "date": "2026-05-20",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "date": "2026-05-21",
+      "wins": 5,
+      "losses": 1
     }
   ],
-  "generated_at": "2026-05-21T20:10:54Z"
+  "generated_at": "2026-05-22T14:48:24Z"
 }

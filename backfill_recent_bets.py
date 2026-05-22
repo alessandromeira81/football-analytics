@@ -24,7 +24,7 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding='utf-8')
 
 REPO_ROOT = Path(__file__).parent.absolute()
-HTML_PATH = REPO_ROOT / 'index.html'
+HTML_PATH = (REPO_ROOT / 'app.html' if (REPO_ROOT / 'app.html').exists() else REPO_ROOT / 'index.html')
 
 TARGET_DATES = ['2026-05-17', '2026-05-18', '2026-05-19']
 

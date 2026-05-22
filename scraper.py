@@ -444,10 +444,14 @@ def load_existing(out_file):
 # ─── Injecao no HTML ──────────────────────────────────────────────────────────
 
 def inject_into_html(league_key, data):
-    """Injeta dados da liga no bloco especifico do HTML."""
-    html_file = "index.html"
-    if not os.path.exists(html_file):
-        print(f"Aviso: {html_file} nao encontrado, injecao ignorada.", flush=True)
+    """Injeta dados da liga no bloco especifico do HTML do dashboard."""
+    # Tenta app.html (novo nome) primeiro; fallback para index.html (legado)
+    for cand in ("app.html", "index.html"):
+        if os.path.exists(cand):
+            html_file = cand
+            break
+    else:
+        print(f"Aviso: app.html/index.html nao encontrado, injecao ignorada.", flush=True)
         return
 
     with open(html_file, encoding="utf-8") as f:

@@ -20,10 +20,10 @@
   ],
   "rewrites": [
     { "source": "/",                "destination": "/landing.html" },
-    { "source": "/app",             "destination": "/index.html" },
-    { "source": "/dashboard",       "destination": "/index.html" },
+    { "source": "/index.html",      "destination": "/landing.html" },
+    { "source": "/app",             "destination": "/app.html" },
+    { "source": "/dashboard",       "destination": "/app.html" },
     { "source": "/precos",          "destination": "/precos.html" },
-    { "source": "/precos.html",     "destination": "/precos.html" },
     { "source": "/como-funciona",   "destination": "/como-funciona.html" },
     { "source": "/historico",       "destination": "/historico.html" },
     { "source": "/faq",             "destination": "/landing.html" },

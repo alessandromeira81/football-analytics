@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0b">
+<title>Estatísticas Pra Bet — Apostas baseadas em estatística, não em palpite</title>
+<meta name="description" content="Modelo estatístico treinado em 5 anos de dados de 8 ligas. Track record auditável e público. Apostas inteligentes, não palpite de tipster.">
+<meta property="og:title" content="Estatísticas Pra Bet">
+<meta property="og:description" content="Apostas baseadas em estatística. Track record auditável e público.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://raw.githubusercontent.com">
+<link rel="preconnect" href="https://flagcdn.com">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg:        '#0a0a0b',
+          surface:   '#141416',
+          surface2:  '#1c1c1f',
+          border:    '#27272a',
+          border2:   '#3f3f46',
+          muted:     '#71717a',
+          muted2:    '#a1a1aa',
+          fg:        '#fafafa',
+          accent:    '#8b5cf6',
+          accent2:   '#a78bfa',
+          green:     '#22c55e',
+          red:       '#ef4444',
+          yellow:    '#fbbf24',
+        },
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        },
+      }
+    }
+  };
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!-- ANALYTICS — substitua os IDs abaixo pelos seus e remova os comentários -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!-- Google Analytics 4 -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+-->
+<!-- Microsoft Clarity (heatmap + session recording) -->
+<!--
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "XXXXXXXXXX");
+</script>
+-->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #0a0a0b; color: #fafafa; }
+  .num { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+  .gradient-text {
+    background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 50%, #c084fc 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .glow {
+    box-shadow: 0 0 80px 0 rgba(139, 92, 246, 0.15);
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+  .card {
+    background: #141416; border: 1px solid #27272a; border-radius: 16px;
+    transition: border-color .2s, transform .2s;
+  }
+  .card:hover { border-color: #3f3f46; }
+  .btn-primary {
+    background: #8b5cf6; color: #fff; font-weight: 600; padding: 12px 24px; border-radius: 10px;
+    transition: all .15s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: #7c3aed; transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent; color: #fafafa; border: 1px solid #3f3f46; font-weight: 500;
+    padding: 12px 24px; border-radius: 10px; transition: all .15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { border-color: #71717a; background: rgba(255,255,255,.03); }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px;
+    border-radius: 999px; font-size: 12px; font-weight: 500;
+    border: 1px solid #27272a; background: rgba(255,255,255,.02);
+  }
+  .pick-card {
+    background: #141416; border: 1px solid #27272a; border-radius: 14px; padding: 18px;
+    transition: all .2s;
+  }
+  .pick-card:hover { border-color: #8b5cf6; transform: translateY(-2px); }
+  .bar { height: 8px; background: #27272a; border-radius: 999px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 999px; transition: width 1s ease-out; }
+  details summary { cursor: pointer; list-style: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details[open] .faq-arrow { transform: rotate(180deg); }
+  .faq-arrow { transition: transform .2s; }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- ─────────────── NAVBAR ─────────────── -->
+<nav class="sticky top-0 z-50 backdrop-blur bg-bg/80 border-b border-border">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center font-bold text-sm">⚽</div>
+      <span class="font-bold tracking-tight">Estatísticas Pra Bet</span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm text-muted2">
+      <a href="#como-funciona" class="hover:text-fg transition">Como funciona</a>
+      <a href="#historico" class="hover:text-fg transition">Histórico</a>
+      <a href="#precos" class="hover:text-fg transition">Preços</a>
+      <a href="#faq" class="hover:text-fg transition">FAQ</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <a href="/app" class="btn-primary text-sm" style="padding:8px 16px">
+        Acessar dashboard →
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─────────────── HERO ─────────────── -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-40"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bg"></div>
+  <div class="relative max-w-6xl mx-auto px-4 pt-16 md:pt-24 pb-12 md:pb-20">
+    <div class="text-center max-w-3xl mx-auto">
+      <div class="chip mb-6 inline-flex">
+        <span class="w-2 h-2 rounded-full bg-green pulse-dot"></span>
+        Modelo atualizado <span class="num" id="last-update">hoje</span>
+      </div>
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6">
+        Apostas com base em<br>
+        <span class="gradient-text">estatística</span>, não em palpite.
+      </h1>
+      <p class="text-lg md:text-xl text-muted2 mb-8 leading-relaxed">
+        Modelo treinado em <span class="font-semibold text-fg">5 anos</span> de dados de
+        <span class="font-semibold text-fg">8 ligas</span>.
+        Track record <span class="font-semibold text-fg">público e auditável</span>.
+        Não somos tipsters — somos números.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
+        <a href="#picks-hoje" class="btn-primary">
+          Ver picks de hoje grátis →
+        </a>
+        <a href="#como-funciona" class="btn-secondary">
+          Como funciona
+        </a>
+      </div>
+
+      <!-- Stats live -->
+      <div class="grid grid-cols-3 gap-4 md:gap-8 mt-12 md:mt-16 max-w-2xl mx-auto">
+        <div>
+          <div class="num text-3xl md:text-5xl font-bold text-green" id="stat-winrate">—</div>
+          <div class="text-xs md:text-sm text-muted2 mt-1">Acerto nos picks 90%+<br><span class="text-muted">últimos 30 dias</span></div>
+        </div>
+        <div>
+          <div class="num text-3xl md:text-5xl font-bold" id="stat-total">—</div>
+          <div class="text-xs md:text-sm text-muted2 mt-1">Picks registrados<br><span class="text-muted">no período</span></div>
+        </div>
+        <div>
+          <div class="num text-3xl md:text-5xl font-bold gradient-text" id="stat-leagues">8</div>
+          <div class="text-xs md:text-sm text-muted2 mt-1">Ligas cobertas<br><span class="text-muted">Brasil + Europa + Mundo</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── PICKS DE HOJE ─────────────── -->
+<section id="picks-hoje" class="py-16 md:py-20 border-t border-border">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <div class="chip mb-3 inline-flex">
+        <span class="w-2 h-2 rounded-full bg-accent pulse-dot"></span>
+        Atualizados todo dia 9h
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold mb-3">Picks de hoje, grátis</h2>
+      <p class="text-muted2">As 3 melhores recomendações do modelo para hoje. Sem cadastro.</p>
+    </div>
+    <div id="picks-container" class="grid md:grid-cols-3 gap-4">
+      <!-- Loading skeleton -->
+      <div class="pick-card animate-pulse"><div class="h-32 bg-surface2 rounded"></div></div>
+      <div class="pick-card animate-pulse"><div class="h-32 bg-surface2 rounded"></div></div>
+      <div class="pick-card animate-pulse"><div class="h-32 bg-surface2 rounded"></div></div>
+    </div>
+    <div class="text-center mt-8">
+      <a href="/app" class="btn-secondary">
+        Ver todos os picks no dashboard →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── COMO FUNCIONA ─────────────── -->
+<section id="como-funciona" class="py-16 md:py-20 border-t border-border bg-surface/30">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-3">Como funciona</h2>
+      <p class="text-muted2">Transparente, sem mágica. Só estatística.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card p-6">
+        <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/30 flex items-center justify-center mb-4 font-bold text-accent">1</div>
+        <h3 class="text-xl font-semibold mb-2">Modelo analisa</h3>
+        <p class="text-muted2 text-sm leading-relaxed">
+          Cruzamos <strong class="text-fg">200+ jogos por semana</strong> com 5 anos de histórico de cada time.
+          Calculamos probabilidades reais para 7 mercados (resultado, gols, escanteios, cartões, etc).
+        </p>
+      </div>
+      <div class="card p-6">
+        <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/30 flex items-center justify-center mb-4 font-bold text-accent">2</div>
+        <h3 class="text-xl font-semibold mb-2">Você recebe picks</h3>
+        <p class="text-muted2 text-sm leading-relaxed">
+          Apenas recomendações com <strong class="text-fg">probabilidade ≥ 80%</strong> chegam até você.
+          Separadas em 4 faixas de confiança: 80%+, 85%+, 90%+, 95%+.
+        </p>
+      </div>
+      <div class="card p-6">
+        <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/30 flex items-center justify-center mb-4 font-bold text-accent">3</div>
+        <h3 class="text-xl font-semibold mb-2">Histórico fica registrado</h3>
+        <p class="text-muted2 text-sm leading-relaxed">
+          Cada pick é <strong class="text-fg">registrado e auditável</strong>. Acertou ou errou, tudo público.
+          Você decide se confia no número, não em nossa palavra.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── TRACK RECORD ─────────────── -->
+<section id="historico" class="py-16 md:py-20 border-t border-border">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <div class="chip mb-3 inline-flex">📊 Atualizado em tempo real</div>
+      <h2 class="text-3xl md:text-4xl font-bold mb-3">Track record ao vivo</h2>
+      <p class="text-muted2">Não é marketing. Cada número aqui vem da API pública.</p>
+    </div>
+
+    <div class="card p-6 md:p-8 glow">
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Esquerda: bandas -->
+        <div>
+          <div class="text-sm text-muted2 mb-4 font-medium">ASSERTIVIDADE POR FAIXA — últimos 30 dias</div>
+          <div id="bands-chart" class="space-y-4">
+            <div class="text-muted">Carregando…</div>
+          </div>
+        </div>
+        <!-- Direita: ligas -->
+        <div>
+          <div class="text-sm text-muted2 mb-4 font-medium">DESEMPENHO POR LIGA — últimos 30 dias</div>
+          <div id="leagues-chart" class="space-y-3">
+            <div class="text-muted">Carregando…</div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 pt-6 border-t border-border text-center text-xs text-muted">
+        Dados consumidos diretamente de
+        <a href="https://raw.githubusercontent.com/alessandromeira81/football-analytics/main/api/track-record/30d.json"
+           class="text-accent hover:underline" target="_blank">/api/track-record/30d.json</a>
+        — verifique você mesmo.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── CALCULADORA ─────────────── -->
+<section class="py-16 md:py-20 border-t border-border bg-surface/30">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold mb-3">Quanto você teria ganho?</h2>
+      <p class="text-muted2">Simulação real: se você tivesse seguido nossos picks ≥90% nos últimos 30 dias.</p>
+    </div>
+    <div class="card p-6 md:p-8 glow">
+      <div class="mb-6">
+        <label class="block text-sm font-medium text-muted2 mb-3">
+          Valor por pick: <span class="text-accent num font-semibold" id="bet-value-label">R$ 100</span>
+        </label>
+        <input type="range" id="bet-value" min="10" max="1000" step="10" value="100"
+               class="w-full accent-accent">
+        <div class="flex justify-between text-xs text-muted mt-1">
+          <span>R$ 10</span><span>R$ 500</span><span>R$ 1.000</span>
+        </div>
+      </div>
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div>
+          <div class="text-xs text-muted2 mb-1">Investido</div>
+          <div class="num text-2xl md:text-3xl font-bold" id="calc-invested">—</div>
+        </div>
+        <div>
+          <div class="text-xs text-muted2 mb-1">Retorno bruto</div>
+          <div class="num text-2xl md:text-3xl font-bold" id="calc-return">—</div>
+        </div>
+        <div>
+          <div class="text-xs text-muted2 mb-1">Lucro</div>
+          <div class="num text-2xl md:text-3xl font-bold text-green" id="calc-profit">—</div>
+        </div>
+      </div>
+      <p class="text-xs text-muted text-center mt-6">
+        ⚠️ Simulação ilustrativa baseada em odd média de 1.50 e taxa de acerto real dos últimos 30 dias.
+        Apostas envolvem risco. Aposte com responsabilidade.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── DIFERENCIAL ─────────────── -->
+<section class="py-16 md:py-20 border-t border-border">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-3">Não somos tipsters de Instagram</h2>
+      <p class="text-muted2">A diferença é simples: <strong class="text-fg">números, não papo</strong>.</p>
+    </div>
+    <div class="card overflow-hidden">
+      <table class="w-full">
+        <thead>
+          <tr class="bg-surface2">
+            <th class="text-left p-4 text-sm font-semibold text-muted2"></th>
+            <th class="text-center p-4 text-sm font-semibold text-muted2">Tipsters do Insta</th>
+            <th class="text-center p-4 text-sm font-semibold bg-accent/10 text-accent">Estatísticas Pra Bet</th>
+          </tr>
+        </thead>
+        <tbody class="text-sm">
+          <tr class="border-t border-border"><td class="p-4">Track record auditável</td><td class="text-center p-4 text-red">❌ "fingem que ganham"</td><td class="text-center p-4 text-green bg-accent/5">✅ Tudo público, API aberta</td></tr>
+          <tr class="border-t border-border"><td class="p-4">Base estatística</td><td class="text-center p-4 text-red">❌ "feeling"</td><td class="text-center p-4 text-green bg-accent/5">✅ Modelo treinado, 5 anos</td></tr>
+          <tr class="border-t border-border"><td class="p-4">Cobertura</td><td class="text-center p-4 text-red">❌ 1-2 jogos/dia</td><td class="text-center p-4 text-green bg-accent/5">✅ 200+ por semana, 8 ligas</td></tr>
+          <tr class="border-t border-border"><td class="p-4">Cancelamento</td><td class="text-center p-4 text-red">❌ "comprou, comprou"</td><td class="text-center p-4 text-green bg-accent/5">✅ A qualquer momento</td></tr>
+          <tr class="border-t border-border"><td class="p-4">Transparência de erros</td><td class="text-center p-4 text-red">❌ apaga os red</td><td class="text-center p-4 text-green bg-accent/5">✅ verde E vermelho público</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── PREÇOS ─────────────── -->
+<section id="precos" class="py-16 md:py-20 border-t border-border bg-surface/30">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <div class="chip mb-3 inline-flex bg-yellow/10 border-yellow/30 text-yellow">
+        🎉 Por tempo limitado: tudo grátis
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold mb-3">Preços</h2>
+      <p class="text-muted2">Hoje 100% grátis. Em breve, planos pagos. Quem assina antes do lançamento ganha desconto vitalício.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+
+      <!-- FREE -->
+      <div class="card p-6">
+        <div class="text-sm font-semibold text-muted2 mb-1">FREE</div>
+        <div class="flex items-baseline gap-1 mb-4">
+          <span class="num text-4xl font-bold">R$ 0</span>
+          <span class="text-muted">/mês</span>
+        </div>
+        <p class="text-sm text-muted2 mb-5">Para conhecer o modelo.</p>
+        <ul class="space-y-2 text-sm mb-6">
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> 1 liga à escolha</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Top 3 picks do dia</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Histórico básico (7 dias)</li>
+          <li class="flex items-start gap-2 text-muted"><span class="mt-0.5">✗</span> Sem alertas</li>
+          <li class="flex items-start gap-2 text-muted"><span class="mt-0.5">✗</span> Sem comparação com mercado</li>
+        </ul>
+        <a href="/app" class="btn-secondary w-full justify-center">Acessar grátis</a>
+      </div>
+
+      <!-- PRO -->
+      <div class="card p-6 border-accent relative" style="border-color:#8b5cf6">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 chip bg-accent text-white border-accent">⭐ Mais popular</div>
+        <div class="text-sm font-semibold text-accent mb-1">PRO</div>
+        <div class="flex items-baseline gap-1 mb-1">
+          <span class="num text-4xl font-bold gradient-text">R$ 79</span>
+          <span class="text-muted">/mês</span>
+        </div>
+        <p class="text-xs text-muted line-through mb-4">de R$ 149/mês</p>
+        <p class="text-sm text-muted2 mb-5">Para apostador sério.</p>
+        <ul class="space-y-2 text-sm mb-6">
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> <strong>Todas</strong> as 8 ligas</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Picks ilimitados (80% a 95%+)</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Histórico completo + filtros</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Alertas via Telegram</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Value vs mercado (odd vs modelo)</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Calculadora de múltiplas</li>
+        </ul>
+        <button onclick="notifyMe('pro')" class="btn-primary w-full justify-center">
+          Avise-me no lançamento
+        </button>
+      </div>
+
+      <!-- TRADER -->
+      <div class="card p-6">
+        <div class="text-sm font-semibold text-muted2 mb-1">TRADER</div>
+        <div class="flex items-baseline gap-1 mb-4">
+          <span class="num text-4xl font-bold">R$ 199</span>
+          <span class="text-muted">/mês</span>
+        </div>
+        <p class="text-sm text-muted2 mb-5">Para quem opera profissionalmente.</p>
+        <ul class="space-y-2 text-sm mb-6">
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Tudo do Pro</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> <strong>API JSON</strong> própria</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Bot Telegram personalizado</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Gerenciamento de banca</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Suporte prioritário</li>
+        </ul>
+        <button onclick="notifyMe('trader')" class="btn-secondary w-full justify-center">
+          Avise-me no lançamento
+        </button>
+      </div>
+    </div>
+    <p class="text-center text-xs text-muted mt-8">
+      💡 Lista de espera vitalícia: assine o aviso e ganhe <strong class="text-fg">50% de desconto pra sempre</strong> quando os planos abrirem.
+    </p>
+  </div>
+</section>
+
+<!-- ─────────────── FAQ ─────────────── -->
+<section id="faq" class="py-16 md:py-20 border-t border-border">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-3">Perguntas frequentes</h2>
+    </div>
+    <div class="space-y-3">
+
+      <details class="card p-5">
+        <summary class="flex items-center justify-between font-semibold">
+          Vocês garantem que vou ganhar dinheiro?
+          <span class="faq-arrow text-muted">▼</span>
+        </summary>
+        <p class="text-muted2 text-sm mt-3 leading-relaxed">
+          <strong class="text-red">Não.</strong> Nenhum modelo estatístico é 100%. Apresentamos probabilidades —
+          se um pick é 90%, significa que historicamente 9 em cada 10 jogos similares foram acertados.
+          Sobra 10% de chance de errar. Aposta sempre envolve risco. Nosso compromisso é com a transparência,
+          não com promessas vazias.
+        </p>
+      </details>
+
+      <details class="card p-5">
+        <summary class="flex items-center justify-between font-semibold">
+          Como sei que o track record é real e não maquiado?
+          <span class="faq-arrow text-muted">▼</span>
+        </summary>
+        <p class="text-muted2 text-sm mt-3 leading-relaxed">
+          Toda a base de dados é <strong class="text-fg">pública via API JSON</strong>.
+          Você pode consultar a qualquer momento, comparar com os jogos reais, e auditar.
+          Inclusive os erros (vermelhos) ficam registrados — não apagamos nada.
+        </p>
+        <p class="text-xs text-accent mt-3">
+          → <a href="https://raw.githubusercontent.com/alessandromeira81/football-analytics/main/api/track-record/all.json" target="_blank" class="hover:underline">Acesse o histórico completo (JSON)</a>
+        </p>
+      </details>
+
+      <details class="card p-5">
+        <summary class="flex items-center justify-between font-semibold">
+          Qual a diferença entre 80%, 85%, 90% e 95%?
+          <span class="faq-arrow text-muted">▼</span>
+        </summary>
+        <div class="text-muted2 text-sm mt-3 leading-relaxed space-y-2">
+          <p>São faixas de confiança do nosso modelo:</p>
+          <p>🎯 <strong class="text-fg">95%+</strong> — "Quase certo". Raríssimas. Use unidades altas.</p>
+          <p>🟢 <strong class="text-fg">90-95%</strong> — "Alta confiança". Recomendado pra escolhas principais.</p>
+          <p>🟡 <strong class="text-fg">85-90%</strong> — "Boa confiança". Bom risco/retorno.</p>
+          <p>🟠 <strong class="text-fg">80-85%</strong> — "Confiança razoável". Use unidades menores.</p>
+        </div>
+      </details>
+
+      <details class="card p-5">
+        <summary class="flex items-center justify-between font-semibold">
+          Quais ligas vocês cobrem?
+          <span class="faq-arrow text-muted">▼</span>
+        </summary>
+        <div class="text-muted2 text-sm mt-3 leading-relaxed">
+          🇧🇷 Brasileirão Série A · 🇬🇧 Premier League · 🇪🇸 La Liga · 🇩🇪 Bundesliga ·
+          🇫🇷 Ligue 1 · 🇮🇹 Serie A · 🇸🇦 Saudi Pro League · 🇦🇷 Liga Profesional
+        </div>
+      </details>
+
+      <details class="card p-5">
+        <summary class="flex items-center justify-between font-semibold">
+          Posso cancelar quando quiser?
+          <span class="faq-arrow text-muted">▼</span>
+        </summary>
+        <p class="text-muted2 text-sm mt-3 leading-relaxed">
+          Sim. Quando os planos pagos forem lançados, cancelamento será 1-clique no painel,
+          sem fidelidade, sem multa.
+        </p>
+      </details>
+
+      <details class="card p-5">
+        <summary class="flex items-center justify-between font-semibold">
+          Vocês são uma casa de apostas?
+          <span class="faq-arrow text-muted">▼</span>
+        </summary>
+        <p class="text-muted2 text-sm mt-3 leading-relaxed">
+          <strong class="text-red">Não.</strong> Não recebemos apostas, não pagamos prêmios, não somos operadora.
+          Somos um serviço de análise estatística. Você usa a informação como quiser (ou onde apostar).
+        </p>
+      </details>
+
+      <details class="card p-5">
+        <summary class="flex items-center justify-between font-semibold">
+          Tenho menos de 18 anos. Posso usar?
+          <span class="faq-arrow text-muted">▼</span>
+        </summary>
+        <p class="text-muted2 text-sm mt-3 leading-relaxed">
+          <strong class="text-red">Não.</strong> Apostas são restritas a maiores de 18 anos no Brasil.
+          Este serviço é destinado exclusivamente a adultos.
+        </p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── CTA FINAL ─────────────── -->
+<section class="py-16 md:py-20 border-t border-border">
+  <div class="max-w-3xl mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-5xl font-bold mb-4">
+      Pronto pra apostar com <span class="gradient-text">dados</span>?
+    </h2>
+    <p class="text-lg text-muted2 mb-8">
+      Sem cadastro. Sem cartão. Acesso completo enquanto está em beta.
+    </p>
+    <a href="/app" class="btn-primary text-lg" style="padding:16px 32px">
+      Acessar dashboard agora →
+    </a>
+  </div>
+</section>
+
+<!-- ─────────────── FOOTER ─────────────── -->
+<footer class="border-t border-border bg-surface/30 py-12">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid md:grid-cols-4 gap-8 mb-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center font-bold text-sm">⚽</div>
+          <span class="font-bold">Estatísticas Pra Bet</span>
+        </div>
+        <p class="text-sm text-muted2 leading-relaxed mb-3 max-w-md">
+          Análise estatística de futebol baseada em 5 anos de dados.
+          Track record público, modelo auditável.
+        </p>
+        <div class="chip text-xs">
+          <span>+18 ANOS</span>
+        </div>
+      </div>
+      <div>
+        <div class="text-sm font-semibold mb-3">Produto</div>
+        <ul class="space-y-2 text-sm text-muted2">
+          <li><a href="/app" class="hover:text-fg">Dashboard</a></li>
+          <li><a href="#historico" class="hover:text-fg">Histórico</a></li>
+          <li><a href="#precos" class="hover:text-fg">Preços</a></li>
+          <li><a href="#faq" class="hover:text-fg">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-sm font-semibold mb-3">API pública</div>
+        <ul class="space-y-2 text-sm text-muted2">
+          <li><a href="https://raw.githubusercontent.com/alessandromeira81/football-analytics/main/api/index.json" target="_blank" class="hover:text-fg">Endpoints</a></li>
+          <li><a href="https://raw.githubusercontent.com/alessandromeira81/football-analytics/main/api/track-record.json" target="_blank" class="hover:text-fg">Track record</a></li>
+          <li><a href="https://raw.githubusercontent.com/alessandromeira81/football-analytics/main/api/daily-picks.json" target="_blank" class="hover:text-fg">Picks do dia</a></li>
+          <li><a href="https://github.com/alessandromeira81/football-analytics" target="_blank" class="hover:text-fg">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Responsible gambling -->
+    <div class="border-t border-border pt-6">
+      <div class="card p-5 bg-yellow/5 border-yellow/30">
+        <div class="flex items-start gap-3">
+          <div class="text-2xl">⚠️</div>
+          <div>
+            <div class="font-semibold text-yellow mb-1">Aposte com responsabilidade</div>
+            <p class="text-xs text-muted2 leading-relaxed">
+              Apostas envolvem risco financeiro. Nenhum modelo garante resultado. Aposte apenas o que pode perder.
+              Se sentir que está perdendo o controle, procure ajuda: <strong class="text-fg">jogadoresanonimos.com.br</strong>
+              ou ligue 0800-119-119 (CVV).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-border mt-6 pt-6 flex flex-col md:flex-row justify-between gap-3 text-xs text-muted">
+      <div>© 2026 Estatísticas Pra Bet. Não somos uma operadora de apostas.</div>
+      <div>Modelo atualizado automaticamente todo dia às 9h BRT.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─────────────── SCRIPTS ─────────────── -->
+<script>
+const API_BASE = 'https://raw.githubusercontent.com/alessandromeira81/football-analytics/main/api';
+
+// Mapeamento liga → bandeira
+const FLAGS = {
+  brasileirao: 'br', premier: 'gb-eng', laliga: 'es',
+  bundesliga: 'de', ligue1: 'fr', seriea: 'it',
+  saudi: 'sa', argentina: 'ar',
+};
+
+// ── Carrega track record 30d e popula hero stats + bands + leagues
+async function loadTrackRecord() {
+  try {
+    const r = await fetch(`${API_BASE}/track-record/30d.json`);
+    const d = await r.json();
+    const tr90 = await (await fetch(`${API_BASE}/track-record-90/30d.json`)).json();
+
+    // Hero stats
+    document.getElementById('stat-winrate').textContent =
+      Math.round((tr90.summary.win_rate || 0) * 100) + '%';
+    document.getElementById('stat-total').textContent = d.summary.total;
+    document.getElementById('last-update').textContent =
+      new Date(d.generated_at).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
+
+    // Bandas
+    const bandsEl = document.getElementById('bands-chart');
+    const bandsData = [
+      { label: '🎯 95%+ Quase certo',   total: 0, wins: 0, rate: 0 },
+      { label: '🟢 90-95% Alta',         total: 0, wins: 0, rate: 0 },
+      { label: '🟡 85-90% Boa',          total: 0, wins: 0, rate: 0 },
+      { label: '🟠 80-85% Razoável',     total: 0, wins: 0, rate: 0 },
+    ];
+    if (d.by_band) {
+      d.by_band.forEach(b => {
+        const idx = { '95%+':0, '90%+':1, '85%+':2, '80%+':3 }[b.band];
+        if (idx !== undefined) {
+          bandsData[idx].total = b.total;
+          bandsData[idx].wins = b.wins;
+          bandsData[idx].rate = b.total > 0 ? Math.round(b.wins/b.total*100) : 0;
+        }
+      });
+    }
+    bandsEl.innerHTML = bandsData.map(b => {
+      const rate = b.rate;
+      const color = rate >= 80 ? '#22c55e' : rate >= 60 ? '#fbbf24' : rate >= 40 ? '#f97316' : '#ef4444';
+      return `
+        <div>
+          <div class="flex justify-between text-sm mb-1.5">
+            <span>${b.label}</span>
+            <span class="num text-muted2">${b.wins}/${b.total} <span class="font-semibold" style="color:${color}">${rate}%</span></span>
+          </div>
+          <div class="bar"><div class="bar-fill" style="width:${rate}%;background:${color}"></div></div>
+        </div>
+      `;
+    }).join('');
+
+    // Ligas
+    const lEl = document.getElementById('leagues-chart');
+    const leagues = (d.by_league || []).slice(0, 8);
+    if (leagues.length === 0) {
+      lEl.innerHTML = '<div class="text-muted text-sm">Sem dados no período.</div>';
+    } else {
+      lEl.innerHTML = leagues.map(l => {
+        const lk = Object.keys(FLAGS).find(k => l.league.toLowerCase().includes(k.replace('brasileirao','brasileirao'))) || 'un';
+        const flag = `https://flagcdn.com/w40/${FLAGS[lk] || 'un'}.png`;
+        const rate = Math.round((l.win_rate || 0) * 100);
+        const color = rate >= 80 ? '#22c55e' : rate >= 60 ? '#fbbf24' : rate >= 40 ? '#f97316' : '#ef4444';
+        return `
+          <div class="flex items-center gap-3">
+            <img src="${flag}" class="w-7 h-5 rounded" alt="">
+            <div class="flex-1">
+              <div class="flex justify-between text-sm mb-1">
+                <span>${l.league}</span>
+                <span class="num text-muted2">${l.wins}/${l.total} <span class="font-semibold" style="color:${color}">${rate}%</span></span>
+              </div>
+              <div class="bar"><div class="bar-fill" style="width:${rate}%;background:${color}"></div></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Calculadora
+    updateCalculator(tr90.summary);
+  } catch (e) {
+    console.warn('Erro ao carregar track record:', e);
+    document.getElementById('stat-winrate').textContent = '—';
+    document.getElementById('stat-total').textContent = '—';
+  }
+}
+
+// ── Carrega picks de hoje ≥85% (mostra 3 melhores)
+async function loadDailyPicks() {
+  try {
+    const r = await fetch(`${API_BASE}/daily-picks/85.json`);
+    const d = await r.json();
+    const picks = (d.picks || []).slice(0, 3);
+    const container = document.getElementById('picks-container');
+
+    if (picks.length === 0) {
+      // Tenta upcoming
+      const u = await (await fetch(`${API_BASE}/upcoming-picks/3d/85.json`)).json();
+      const upicks = (u.picks || []).slice(0, 3);
+      if (upicks.length === 0) {
+        container.innerHTML = `
+          <div class="md:col-span-3 text-center py-12">
+            <div class="text-4xl mb-3">⏳</div>
+            <p class="text-muted2">Nenhum pick acima de 85% para hoje ou próximos 3 dias.</p>
+            <p class="text-sm text-muted mt-2">Veja todos os picks (incluindo 80%+) no dashboard.</p>
+          </div>
+        `;
+        return;
+      }
+      container.innerHTML = upicks.map(p => renderPick(p, true)).join('');
+      return;
+    }
+    container.innerHTML = picks.map(p => renderPick(p, false)).join('');
+  } catch (e) {
+    console.warn('Erro ao carregar picks:', e);
+    document.getElementById('picks-container').innerHTML = '<div class="md:col-span-3 text-center text-muted py-8">Erro ao carregar picks.</div>';
+  }
+}
+
+function renderPick(p, showDate) {
+  const flag = FLAGS[p.league_key] || 'un';
+  const flagUrl = `https://flagcdn.com/w40/${flag}.png`;
+  const bandColor = p.probability >= 95 ? '#22c55e' : p.probability >= 90 ? '#84cc16' : p.probability >= 85 ? '#eab308' : '#f97316';
+  const dateStr = showDate ? `<span class="text-xs text-muted2">${formatDate(p.date)} · </span>` : '';
+  const oddsStr = p.odds ? `<span class="num">odd ${Number(p.odds).toFixed(2)}</span>` : '';
+  return `
+    <div class="pick-card">
+      <div class="flex items-center gap-2 mb-3">
+        <img src="${flagUrl}" class="w-6 h-4 rounded" alt="">
+        <span class="text-xs text-muted2 truncate">${p.league}</span>
+        <span class="ml-auto chip num" style="color:${bandColor};border-color:${bandColor}40">${p.probability}%</span>
+      </div>
+      <div class="font-semibold mb-1 text-sm">${p.home_team} × ${p.away_team}</div>
+      <div class="text-accent font-medium mb-3">${p.pick}</div>
+      <div class="flex items-center justify-between text-xs text-muted">
+        <span>${p.market}</span>
+        <span class="num">${dateStr}${oddsStr}</span>
+      </div>
+    </div>
+  `;
+}
+
+function formatDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso + 'T12:00:00');
+  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+}
+
+// ── Calculadora
+let calcSummary = { total: 0, wins: 0, win_rate: 0 };
+
+function updateCalculator(summary) {
+  if (summary) calcSummary = summary;
+  const bet = parseInt(document.getElementById('bet-value').value);
+  document.getElementById('bet-value-label').textContent =
+    'R$ ' + bet.toLocaleString('pt-BR');
+
+  const total    = calcSummary.total || 0;
+  const wins     = calcSummary.wins  || 0;
+  const avgOdd   = 1.50;  // odd média conservadora dos picks 90%+
+  const invested = bet * total;
+  const returned = wins * bet * avgOdd;
+  const profit   = returned - invested;
+
+  document.getElementById('calc-invested').textContent =
+    'R$ ' + invested.toLocaleString('pt-BR', { maximumFractionDigits: 0 });
+  document.getElementById('calc-return').textContent =
+    'R$ ' + Math.round(returned).toLocaleString('pt-BR');
+  document.getElementById('calc-profit').textContent =
+    (profit >= 0 ? '+' : '') + 'R$ ' + Math.round(profit).toLocaleString('pt-BR');
+  document.getElementById('calc-profit').style.color =
+    profit >= 0 ? '#22c55e' : '#ef4444';
+}
+
+document.getElementById('bet-value').addEventListener('input', () => updateCalculator());
+
+// ── Notify me (lista de espera)
+function notifyMe(tier) {
+  // Por enquanto: prompt simples. Depois: integrar com email service.
+  const email = prompt(`Te avisamos quando o plano ${tier.toUpperCase()} lançar.\n\nDigite seu email:`);
+  if (email && email.includes('@')) {
+    try {
+      const list = JSON.parse(localStorage.getItem('waitlist') || '[]');
+      list.push({ email, tier, ts: new Date().toISOString() });
+      localStorage.setItem('waitlist', JSON.stringify(list));
+    } catch(e) {}
+    alert(`✓ Anotado! Te avisamos no email ${email} quando o ${tier.toUpperCase()} lançar.\nVocê ganhará 50% de desconto vitalício.`);
+  }
+}
+
+// ── Init
+loadTrackRecord();
+loadDailyPicks();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0b">
+<title>Preços — Estatísticas Pra Bet</title>
+<meta name="description" content="Planos da Estatísticas Pra Bet. Hoje 100% grátis. Lista de espera vitalícia: 50% de desconto pra sempre quando os planos pagos abrirem.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    bg:'#0a0a0b', surface:'#141416', surface2:'#1c1c1f', border:'#27272a', border2:'#3f3f46',
+    muted:'#71717a', muted2:'#a1a1aa', fg:'#fafafa',
+    accent:'#8b5cf6', accent2:'#a78bfa', green:'#22c55e', red:'#ef4444', yellow:'#fbbf24'
+  }, fontFamily:{ sans:['Inter','sans-serif'], mono:['JetBrains Mono','monospace'] } } } };
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- ANALYTICS — descomente e preencha IDs em /analytics-setup.md -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX')</script>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","XXXXXXXXXX")</script> -->
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #0a0a0b; color: #fafafa; }
+  .num { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+  .gradient-text {
+    background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 50%, #c084fc 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .card { background:#141416; border:1px solid #27272a; border-radius:16px; }
+  .chip { display:inline-flex; align-items:center; gap:6px; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:500; border:1px solid #27272a; background: rgba(255,255,255,.02); }
+  .btn-primary { background:#8b5cf6; color:#fff; font-weight:600; padding:12px 24px; border-radius:10px; transition:all .15s; display:inline-flex; align-items:center; gap:8px; }
+  .btn-primary:hover { background:#7c3aed; transform: translateY(-1px); }
+  .btn-secondary { background:transparent; color:#fafafa; border:1px solid #3f3f46; font-weight:500; padding:12px 24px; border-radius:10px; transition:all .15s; display:inline-flex; align-items:center; gap:8px; }
+  .btn-secondary:hover { border-color:#71717a; background: rgba(255,255,255,.03); }
+</style>
+</head>
+<body class="min-h-screen">
+
+<nav class="sticky top-0 z-50 backdrop-blur bg-bg/80 border-b border-border">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center font-bold text-sm">⚽</div>
+      <span class="font-bold tracking-tight">Estatísticas Pra Bet</span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm text-muted2">
+      <a href="/como-funciona" class="hover:text-fg">Como funciona</a>
+      <a href="/historico" class="hover:text-fg">Histórico</a>
+      <a href="/precos" class="text-fg font-medium">Preços</a>
+      <a href="/#faq" class="hover:text-fg">FAQ</a>
+    </div>
+    <a href="/app" class="btn-primary text-sm" style="padding:8px 16px">Dashboard →</a>
+  </div>
+</nav>
+
+<section class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <div class="chip mb-3 inline-flex bg-yellow/10 border-yellow/30 text-yellow">
+        🎉 Beta aberto: tudo 100% grátis
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Preços simples e honestos</h1>
+      <p class="text-lg text-muted2 max-w-2xl mx-auto">
+        Hoje todos os recursos liberados. Quando lançarmos os planos pagos, quem entrou
+        agora na lista de espera ganha <strong class="text-fg">50% de desconto vitalício</strong>.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-12">
+
+      <div class="card p-6">
+        <div class="text-sm font-semibold text-muted2 mb-1">FREE</div>
+        <div class="flex items-baseline gap-1 mb-4">
+          <span class="num text-4xl font-bold">R$ 0</span><span class="text-muted">/mês</span>
+        </div>
+        <p class="text-sm text-muted2 mb-5">Para conhecer o modelo.</p>
+        <ul class="space-y-2 text-sm mb-6">
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> 1 liga à escolha</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Top 3 picks do dia</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Histórico básico (7 dias)</li>
+          <li class="flex items-start gap-2 text-muted"><span class="mt-0.5">✗</span> Sem alertas</li>
+          <li class="flex items-start gap-2 text-muted"><span class="mt-0.5">✗</span> Sem value vs mercado</li>
+        </ul>
+        <a href="/app" class="btn-secondary w-full justify-center">Acessar grátis</a>
+      </div>
+
+      <div class="card p-6 relative" style="border-color:#8b5cf6">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 chip bg-accent text-white border-accent">⭐ Mais popular</div>
+        <div class="text-sm font-semibold text-accent mb-1">PRO</div>
+        <div class="flex items-baseline gap-1 mb-1">
+          <span class="num text-4xl font-bold gradient-text">R$ 79</span><span class="text-muted">/mês</span>
+        </div>
+        <p class="text-xs text-muted line-through mb-4">de R$ 149/mês</p>
+        <p class="text-sm text-muted2 mb-5">Para apostador sério.</p>
+        <ul class="space-y-2 text-sm mb-6">
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> <strong>8 ligas</strong> completas</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Picks ilimitados (80–95%+)</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Histórico completo + filtros</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Alertas no Telegram</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Value vs odds de mercado</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Calculadora de múltiplas</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Trial 7 dias grátis (sem cartão)</li>
+        </ul>
+        <button onclick="notifyMe('pro')" class="btn-primary w-full justify-center">Avise-me no lançamento</button>
+      </div>
+
+      <div class="card p-6">
+        <div class="text-sm font-semibold text-muted2 mb-1">TRADER</div>
+        <div class="flex items-baseline gap-1 mb-4">
+          <span class="num text-4xl font-bold">R$ 199</span><span class="text-muted">/mês</span>
+        </div>
+        <p class="text-sm text-muted2 mb-5">Para quem opera profissionalmente.</p>
+        <ul class="space-y-2 text-sm mb-6">
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Tudo do Pro</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> <strong>API JSON</strong> dedicada</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Bot Telegram personalizado</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Gerenciamento de banca</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Multi-sessões</li>
+          <li class="flex items-start gap-2"><span class="text-green mt-0.5">✓</span> Suporte prioritário</li>
+        </ul>
+        <button onclick="notifyMe('trader')" class="btn-secondary w-full justify-center">Avise-me no lançamento</button>
+      </div>
+    </div>
+
+    <div class="card p-6 md:p-8">
+      <h2 class="text-xl font-semibold mb-4">Como funciona a lista de espera</h2>
+      <div class="grid md:grid-cols-3 gap-6 text-sm">
+        <div>
+          <div class="text-3xl mb-2">1️⃣</div>
+          <div class="font-semibold mb-1">Você entra na lista</div>
+          <p class="text-muted2">Deixa seu email no botão "Avise-me". Não cobramos nada.</p>
+        </div>
+        <div>
+          <div class="text-3xl mb-2">2️⃣</div>
+          <div class="font-semibold mb-1">Usa de graça hoje</div>
+          <p class="text-muted2">Acesso 100% liberado enquanto estamos em beta.</p>
+        </div>
+        <div>
+          <div class="text-3xl mb-2">3️⃣</div>
+          <div class="font-semibold mb-1">50% off vitalício</div>
+          <p class="text-muted2">Quando lançarmos os planos pagos, você paga metade — para sempre.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <h2 class="text-2xl font-bold mb-4">Comparação completa</h2>
+      <div class="card overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="text-muted2 text-xs uppercase">
+            <tr class="border-b border-border">
+              <th class="text-left p-4 font-semibold">Recurso</th>
+              <th class="text-center p-4 font-semibold">Free</th>
+              <th class="text-center p-4 font-semibold bg-accent/5">Pro</th>
+              <th class="text-center p-4 font-semibold">Trader</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-border"><td class="text-left p-3">Ligas cobertas</td><td class="p-3">1</td><td class="p-3 bg-accent/5 font-semibold">8</td><td class="p-3 font-semibold">8</td></tr>
+            <tr class="border-b border-border"><td class="text-left p-3">Picks por dia</td><td class="p-3">Top 3</td><td class="p-3 bg-accent/5">Ilimitado</td><td class="p-3">Ilimitado</td></tr>
+            <tr class="border-b border-border"><td class="text-left p-3">Histórico</td><td class="p-3">7 dias</td><td class="p-3 bg-accent/5">Completo</td><td class="p-3">Completo</td></tr>
+            <tr class="border-b border-border"><td class="text-left p-3">Filtros (liga, tipo, banda)</td><td class="p-3 text-muted">—</td><td class="p-3 bg-accent/5 text-green">✓</td><td class="p-3 text-green">✓</td></tr>
+            <tr class="border-b border-border"><td class="text-left p-3">Alertas Telegram</td><td class="p-3 text-muted">—</td><td class="p-3 bg-accent/5 text-green">✓</td><td class="p-3 text-green">Customizável</td></tr>
+            <tr class="border-b border-border"><td class="text-left p-3">Value vs mercado</td><td class="p-3 text-muted">—</td><td class="p-3 bg-accent/5 text-green">✓</td><td class="p-3 text-green">✓</td></tr>
+            <tr class="border-b border-border"><td class="text-left p-3">Calculadora múltiplas</td><td class="p-3 text-muted">—</td><td class="p-3 bg-accent/5 text-green">✓</td><td class="p-3 text-green">Avançada</td></tr>
+            <tr class="border-b border-border"><td class="text-left p-3">API JSON dedicada</td><td class="p-3 text-muted">—</td><td class="p-3 bg-accent/5 text-muted">—</td><td class="p-3 text-green">✓</td></tr>
+            <tr class="border-b border-border"><td class="text-left p-3">Gerenciamento de banca</td><td class="p-3 text-muted">—</td><td class="p-3 bg-accent/5 text-muted">—</td><td class="p-3 text-green">✓</td></tr>
+            <tr><td class="text-left p-3">Suporte</td><td class="p-3">Email</td><td class="p-3 bg-accent/5">Email prioritário</td><td class="p-3">WhatsApp dedicado</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <h2 class="text-2xl font-bold mb-3">Dúvidas?</h2>
+      <p class="text-muted2 mb-6">Veja as perguntas frequentes ou fale conosco direto.</p>
+      <div class="flex gap-3 justify-center">
+        <a href="/#faq" class="btn-secondary">Ver FAQ</a>
+        <a href="mailto:contato@estatisticasparabet.com.br" class="btn-secondary">Falar com a gente</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-border bg-surface/30 py-10">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="card p-5 bg-yellow/5 border-yellow/30 mb-6">
+      <div class="flex items-start gap-3">
+        <div class="text-2xl">⚠️</div>
+        <div>
+          <div class="font-semibold text-yellow mb-1">Aposte com responsabilidade</div>
+          <p class="text-xs text-muted2 leading-relaxed">
+            Apostas envolvem risco financeiro. Nenhum modelo garante resultado. +18 anos.
+            Em caso de necessidade: <strong class="text-fg">jogadoresanonimos.com.br</strong> · 0800-119-119 (CVV).
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="text-xs text-muted text-center">
+      © 2026 Estatísticas Pra Bet · Não somos operadora de apostas · <a href="/" class="hover:text-fg">Voltar à home</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function notifyMe(tier) {
+  const email = prompt(`Te avisamos quando o plano ${tier.toUpperCase()} lançar.\n\nDigite seu email:`);
+  if (email && email.includes('@')) {
+    try {
+      const list = JSON.parse(localStorage.getItem('waitlist') || '[]');
+      list.push({ email, tier, ts: new Date().toISOString() });
+      localStorage.setItem('waitlist', JSON.stringify(list));
+    } catch(e) {}
+    alert(`✓ Anotado! Te avisamos em ${email} quando o ${tier.toUpperCase()} lançar.\nVocê ganha 50% de desconto vitalício.`);
+  }
+}
+</script>
+</body>
+</html>

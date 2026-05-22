@@ -10,10 +10,23 @@
         { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" }
       ]
+    },
+    {
+      "source": "/(.*)\\.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
     }
   ],
   "rewrites": [
-    { "source": "/api/(.*\\.json)", "destination": "/api/$1" },
-    { "source": "/((?!api/|.*\\.json|.*\\.html).*)", "destination": "/index.html" }
+    { "source": "/",                "destination": "/landing.html" },
+    { "source": "/app",             "destination": "/index.html" },
+    { "source": "/dashboard",       "destination": "/index.html" },
+    { "source": "/precos",          "destination": "/precos.html" },
+    { "source": "/precos.html",     "destination": "/precos.html" },
+    { "source": "/como-funciona",   "destination": "/como-funciona.html" },
+    { "source": "/historico",       "destination": "/historico.html" },
+    { "source": "/faq",             "destination": "/landing.html" },
+    { "source": "/api/(.*\\.json)", "destination": "/api/$1" }
   ]
 }

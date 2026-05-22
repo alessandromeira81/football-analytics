@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0b">
+<title>Como funciona — Estatísticas Pra Bet</title>
+<meta name="description" content="Como o modelo estatístico funciona. Explicação técnica e transparente do método, dados, faixas de probabilidade e auditoria.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    bg:'#0a0a0b', surface:'#141416', surface2:'#1c1c1f', border:'#27272a', border2:'#3f3f46',
+    muted:'#71717a', muted2:'#a1a1aa', fg:'#fafafa',
+    accent:'#8b5cf6', accent2:'#a78bfa', green:'#22c55e', red:'#ef4444', yellow:'#fbbf24'
+  }, fontFamily:{ sans:['Inter','sans-serif'], mono:['JetBrains Mono','monospace'] } } } };
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- ANALYTICS — descomente e preencha IDs em /analytics-setup.md -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX')</script>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","XXXXXXXXXX")</script> -->
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #0a0a0b; color: #fafafa; }
+  .num { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+  .gradient-text { background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 50%, #c084fc 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .card { background:#141416; border:1px solid #27272a; border-radius:16px; }
+  .chip { display:inline-flex; align-items:center; gap:6px; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:500; border:1px solid #27272a; background: rgba(255,255,255,.02); }
+  .btn-primary { background:#8b5cf6; color:#fff; font-weight:600; padding:12px 24px; border-radius:10px; transition:all .15s; display:inline-flex; align-items:center; gap:8px; }
+  .btn-primary:hover { background:#7c3aed; }
+  .btn-secondary { background:transparent; color:#fafafa; border:1px solid #3f3f46; font-weight:500; padding:12px 24px; border-radius:10px; }
+  .step { display:flex; gap:20px; align-items:flex-start; padding:24px 0; border-bottom:1px solid #27272a; }
+  .step-number { width:48px; height:48px; border-radius:14px; background:rgba(139,92,246,.1); border:1px solid rgba(139,92,246,.3); color:#a78bfa; font-weight:bold; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  code { background:#1c1c1f; padding:2px 6px; border-radius:4px; font-size:.85em; font-family:'JetBrains Mono',monospace; color:#a78bfa; }
+</style>
+</head>
+<body class="min-h-screen">
+
+<nav class="sticky top-0 z-50 backdrop-blur bg-bg/80 border-b border-border">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center font-bold text-sm">⚽</div>
+      <span class="font-bold tracking-tight">Estatísticas Pra Bet</span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm text-muted2">
+      <a href="/como-funciona" class="text-fg font-medium">Como funciona</a>
+      <a href="/historico" class="hover:text-fg">Histórico</a>
+      <a href="/precos" class="hover:text-fg">Preços</a>
+      <a href="/#faq" class="hover:text-fg">FAQ</a>
+    </div>
+    <a href="/app" class="btn-primary text-sm" style="padding:8px 16px">Dashboard →</a>
+  </div>
+</nav>
+
+<section class="py-16 md:py-24">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <div class="chip mb-3 inline-flex">🔬 Transparência total</div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Como funciona</h1>
+      <p class="text-lg text-muted2">
+        Sem caixa-preta. Explicamos exatamente como o modelo gera cada pick.
+      </p>
+    </div>
+
+    <div class="card p-6 md:p-8 mb-12">
+      <h2 class="text-2xl font-bold mb-2">TL;DR — Resumo em 30 segundos</h2>
+      <p class="text-muted2 leading-relaxed mb-4">
+        Coletamos resultados e estatísticas de cada partida das <strong class="text-fg">8 ligas</strong>
+        que cobrimos (Brasileirão, Premier League, La Liga, Bundesliga, Ligue 1, Serie A, Saudi e Argentina).
+      </p>
+      <p class="text-muted2 leading-relaxed mb-4">
+        Para cada partida agendada, o modelo calcula a probabilidade de <strong class="text-fg">7 mercados</strong>:
+        resultado, ambas marcam (BTTS), gols (Over/Under), escanteios, cartões, faltas e finalizações.
+      </p>
+      <p class="text-muted2 leading-relaxed">
+        Quando a probabilidade calculada é <strong class="text-fg">≥ 80%</strong>, vira um "pick" e aparece no dashboard.
+        Toda recomendação é congelada no momento da apresentação e o resultado é registrado automaticamente.
+      </p>
+    </div>
+
+    <h2 class="text-3xl font-bold mb-8">Passo a passo</h2>
+
+    <div class="step">
+      <div class="step-number">1</div>
+      <div>
+        <h3 class="text-xl font-semibold mb-2">Coleta de dados (Sofascore)</h3>
+        <p class="text-muted2 leading-relaxed mb-3">
+          Todo dia às <strong class="text-fg">9h BRT</strong>, um scraper automatizado puxa do Sofascore:
+        </p>
+        <ul class="text-sm text-muted2 space-y-1.5 list-disc list-inside">
+          <li>Placar e estatísticas dos jogos terminados (escanteios, cartões, faltas, chutes)</li>
+          <li>Árbitro escalado para cada partida</li>
+          <li>Próximas rodadas com odds de mercado</li>
+        </ul>
+        <p class="text-xs text-muted mt-3">
+          → Histórico armazenado: ~5 anos de dados, atualizados diariamente
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">2</div>
+      <div>
+        <h3 class="text-xl font-semibold mb-2">Cálculo de probabilidade</h3>
+        <p class="text-muted2 leading-relaxed mb-3">
+          Para cada partida agendada, agregamos estatísticas dos times nas últimas N partidas.
+          Aplicamos <strong class="text-fg">Bayesian shrinkage</strong> ajustando para a média da liga
+          (evita times com poucos jogos enviesarem as previsões).
+        </p>
+        <p class="text-muted2 leading-relaxed mb-3">
+          O modelo gera uma probabilidade para cada mercado:
+        </p>
+        <div class="text-sm text-muted2 space-y-1">
+          <div>• <code>Over/Under X.5 gols</code> — usa média de gols dos últimos jogos + ajuste de liga</div>
+          <div>• <code>Vitória/Empate</code> — usa elo rating + força como mandante/visitante</div>
+          <div>• <code>BTTS</code> — frequência histórica de ambas marcarem</div>
+          <div>• <code>Escanteios/Cartões</code> — média da partida + tendência do árbitro</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">3</div>
+      <div>
+        <h3 class="text-xl font-semibold mb-2">Filtro: só ≥ 80% vira pick</h3>
+        <p class="text-muted2 leading-relaxed mb-3">
+          Cálculos abaixo de 80% nem aparecem. O dashboard só mostra recomendações com confiança real.
+          Divididas em 4 faixas:
+        </p>
+        <div class="grid sm:grid-cols-2 gap-3 mt-4">
+          <div class="card p-4">
+            <div class="font-semibold mb-1">🎯 95% – 100%</div>
+            <div class="text-xs text-muted2">"Quase certo". Raríssimas (3-5/semana).</div>
+          </div>
+          <div class="card p-4">
+            <div class="font-semibold mb-1">🟢 90% – 95%</div>
+            <div class="text-xs text-muted2">"Alta confiança". ~10-15/semana.</div>
+          </div>
+          <div class="card p-4">
+            <div class="font-semibold mb-1">🟡 85% – 90%</div>
+            <div class="text-xs text-muted2">"Boa confiança". ~20-30/semana.</div>
+          </div>
+          <div class="card p-4">
+            <div class="font-semibold mb-1">🟠 80% – 85%</div>
+            <div class="text-xs text-muted2">"Confiança razoável". ~40-60/semana.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">4</div>
+      <div>
+        <h3 class="text-xl font-semibold mb-2">Congelamento (o passado não muda)</h3>
+        <p class="text-muted2 leading-relaxed mb-3">
+          Esse é nosso compromisso mais importante.
+          Quando um pick é apresentado a 87%, esse <strong class="text-fg">87% fica registrado para sempre</strong>.
+        </p>
+        <p class="text-muted2 leading-relaxed">
+          Mesmo que o modelo, em uma nova rodada, recalculasse esse mesmo jogo a 81%
+          (porque as estatísticas dos times mudaram), o pick original
+          <strong class="text-fg">não é alterado</strong>. O histórico é imutável.
+        </p>
+        <p class="text-xs text-muted mt-3">
+          → Conceito técnico: <code>p_original</code> + <code>band_hist</code> congelados em betMeta
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">5</div>
+      <div>
+        <h3 class="text-xl font-semibold mb-2">Auto-validação dos resultados</h3>
+        <p class="text-muted2 leading-relaxed mb-3">
+          Quando um jogo termina, o sistema compara o placar real com o pick e marca automaticamente:
+        </p>
+        <ul class="text-sm text-muted2 space-y-1.5 list-disc list-inside">
+          <li><span class="text-green font-semibold">Verde</span> — pick acertou</li>
+          <li><span class="text-red font-semibold">Vermelho</span> — pick errou</li>
+        </ul>
+        <p class="text-muted2 leading-relaxed mt-3">
+          O histórico de assertividade é recalculado e fica público.
+          Nenhum pick é apagado.
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">6</div>
+      <div>
+        <h3 class="text-xl font-semibold mb-2">API pública (verifique você mesmo)</h3>
+        <p class="text-muted2 leading-relaxed mb-3">
+          Não precisa confiar em nós. Toda a base é consultável via JSON público:
+        </p>
+        <div class="card p-4 text-sm font-mono space-y-2 bg-bg/50">
+          <div><span class="text-accent">GET</span> /api/track-record.json</div>
+          <div class="text-xs text-muted">Histórico agregado dos últimos 7 dias</div>
+          <div class="border-t border-border pt-2"><span class="text-accent">GET</span> /api/daily-picks.json</div>
+          <div class="text-xs text-muted">Picks de hoje filtrados por confiança</div>
+          <div class="border-t border-border pt-2"><span class="text-accent">GET</span> /api/upcoming-picks/3d/90.json</div>
+          <div class="text-xs text-muted">Próximos 3 dias, 90%+</div>
+        </div>
+        <p class="text-xs text-muted mt-3">
+          → <a href="https://raw.githubusercontent.com/alessandromeira81/football-analytics/main/api/index.json" target="_blank" class="text-accent hover:underline">Ver todos os endpoints</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Sobre limitações -->
+    <div class="card p-6 md:p-8 mt-12 bg-yellow/5 border-yellow/30">
+      <h2 class="text-xl font-semibold text-yellow mb-3">⚠️ Limitações honestas</h2>
+      <ul class="text-sm text-muted2 space-y-2 leading-relaxed">
+        <li>• <strong class="text-fg">Nenhum modelo é 100%.</strong> Mesmo picks 95%+ erram às vezes (5% das vezes, por definição).</li>
+        <li>• O modelo é <strong class="text-fg">estatístico</strong>, não preditivo de eventos isolados (lesões, expulsões, etc).</li>
+        <li>• <strong class="text-fg">Variância existe</strong>. Você pode ter 5 vermelhos seguidos mesmo no longo prazo positivo.</li>
+        <li>• Gerencie banca. <strong class="text-fg">Nunca aposte mais do que pode perder.</strong></li>
+        <li>• Apostas envolvem risco financeiro real. Use com responsabilidade.</li>
+      </ul>
+    </div>
+
+    <div class="text-center mt-12">
+      <p class="text-muted2 mb-4">Pronto pra ver o modelo na prática?</p>
+      <a href="/app" class="btn-primary">Acessar dashboard →</a>
+    </div>
+
+  </div>
+</section>
+
+<footer class="border-t border-border bg-surface/30 py-10 mt-16">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-xs text-muted text-center">
+      © 2026 Estatísticas Pra Bet · <a href="/" class="hover:text-fg">Home</a> · <a href="/precos" class="hover:text-fg">Preços</a> · <a href="/historico" class="hover:text-fg">Histórico</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

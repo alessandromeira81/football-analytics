@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0b">
+<title>Histórico público — Estatísticas Pra Bet</title>
+<meta name="description" content="Track record completo, público e auditável. Veja desempenho real do modelo por período, banda e liga. Dados consumidos via API.">
+<link rel="preconnect" href="https://raw.githubusercontent.com">
+<link rel="preconnect" href="https://flagcdn.com">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    bg:'#0a0a0b', surface:'#141416', surface2:'#1c1c1f', border:'#27272a', border2:'#3f3f46',
+    muted:'#71717a', muted2:'#a1a1aa', fg:'#fafafa',
+    accent:'#8b5cf6', accent2:'#a78bfa', green:'#22c55e', red:'#ef4444', yellow:'#fbbf24'
+  }, fontFamily:{ sans:['Inter','sans-serif'], mono:['JetBrains Mono','monospace'] } } } };
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- ANALYTICS — descomente e preencha IDs em /analytics-setup.md -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX')</script>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","XXXXXXXXXX")</script> -->
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #0a0a0b; color: #fafafa; }
+  .num { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+  .gradient-text { background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 50%, #c084fc 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .card { background:#141416; border:1px solid #27272a; border-radius:16px; }
+  .chip { display:inline-flex; align-items:center; gap:6px; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:500; border:1px solid #27272a; background: rgba(255,255,255,.02); cursor:pointer; transition:all .15s; }
+  .chip:hover { border-color:#3f3f46; }
+  .chip.active { background:#8b5cf6; border-color:#8b5cf6; color:#fff; }
+  .btn-primary { background:#8b5cf6; color:#fff; font-weight:600; padding:12px 24px; border-radius:10px; transition:all .15s; display:inline-flex; align-items:center; gap:8px; }
+  .btn-primary:hover { background:#7c3aed; }
+  .btn-secondary { background:transparent; color:#fafafa; border:1px solid #3f3f46; font-weight:500; padding:12px 24px; border-radius:10px; }
+  .bar { height: 8px; background: #27272a; border-radius: 999px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 999px; transition: width 1s ease-out; }
+  .stat-card { text-align:center; }
+  .stat-card .num { font-size:2.5rem; font-weight:bold; line-height:1; }
+  @media (max-width: 768px) { .stat-card .num { font-size: 2rem; } }
+</style>
+</head>
+<body class="min-h-screen">
+
+<nav class="sticky top-0 z-50 backdrop-blur bg-bg/80 border-b border-border">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center font-bold text-sm">⚽</div>
+      <span class="font-bold tracking-tight">Estatísticas Pra Bet</span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm text-muted2">
+      <a href="/como-funciona" class="hover:text-fg">Como funciona</a>
+      <a href="/historico" class="text-fg font-medium">Histórico</a>
+      <a href="/precos" class="hover:text-fg">Preços</a>
+      <a href="/#faq" class="hover:text-fg">FAQ</a>
+    </div>
+    <a href="/app" class="btn-primary text-sm" style="padding:8px 16px">Dashboard →</a>
+  </div>
+</nav>
+
+<section class="py-12 md:py-16">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <div class="chip mb-3 inline-flex bg-green/10 border-green/30 text-green">
+        ✓ Dados auditáveis e públicos
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold mb-3">Histórico completo</h1>
+      <p class="text-lg text-muted2 max-w-2xl mx-auto">
+        Track record real. Verde E vermelho. Sem maquiagem. Atualizado automaticamente todo dia.
+      </p>
+    </div>
+
+    <!-- Period selector -->
+    <div class="flex gap-2 justify-center mb-8 flex-wrap">
+      <span class="chip" data-period="7d" onclick="setPeriod('7d')">7 dias</span>
+      <span class="chip active" data-period="30d" onclick="setPeriod('30d')">30 dias</span>
+      <span class="chip" data-period="all" onclick="setPeriod('all')">Tudo</span>
+    </div>
+
+    <!-- Min prob toggle -->
+    <div class="flex gap-2 justify-center mb-12 flex-wrap">
+      <span class="chip active" data-prob="all" onclick="setProb('all')">Todas probabilidades</span>
+      <span class="chip" data-prob="90" onclick="setProb('90')">Apenas ≥ 90%</span>
+    </div>
+
+    <!-- Stats summary -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-12">
+      <div class="card p-6 stat-card">
+        <div class="num gradient-text" id="stat-winrate">—</div>
+        <div class="text-xs text-muted2 mt-2">Taxa de acerto</div>
+      </div>
+      <div class="card p-6 stat-card">
+        <div class="num text-green" id="stat-wins">—</div>
+        <div class="text-xs text-muted2 mt-2">Acertos</div>
+      </div>
+      <div class="card p-6 stat-card">
+        <div class="num text-red" id="stat-losses">—</div>
+        <div class="text-xs text-muted2 mt-2">Erros</div>
+      </div>
+      <div class="card p-6 stat-card">
+        <div class="num" id="stat-total">—</div>
+        <div class="text-xs text-muted2 mt-2">Picks totais</div>
+      </div>
+    </div>
+
+    <!-- Bands + Leagues + Markets in 3 columns -->
+    <div class="grid md:grid-cols-3 gap-4 mb-12">
+
+      <div class="card p-6">
+        <h3 class="text-sm font-semibold text-muted2 mb-4 uppercase tracking-wide">Por confiança</h3>
+        <div id="bands-list" class="space-y-4">
+          <div class="text-muted text-sm">Carregando…</div>
+        </div>
+      </div>
+
+      <div class="card p-6">
+        <h3 class="text-sm font-semibold text-muted2 mb-4 uppercase tracking-wide">Por liga</h3>
+        <div id="leagues-list" class="space-y-3">
+          <div class="text-muted text-sm">Carregando…</div>
+        </div>
+      </div>
+
+      <div class="card p-6">
+        <h3 class="text-sm font-semibold text-muted2 mb-4 uppercase tracking-wide">Por mercado</h3>
+        <div id="markets-list" class="space-y-3">
+          <div class="text-muted text-sm">Carregando…</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Daily timeline -->
+    <div class="card p-6 mb-12" id="daily-card">
+      <h3 class="text-sm font-semibold text-muted2 mb-4 uppercase tracking-wide">Desempenho dia a dia</h3>
+      <div id="daily-list" class="space-y-2">
+        <div class="text-muted text-sm">Carregando…</div>
+      </div>
+    </div>
+
+    <!-- Trust footer -->
+    <div class="card p-6 md:p-8 text-center">
+      <div class="text-2xl mb-3">🔍</div>
+      <h3 class="text-xl font-semibold mb-2">Verifique você mesmo</h3>
+      <p class="text-muted2 text-sm mb-4 max-w-xl mx-auto leading-relaxed">
+        Todos os dados acima vêm da nossa API JSON pública. Sem CDN, sem cache.
+        Você pode auditar a qualquer momento.
+      </p>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="https://raw.githubusercontent.com/alessandromeira81/football-analytics/main/api/track-record/30d.json"
+           target="_blank" class="btn-secondary text-sm">
+          Ver JSON cru →
+        </a>
+        <a href="https://github.com/alessandromeira81/football-analytics" target="_blank" class="btn-secondary text-sm">
+          Código no GitHub →
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="py-16 border-t border-border bg-surface/30">
+  <div class="max-w-3xl mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">Convencido?</h2>
+    <p class="text-lg text-muted2 mb-8">
+      Use o dashboard completo grátis enquanto estamos em beta.
+    </p>
+    <a href="/app" class="btn-primary text-lg" style="padding:16px 32px">
+      Acessar dashboard agora →
+    </a>
+  </div>
+</section>
+
+<footer class="border-t border-border bg-surface/30 py-10">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-xs text-muted text-center">
+      © 2026 Estatísticas Pra Bet · <a href="/" class="hover:text-fg">Home</a> · <a href="/precos" class="hover:text-fg">Preços</a> · <a href="/como-funciona" class="hover:text-fg">Como funciona</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const API_BASE = 'https://raw.githubusercontent.com/alessandromeira81/football-analytics/main/api';
+const FLAGS = {
+  brasileirao: 'br', premier: 'gb-eng', laliga: 'es', bundesliga: 'de',
+  ligue1: 'fr', seriea: 'it', saudi: 'sa', argentina: 'ar',
+};
+const LEAGUE_KEY_FROM_NAME = {
+  'Brasileirao Serie A': 'brasileirao', 'Premier League': 'premier',
+  'La Liga': 'laliga', 'Bundesliga': 'bundesliga', 'Ligue 1': 'ligue1',
+  'Serie A': 'seriea', 'Saudi Pro League': 'saudi', 'Liga Profesional': 'argentina',
+};
+
+let currentPeriod = '30d';
+let currentProb   = 'all';
+
+function setPeriod(p) {
+  currentPeriod = p;
+  document.querySelectorAll('[data-period]').forEach(el => el.classList.toggle('active', el.dataset.period === p));
+  load();
+}
+function setProb(p) {
+  currentProb = p;
+  document.querySelectorAll('[data-prob]').forEach(el => el.classList.toggle('active', el.dataset.prob === p));
+  load();
+}
+
+function colorFor(rate) {
+  if (rate >= 80) return '#22c55e';
+  if (rate >= 60) return '#fbbf24';
+  if (rate >= 40) return '#f97316';
+  return '#ef4444';
+}
+
+function renderBar(label, wins, total, withFlag) {
+  const rate = total > 0 ? Math.round(wins / total * 100) : 0;
+  const color = colorFor(rate);
+  const flagHtml = withFlag ? `<img src="https://flagcdn.com/w40/${withFlag}.png" class="w-7 h-5 rounded mr-3" alt="">` : '';
+  return `
+    <div class="${withFlag ? 'flex items-center' : ''}">
+      ${flagHtml}
+      <div class="${withFlag ? 'flex-1' : ''}">
+        <div class="flex justify-between text-sm mb-1.5">
+          <span>${label}</span>
+          <span class="num text-xs text-muted2">${wins}/${total} · <span class="font-semibold" style="color:${color}">${rate}%</span></span>
+        </div>
+        <div class="bar"><div class="bar-fill" style="width:${rate}%;background:${color}"></div></div>
+      </div>
+    </div>
+  `;
+}
+
+async function load() {
+  const file = currentProb === '90'
+    ? `track-record-90/${currentPeriod}.json`
+    : `track-record/${currentPeriod}.json`;
+
+  try {
+    const r = await fetch(`${API_BASE}/${file}`);
+    const d = await r.json();
+
+    // Stats
+    const s = d.summary;
+    document.getElementById('stat-winrate').textContent = Math.round((s.win_rate || 0) * 100) + '%';
+    document.getElementById('stat-wins').textContent    = s.wins;
+    document.getElementById('stat-losses').textContent  = s.losses;
+    document.getElementById('stat-total').textContent   = s.total;
+
+    // Bandas
+    const bandLabels = { 'rb-95':'🎯 95%+ Quase certo', 'rb-90':'🟢 90-95% Alta',
+                         'rb-85':'🟡 85-90% Boa', 'rb-80':'🟠 80-85% Razoável',
+                         '95%+':'🎯 95%+ Quase certo', '90%+':'🟢 90-95% Alta',
+                         '85%+':'🟡 85-90% Boa', '80%+':'🟠 80-85% Razoável' };
+    const bandsHtml = (d.by_band || []).map(b =>
+      renderBar(bandLabels[b.band] || b.band, b.wins, b.total)
+    ).join('');
+    document.getElementById('bands-list').innerHTML = bandsHtml || '<div class="text-muted text-sm">Sem dados</div>';
+
+    // Ligas
+    const leaguesHtml = (d.by_league || []).map(l =>
+      renderBar(l.league, l.wins, l.total, FLAGS[LEAGUE_KEY_FROM_NAME[l.league]] || 'un')
+    ).join('');
+    document.getElementById('leagues-list').innerHTML = leaguesHtml || '<div class="text-muted text-sm">Sem dados</div>';
+
+    // Mercados
+    const marketIcons = { Resultado:'🏆', BTTS:'⚽', Gols:'🥅', Escanteios:'🚩',
+                          Cartoes:'🟨', Faltas:'👟', Finalizacoes:'🎯' };
+    const marketsHtml = (d.by_market || []).map(m =>
+      renderBar(`${marketIcons[m.market] || '•'} ${m.market}`, m.wins, m.total)
+    ).join('');
+    document.getElementById('markets-list').innerHTML = marketsHtml || '<div class="text-muted text-sm">Sem dados</div>';
+
+    // Daily
+    const dailyEl = document.getElementById('daily-list');
+    if (currentPeriod === 'all') {
+      document.getElementById('daily-card').style.display = 'none';
+    } else {
+      document.getElementById('daily-card').style.display = '';
+      const daily = (d.daily_results || []).slice(-30); // últimos 30
+      dailyEl.innerHTML = daily.map(day => {
+        const total = day.wins + day.losses;
+        const rate = total > 0 ? Math.round(day.wins / total * 100) : 0;
+        const color = total === 0 ? '#3f3f46' : colorFor(rate);
+        const dateFmt = new Date(day.date + 'T12:00:00').toLocaleDateString('pt-BR', { day:'2-digit', month:'short', weekday:'short' });
+        return `
+          <div class="flex items-center gap-3 text-sm">
+            <span class="num text-muted2 w-32">${dateFmt}</span>
+            <div class="flex-1 bar"><div class="bar-fill" style="width:${rate}%;background:${color}"></div></div>
+            <span class="num text-xs text-muted2 w-24 text-right">
+              ${total === 0 ? '<span class="text-muted">sem dados</span>' : `${day.wins}V/${day.losses}R · <span style="color:${color};font-weight:600">${rate}%</span>`}
+            </span>
+          </div>
+        `;
+      }).join('');
+    }
+
+  } catch (e) {
+    console.error(e);
+    document.getElementById('stat-winrate').textContent = 'erro';
+  }
+}
+
+load();
+</script>
+</body>
+</html>

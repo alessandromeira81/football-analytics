@@ -283,6 +283,7 @@ select{font-family:var(--mono);font-size:11px;padding:5px 10px;background:var(--
     </div>
   </div>
   <div style="display:flex;align-items:center;gap:10px">
+    <a href="/" style="font-family:var(--mono);font-size:11px;color:var(--muted2);text-decoration:none;padding:6px 12px;border:1px solid var(--border2);border-radius:8px;transition:all .15s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--muted2)'" title="Voltar para a home">← Home</a>
     <div class="season-toggle" id="season-toggle" style="display:none">
       <button class="season-btn" id="btn-s2025" onclick="setSeason('2025')">2025</button>
       <button class="season-btn active" id="btn-s2026" onclick="setSeason('2026')">2026</button>
@@ -1211,6 +1212,31 @@ function getBetCategory(label) {
   if (/faltas/.test(label))               return 'Faltas';
   if (/finalizacoes/.test(label))         return 'Finalizacoes';
   return 'Outros';
+}
+
+// ── Tradução amigável de labels técnicas para exibição ao usuário ──────────────
+// (Mantém a key original interna, só muda o display)
+function prettyLabel(label, homeTeam, awayTeam) {
+  if (!label) return '';
+  if (label === 'Vitoria Mandante')   return homeTeam ? (homeTeam + ' vence')    : 'Time da casa vence';
+  if (label === 'Vitoria Visitante')  return awayTeam ? (awayTeam + ' vence')    : 'Time visitante vence';
+  if (label === 'Empate')             return 'Empate';
+  if (label === 'BTTS - Sim')         return 'Ambas marcam';
+  if (label === 'BTTS - Nao')         return 'Pelo menos um time não marca';
+  // Over X.5 algo → Mais de X.5 algo | Under X.5 algo → Menos de X.5 algo
+  var m = label.match(/^(Over|Under)\s+(\d+\.5)\s+(.+)$/);
+  if (m) {
+    var prefix = m[1] === 'Over' ? 'Mais de' : 'Menos de';
+    var unit   = { gols:'gols', escanteios:'escanteios', cartoes:'cartões', faltas:'faltas', finalizacoes:'finalizações' }[m[3]] || m[3];
+    return prefix + ' ' + m[2] + ' ' + unit;
+  }
+  return label;
+}
+
+// Banda em formato amigável
+function prettyBand(bandCls) {
+  return ({ 'rb-95':'🎯 95%+ Quase certo', 'rb-90':'🟢 90-95% Alta confiança',
+            'rb-85':'🟡 85-90% Boa confiança', 'rb-80':'🟠 80-85% Confiança razoável' })[bandCls] || bandCls;
 }
 
 // ── Assertividade (Firestore — sem localStorage) ──────────────────────────────
@@ -2338,7 +2364,7 @@ function renderResumo() {
         + '<span class="resumo-date">' + dateStr + '</span>'
         + '<span class="resumo-match">' + mHome + ' v ' + mAway + '</span>'
         + '<span class="ins-cat" style="color:' + catColor + ';min-width:76px">' + b.cat + '</span>'
-        + '<span class="ins-bet-label">' + b.label + '</span>'
+        + '<span class="ins-bet-label" title="' + b.label + '">' + prettyLabel(b.label, b.home, b.away) + '</span>'
         + '<span class="resumo-pct">' + Math.round(b.p * 100) + '%</span>'
         + (oddStr ? '<span class="resumo-odd" title="Odd Sofascore">' + oddStr + '</span>' : '<span class="resumo-odd" style="color:var(--muted)">—</span>')
         + (valueStr ? '<span class="resumo-value" style="color:' + valueColor + '" title="Value (modelo vs mercado)">' + valueStr + '</span>' : '<span class="resumo-value" style="color:var(--muted)">—</span>')

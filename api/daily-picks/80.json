@@ -1,7 +1,23 @@
 {
   "date": "2026-05-22",
-  "generated_at": "2026-05-22T14:48:24Z",
+  "generated_at": "2026-05-23T01:39:37Z",
   "min_prob": 80,
-  "count": 0,
-  "picks": []
+  "count": 1,
+  "picks": [
+    {
+      "league": "Serie A",
+      "league_key": "seriea",
+      "home_team": "Fiorentina",
+      "away_team": "Atalanta",
+      "kickoff": "2026-05-22T00:00:00Z",
+      "date": "2026-05-22",
+      "market": "Gols",
+      "pick": "Under 3.5 gols",
+      "label": "Under 3.5 gols",
+      "probability": 80,
+      "confidence_band": "80%+",
+      "odds": 1.57,
+      "bet_id": "seriea|Fiorentina|Atalanta|Under 3.5 gols"
+    }
+  ]
 }

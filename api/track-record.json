@@ -7,6 +7,36 @@
     "losses": 4,
     "win_rate": 0.88
   },
+  "by_band": [
+    {
+      "band": "95%+",
+      "total": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
+    {
+      "band": "90%+",
+      "total": 4,
+      "wins": 4,
+      "losses": 0,
+      "win_rate": 1.0
+    },
+    {
+      "band": "85%+",
+      "total": 17,
+      "wins": 15,
+      "losses": 2,
+      "win_rate": 0.88
+    },
+    {
+      "band": "80%+",
+      "total": 13,
+      "wins": 11,
+      "losses": 2,
+      "win_rate": 0.85
+    }
+  ],
   "by_league": [
     {
       "league": "Saudi Pro League",
@@ -118,5 +148,5 @@
       "losses": 1
     }
   ],
-  "generated_at": "2026-05-22T14:48:24Z"
+  "generated_at": "2026-05-23T01:39:37Z"
 }

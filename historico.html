@@ -6,7 +6,6 @@
 <meta name="theme-color" content="#0a0a0b">
 <title>Histórico público — Estatísticas Pra Bet</title>
 <meta name="description" content="Track record completo, público e auditável. Veja desempenho real do modelo por período, banda e liga. Dados consumidos via API.">
-<link rel="preconnect" href="https://raw.githubusercontent.com">
 <link rel="preconnect" href="https://flagcdn.com">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -72,15 +71,15 @@
 
     <!-- Period selector -->
     <div class="flex gap-2 justify-center mb-8 flex-wrap">
-      <span class="chip" data-period="7d" onclick="setPeriod('7d')">7 dias</span>
-      <span class="chip active" data-period="30d" onclick="setPeriod('30d')">30 dias</span>
+      <span class="chip active" data-period="7d" onclick="setPeriod('7d')">7 dias</span>
+      <span class="chip" data-period="30d" onclick="setPeriod('30d')">30 dias</span>
       <span class="chip" data-period="all" onclick="setPeriod('all')">Tudo</span>
     </div>
 
     <!-- Min prob toggle -->
     <div class="flex gap-2 justify-center mb-12 flex-wrap">
-      <span class="chip active" data-prob="all" onclick="setProb('all')">Todas probabilidades</span>
-      <span class="chip" data-prob="90" onclick="setProb('90')">Apenas ≥ 90%</span>
+      <span class="chip" data-prob="all" onclick="setProb('all')">Todas probabilidades</span>
+      <span class="chip active" data-prob="90" onclick="setProb('90')">Apenas ≥ 90% (recomendado)</span>
     </div>
 
     <!-- Stats summary -->
@@ -140,19 +139,13 @@
     <!-- Trust footer -->
     <div class="card p-6 md:p-8 text-center">
       <div class="text-2xl mb-3">🔍</div>
-      <h3 class="text-xl font-semibold mb-2">Verifique você mesmo</h3>
+      <h3 class="text-xl font-semibold mb-2">Dados 100% auditáveis</h3>
       <p class="text-muted2 text-sm mb-4 max-w-xl mx-auto leading-relaxed">
-        Todos os dados acima vêm da nossa API JSON pública. Sem CDN, sem cache.
-        Você pode auditar a qualquer momento.
+        Cada pick é congelado no momento da publicação e o resultado é registrado automaticamente.
+        Verde E vermelho ficam públicos — sem maquiagem, sem deletar erros.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
-        <a href="https://raw.githubusercontent.com/alessandromeira81/football-analytics/main/api/track-record/30d.json"
-           target="_blank" class="btn-secondary text-sm">
-          Ver JSON cru →
-        </a>
-        <a href="https://github.com/alessandromeira81/football-analytics" target="_blank" class="btn-secondary text-sm">
-          Código no GitHub →
-        </a>
+        <a href="/app" class="btn-primary text-sm">Ver picks de hoje no dashboard →</a>
       </div>
     </div>
 
@@ -180,7 +173,7 @@
 </footer>
 
 <script>
-const API_BASE = 'https://raw.githubusercontent.com/alessandromeira81/football-analytics/main/api';
+const API_BASE = '/api';
 const FLAGS = {
   brasileirao: 'br', premier: 'gb-eng', laliga: 'es', bundesliga: 'de',
   ligue1: 'fr', seriea: 'it', saudi: 'sa', argentina: 'ar',
@@ -191,8 +184,8 @@ const LEAGUE_KEY_FROM_NAME = {
   'Serie A': 'seriea', 'Saudi Pro League': 'saudi', 'Liga Profesional': 'argentina',
 };
 
-let currentPeriod = '30d';
-let currentProb   = 'all';
+let currentPeriod = '7d';
+let currentProb   = '90';
 
 function setPeriod(p) {
   currentPeriod = p;

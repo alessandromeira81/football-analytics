@@ -387,7 +387,7 @@ select{font-family:var(--mono);font-size:11px;padding:5px 10px;background:var(--
 <div id="resumo-screen" style="display:none">
   <div class="resumo-screen">
     <div class="home-sub" style="margin-bottom:14px">Recomendacoes consolidadas de todas as ligas — ordenadas por probabilidade</div>
-    <div style="display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;align-items:center">
+    <div style="display:flex;gap:8px;margin-bottom:6px;flex-wrap:wrap;align-items:center">
       <button class="btn-secondary" id="rbtn-faltas"  onclick="toggleResumoFaltas()">Faltas: OFF</button>
       <button class="btn-secondary" id="rbtn-fins"    onclick="toggleResumoFins()">Finalizacoes: OFF</button>
       <button onclick="openInsightsPro()" style="background:var(--purple);border:none;color:#fff;border-radius:6px;padding:6px 14px;font-family:var(--mono);font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.05em;box-shadow:0 0 10px rgba(139,92,246,.45)">Insights Pro ↗</button>
@@ -395,7 +395,19 @@ select{font-family:var(--mono);font-size:11px;padding:5px 10px;background:var(--
       <button id="assert-import-btn" onclick="importAssertFromFile()" title="Importar assertividade de um HTML salvo anteriormente" style="display:none;background:transparent;border:1px solid var(--muted2);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px;font-family:var(--mono);font-weight:700;color:var(--muted2);transition:all .15s">&#8657; Importar</button>
       <button id="assert-save-btn" onclick="saveAssertToFile()" title="Baixar HTML com assertividade salva" style="display:none;background:transparent;border:1px solid var(--green);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px;font-family:var(--mono);font-weight:700;color:var(--green);transition:all .15s">&#8659; Salvar</button>
     </div>
+    <!-- Explicacao Insights Pro -->
+    <div style="background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.2);border-radius:8px;padding:10px 14px;margin-bottom:16px;font-family:var(--mono);font-size:10px;color:var(--muted2);line-height:1.5">
+      <span style="color:var(--purple);font-weight:700">Insights Pro ↗</span> — modelo complementar que compara probabilidades do Poisson bivariado com as odds do mercado (Sofascore). Mostra o <em>edge</em> (valor) em cada aposta: quando o modelo enxerga mais valor do que a odd está pagando. Use como segunda opinião, não como substituto dos Insights principais.
+    </div>
     <div id="resumo-content"></div>
+  </div>
+</div>
+
+<!-- ASSERTIVIDADE HISTÓRICA -->
+<div id="assertividade-screen" style="display:none">
+  <div style="padding:20px 20px 60px;max-width:1200px;margin:0 auto">
+    <div style="font-family:var(--mono);font-size:10px;color:var(--muted2);margin-bottom:20px">Desempenho histórico dos picks — dados da API pública, atualizados diariamente</div>
+    <div id="assert-hist-content"><div class="loading-overlay">Carregando dados históricos…</div></div>
   </div>
 </div>
 
@@ -1152,8 +1164,8 @@ function renderHomeCards() {
   html += '<div class="league-card resumo-card' + (hasScheduled ? '' : ' no-data') + '" onclick="showResumo()">'
     + '<div class="league-card-top">'
     + '<img class="league-flag-img" src="https://flagcdn.com/w40/un.png" alt="Global" style="border-radius:2px">'
-    + '<div><div class="league-card-name">Resumo dos Insights</div>'
-    + '<div class="league-card-country">Todas as ligas</div></div>'
+    + '<div><div class="league-card-name">Insights</div>'
+    + '<div class="league-card-country">Picks das ligas · 80%+</div></div>'
     + '</div>'
     + '<div class="league-card-meta">'
     + '<div class="lc-stat"><strong>' + leaguesWithData + '</strong><span>LIGAS</span></div>'
@@ -1161,23 +1173,206 @@ function renderHomeCards() {
     + '</div>'
     + '<span class="lc-arrow" style="color:var(--orange)">&rarr;</span>'
     + '</div>';
+  // Card especial: Assertividade Histórica
+  html += '<div class="league-card" onclick="showAssertividade()" style="background:linear-gradient(135deg,rgba(91,156,246,.08),rgba(45,212,191,.05));border-color:rgba(91,156,246,.2)">'
+    + '<div class="league-card-top">'
+    + '<div style="width:32px;height:22px;background:rgba(91,156,246,.15);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">📊</div>'
+    + '<div><div class="league-card-name">Assertividade</div>'
+    + '<div class="league-card-country">Histórico · Track record</div></div>'
+    + '</div>'
+    + '<div class="league-card-meta">'
+    + '<div class="lc-stat"><strong>30d</strong><span>PERÍODO</span></div>'
+    + '<div class="lc-stat"><strong>ALL</strong><span>FILTRO</span></div>'
+    + '</div>'
+    + '<span class="lc-arrow" style="color:var(--blue)">&rarr;</span>'
+    + '</div>';
   container.innerHTML = html;
 }
 
 function showHome() {
   currentLeagueKey = null;
   stopLiveRefresh();
-  document.getElementById('home-screen').style.display   = '';
-  document.getElementById('resumo-screen').style.display = 'none';
-  document.getElementById('league-nav').style.display    = 'none';
-  document.getElementById('league-main').style.display   = 'none';
-  document.getElementById('arb-screen').style.display    = 'none';
-  document.getElementById('back-btn').style.display      = 'none';
-  document.getElementById('season-toggle').style.display = 'none';
-  document.getElementById('logo-name').textContent       = 'Football Analytics';
+  document.getElementById('home-screen').style.display         = '';
+  document.getElementById('resumo-screen').style.display       = 'none';
+  document.getElementById('assertividade-screen').style.display= 'none';
+  document.getElementById('league-nav').style.display          = 'none';
+  document.getElementById('league-main').style.display         = 'none';
+  document.getElementById('arb-screen').style.display          = 'none';
+  document.getElementById('back-btn').style.display            = 'none';
+  document.getElementById('season-toggle').style.display       = 'none';
+  document.getElementById('logo-name').textContent             = 'Football Analytics';
   var pb = document.getElementById('parlay-bar');
   if (pb) pb.style.display = 'none';
   renderHomeCards();
+}
+
+// ── Assertividade Histórica ─────────────────────────────────────────────────
+var _assertApiCache = null;
+
+function showAssertividade() {
+  currentLeagueKey = '__assertividade__';
+  document.getElementById('home-screen').style.display         = 'none';
+  document.getElementById('resumo-screen').style.display       = 'none';
+  document.getElementById('assertividade-screen').style.display= '';
+  document.getElementById('league-nav').style.display          = 'none';
+  document.getElementById('league-main').style.display         = 'none';
+  document.getElementById('back-btn').style.display            = '';
+  document.getElementById('season-toggle').style.display       = 'none';
+  document.getElementById('logo-name').textContent             = 'Assertividade Histórica';
+  var pb = document.getElementById('parlay-bar');
+  if (pb) pb.style.display = 'none';
+  renderAssertividadeScreen();
+}
+
+function renderAssertividadeScreen() {
+  var container = document.getElementById('assert-hist-content');
+  if (!container) return;
+
+  // Usa cache se ja carregou
+  if (_assertApiCache) { _renderAssertData(_assertApiCache); return; }
+
+  container.innerHTML = '<div class="loading-overlay">Carregando dados da API…</div>';
+
+  var API = 'https://estatisticasparabet.vercel.app/api';
+  Promise.all([
+    fetch(API + '/track-record/30d.json').then(function(r){ return r.json(); }),
+    fetch(API + '/track-record/all.json').then(function(r){ return r.json(); }),
+  ]).then(function(results) {
+    _assertApiCache = { d30: results[0], all: results[1] };
+    _renderAssertData(_assertApiCache);
+  }).catch(function(e) {
+    container.innerHTML = '<div class="loading-overlay" style="color:var(--red)">Erro ao carregar dados. Tente novamente.</div>';
+  });
+}
+
+function _renderAssertData(cache) {
+  var container = document.getElementById('assert-hist-content');
+  if (!container) return;
+  var d30 = cache.d30;
+  var all  = cache.all;
+  var pct  = function(wr) { return Math.round((wr || 0) * 100) + '%'; };
+  var pctColor = function(wr) {
+    var p = (wr || 0) * 100;
+    return p >= 75 ? 'var(--green)' : p >= 55 ? 'var(--accent)' : 'var(--red)';
+  };
+  var barFill = function(wr, color) {
+    var p = Math.round((wr || 0) * 100);
+    return '<div style="height:6px;background:var(--bg3);border-radius:3px;margin-top:4px;overflow:hidden"><div style="height:6px;border-radius:3px;width:' + p + '%;background:' + color + '"></div></div>';
+  };
+
+  var html = '';
+
+  // ── KPIs ─────────────────────────────────────────────────────────────────
+  var s30 = d30.summary || {}; var sAll = all.summary || {};
+  html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px">';
+  var kpis = [
+    { label:'Total de picks', v30: s30.total, vAll: sAll.total, fmt: function(v){ return v; } },
+    { label:'Acertos (30d)', v30: s30.wins, vAll: sAll.wins, fmt: function(v){ return v; } },
+    { label:'Assertividade (30d)', v30: s30.win_rate, fmt: function(v){ return pct(v); }, color: pctColor(s30.win_rate) },
+    { label:'Assertividade (total)', v30: sAll.win_rate, fmt: function(v){ return pct(v); }, color: pctColor(sAll.win_rate) },
+  ];
+  kpis.forEach(function(k) {
+    html += '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px">'
+      + '<div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px">' + k.label + '</div>'
+      + '<div style="font-size:24px;font-weight:800;font-family:var(--mono);color:' + (k.color || 'var(--text)') + '">' + k.fmt(k.v30) + '</div>'
+      + '</div>';
+  });
+  html += '</div>';
+
+  // ── Por faixa ────────────────────────────────────────────────────────────
+  var bands30 = d30.by_band || [];
+  if (bands30.length) {
+    html += '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px">'
+      + '<div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px">ASSERTIVIDADE POR FAIXA — últimos 30 dias</div>';
+    var bandLabels = { '95%+':'🎯 95%+ — Quase certo', '90%+':'🟢 90%+ — Alta confiança', '85%+':'🟡 85%+ — Boa confiança', '80%+':'🟠 80%+ — Confiança razoável' };
+    bands30.forEach(function(b) {
+      var lbl = bandLabels[b.band] || b.band;
+      var color = pctColor(b.win_rate);
+      html += '<div style="margin-bottom:12px">'
+        + '<div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;margin-bottom:4px">'
+        + '<span style="color:var(--text)">' + lbl + '</span>'
+        + '<span style="color:var(--muted2)">' + b.wins + '/' + b.total + ' <span style="color:' + color + ';font-weight:700">' + pct(b.win_rate) + '</span></span>'
+        + '</div>'
+        + barFill(b.win_rate, color)
+        + '</div>';
+    });
+    html += '</div>';
+  }
+
+  // ── Por liga ─────────────────────────────────────────────────────────────
+  var FLAGS_MAP = { brasileirao:'br', premier:'gb-eng', laliga:'es', bundesliga:'de', ligue1:'fr', seriea:'it', saudi:'sa', argentina:'ar' };
+  var leagues30 = d30.by_league || [];
+  if (leagues30.length) {
+    html += '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px">'
+      + '<div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px">DESEMPENHO POR LIGA — últimos 30 dias</div>';
+    leagues30.forEach(function(l) {
+      var lk = Object.keys(FLAGS_MAP).find(function(k){ return l.league.toLowerCase().includes(k); }) || 'un';
+      var flag = 'https://flagcdn.com/w40/' + (FLAGS_MAP[lk] || 'un') + '.png';
+      var color = pctColor(l.win_rate);
+      html += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'
+        + '<img src="' + flag + '" style="width:28px;height:18px;border-radius:2px;object-fit:cover" alt="">'
+        + '<div style="flex:1">'
+        + '<div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;margin-bottom:3px">'
+        + '<span style="color:var(--text)">' + l.league + '</span>'
+        + '<span style="color:var(--muted2)">' + l.wins + '/' + l.total + ' <span style="color:' + color + ';font-weight:700">' + pct(l.win_rate) + '</span></span>'
+        + '</div>'
+        + barFill(l.win_rate, color)
+        + '</div></div>';
+    });
+    html += '</div>';
+  }
+
+  // ── Por mercado ──────────────────────────────────────────────────────────
+  var markets30 = d30.by_market || [];
+  if (markets30.length) {
+    html += '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px">'
+      + '<div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px">DESEMPENHO POR MERCADO — últimos 30 dias</div>'
+      + '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">';
+    markets30.forEach(function(m) {
+      var color = pctColor(m.win_rate);
+      html += '<div style="background:var(--bg3);border-radius:8px;padding:14px;text-align:center">'
+        + '<div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em">' + m.market + '</div>'
+        + '<div style="font-size:22px;font-weight:800;font-family:var(--mono);color:' + color + '">' + pct(m.win_rate) + '</div>'
+        + '<div style="font-family:var(--mono);font-size:9px;color:var(--muted2);margin-top:3px">' + m.wins + '/' + m.total + ' picks</div>'
+        + '</div>';
+    });
+    html += '</div></div>';
+  }
+
+  // ── Histórico dia a dia ───────────────────────────────────────────────────
+  var daily = (all.daily_results || []).filter(function(d){ return d.wins > 0 || d.losses > 0; });
+  daily.sort(function(a,b){ return b.date.localeCompare(a.date); });
+  if (daily.length) {
+    html += '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:16px">'
+      + '<div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px">HISTÓRICO DIA A DIA</div>'
+      + '<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:11px">'
+      + '<thead><tr style="border-bottom:1px solid var(--border)">'
+      + '<th style="padding:6px 10px;font-family:var(--mono);font-size:9px;color:var(--muted);text-align:left;white-space:nowrap">Data</th>'
+      + '<th style="padding:6px 10px;font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center">Verdes</th>'
+      + '<th style="padding:6px 10px;font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center">Vermelhos</th>'
+      + '<th style="padding:6px 10px;font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center">Total</th>'
+      + '<th style="padding:6px 10px;font-family:var(--mono);font-size:9px;color:var(--muted);text-align:center">Acerto</th>'
+      + '</tr></thead><tbody>';
+    daily.slice(0, 60).forEach(function(d) {
+      var tot = d.wins + d.losses;
+      var wr = tot > 0 ? d.wins / tot : 0;
+      var color = pctColor(wr);
+      var dFmt = d.date.slice(8) + '/' + d.date.slice(5,7) + '/' + d.date.slice(0,4);
+      html += '<tr style="border-bottom:1px solid rgba(255,255,255,.03)">'
+        + '<td style="padding:6px 10px;font-family:var(--mono);font-size:11px;color:var(--muted2)">' + dFmt + '</td>'
+        + '<td style="padding:6px 10px;text-align:center;font-family:var(--mono);color:var(--green)">' + d.wins + '</td>'
+        + '<td style="padding:6px 10px;text-align:center;font-family:var(--mono);color:var(--red)">' + d.losses + '</td>'
+        + '<td style="padding:6px 10px;text-align:center;font-family:var(--mono);color:var(--muted2)">' + tot + '</td>'
+        + '<td style="padding:6px 10px;text-align:center;font-family:var(--mono);font-weight:700;color:' + color + '">' + pct(wr) + '</td>'
+        + '</tr>';
+    });
+    html += '</tbody></table></div></div>';
+  }
+
+  if (!html) {
+    html = '<div class="loading-overlay">Nenhum dado histórico disponível.</div>';
+  }
+  container.innerHTML = html;
 }
 
 // ============================================================
@@ -2582,18 +2777,26 @@ function renderResumo() {
     html += '</tbody></table></div></div>';
   }
 
+  // ── Link para Assertividade Histórica ─────────────────────────────────────
+  html += '<div style="margin-top:20px;padding:14px 18px;background:rgba(91,156,246,.07);border:1px solid rgba(91,156,246,.2);border-radius:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">'
+    + '<div><div style="font-size:13px;font-weight:700;margin-bottom:3px">📊 Assertividade Histórica</div>'
+    + '<div style="font-family:var(--mono);font-size:10px;color:var(--muted2)">Desempenho histórico por faixa, liga e mercado</div></div>'
+    + '<button onclick="showAssertividade()" style="background:var(--blue);border:none;color:#fff;border-radius:6px;padding:8px 18px;font-family:var(--mono);font-size:11px;font-weight:700;cursor:pointer">Ver histórico →</button>'
+    + '</div>';
+
   container.innerHTML = html || '<div class="loading-overlay">Nenhuma aposta acima de 70% encontrada.</div>';
 }
 
 function showResumo() {
   currentLeagueKey = '__resumo__';
-  document.getElementById('home-screen').style.display   = 'none';
-  document.getElementById('resumo-screen').style.display = '';
-  document.getElementById('league-nav').style.display    = 'none';
-  document.getElementById('league-main').style.display   = 'none';
-  document.getElementById('back-btn').style.display      = '';
-  document.getElementById('season-toggle').style.display = 'none';
-  document.getElementById('logo-name').textContent       = 'Resumo dos Insights';
+  document.getElementById('home-screen').style.display         = 'none';
+  document.getElementById('resumo-screen').style.display       = '';
+  document.getElementById('assertividade-screen').style.display= 'none';
+  document.getElementById('league-nav').style.display          = 'none';
+  document.getElementById('league-main').style.display         = 'none';
+  document.getElementById('back-btn').style.display            = '';
+  document.getElementById('season-toggle').style.display       = 'none';
+  document.getElementById('logo-name').textContent             = 'Insights';
   renderResumo();
 }
 
@@ -2631,11 +2834,13 @@ function showLeague(key) {
   // Season toggle so faz sentido para o brasileirao (tem dados 2025)
   document.getElementById('season-toggle').style.display = meta.hasArbitros ? '' : 'none';
 
-  document.getElementById('home-screen').style.display   = 'none';
-  document.getElementById('league-nav').style.display    = '';
-  document.getElementById('league-main').style.display   = '';
-  document.getElementById('back-btn').style.display      = '';
-  document.getElementById('logo-name').textContent       = meta.name || key;
+  document.getElementById('home-screen').style.display         = 'none';
+  document.getElementById('resumo-screen').style.display       = 'none';
+  document.getElementById('assertividade-screen').style.display= 'none';
+  document.getElementById('league-nav').style.display          = '';
+  document.getElementById('league-main').style.display         = '';
+  document.getElementById('back-btn').style.display            = '';
+  document.getElementById('logo-name').textContent             = meta.name || key;
 
   // Reseta estado
   season          = '2026';
@@ -4367,14 +4572,15 @@ function submitArbPwd() {
 }
 
 function showArbScreen() {
-  document.getElementById('home-screen').style.display    = 'none';
-  document.getElementById('resumo-screen').style.display  = 'none';
-  document.getElementById('league-nav').style.display     = 'none';
-  document.getElementById('league-main').style.display    = 'none';
-  document.getElementById('arb-screen').style.display     = 'block';
-  document.getElementById('back-btn').style.display       = 'none';
-  document.getElementById('season-toggle').style.display  = 'none';
-  document.getElementById('logo-name').textContent        = 'Arbitragem';
+  document.getElementById('home-screen').style.display         = 'none';
+  document.getElementById('resumo-screen').style.display       = 'none';
+  document.getElementById('assertividade-screen').style.display= 'none';
+  document.getElementById('league-nav').style.display          = 'none';
+  document.getElementById('league-main').style.display         = 'none';
+  document.getElementById('arb-screen').style.display          = 'block';
+  document.getElementById('back-btn').style.display            = 'none';
+  document.getElementById('season-toggle').style.display       = 'none';
+  document.getElementById('logo-name').textContent             = 'Arbitragem';
   var saved = localStorage.getItem('arb_api_key') || '';
   document.getElementById('arb-api-key').value = saved;
 }

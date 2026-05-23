@@ -23,11 +23,35 @@ HTML_PATH = (REPO_ROOT / 'app.html' if (REPO_ROOT / 'app.html').exists() else RE
 API_DIR   = REPO_ROOT / 'api'
 
 CONFIDENCE_BANDS = [
-    (95, '95%'),
-    (90, '90%'),
-    (85, '85%'),
-    (80, '80%'),
+    (95, '95%+'),
+    (90, '90%+'),
+    (85, '85%+'),
+    (80, '80%+'),
 ]
+
+# Mapeamento label → chaves gameOdds (mesmo do app.html BET_TO_MARKET_KEYS)
+BET_TO_MARKET_KEYS = {
+    'Vitoria Mandante':         ['Full time_1'],
+    'Empate':                   ['Full time_X'],
+    'Vitoria Visitante':        ['Full time_2'],
+    'BTTS - Sim':               ['Both teams to score_Yes'],
+    'BTTS - Nao':               ['Both teams to score_No'],
+    'Over 1.5 gols':            ['Match goals_1.5_Over'],
+    'Under 1.5 gols':           ['Match goals_1.5_Under'],
+    'Over 2.5 gols':            ['Match goals_2.5_Over'],
+    'Under 2.5 gols':           ['Match goals_2.5_Under'],
+    'Over 3.5 gols':            ['Match goals_3.5_Over'],
+    'Under 3.5 gols':           ['Match goals_3.5_Under'],
+    'Over 8.5 escanteios':      ['Corners 2-Way_8.5_Over'],
+    'Over 9.5 escanteios':      ['Corners 2-Way_9.5_Over'],
+    'Over 10.5 escanteios':     ['Corners 2-Way_10.5_Over'],
+    'Over 11.5 escanteios':     ['Corners 2-Way_11.5_Over'],
+    'Under 8.5 escanteios':     ['Corners 2-Way_8.5_Under'],
+    'Over 3.5 cartoes':         ['Cards in match_3.5_Over'],
+    'Over 4.5 cartoes':         ['Cards in match_4.5_Over'],
+    'Over 5.5 cartoes':         ['Cards in match_5.5_Over'],
+    'Under 3.5 cartoes':        ['Cards in match_3.5_Under'],
+}
 
 
 def get_category(label):
@@ -96,12 +120,14 @@ def _format_pick(b, prob_pct):
     away   = b.get('away', '')
     cat    = b.get('cat', '') or get_category(label)
 
-    # Odd: pega a primeira odd numerica do gameOdds dict
+    # Odd: usa mapeamento label → chave gameOdds para pegar a odd correta
     odds = None
+    label  = b.get('label', '')
     game_odds = b.get('gameOdds') or {}
-    if isinstance(game_odds, dict):
-        for v in game_odds.values():
-            if isinstance(v, (int, float)) and v > 1:
+    if isinstance(game_odds, dict) and label in BET_TO_MARKET_KEYS:
+        for key in BET_TO_MARKET_KEYS[label]:
+            v = game_odds.get(key)
+            if isinstance(v, (int, float)) and v > 1.01:
                 odds = v
                 break
 
@@ -254,6 +280,9 @@ def build_track_record(bets, period, min_prob=None):
     league_agg = {}  # league_key -> {league, total, wins, losses}
     market_agg = {}  # market -> {market, total, wins, losses}
     daily_agg  = {}  # date -> {date, wins, losses}
+    # by_band: faixas de confianca (80%+, 85%+, 90%+, 95%+)
+    band_order = ['95%+', '90%+', '85%+', '80%+']
+    band_agg   = {k: {'band': k, 'total': 0, 'wins': 0, 'losses': 0} for k in band_order}
 
     for b in filtered:
         is_win = b['state'] == 'verde'
@@ -285,6 +314,16 @@ def build_track_record(bets, period, min_prob=None):
         if is_win: daily_agg[ds]['wins']   += 1
         else:      daily_agg[ds]['losses'] += 1
 
+        # by_band
+        p = b['p_pct']
+        if   p >= 95: bk = '95%+'
+        elif p >= 90: bk = '90%+'
+        elif p >= 85: bk = '85%+'
+        else:         bk = '80%+'
+        band_agg[bk]['total'] += 1
+        if is_win: band_agg[bk]['wins']   += 1
+        else:      band_agg[bk]['losses'] += 1
+
     # win_rate em decimal (0.81 = 81%)
     def wr(w, t): return round(w / t, 2) if t else 0.0
     summary['win_rate'] = wr(summary['wins'], summary['total'])
@@ -301,6 +340,12 @@ def build_track_record(bets, period, min_prob=None):
         by_market.append(v)
     by_market.sort(key=lambda x: (x['total'], x['wins']), reverse=True)
 
+    by_band = []
+    for k in band_order:
+        v = band_agg[k]
+        v['win_rate'] = wr(v['wins'], v['total'])
+        by_band.append(v)
+
     # daily_results: para periodos N dias, garante TODOS os dias presentes
     if day_list is not None:
         daily_results = [
@@ -315,6 +360,7 @@ def build_track_record(bets, period, min_prob=None):
         'period':        period,
         'min_prob':      min_prob,
         'summary':       summary,
+        'by_band':       by_band,
         'by_league':     by_league,
         'by_market':     by_market,
         'daily_results': daily_results,

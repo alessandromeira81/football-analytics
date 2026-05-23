@@ -1,26 +1,11 @@
 {
-  "from_date": "2026-05-22",
-  "to_date": "2026-05-24",
+  "from_date": "2026-05-23",
+  "to_date": "2026-05-25",
   "days": 3,
-  "generated_at": "2026-05-23T01:39:37Z",
+  "generated_at": "2026-05-23T13:45:43Z",
   "min_prob": 80,
   "count": 25,
   "picks": [
-    {
-      "league": "Serie A",
-      "league_key": "seriea",
-      "home_team": "Fiorentina",
-      "away_team": "Atalanta",
-      "kickoff": "2026-05-22T00:00:00Z",
-      "date": "2026-05-22",
-      "market": "Gols",
-      "pick": "Under 3.5 gols",
-      "label": "Under 3.5 gols",
-      "probability": 80,
-      "confidence_band": "80%+",
-      "odds": 1.57,
-      "bet_id": "seriea|Fiorentina|Atalanta|Under 3.5 gols"
-    },
     {
       "league": "La Liga",
       "league_key": "laliga",
@@ -63,7 +48,7 @@
       "label": "Over 1.5 gols",
       "probability": 85,
       "confidence_band": "85%+",
-      "odds": 1.25,
+      "odds": 1.29,
       "bet_id": "seriea|Lazio|Pisa|Over 1.5 gols"
     },
     {
@@ -138,7 +123,7 @@
       "label": "Over 1.5 gols",
       "probability": 82,
       "confidence_band": "80%+",
-      "odds": 1.29,
+      "odds": 1.25,
       "bet_id": "brasileirao|São Paulo|Botafogo|Over 1.5 gols"
     },
     {
@@ -273,7 +258,7 @@
       "label": "Under 3.5 gols",
       "probability": 82,
       "confidence_band": "80%+",
-      "odds": 1.5,
+      "odds": 1.44,
       "bet_id": "premier|Crystal Palace|Arsenal|Under 3.5 gols"
     },
     {
@@ -380,6 +365,21 @@
       "confidence_band": "80%+",
       "odds": 1.44,
       "bet_id": "seriea|Cremonese|Como|Under 3.5 gols"
+    },
+    {
+      "league": "Brasileirao Serie A",
+      "league_key": "brasileirao",
+      "home_team": "Coritiba",
+      "away_team": "Bahia",
+      "kickoff": "2026-05-25T00:00:00Z",
+      "date": "2026-05-25",
+      "market": "Gols",
+      "pick": "Under 3.5 gols",
+      "label": "Under 3.5 gols",
+      "probability": 81,
+      "confidence_band": "80%+",
+      "odds": 1.3,
+      "bet_id": "brasileirao|Coritiba|Bahia|Under 3.5 gols"
     }
   ]
 }

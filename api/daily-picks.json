@@ -1,7 +1,23 @@
 {
-  "date": "2026-05-22",
-  "generated_at": "2026-05-23T01:39:37Z",
+  "date": "2026-05-23",
+  "generated_at": "2026-05-23T13:45:43Z",
   "min_prob": 90,
-  "count": 0,
-  "picks": []
+  "count": 1,
+  "picks": [
+    {
+      "league": "La Liga",
+      "league_key": "laliga",
+      "home_team": "Getafe",
+      "away_team": "Osasuna",
+      "kickoff": "2026-05-23T00:00:00Z",
+      "date": "2026-05-23",
+      "market": "Gols",
+      "pick": "Under 3.5 gols",
+      "label": "Under 3.5 gols",
+      "probability": 91,
+      "confidence_band": "90%+",
+      "odds": 1.12,
+      "bet_id": "laliga|Getafe|Osasuna|Under 3.5 gols"
+    }
+  ]
 }

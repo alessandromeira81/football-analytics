@@ -71,11 +71,6 @@
   ],
   "daily_results": [
     {
-      "date": "2026-05-15",
-      "wins": 0,
-      "losses": 0
-    },
-    {
       "date": "2026-05-16",
       "wins": 0,
       "losses": 0
@@ -104,7 +99,12 @@
       "date": "2026-05-21",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "date": "2026-05-22",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-05-23T01:39:37Z"
+  "generated_at": "2026-05-23T13:45:43Z"
 }

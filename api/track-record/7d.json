@@ -24,29 +24,29 @@
     },
     {
       "band": "85%+",
-      "total": 17,
-      "wins": 15,
+      "total": 16,
+      "wins": 14,
       "losses": 2,
       "win_rate": 0.88
     },
     {
       "band": "80%+",
-      "total": 13,
-      "wins": 11,
+      "total": 14,
+      "wins": 12,
       "losses": 2,
-      "win_rate": 0.85
+      "win_rate": 0.86
     }
   ],
   "by_league": [
     {
-      "league": "Saudi Pro League",
+      "league": "Serie A",
       "total": 9,
       "wins": 8,
       "losses": 1,
       "win_rate": 0.89
     },
     {
-      "league": "Serie A",
+      "league": "Saudi Pro League",
       "total": 8,
       "wins": 7,
       "losses": 1,
@@ -113,11 +113,6 @@
   ],
   "daily_results": [
     {
-      "date": "2026-05-15",
-      "wins": 1,
-      "losses": 0
-    },
-    {
       "date": "2026-05-16",
       "wins": 2,
       "losses": 0
@@ -146,7 +141,12 @@
       "date": "2026-05-21",
       "wins": 5,
       "losses": 1
+    },
+    {
+      "date": "2026-05-22",
+      "wins": 1,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-05-23T01:39:37Z"
+  "generated_at": "2026-05-23T13:45:43Z"
 }

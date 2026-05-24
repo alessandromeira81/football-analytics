@@ -741,18 +741,36 @@ function updateCalculator(summary) {
 
 document.getElementById('bet-value').addEventListener('input', () => updateCalculator());
 
-// ── Notify me (lista de espera)
-function notifyMe(tier) {
-  // Por enquanto: prompt simples. Depois: integrar com email service.
+// ── Notify me (lista de espera) — envia para FormSubmit (estatisticasparabet@gmail.com)
+// FormSubmit (formsubmit.co) recebe o POST e encaminha por e-mail.
+// Primeira submissão exige confirmação clicando no link recebido no inbox.
+async function notifyMe(tier) {
   const email = prompt(`Te avisamos quando o plano ${tier.toUpperCase()} lançar.\n\nDigite seu email:`);
-  if (email && email.includes('@')) {
-    try {
-      const list = JSON.parse(localStorage.getItem('waitlist') || '[]');
-      list.push({ email, tier, ts: new Date().toISOString() });
-      localStorage.setItem('waitlist', JSON.stringify(list));
-    } catch(e) {}
-    alert(`✓ Anotado! Te avisamos no email ${email} quando o ${tier.toUpperCase()} lançar.\nVocê ganhará 50% de desconto vitalício.`);
-  }
+  if (!email || !email.includes('@')) return;
+  const payload = { email, tier, ts: new Date().toISOString(), source: 'landing' };
+  // Backup local (sobrevive ao refresh)
+  try {
+    const list = JSON.parse(localStorage.getItem('waitlist') || '[]');
+    list.push(payload);
+    localStorage.setItem('waitlist', JSON.stringify(list));
+  } catch(e) {}
+  // Envia para o mailing real
+  try {
+    await fetch('https://formsubmit.co/ajax/estatisticasparabet@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: `[Waitlist ${tier.toUpperCase()}] ${email}`,
+        _template: 'table',
+        _captcha: 'false',
+        email: email,
+        plano: tier,
+        origem: 'landing',
+        timestamp: payload.ts
+      })
+    });
+  } catch(e) { console.warn('Falha ao registrar no servidor:', e); }
+  alert(`✓ Anotado! Te avisamos em ${email} quando o ${tier.toUpperCase()} lançar.\nVocê ganhará 50% de desconto vitalício.`);
 }
 
 // ── Init

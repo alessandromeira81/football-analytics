@@ -156,7 +156,7 @@
       <p class="text-muted2 mb-6">Veja as perguntas frequentes ou fale conosco direto.</p>
       <div class="flex gap-3 justify-center">
         <a href="/#faq" class="btn-secondary">Ver FAQ</a>
-        <a href="mailto:alessandromeira@gmail.com?subject=Contato%20%E2%80%94%20Estat%C3%ADsticas%20Pra%20Bet" class="btn-secondary" title="contato@estatisticasparabet.com.br">Falar com a gente</a>
+        <a href="mailto:estatisticasparabet@gmail.com?subject=Contato%20%E2%80%94%20Estat%C3%ADsticas%20Pra%20Bet" class="btn-secondary" title="contato@estatisticasparabet.com.br">Falar com a gente</a>
       </div>
     </div>
   </div>
@@ -183,16 +183,31 @@
 </footer>
 
 <script>
-function notifyMe(tier) {
+async function notifyMe(tier) {
   const email = prompt(`Te avisamos quando o plano ${tier.toUpperCase()} lançar.\n\nDigite seu email:`);
-  if (email && email.includes('@')) {
-    try {
-      const list = JSON.parse(localStorage.getItem('waitlist') || '[]');
-      list.push({ email, tier, ts: new Date().toISOString() });
-      localStorage.setItem('waitlist', JSON.stringify(list));
-    } catch(e) {}
-    alert(`✓ Anotado! Te avisamos em ${email} quando o ${tier.toUpperCase()} lançar.\nVocê ganha 50% de desconto vitalício.`);
-  }
+  if (!email || !email.includes('@')) return;
+  const payload = { email, tier, ts: new Date().toISOString(), source: 'precos' };
+  try {
+    const list = JSON.parse(localStorage.getItem('waitlist') || '[]');
+    list.push(payload);
+    localStorage.setItem('waitlist', JSON.stringify(list));
+  } catch(e) {}
+  try {
+    await fetch('https://formsubmit.co/ajax/estatisticasparabet@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: `[Waitlist ${tier.toUpperCase()}] ${email}`,
+        _template: 'table',
+        _captcha: 'false',
+        email: email,
+        plano: tier,
+        origem: 'precos',
+        timestamp: payload.ts
+      })
+    });
+  } catch(e) { console.warn('Falha ao registrar no servidor:', e); }
+  alert(`✓ Anotado! Te avisamos em ${email} quando o ${tier.toUpperCase()} lançar.\nVocê ganha 50% de desconto vitalício.`);
 }
 </script>
 </body>

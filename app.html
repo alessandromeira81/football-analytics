@@ -438,14 +438,9 @@ select{font-family:var(--mono);font-size:11px;padding:5px 10px;background:var(--
     <div style="display:flex;gap:8px;margin-bottom:6px;flex-wrap:wrap;align-items:center">
       <button class="btn-secondary" id="rbtn-faltas"  onclick="toggleResumoFaltas()">Faltas: OFF</button>
       <button class="btn-secondary" id="rbtn-fins"    onclick="toggleResumoFins()">Finalizacoes: OFF</button>
-      <button onclick="openInsightsPro()" style="background:var(--purple);border:none;color:#fff;border-radius:6px;padding:6px 14px;font-family:var(--mono);font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.05em;box-shadow:0 0 10px rgba(139,92,246,.45)">🔮 Oráculo ↗</button>
       <button id="assert-lock-btn" onclick="toggleAssertLock()" title="Desbloquear assertividade" style="margin-left:auto;background:transparent;border:1px solid var(--border2);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:15px;color:var(--muted2);transition:all .15s">&#128274;</button>
       <button id="assert-import-btn" onclick="importAssertFromFile()" title="Importar assertividade de um HTML salvo anteriormente" style="display:none;background:transparent;border:1px solid var(--muted2);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px;font-family:var(--mono);font-weight:700;color:var(--muted2);transition:all .15s">&#8657; Importar</button>
       <button id="assert-save-btn" onclick="saveAssertToFile()" title="Baixar HTML com assertividade salva" style="display:none;background:transparent;border:1px solid var(--green);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px;font-family:var(--mono);font-weight:700;color:var(--green);transition:all .15s">&#8659; Salvar</button>
-    </div>
-    <!-- Explicacao Oráculo -->
-    <div style="background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.2);border-radius:8px;padding:10px 14px;margin-bottom:16px;font-family:var(--mono);font-size:10px;color:var(--muted2);line-height:1.5">
-      <span style="color:var(--purple);font-weight:700">🔮 Oráculo ↗</span> — modelo complementar que compara as probabilidades do Poisson bivariado com as odds do mercado (Sofascore). Revela o <em>value</em> (edge) de cada aposta: quando o modelo enxerga mais valor do que a odd está pagando. Use como segunda opinião, não como substituto dos Insights principais.
     </div>
     <div id="resumo-content"></div>
   </div>
@@ -1325,8 +1320,17 @@ function renderAssertividadeScreen() {
     return '<span style="' + chipStyle(ym === ASSERT_HIST_MONTH) + '" onclick="setAssertHistMonth(\'' + ym + '\')">' + label + '</span>';
   }).join('');
 
+  var _hasDayRange = !!(ASSERT_HIST_DAY_FROM || ASSERT_HIST_DAY_TO);
   var filteredHistory = (ASSERT_HIST_CAT ? computeFilteredHistory(ASSERT_HIST_CAT) : _allHistory)
-    .filter(function(e) { return e.date && e.date.slice(0,7) === ASSERT_HIST_MONTH; });
+    .filter(function(e) {
+      if (!e.date) return false;
+      if (_hasDayRange) {
+        if (ASSERT_HIST_DAY_FROM && e.date < ASSERT_HIST_DAY_FROM) return false;
+        if (ASSERT_HIST_DAY_TO   && e.date > ASSERT_HIST_DAY_TO)   return false;
+        return true;
+      }
+      return e.date.slice(0,7) === ASSERT_HIST_MONTH;
+    });
 
   // League chips
   var leagueMap = {};
@@ -1404,7 +1408,19 @@ function renderAssertividadeScreen() {
       }).join('')
     + '</div>';
 
-  var filterRow = '<div style="margin-bottom:12px">' + monthChips + '</div>'
+  var dayRangeStyle = 'background:var(--bg2);border:1px solid var(--border2);border-radius:6px;color:var(--fg);font-family:var(--mono);font-size:10px;padding:4px 8px;cursor:pointer;color-scheme:dark';
+  var dayRangeUI = '<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:12px;font-family:var(--mono);font-size:10px;color:var(--muted2)">'
+    + '<span style="text-transform:uppercase;letter-spacing:.05em">Período:</span>'
+    + '<input type="date" value="' + ASSERT_HIST_DAY_FROM + '" onchange="setAssertHistDayFrom(this.value)" style="' + dayRangeStyle + '" title="Data inicial">'
+    + '<span style="color:var(--muted)">até</span>'
+    + '<input type="date" value="' + ASSERT_HIST_DAY_TO + '" onchange="setAssertHistDayTo(this.value)" style="' + dayRangeStyle + '" title="Data final">'
+    + (_hasDayRange
+        ? '<button onclick="clearAssertHistDayRange()" style="background:transparent;border:1px solid var(--border2);border-radius:6px;color:var(--muted2);font-family:var(--mono);font-size:10px;padding:4px 10px;cursor:pointer">Limpar (voltar ao mês)</button>'
+        : '<span style="color:var(--muted);font-size:9px">vazio = filtro por mês abaixo</span>')
+    + '</div>';
+
+  var filterRow = dayRangeUI
+    + (_hasDayRange ? '' : '<div style="margin-bottom:12px">' + monthChips + '</div>')
     + (leagueChips ? '<div style="margin-bottom:12px">' + leagueChips + '</div>' : '')
     + catChips;
 
@@ -1547,6 +1563,16 @@ function setAssertHistLeague(lk) {
 var ASSERT_HIST_CAT = ''; // '' = todos os tipos
 function setAssertHistCat(cat) {
   ASSERT_HIST_CAT = ASSERT_HIST_CAT === cat ? '' : cat;
+  renderAssertividadeScreen();
+}
+// Filtro custom por intervalo de datas (sobrescreve o filtro de mes quando preenchido)
+var ASSERT_HIST_DAY_FROM = '';
+var ASSERT_HIST_DAY_TO   = '';
+function setAssertHistDayFrom(v) { ASSERT_HIST_DAY_FROM = v || ''; renderAssertividadeScreen(); }
+function setAssertHistDayTo(v)   { ASSERT_HIST_DAY_TO   = v || ''; renderAssertividadeScreen(); }
+function clearAssertHistDayRange() {
+  ASSERT_HIST_DAY_FROM = '';
+  ASSERT_HIST_DAY_TO   = '';
   renderAssertividadeScreen();
 }
 

@@ -294,7 +294,7 @@ def build_track_record(bets, period, min_prob=None):
         # by_league
         lk = b['league_key']
         if lk not in league_agg:
-            league_agg[lk] = {'league': b['league_name'], 'total': 0, 'wins': 0, 'losses': 0}
+            league_agg[lk] = {'league_key': lk, 'league': b['league_name'], 'total': 0, 'wins': 0, 'losses': 0}
         league_agg[lk]['total'] += 1
         if is_win: league_agg[lk]['wins']   += 1
         else:      league_agg[lk]['losses'] += 1
@@ -438,7 +438,7 @@ def main():
     print(f'  {len(bets_norm)} bets resolvidos (verde/vermelho com meta)', flush=True)
 
     print('\n→ Gerando track-record (TOTAL — todas probabilidades)...', flush=True)
-    for period in ['7d', '30d', 'all']:
+    for period in ['3d', '7d', '15d', '30d', 'all']:
         tr = build_track_record(bets_norm, period, min_prob=None)
         tr['generated_at'] = generated_at
         write_json(API_DIR / 'track-record' / f'{period}.json', tr)
@@ -449,7 +449,7 @@ def main():
     write_json(API_DIR / 'track-record.json', tr_default)
 
     print('\n→ Gerando track-record-90 (apenas 90%+)...', flush=True)
-    for period in ['7d', '30d', 'all']:
+    for period in ['3d', '7d', '15d', '30d', 'all']:
         tr = build_track_record(bets_norm, period, min_prob=90)
         tr['generated_at'] = generated_at
         write_json(API_DIR / 'track-record-90' / f'{period}.json', tr)

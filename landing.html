@@ -741,35 +741,38 @@ function updateCalculator(summary) {
 
 document.getElementById('bet-value').addEventListener('input', () => updateCalculator());
 
-// ── Notify me (lista de espera) — envia para FormSubmit (estatisticasparabet@gmail.com)
-// FormSubmit (formsubmit.co) recebe o POST e encaminha por e-mail.
-// Primeira submissão exige confirmação clicando no link recebido no inbox.
+// ── Notify me (lista de espera) — envia para Web3Forms → estatisticasparabet@gmail.com
+// COLE A access_key obtida em https://web3forms.com/ (cadastro 30s, recebe por email)
+const WEB3FORMS_KEY = 'PASTE_YOUR_ACCESS_KEY_HERE';
+
 async function notifyMe(tier) {
   const email = prompt(`Te avisamos quando o plano ${tier.toUpperCase()} lançar.\n\nDigite seu email:`);
   if (!email || !email.includes('@')) return;
   const payload = { email, tier, ts: new Date().toISOString(), source: 'landing' };
-  // Backup local (sobrevive ao refresh)
+  // Backup local (sobrevive ao refresh; safety net caso o servico de email falhe)
   try {
     const list = JSON.parse(localStorage.getItem('waitlist') || '[]');
     list.push(payload);
     localStorage.setItem('waitlist', JSON.stringify(list));
   } catch(e) {}
-  // Envia para o mailing real
-  try {
-    await fetch('https://formsubmit.co/ajax/estatisticasparabet@gmail.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        _subject: `[Waitlist ${tier.toUpperCase()}] ${email}`,
-        _template: 'table',
-        _captcha: 'false',
-        email: email,
-        plano: tier,
-        origem: 'landing',
-        timestamp: payload.ts
-      })
-    });
-  } catch(e) { console.warn('Falha ao registrar no servidor:', e); }
+  // Envia para o mailing real (Web3Forms)
+  if (WEB3FORMS_KEY && WEB3FORMS_KEY !== 'PASTE_YOUR_ACCESS_KEY_HERE') {
+    try {
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `[Waitlist ${tier.toUpperCase()}] ${email}`,
+          from_name: 'Estatísticas Pra Bet — Waitlist',
+          email_visitante: email,
+          plano: tier,
+          origem: 'landing',
+          timestamp: payload.ts
+        })
+      });
+    } catch(e) { console.warn('Falha ao registrar no servidor:', e); }
+  }
   alert(`✓ Anotado! Te avisamos em ${email} quando o ${tier.toUpperCase()} lançar.\nVocê ganhará 50% de desconto vitalício.`);
 }
 

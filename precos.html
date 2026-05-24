@@ -183,6 +183,9 @@
 </footer>
 
 <script>
+// COLE A access_key obtida em https://web3forms.com/ (cadastro 30s, recebe por email)
+const WEB3FORMS_KEY = 'PASTE_YOUR_ACCESS_KEY_HERE';
+
 async function notifyMe(tier) {
   const email = prompt(`Te avisamos quando o plano ${tier.toUpperCase()} lançar.\n\nDigite seu email:`);
   if (!email || !email.includes('@')) return;
@@ -192,21 +195,23 @@ async function notifyMe(tier) {
     list.push(payload);
     localStorage.setItem('waitlist', JSON.stringify(list));
   } catch(e) {}
-  try {
-    await fetch('https://formsubmit.co/ajax/estatisticasparabet@gmail.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        _subject: `[Waitlist ${tier.toUpperCase()}] ${email}`,
-        _template: 'table',
-        _captcha: 'false',
-        email: email,
-        plano: tier,
-        origem: 'precos',
-        timestamp: payload.ts
-      })
-    });
-  } catch(e) { console.warn('Falha ao registrar no servidor:', e); }
+  if (WEB3FORMS_KEY && WEB3FORMS_KEY !== 'PASTE_YOUR_ACCESS_KEY_HERE') {
+    try {
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `[Waitlist ${tier.toUpperCase()}] ${email}`,
+          from_name: 'Estatísticas Pra Bet — Waitlist',
+          email_visitante: email,
+          plano: tier,
+          origem: 'precos',
+          timestamp: payload.ts
+        })
+      });
+    } catch(e) { console.warn('Falha ao registrar no servidor:', e); }
+  }
   alert(`✓ Anotado! Te avisamos em ${email} quando o ${tier.toUpperCase()} lançar.\nVocê ganha 50% de desconto vitalício.`);
 }
 </script>

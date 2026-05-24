@@ -1,26 +1,26 @@
 {
-  "period": "7d",
+  "period": "15d",
   "min_prob": 90,
   "summary": {
-    "total": 4,
-    "wins": 4,
-    "losses": 0,
-    "win_rate": 1.0
+    "total": 9,
+    "wins": 6,
+    "losses": 3,
+    "win_rate": 0.67
   },
   "by_band": [
     {
       "band": "95%+",
-      "total": 0,
+      "total": 2,
       "wins": 0,
-      "losses": 0,
+      "losses": 2,
       "win_rate": 0.0
     },
     {
       "band": "90%+",
-      "total": 4,
-      "wins": 4,
-      "losses": 0,
-      "win_rate": 1.0
+      "total": 7,
+      "wins": 6,
+      "losses": 1,
+      "win_rate": 0.86
     },
     {
       "band": "85%+",
@@ -41,14 +41,22 @@
     {
       "league_key": "seriea",
       "league": "Serie A",
+      "total": 4,
+      "wins": 2,
+      "losses": 2,
+      "win_rate": 0.5
+    },
+    {
+      "league_key": "laliga",
+      "league": "La Liga",
       "total": 2,
       "wins": 2,
       "losses": 0,
       "win_rate": 1.0
     },
     {
-      "league_key": "laliga",
-      "league": "La Liga",
+      "league_key": "brasileirao",
+      "league": "Brasileirao Serie A",
       "total": 1,
       "wins": 1,
       "losses": 0,
@@ -61,18 +69,66 @@
       "wins": 1,
       "losses": 0,
       "win_rate": 1.0
+    },
+    {
+      "league_key": "bundesliga",
+      "league": "Bundesliga",
+      "total": 1,
+      "wins": 0,
+      "losses": 1,
+      "win_rate": 0.0
     }
   ],
   "by_market": [
     {
       "market": "Gols",
-      "total": 4,
-      "wins": 4,
-      "losses": 0,
-      "win_rate": 1.0
+      "total": 9,
+      "wins": 6,
+      "losses": 3,
+      "win_rate": 0.67
     }
   ],
   "daily_results": [
+    {
+      "date": "2026-05-09",
+      "wins": 0,
+      "losses": 1
+    },
+    {
+      "date": "2026-05-10",
+      "wins": 2,
+      "losses": 1
+    },
+    {
+      "date": "2026-05-11",
+      "wins": 0,
+      "losses": 1
+    },
+    {
+      "date": "2026-05-12",
+      "wins": 0,
+      "losses": 0
+    },
+    {
+      "date": "2026-05-13",
+      "wins": 0,
+      "losses": 0
+    },
+    {
+      "date": "2026-05-14",
+      "wins": 0,
+      "losses": 0
+    },
+    {
+      "date": "2026-05-15",
+      "wins": 0,
+      "losses": 0
+    },
+    {
+      "date": "2026-05-16",
+      "wins": 0,
+      "losses": 0
+    },
     {
       "date": "2026-05-17",
       "wins": 4,

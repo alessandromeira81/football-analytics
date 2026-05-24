@@ -19,7 +19,7 @@ from firebase_admin import credentials, firestore
 
 LEAGUES = [
     'brasileirao', 'premier', 'laliga', 'bundesliga',
-    'ligue1', 'saudi', 'argentina', 'seriea',
+    'ligue1', 'saudi', 'argentina', 'seriea', 'mls',
 ]
 
 BANDS = [

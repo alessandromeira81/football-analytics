@@ -23,7 +23,7 @@ from firebase_admin import credentials, firestore
 
 LEAGUES = [
     'brasileirao', 'premier', 'laliga', 'bundesliga',
-    'ligue1', 'saudi', 'argentina', 'seriea',
+    'ligue1', 'saudi', 'argentina', 'seriea', 'mls',
 ]
 
 LEAGUE_NAMES = {
@@ -35,6 +35,7 @@ LEAGUE_NAMES = {
     'seriea':      'Serie A',
     'argentina':   'Liga Profesional',
     'saudi':       'Saudi Pro League',
+    'mls':         'MLS',
 }
 
 TODAY    = dt_date.today().isoformat()

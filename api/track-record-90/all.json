@@ -39,6 +39,7 @@
   ],
   "by_league": [
     {
+      "league_key": "argentina",
       "league": "Liga Profesional",
       "total": 15,
       "wins": 11,
@@ -46,6 +47,7 @@
       "win_rate": 0.73
     },
     {
+      "league_key": "brasileirao",
       "league": "Brasileirao Serie A",
       "total": 7,
       "wins": 4,
@@ -53,6 +55,7 @@
       "win_rate": 0.57
     },
     {
+      "league_key": "saudi",
       "league": "Saudi Pro League",
       "total": 6,
       "wins": 6,
@@ -60,6 +63,7 @@
       "win_rate": 1.0
     },
     {
+      "league_key": "seriea",
       "league": "Serie A",
       "total": 6,
       "wins": 4,
@@ -67,6 +71,7 @@
       "win_rate": 0.67
     },
     {
+      "league_key": "bundesliga",
       "league": "Bundesliga",
       "total": 4,
       "wins": 2,
@@ -74,6 +79,7 @@
       "win_rate": 0.5
     },
     {
+      "league_key": "laliga",
       "league": "La Liga",
       "total": 3,
       "wins": 3,
@@ -81,6 +87,7 @@
       "win_rate": 1.0
     },
     {
+      "league_key": "ligue1",
       "league": "Ligue 1",
       "total": 2,
       "wins": 1,
@@ -170,5 +177,5 @@
       "losses": 0
     }
   ],
-  "generated_at": "2026-05-23T13:45:43Z"
+  "generated_at": "2026-05-24T11:22:39Z"
 }

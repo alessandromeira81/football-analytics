@@ -39,6 +39,7 @@
   ],
   "by_league": [
     {
+      "league_key": "argentina",
       "league": "Liga Profesional",
       "total": 34,
       "wins": 22,
@@ -46,6 +47,7 @@
       "win_rate": 0.65
     },
     {
+      "league_key": "seriea",
       "league": "Serie A",
       "total": 28,
       "wins": 16,
@@ -53,6 +55,7 @@
       "win_rate": 0.57
     },
     {
+      "league_key": "saudi",
       "league": "Saudi Pro League",
       "total": 25,
       "wins": 22,
@@ -60,6 +63,7 @@
       "win_rate": 0.88
     },
     {
+      "league_key": "brasileirao",
       "league": "Brasileirao Serie A",
       "total": 25,
       "wins": 12,
@@ -67,6 +71,7 @@
       "win_rate": 0.48
     },
     {
+      "league_key": "laliga",
       "league": "La Liga",
       "total": 21,
       "wins": 19,
@@ -74,6 +79,7 @@
       "win_rate": 0.9
     },
     {
+      "league_key": "premier",
       "league": "Premier League",
       "total": 20,
       "wins": 13,
@@ -81,6 +87,7 @@
       "win_rate": 0.65
     },
     {
+      "league_key": "ligue1",
       "league": "Ligue 1",
       "total": 16,
       "wins": 9,
@@ -88,6 +95,7 @@
       "win_rate": 0.56
     },
     {
+      "league_key": "bundesliga",
       "league": "Bundesliga",
       "total": 14,
       "wins": 10,
@@ -126,11 +134,6 @@
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-04-23",
-      "wins": 0,
-      "losses": 0
-    },
     {
       "date": "2026-04-24",
       "wins": 0,
@@ -275,7 +278,12 @@
       "date": "2026-05-22",
       "wins": 1,
       "losses": 0
+    },
+    {
+      "date": "2026-05-23",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-05-23T13:45:43Z"
+  "generated_at": "2026-05-24T11:22:39Z"
 }

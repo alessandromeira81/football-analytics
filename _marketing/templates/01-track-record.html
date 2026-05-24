@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Track Record Semanal — Estatísticas Pra Bet</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#1a1a1d; padding:40px; font-family:'Inter', sans-serif; }
+  .post {
+    width:1080px; height:1350px; background:#0a0a0b; color:#fafafa;
+    position:relative; overflow:hidden; padding:80px 70px;
+    display:flex; flex-direction:column;
+  }
+  .glow { position:absolute; top:-200px; right:-200px; width:600px; height:600px;
+          background:radial-gradient(circle, rgba(139,92,246,.25) 0%, transparent 70%); }
+  .header { display:flex; align-items:center; gap:20px; margin-bottom:50px; z-index:2; }
+  .logo-box { width:60px; height:60px; border-radius:14px; background:#8b5cf6;
+              display:flex; align-items:center; justify-content:center; font-size:32px; }
+  .brand { font-size:24px; font-weight:800; letter-spacing:-.02em; }
+  .brand-sub { font-family:'JetBrains Mono', monospace; font-size:13px; color:#71717a;
+               text-transform:uppercase; letter-spacing:.1em; margin-top:2px; }
+
+  .oraculo-row { display:flex; align-items:center; gap:30px; margin-bottom:60px; z-index:2; }
+  .oraculo-svg { width:140px; height:170px; flex-shrink:0; }
+  .oraculo-speech {
+    background:rgba(139,92,246,.08); border:1px solid rgba(139,92,246,.3);
+    border-radius:18px; padding:22px 28px; position:relative;
+  }
+  .oraculo-speech::before {
+    content:''; position:absolute; left:-12px; top:30px;
+    width:0; height:0; border-top:10px solid transparent; border-bottom:10px solid transparent;
+    border-right:14px solid rgba(139,92,246,.3);
+  }
+  .oraculo-name { font-family:'JetBrains Mono',monospace; font-size:11px;
+                  color:#a78bfa; letter-spacing:.15em; text-transform:uppercase;
+                  font-weight:700; margin-bottom:6px; }
+  .oraculo-quote { font-size:22px; font-weight:600; line-height:1.35; }
+
+  .stats { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:50px; z-index:2; }
+  .stat-card { background:#141416; border:1px solid #27272a; border-radius:20px; padding:30px; }
+  .stat-label { font-family:'JetBrains Mono',monospace; font-size:12px; color:#a1a1aa;
+                text-transform:uppercase; letter-spacing:.1em; margin-bottom:14px; font-weight:700; }
+  .stat-value { font-family:'JetBrains Mono',monospace; font-size:72px; font-weight:800;
+                line-height:1; letter-spacing:-.03em; }
+  .stat-extra { font-size:14px; color:#71717a; margin-top:8px; font-family:'JetBrains Mono',monospace; }
+
+  .breakdown { background:#141416; border:1px solid #27272a; border-radius:20px;
+               padding:30px; margin-bottom:auto; z-index:2; }
+  .breakdown-title { font-family:'JetBrains Mono',monospace; font-size:12px;
+                     color:#a1a1aa; text-transform:uppercase; letter-spacing:.1em;
+                     font-weight:700; margin-bottom:20px; }
+  .day-row { display:flex; align-items:center; gap:14px; padding:10px 0;
+             border-bottom:1px solid #1c1c1f; }
+  .day-row:last-child { border-bottom:none; }
+  .day-name { font-family:'JetBrains Mono',monospace; font-size:14px;
+              color:#a1a1aa; width:110px; }
+  .bar { flex:1; height:10px; background:#1c1c1f; border-radius:5px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:5px; }
+  .day-result { font-family:'JetBrains Mono',monospace; font-size:14px;
+                font-weight:700; width:110px; text-align:right; }
+
+  .footer { display:flex; justify-content:space-between; align-items:flex-end;
+            margin-top:40px; padding-top:30px; border-top:1px solid #27272a; z-index:2; }
+  .cta-text { font-size:18px; font-weight:700; }
+  .cta-text strong { color:#a78bfa; }
+  .cta-arrow { font-size:30px; color:#8b5cf6; }
+  .url { font-family:'JetBrains Mono',monospace; font-size:12px; color:#71717a; margin-top:4px; }
+</style>
+</head>
+<body>
+<div class="post">
+  <div class="glow"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-box">⚽</div>
+    <div>
+      <div class="brand">Estatísticas Pra Bet</div>
+      <div class="brand-sub">Track record semanal · 17–23 mai</div>
+    </div>
+  </div>
+
+  <!-- ORÁCULO + FALA -->
+  <div class="oraculo-row">
+    <svg class="oraculo-svg" viewBox="0 0 200 240">
+      <defs>
+        <linearGradient id="bg1" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#3f3f46"/><stop offset="100%" stop-color="#1c1c1f"/>
+        </linearGradient>
+        <radialGradient id="eye1"><stop offset="0%" stop-color="#c4b5fd"/><stop offset="60%" stop-color="#22c55e"/><stop offset="100%" stop-color="#15803d"/></radialGradient>
+      </defs>
+      <line x1="100" y1="40" x2="100" y2="15" stroke="#52525b" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="100" cy="12" r="6" fill="#a78bfa"/>
+      <rect x="40" y="40" width="120" height="120" rx="28" fill="url(#bg1)" stroke="#52525b" stroke-width="2"/>
+      <circle cx="100" cy="100" r="32" fill="#0a0a0b"/>
+      <circle cx="100" cy="100" r="26" fill="url(#eye1)"/>
+      <circle cx="92" cy="92" r="6" fill="#fafafa" opacity="0.85"/>
+      <rect x="65" y="135" width="70" height="8" rx="4" fill="#27272a"/>
+      <rect x="68" y="137" width="50" height="4" rx="2" fill="#22c55e"/>
+      <rect x="85" y="160" width="30" height="14" fill="#27272a"/>
+      <rect x="30" y="174" width="140" height="56" rx="10" fill="url(#bg1)" stroke="#52525b" stroke-width="2"/>
+      <circle cx="55" cy="200" r="4" fill="#a78bfa"/><circle cx="80" cy="200" r="4" fill="#22c55e"/>
+      <circle cx="120" cy="200" r="4" fill="#fbbf24"/><circle cx="145" cy="200" r="4" fill="#ef4444"/>
+      <text x="100" y="222" font-family="JetBrains Mono" font-size="8" fill="#71717a" text-anchor="middle" font-weight="700">ORÁCULO v1.0</text>
+    </svg>
+    <div class="oraculo-speech">
+      <div class="oraculo-name">// ORÁCULO REPORTA</div>
+      <div class="oraculo-quote">"Calculei 4 picks com 90%+ essa semana. Acertei todos. Não cantei vitória antes do tempo — só agora, com o resultado."</div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-label">Assertividade</div>
+      <div class="stat-value" style="color:#22c55e">100%</div>
+      <div class="stat-extra">4 verdes / 0 vermelhos</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Picks 90%+</div>
+      <div class="stat-value">4</div>
+      <div class="stat-extra">filtro: confiança ≥ 90%</div>
+    </div>
+  </div>
+
+  <!-- DAILY BREAKDOWN -->
+  <div class="breakdown">
+    <div class="breakdown-title">Desempenho dia a dia</div>
+    <div class="day-row">
+      <div class="day-name">sáb 17/05</div>
+      <div class="bar"><div class="bar-fill" style="width:100%;background:#22c55e"></div></div>
+      <div class="day-result" style="color:#22c55e">2V/0R · 100%</div>
+    </div>
+    <div class="day-row">
+      <div class="day-name">dom 18/05</div>
+      <div class="bar"><div class="bar-fill" style="width:100%;background:#22c55e"></div></div>
+      <div class="day-result" style="color:#22c55e">2V/0R · 100%</div>
+    </div>
+    <div class="day-row">
+      <div class="day-name">seg 19/05</div>
+      <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      <div class="day-result" style="color:#52525b">sem picks</div>
+    </div>
+    <div class="day-row">
+      <div class="day-name">ter 20/05</div>
+      <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      <div class="day-result" style="color:#52525b">sem picks</div>
+    </div>
+    <div class="day-row">
+      <div class="day-name">qua 21/05</div>
+      <div class="bar"><div class="bar-fill" style="width:0%"></div></div>
+      <div class="day-result" style="color:#52525b">sem picks</div>
+    </div>
+  </div>
+
+  <!-- CTA / FOOTER -->
+  <div class="footer">
+    <div>
+      <div class="cta-text">Quer ver os picks da próxima semana?</div>
+      <div class="url">→ link na bio · 100% grátis</div>
+    </div>
+    <div class="cta-arrow">→</div>
+  </div>
+</div>
+</body>
+</html>

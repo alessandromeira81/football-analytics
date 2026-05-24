@@ -11,6 +11,7 @@ Uso:
   python scraper.py --liga ligue1
   python scraper.py --liga argentina
   python scraper.py --liga seriea
+  python scraper.py --liga mls
   python scraper.py --liga all           # todas as ligas em sequencia
   python scraper.py --full               # coleta completa (sem incremental)
   python scraper.py 15                   # ate rodada 15
@@ -98,6 +99,15 @@ LEAGUES = {
         'season_id':     None,
         'out_file':      'seriea_data.json',
         'home_url':      'https://www.sofascore.com/football/italy/serie-a/23',
+    },
+    'mls': {
+        'name':          'MLS',
+        'short':         'USA',
+        'country':       'Estados Unidos',
+        'tournament_id': 242,
+        'season_id':     None,
+        'out_file':      'mls_data.json',
+        'home_url':      'https://www.sofascore.com/football/tournament/usa/mls/242',
     },
 }
 

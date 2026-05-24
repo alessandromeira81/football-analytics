@@ -1,0 +1,60 @@
+{
+  "period": "3d",
+  "min_prob": 90,
+  "summary": {
+    "total": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": 0.0
+  },
+  "by_band": [
+    {
+      "band": "95%+",
+      "total": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
+    {
+      "band": "90%+",
+      "total": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
+    {
+      "band": "85%+",
+      "total": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    },
+    {
+      "band": "80%+",
+      "total": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0
+    }
+  ],
+  "by_league": [],
+  "by_market": [],
+  "daily_results": [
+    {
+      "date": "2026-05-21",
+      "wins": 0,
+      "losses": 0
+    },
+    {
+      "date": "2026-05-22",
+      "wins": 0,
+      "losses": 0
+    },
+    {
+      "date": "2026-05-23",
+      "wins": 0,
+      "losses": 0
+    }
+  ],
+  "generated_at": "2026-05-24T11:22:39Z"
+}

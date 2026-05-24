@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Vercel Dev",
+      "runtimeExecutable": "vercel",
+      "runtimeArgs": ["dev", "--listen", "3000", "--yes"],
+      "port": 3000
+    },
+    {
+      "name": "Python HTTP Server",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8000"],
+      "port": 8000
+    }
+  ]
+}

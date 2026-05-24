@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480" width="320" height="480">
+  <defs>
+    <linearGradient id="bodyMain" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#52525b"/>
+      <stop offset="100%" stop-color="#27272a"/>
+    </linearGradient>
+    <linearGradient id="bodyDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3f3f46"/>
+      <stop offset="100%" stop-color="#1c1c1f"/>
+    </linearGradient>
+    <linearGradient id="chestPlate" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#27272a"/>
+      <stop offset="100%" stop-color="#0a0a0b"/>
+    </linearGradient>
+    <radialGradient id="eyeMain" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#ddd6fe"/>
+      <stop offset="40%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#5b21b6"/>
+    </radialGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- ====== SOMBRA DO CHÃO ====== -->
+  <ellipse cx="160" cy="465" rx="90" ry="10" fill="#000" opacity="0.4"/>
+
+  <!-- ====== PERNAS (postura: peso na perna esquerda, direita levemente flexionada) ====== -->
+  <!-- Perna direita (a da esquerda da imagem) -->
+  <g filter="url(#shadow)">
+    <rect x="118" y="335" width="32" height="80" rx="10" fill="url(#bodyMain)" stroke="#71717a" stroke-width="1.5"/>
+    <!-- Joelho -->
+    <circle cx="134" cy="378" r="6" fill="#3f3f46" stroke="#71717a" stroke-width="1"/>
+    <!-- Pé -->
+    <ellipse cx="134" cy="445" rx="28" ry="13" fill="url(#bodyDark)" stroke="#71717a" stroke-width="1.5"/>
+    <rect x="118" y="410" width="32" height="20" rx="6" fill="url(#bodyDark)" stroke="#71717a" stroke-width="1.5"/>
+  </g>
+
+  <!-- Perna esquerda (a da direita da imagem) levemente avançada -->
+  <g filter="url(#shadow)">
+    <rect x="170" y="335" width="32" height="78" rx="10" fill="url(#bodyMain)" stroke="#71717a" stroke-width="1.5"/>
+    <circle cx="186" cy="376" r="6" fill="#3f3f46" stroke="#71717a" stroke-width="1"/>
+    <ellipse cx="190" cy="442" rx="28" ry="13" fill="url(#bodyDark)" stroke="#71717a" stroke-width="1.5"/>
+    <rect x="174" y="408" width="32" height="20" rx="6" fill="url(#bodyDark)" stroke="#71717a" stroke-width="1.5"/>
+  </g>
+
+  <!-- ====== TRONCO ====== -->
+  <g filter="url(#shadow)">
+    <!-- Corpo principal -->
+    <path d="M 100 200 Q 100 185 115 185 L 205 185 Q 220 185 220 200 L 220 330 Q 220 345 205 345 L 115 345 Q 100 345 100 330 Z"
+          fill="url(#bodyMain)" stroke="#71717a" stroke-width="2"/>
+    <!-- Placa do peito -->
+    <rect x="118" y="210" width="84" height="100" rx="12" fill="url(#chestPlate)" stroke="#52525b" stroke-width="1.5"/>
+
+    <!-- Logo do peito: pulse dot + label -->
+    <circle cx="135" cy="232" r="6" fill="#22c55e" filter="url(#softGlow)"/>
+    <text x="148" y="237" font-family="JetBrains Mono, monospace" font-size="11"
+          fill="#a1a1aa" font-weight="700" letter-spacing="1">ONLINE</text>
+
+    <!-- Mini display estilo gráfico -->
+    <rect x="128" y="252" width="64" height="40" rx="4" fill="#0a0a0b" stroke="#3f3f46" stroke-width="1"/>
+    <polyline points="132,285 142,272 152,278 162,260 172,266 182,255 188,260"
+              fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Linha base -->
+    <line x1="128" y1="285" x2="192" y2="285" stroke="#27272a" stroke-width="1"/>
+
+    <!-- LEDs do status -->
+    <circle cx="135" cy="305" r="3" fill="#a78bfa"/>
+    <circle cx="148" cy="305" r="3" fill="#22c55e"/>
+    <circle cx="161" cy="305" r="3" fill="#fbbf24"/>
+    <circle cx="174" cy="305" r="3" fill="#ef4444"/>
+    <circle cx="187" cy="305" r="3" fill="#27272a"/>
+  </g>
+
+  <!-- ====== BRAÇO DIREITO (esquerda da imagem) — apoiado no quadril ====== -->
+  <g filter="url(#shadow)">
+    <!-- Ombro -->
+    <circle cx="100" cy="200" r="20" fill="url(#bodyDark)" stroke="#71717a" stroke-width="2"/>
+    <!-- Braço superior -->
+    <rect x="75" y="200" width="30" height="65" rx="12" fill="url(#bodyMain)" stroke="#71717a" stroke-width="1.5"/>
+    <!-- Cotovelo -->
+    <circle cx="90" cy="265" r="11" fill="#3f3f46" stroke="#71717a" stroke-width="1.5"/>
+    <!-- Antebraço (curvado pra frente, mão no quadril) -->
+    <rect x="90" y="258" width="40" height="24" rx="10" fill="url(#bodyMain)" stroke="#71717a" stroke-width="1.5"/>
+    <!-- Mão -->
+    <circle cx="132" cy="270" r="13" fill="url(#bodyDark)" stroke="#71717a" stroke-width="1.5"/>
+  </g>
+
+  <!-- ====== BRAÇO ESQUERDO (direita da imagem) — apontando pra cima (dinâmico) ====== -->
+  <g filter="url(#shadow)">
+    <!-- Ombro -->
+    <circle cx="220" cy="200" r="20" fill="url(#bodyDark)" stroke="#71717a" stroke-width="2"/>
+    <!-- Braço superior (subindo) -->
+    <rect x="218" y="160" width="28" height="56" rx="12" fill="url(#bodyMain)" stroke="#71717a" stroke-width="1.5"
+          transform="rotate(15, 232, 188)"/>
+    <!-- Cotovelo -->
+    <circle cx="252" cy="160" r="10" fill="#3f3f46" stroke="#71717a" stroke-width="1.5"/>
+    <!-- Antebraço subindo -->
+    <rect x="245" y="105" width="24" height="60" rx="10" fill="url(#bodyMain)" stroke="#71717a" stroke-width="1.5"
+          transform="rotate(10, 257, 135)"/>
+    <!-- Mão fechada com dedo apontando -->
+    <circle cx="263" cy="100" r="13" fill="url(#bodyDark)" stroke="#71717a" stroke-width="1.5"/>
+    <!-- Dedo indicador apontando -->
+    <rect x="259" y="78" width="8" height="18" rx="3" fill="url(#bodyDark)" stroke="#71717a" stroke-width="1"/>
+  </g>
+
+  <!-- ====== PESCOÇO ====== -->
+  <rect x="142" y="172" width="36" height="22" fill="#27272a" stroke="#71717a" stroke-width="1"/>
+  <rect x="140" y="184" width="40" height="6" rx="2" fill="#3f3f46"/>
+
+  <!-- ====== CABEÇA ====== -->
+  <g filter="url(#shadow)">
+    <!-- Crânio arredondado -->
+    <path d="M 95 100 Q 95 50 160 50 Q 225 50 225 100 L 225 165 Q 225 180 210 180 L 110 180 Q 95 180 95 165 Z"
+          fill="url(#bodyMain)" stroke="#71717a" stroke-width="2"/>
+    <!-- Topo (reflexo metálico) -->
+    <ellipse cx="160" cy="68" rx="55" ry="14" fill="#fafafa" opacity="0.1"/>
+
+    <!-- Visor preto onde fica o olho -->
+    <rect x="115" y="85" width="90" height="60" rx="14" fill="#0a0a0b"/>
+
+    <!-- OLHO ÚNICO -->
+    <circle cx="160" cy="115" r="22" fill="url(#eyeMain)" filter="url(#softGlow)"/>
+    <circle cx="153" cy="108" r="6" fill="#fafafa" opacity="0.9"/>
+    <circle cx="167" cy="121" r="2.5" fill="#fafafa" opacity="0.6"/>
+
+    <!-- Boca / display de áudio -->
+    <rect x="135" y="152" width="50" height="14" rx="7" fill="#0a0a0b" stroke="#3f3f46" stroke-width="1"/>
+    <rect x="140" y="156" width="4" height="6" rx="1" fill="#22c55e"/>
+    <rect x="147" y="154" width="4" height="10" rx="1" fill="#22c55e"/>
+    <rect x="154" y="157" width="4" height="4" rx="1" fill="#22c55e"/>
+    <rect x="161" y="155" width="4" height="8" rx="1" fill="#22c55e"/>
+    <rect x="168" y="157" width="4" height="5" rx="1" fill="#22c55e"/>
+    <rect x="175" y="156" width="4" height="6" rx="1" fill="#22c55e"/>
+
+    <!-- "Orelhas" / parafusos laterais -->
+    <circle cx="95" cy="115" r="8" fill="url(#bodyDark)" stroke="#71717a" stroke-width="1"/>
+    <circle cx="95" cy="115" r="3" fill="#3f3f46"/>
+    <circle cx="225" cy="115" r="8" fill="url(#bodyDark)" stroke="#71717a" stroke-width="1"/>
+    <circle cx="225" cy="115" r="3" fill="#3f3f46"/>
+  </g>
+
+  <!-- ====== ANTENA ====== -->
+  <line x1="160" y1="50" x2="160" y2="20" stroke="#52525b" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="160" cy="14" r="7" fill="#a78bfa" filter="url(#softGlow)"/>
+  <circle cx="160" cy="14" r="3" fill="#ddd6fe"/>
+</svg>

@@ -23,6 +23,7 @@ LEAGUE_NAMES = {
     'saudi':       'Saudi Pro League',
     'argentina':   'Liga Profesional',
     'seriea':      'Serie A',
+    'mls':         'MLS',
 }
 
 # p representativo de cada banda (usado quando print nao mostra % exato)

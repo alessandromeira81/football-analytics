@@ -270,16 +270,20 @@ async function load() {
     } else {
       document.getElementById('daily-card').style.display = '';
       const daily = (d.daily_results || []).slice(-30); // últimos 30
+      const WDAYS = ['dom','seg','ter','qua','qui','sex','sáb'];
       dailyEl.innerHTML = daily.map(day => {
         const total = day.wins + day.losses;
         const rate = total > 0 ? Math.round(day.wins / total * 100) : 0;
         const color = total === 0 ? '#3f3f46' : colorFor(rate);
-        const dateFmt = new Date(day.date + 'T12:00:00').toLocaleDateString('pt-BR', { day:'2-digit', month:'short', weekday:'short' });
+        const dObj = new Date(day.date + 'T12:00:00');
+        const dd = String(dObj.getDate()).padStart(2,'0');
+        const mm = String(dObj.getMonth()+1).padStart(2,'0');
+        const dateFmt = `${WDAYS[dObj.getDay()]} ${dd}/${mm}`;
         return `
           <div class="flex items-center gap-3 text-sm">
-            <span class="num text-muted2 w-32">${dateFmt}</span>
+            <span class="num text-muted2 w-24 whitespace-nowrap">${dateFmt}</span>
             <div class="flex-1 bar"><div class="bar-fill" style="width:${rate}%;background:${color}"></div></div>
-            <span class="num text-xs text-muted2 w-24 text-right">
+            <span class="num text-xs text-muted2 w-28 text-right whitespace-nowrap">
               ${total === 0 ? '<span class="text-muted">sem dados</span>' : `${day.wins}V/${day.losses}R · <span style="color:${color};font-weight:600">${rate}%</span>`}
             </span>
           </div>

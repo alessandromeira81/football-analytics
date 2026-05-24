@@ -541,7 +541,7 @@ const FLAGS = {
 // ── Carrega track record dinâmico: escolhe o MELHOR período entre 3d/7d/15d/30d
 // Considera apenas períodos com ≥ MIN_PICKS_FOR_PERIOD picks (evita "100% em 2 jogos")
 const PERIOD_LABELS = { '3d':'últimos 3 dias', '7d':'últimos 7 dias', '15d':'últimos 15 dias', '30d':'últimos 30 dias' };
-const MIN_PICKS_FOR_PERIOD = 10;
+const MIN_PICKS_FOR_PERIOD = 3;  // permite que períodos curtos com poucos picks "verdes" apareçam
 
 async function fetchPeriod(period) {
   const [total, p90] = await Promise.all([
@@ -559,7 +559,12 @@ function pickBestPeriod(results) {
     const fb = results.filter(x => x.p90 && x.p90.summary).sort((a,b)=>b.p90.summary.total - a.p90.summary.total)[0];
     return fb || results[results.length - 1];
   }
-  eligible.sort((a, b) => (b.p90.summary.win_rate||0) - (a.p90.summary.win_rate||0));
+  // Ordena por win_rate desc; em caso de empate, prefere amostra MAIOR (mais confiável)
+  eligible.sort((a, b) => {
+    const dw = (b.p90.summary.win_rate||0) - (a.p90.summary.win_rate||0);
+    if (dw !== 0) return dw;
+    return (b.p90.summary.total||0) - (a.p90.summary.total||0);
+  });
   return eligible[0];
 }
 

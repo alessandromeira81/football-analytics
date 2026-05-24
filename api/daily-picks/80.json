@@ -1,8 +1,8 @@
 {
   "date": "2026-05-24",
-  "generated_at": "2026-05-24T11:22:39Z",
+  "generated_at": "2026-05-24T13:46:45Z",
   "min_prob": 80,
-  "count": 13,
+  "count": 12,
   "picks": [
     {
       "league": "Serie A",
@@ -16,7 +16,7 @@
       "label": "Over 1.5 gols",
       "probability": 95,
       "confidence_band": "95%+",
-      "odds": 1.29,
+      "odds": 1.25,
       "bet_id": "seriea|SSC Napoli|Udinese|Over 1.5 gols"
     },
     {
@@ -31,7 +31,7 @@
       "label": "Under 3.5 gols",
       "probability": 88,
       "confidence_band": "85%+",
-      "odds": 1.5,
+      "odds": 1.36,
       "bet_id": "premier|Burnley|Wolverhampton|Under 3.5 gols"
     },
     {
@@ -44,9 +44,9 @@
       "market": "Gols",
       "pick": "Over 2.5 gols",
       "label": "Over 2.5 gols",
-      "probability": 86,
+      "probability": 85,
       "confidence_band": "85%+",
-      "odds": 1.91,
+      "odds": 1.8,
       "bet_id": "seriea|SSC Napoli|Udinese|Over 2.5 gols"
     },
     {
@@ -61,7 +61,7 @@
       "label": "Under 3.5 gols",
       "probability": 85,
       "confidence_band": "85%+",
-      "odds": 1.22,
+      "odds": 1.2,
       "bet_id": "seriea|Lecce|Genoa|Under 3.5 gols"
     },
     {
@@ -91,7 +91,7 @@
       "label": "Under 3.5 gols",
       "probability": 82,
       "confidence_band": "80%+",
-      "odds": 1.44,
+      "odds": 1.36,
       "bet_id": "premier|Crystal Palace|Arsenal|Under 3.5 gols"
     },
     {
@@ -110,21 +110,6 @@
       "bet_id": "brasileirao|Vasco da Gama|Red Bull Bragantino|Under 3.5 gols"
     },
     {
-      "league": "Brasileirao Serie A",
-      "league_key": "brasileirao",
-      "home_team": "Flamengo",
-      "away_team": "Palmeiras",
-      "kickoff": "2026-05-24T00:00:00Z",
-      "date": "2026-05-24",
-      "market": "Gols",
-      "pick": "Under 3.5 gols",
-      "label": "Under 3.5 gols",
-      "probability": 80,
-      "confidence_band": "80%+",
-      "odds": 1.3,
-      "bet_id": "brasileirao|Flamengo|Palmeiras|Under 3.5 gols"
-    },
-    {
       "league": "Premier League",
       "league_key": "premier",
       "home_team": "Fulham",
@@ -136,7 +121,7 @@
       "label": "Under 3.5 gols",
       "probability": 80,
       "confidence_band": "80%+",
-      "odds": 1.53,
+      "odds": 1.67,
       "bet_id": "premier|Fulham|Newcastle United|Under 3.5 gols"
     },
     {
@@ -181,7 +166,7 @@
       "label": "Under 3.5 gols",
       "probability": 80,
       "confidence_band": "80%+",
-      "odds": 1.36,
+      "odds": null,
       "bet_id": "seriea|Parma|Sassuolo|Under 3.5 gols"
     },
     {

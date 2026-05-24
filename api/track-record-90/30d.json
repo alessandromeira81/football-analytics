@@ -2,10 +2,10 @@
   "period": "30d",
   "min_prob": 90,
   "summary": {
-    "total": 43,
-    "wins": 31,
+    "total": 44,
+    "wins": 32,
     "losses": 12,
-    "win_rate": 0.72
+    "win_rate": 0.73
   },
   "by_band": [
     {
@@ -17,10 +17,10 @@
     },
     {
       "band": "90%+",
-      "total": 24,
-      "wins": 18,
+      "total": 25,
+      "wins": 19,
       "losses": 6,
-      "win_rate": 0.75
+      "win_rate": 0.76
     },
     {
       "band": "85%+",
@@ -71,20 +71,20 @@
       "win_rate": 0.67
     },
     {
+      "league_key": "laliga",
+      "league": "La Liga",
+      "total": 4,
+      "wins": 4,
+      "losses": 0,
+      "win_rate": 1.0
+    },
+    {
       "league_key": "bundesliga",
       "league": "Bundesliga",
       "total": 4,
       "wins": 2,
       "losses": 2,
       "win_rate": 0.5
-    },
-    {
-      "league_key": "laliga",
-      "league": "La Liga",
-      "total": 3,
-      "wins": 3,
-      "losses": 0,
-      "win_rate": 1.0
     },
     {
       "league_key": "ligue1",
@@ -98,10 +98,10 @@
   "by_market": [
     {
       "market": "Gols",
-      "total": 32,
-      "wins": 25,
+      "total": 33,
+      "wins": 26,
       "losses": 7,
-      "win_rate": 0.78
+      "win_rate": 0.79
     },
     {
       "market": "Escanteios",
@@ -273,9 +273,9 @@
     },
     {
       "date": "2026-05-23",
-      "wins": 0,
+      "wins": 1,
       "losses": 0
     }
   ],
-  "generated_at": "2026-05-24T11:22:39Z"
+  "generated_at": "2026-05-24T13:46:45Z"
 }

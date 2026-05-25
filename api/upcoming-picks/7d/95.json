@@ -1,25 +1,9 @@
 {
-  "from_date": "2026-05-24",
-  "to_date": "2026-05-30",
+  "from_date": "2026-05-25",
+  "to_date": "2026-05-31",
   "days": 7,
-  "generated_at": "2026-05-24T13:46:45Z",
+  "generated_at": "2026-05-25T15:02:55Z",
   "min_prob": 95,
-  "count": 1,
-  "picks": [
-    {
-      "league": "Serie A",
-      "league_key": "seriea",
-      "home_team": "SSC Napoli",
-      "away_team": "Udinese",
-      "kickoff": "2026-05-24T00:00:00Z",
-      "date": "2026-05-24",
-      "market": "Gols",
-      "pick": "Over 1.5 gols",
-      "label": "Over 1.5 gols",
-      "probability": 95,
-      "confidence_band": "95%+",
-      "odds": 1.25,
-      "bet_id": "seriea|SSC Napoli|Udinese|Over 1.5 gols"
-    }
-  ]
+  "count": 0,
+  "picks": []
 }

@@ -1,70 +1,9 @@
 {
-  "from_date": "2026-05-24",
-  "to_date": "2026-05-26",
+  "from_date": "2026-05-25",
+  "to_date": "2026-05-27",
   "days": 3,
-  "generated_at": "2026-05-24T13:46:45Z",
+  "generated_at": "2026-05-25T15:02:55Z",
   "min_prob": 85,
-  "count": 4,
-  "picks": [
-    {
-      "league": "Serie A",
-      "league_key": "seriea",
-      "home_team": "SSC Napoli",
-      "away_team": "Udinese",
-      "kickoff": "2026-05-24T00:00:00Z",
-      "date": "2026-05-24",
-      "market": "Gols",
-      "pick": "Over 1.5 gols",
-      "label": "Over 1.5 gols",
-      "probability": 95,
-      "confidence_band": "95%+",
-      "odds": 1.25,
-      "bet_id": "seriea|SSC Napoli|Udinese|Over 1.5 gols"
-    },
-    {
-      "league": "Premier League",
-      "league_key": "premier",
-      "home_team": "Burnley",
-      "away_team": "Wolverhampton",
-      "kickoff": "2026-05-24T00:00:00Z",
-      "date": "2026-05-24",
-      "market": "Gols",
-      "pick": "Under 3.5 gols",
-      "label": "Under 3.5 gols",
-      "probability": 88,
-      "confidence_band": "85%+",
-      "odds": 1.36,
-      "bet_id": "premier|Burnley|Wolverhampton|Under 3.5 gols"
-    },
-    {
-      "league": "Serie A",
-      "league_key": "seriea",
-      "home_team": "SSC Napoli",
-      "away_team": "Udinese",
-      "kickoff": "2026-05-24T00:00:00Z",
-      "date": "2026-05-24",
-      "market": "Gols",
-      "pick": "Over 2.5 gols",
-      "label": "Over 2.5 gols",
-      "probability": 85,
-      "confidence_band": "85%+",
-      "odds": 1.8,
-      "bet_id": "seriea|SSC Napoli|Udinese|Over 2.5 gols"
-    },
-    {
-      "league": "Serie A",
-      "league_key": "seriea",
-      "home_team": "Lecce",
-      "away_team": "Genoa",
-      "kickoff": "2026-05-24T00:00:00Z",
-      "date": "2026-05-24",
-      "market": "Gols",
-      "pick": "Under 3.5 gols",
-      "label": "Under 3.5 gols",
-      "probability": 85,
-      "confidence_band": "85%+",
-      "odds": 1.2,
-      "bet_id": "seriea|Lecce|Genoa|Under 3.5 gols"
-    }
-  ]
+  "count": 0,
+  "picks": []
 }

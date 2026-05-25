@@ -2,17 +2,17 @@
   "period": "3d",
   "min_prob": null,
   "summary": {
-    "total": 18,
-    "wins": 16,
-    "losses": 2,
-    "win_rate": 0.89
+    "total": 21,
+    "wins": 17,
+    "losses": 4,
+    "win_rate": 0.81
   },
   "by_band": [
     {
       "band": "95%+",
-      "total": 0,
+      "total": 1,
       "wins": 0,
-      "losses": 0,
+      "losses": 1,
       "win_rate": 0.0
     },
     {
@@ -25,48 +25,48 @@
     {
       "band": "85%+",
       "total": 6,
-      "wins": 6,
-      "losses": 0,
-      "win_rate": 1.0
+      "wins": 4,
+      "losses": 2,
+      "win_rate": 0.67
     },
     {
       "band": "80%+",
-      "total": 11,
-      "wins": 9,
-      "losses": 2,
-      "win_rate": 0.82
+      "total": 13,
+      "wins": 12,
+      "losses": 1,
+      "win_rate": 0.92
     }
   ],
   "by_league": [
     {
       "league_key": "laliga",
       "league": "La Liga",
-      "total": 6,
+      "total": 7,
       "wins": 5,
-      "losses": 1,
-      "win_rate": 0.83
-    },
-    {
-      "league_key": "saudi",
-      "league": "Saudi Pro League",
-      "total": 6,
-      "wins": 5,
-      "losses": 1,
-      "win_rate": 0.83
+      "losses": 2,
+      "win_rate": 0.71
     },
     {
       "league_key": "brasileirao",
       "league": "Brasileirao Serie A",
-      "total": 4,
-      "wins": 4,
+      "total": 5,
+      "wins": 5,
       "losses": 0,
       "win_rate": 1.0
     },
     {
       "league_key": "seriea",
       "league": "Serie A",
-      "total": 2,
-      "wins": 2,
+      "total": 5,
+      "wins": 3,
+      "losses": 2,
+      "win_rate": 0.6
+    },
+    {
+      "league_key": "premier",
+      "league": "Premier League",
+      "total": 4,
+      "wins": 4,
       "losses": 0,
       "win_rate": 1.0
     }
@@ -74,42 +74,35 @@
   "by_market": [
     {
       "market": "Gols",
-      "total": 14,
-      "wins": 12,
-      "losses": 2,
-      "win_rate": 0.86
+      "total": 17,
+      "wins": 14,
+      "losses": 3,
+      "win_rate": 0.82
     },
     {
       "market": "Escanteios",
-      "total": 3,
+      "total": 4,
       "wins": 3,
-      "losses": 0,
-      "win_rate": 1.0
-    },
-    {
-      "market": "Resultado",
-      "total": 1,
-      "wins": 1,
-      "losses": 0,
-      "win_rate": 1.0
+      "losses": 1,
+      "win_rate": 0.75
     }
   ],
   "daily_results": [
     {
-      "date": "2026-05-21",
-      "wins": 5,
-      "losses": 1
-    },
-    {
       "date": "2026-05-22",
-      "wins": 1,
+      "wins": 0,
       "losses": 0
     },
     {
       "date": "2026-05-23",
       "wins": 10,
-      "losses": 1
+      "losses": 2
+    },
+    {
+      "date": "2026-05-24",
+      "wins": 7,
+      "losses": 2
     }
   ],
-  "generated_at": "2026-05-24T13:46:45Z"
+  "generated_at": "2026-05-25T15:02:55Z"
 }

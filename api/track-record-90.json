@@ -2,23 +2,23 @@
   "period": "7d",
   "min_prob": 90,
   "summary": {
-    "total": 5,
-    "wins": 5,
-    "losses": 0,
-    "win_rate": 1.0
+    "total": 2,
+    "wins": 1,
+    "losses": 1,
+    "win_rate": 0.5
   },
   "by_band": [
     {
       "band": "95%+",
-      "total": 0,
+      "total": 1,
       "wins": 0,
-      "losses": 0,
+      "losses": 1,
       "win_rate": 0.0
     },
     {
       "band": "90%+",
-      "total": 5,
-      "wins": 5,
+      "total": 1,
+      "wins": 1,
       "losses": 0,
       "win_rate": 1.0
     },
@@ -41,43 +41,30 @@
     {
       "league_key": "laliga",
       "league": "La Liga",
-      "total": 2,
-      "wins": 2,
+      "total": 1,
+      "wins": 1,
       "losses": 0,
       "win_rate": 1.0
     },
     {
       "league_key": "seriea",
       "league": "Serie A",
-      "total": 2,
-      "wins": 2,
-      "losses": 0,
-      "win_rate": 1.0
-    },
-    {
-      "league_key": "ligue1",
-      "league": "Ligue 1",
       "total": 1,
-      "wins": 1,
-      "losses": 0,
-      "win_rate": 1.0
+      "wins": 0,
+      "losses": 1,
+      "win_rate": 0.0
     }
   ],
   "by_market": [
     {
       "market": "Gols",
-      "total": 5,
-      "wins": 5,
-      "losses": 0,
-      "win_rate": 1.0
+      "total": 2,
+      "wins": 1,
+      "losses": 1,
+      "win_rate": 0.5
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-17",
-      "wins": 4,
-      "losses": 0
-    },
     {
       "date": "2026-05-18",
       "wins": 0,
@@ -107,7 +94,12 @@
       "date": "2026-05-23",
       "wins": 1,
       "losses": 0
+    },
+    {
+      "date": "2026-05-24",
+      "wins": 0,
+      "losses": 1
     }
   ],
-  "generated_at": "2026-05-24T13:46:45Z"
+  "generated_at": "2026-05-25T15:02:55Z"
 }

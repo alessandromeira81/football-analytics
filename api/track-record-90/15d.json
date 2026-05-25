@@ -41,10 +41,10 @@
     {
       "league_key": "seriea",
       "league": "Serie A",
-      "total": 4,
+      "total": 5,
       "wins": 2,
-      "losses": 2,
-      "win_rate": 0.5
+      "losses": 3,
+      "win_rate": 0.4
     },
     {
       "league_key": "laliga",
@@ -69,14 +69,6 @@
       "wins": 1,
       "losses": 0,
       "win_rate": 1.0
-    },
-    {
-      "league_key": "bundesliga",
-      "league": "Bundesliga",
-      "total": 1,
-      "wins": 0,
-      "losses": 1,
-      "win_rate": 0.0
     }
   ],
   "by_market": [
@@ -89,11 +81,6 @@
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-09",
-      "wins": 0,
-      "losses": 1
-    },
     {
       "date": "2026-05-10",
       "wins": 2,
@@ -163,7 +150,12 @@
       "date": "2026-05-23",
       "wins": 1,
       "losses": 0
+    },
+    {
+      "date": "2026-05-24",
+      "wins": 0,
+      "losses": 1
     }
   ],
-  "generated_at": "2026-05-24T13:46:45Z"
+  "generated_at": "2026-05-25T15:02:55Z"
 }

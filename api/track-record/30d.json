@@ -2,10 +2,10 @@
   "period": "30d",
   "min_prob": null,
   "summary": {
-    "total": 204,
+    "total": 205,
     "wins": 140,
-    "losses": 64,
-    "win_rate": 0.69
+    "losses": 65,
+    "win_rate": 0.68
   },
   "by_band": [
     {
@@ -31,10 +31,10 @@
     },
     {
       "band": "80%+",
-      "total": 97,
+      "total": 98,
       "wins": 69,
-      "losses": 28,
-      "win_rate": 0.71
+      "losses": 29,
+      "win_rate": 0.7
     }
   ],
   "by_league": [
@@ -47,20 +47,20 @@
       "win_rate": 0.65
     },
     {
-      "league_key": "seriea",
-      "league": "Serie A",
+      "league_key": "brasileirao",
+      "league": "Brasileirao Serie A",
       "total": 32,
       "wins": 18,
       "losses": 14,
       "win_rate": 0.56
     },
     {
-      "league_key": "brasileirao",
-      "league": "Brasileirao Serie A",
-      "total": 31,
+      "league_key": "seriea",
+      "league": "Serie A",
+      "total": 32,
       "wins": 18,
-      "losses": 13,
-      "win_rate": 0.58
+      "losses": 14,
+      "win_rate": 0.56
     },
     {
       "league_key": "laliga",
@@ -106,10 +106,10 @@
   "by_market": [
     {
       "market": "Gols",
-      "total": 145,
+      "total": 146,
       "wins": 107,
-      "losses": 38,
-      "win_rate": 0.74
+      "losses": 39,
+      "win_rate": 0.73
     },
     {
       "market": "Escanteios",
@@ -134,11 +134,6 @@
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-04-25",
-      "wins": 0,
-      "losses": 0
-    },
     {
       "date": "2026-04-26",
       "wins": 0,
@@ -283,7 +278,12 @@
       "date": "2026-05-24",
       "wins": 8,
       "losses": 2
+    },
+    {
+      "date": "2026-05-25",
+      "wins": 0,
+      "losses": 1
     }
   ],
-  "generated_at": "2026-05-26T01:22:07Z"
+  "generated_at": "2026-05-26T15:44:26Z"
 }

@@ -5,8 +5,8 @@
     "tournamentId": 34,
     "seasonId": 77356,
     "lastRound": 34,
-    "totalGames": 303,
-    "updatedAt": "2026-05-18T15:42:57Z",
+    "totalGames": 305,
+    "updatedAt": "2026-05-26T01:18:46Z",
     "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents."
   },
   "games": [
@@ -36729,7 +36729,301 @@
         "id": 787561,
         "name": "Mathieu Vernice"
       }
+    },
+    {
+      "id": 16156961,
+      "round": 1,
+      "date": "2026-05-12",
+      "homeTeam": "Red Star FC",
+      "awayTeam": "Rodez AF",
+      "homeId": 52874,
+      "awayId": 6925,
+      "score": {
+        "home": 2,
+        "away": 3
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 9,
+            "away": 12
+          },
+          "corners": {
+            "home": 2,
+            "away": 3
+          },
+          "fouls": {
+            "home": 9,
+            "away": 14
+          },
+          "yellowCards": {
+            "home": 3,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 5
+          },
+          "redCards": {
+            "home": 1,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 3,
+            "away": 5
+          },
+          "corners": {
+            "home": 0,
+            "away": 1
+          },
+          "fouls": {
+            "home": 5,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 2
+          },
+          "redCards": {
+            "home": 1,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 6,
+            "away": 7
+          },
+          "corners": {
+            "home": 2,
+            "away": 2
+          },
+          "fouls": {
+            "home": 4,
+            "away": 8
+          },
+          "yellowCards": {
+            "home": 3,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 3
+          },
+          "redCards": {
+            "home": 1,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "red",
+          "minute": 95,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 90,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 89,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 76,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 63,
+          "isHome": true,
+          "period": "2t"
+        }
+      ],
+      "referee": {
+        "id": 787562,
+        "name": "Guillaume Paradis"
+      }
+    },
+    {
+      "id": 16173051,
+      "round": 2,
+      "date": "2026-05-15",
+      "homeTeam": "Saint-Étienne",
+      "awayTeam": "Rodez AF",
+      "homeId": 1678,
+      "awayId": 6925,
+      "score": {
+        "home": 7,
+        "away": 6
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 12,
+            "away": 13
+          },
+          "corners": {
+            "home": 8,
+            "away": 3
+          },
+          "fouls": {
+            "home": 13,
+            "away": 13
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 4,
+            "away": 10
+          },
+          "corners": {
+            "home": 1,
+            "away": 2
+          },
+          "fouls": {
+            "home": 8,
+            "away": 7
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 8,
+            "away": 3
+          },
+          "corners": {
+            "home": 7,
+            "away": 1
+          },
+          "fouls": {
+            "home": 5,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 83,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 64,
+          "isHome": true,
+          "period": "2t"
+        }
+      ],
+      "referee": {
+        "id": 787834,
+        "name": "Marc Bollengier"
+      }
     }
   ],
-  "scheduledGames": []
+  "scheduledGames": [
+    {
+      "id": 16198895,
+      "round": 29,
+      "homeTeam": "Saint-Étienne",
+      "awayTeam": "Nice",
+      "date": "2026-05-26",
+      "odds": {
+        "Full time_1": 2.2,
+        "Full time_X": 3.6,
+        "Full time_2": 3.0,
+        "Double chance_1X": 1.36,
+        "Double chance_X2": 1.67,
+        "Double chance_12": 1.29,
+        "1st half_1": 2.75,
+        "1st half_X": 2.3,
+        "1st half_2": 3.5,
+        "Draw no bet_1": 1.62,
+        "Draw no bet_2": 2.2,
+        "Both teams to score_Yes": 1.62,
+        "Both teams to score_No": 2.2,
+        "Match goals_0.5_Over": 1.04,
+        "Match goals_0.5_Under": 13.0,
+        "Match goals_1.5_Over": 1.22,
+        "Match goals_1.5_Under": 4.0,
+        "Match goals_2.5_Over": 1.73,
+        "Match goals_2.5_Under": 2.08,
+        "Match goals_3.5_Over": 2.75,
+        "Match goals_3.5_Under": 1.4,
+        "Match goals_4.5_Over": 5.5,
+        "Match goals_4.5_Under": 1.14,
+        "Match goals_5.5_Over": 11.0,
+        "Match goals_5.5_Under": 1.05,
+        "Match goals_6.5_Over": 23.0,
+        "Match goals_6.5_Under": 1.01,
+        "Match goals_7.5_Over": 51.0,
+        "Match goals_7.5_Under": 1.0,
+        "Asian handicap_(-0.25) Saint-Étienne": 1.95,
+        "Asian handicap_(0.25) Nice": 1.9,
+        "Corners 2-Way_9.5_Over": 1.67,
+        "Corners 2-Way_9.5_Under": 2.1,
+        "First team to score_Saint-Étienne": 1.8,
+        "First team to score_No goal": 13.0,
+        "First team to score_Nice": 2.1
+      }
+    },
+    {
+      "id": 16198901,
+      "round": 29,
+      "homeTeam": "Nice",
+      "awayTeam": "Saint-Étienne",
+      "date": "2026-05-29",
+      "odds": {}
+    }
+  ]
 }

@@ -4,9 +4,9 @@
     "leagueName": "Liga Profesional",
     "tournamentId": 155,
     "seasonId": 87913,
-    "lastRound": 27,
-    "totalGames": 240,
-    "updatedAt": "2026-05-13T13:42:52Z",
+    "lastRound": 29,
+    "totalGames": 255,
+    "updatedAt": "2026-05-26T01:20:05Z",
     "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents."
   },
   "games": [
@@ -31318,6 +31318,2073 @@
       "referee": {
         "id": 594592,
         "name": "Ariel Penel"
+      }
+    },
+    {
+      "id": 16131125,
+      "round": 5,
+      "date": "2026-05-09",
+      "homeTeam": "CA Talleres",
+      "awayTeam": "Club Atlético Belgrano",
+      "homeId": 3210,
+      "awayId": 3203,
+      "score": {
+        "home": 0,
+        "away": 1
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 16,
+            "away": 14
+          },
+          "corners": {
+            "home": 8,
+            "away": 3
+          },
+          "fouls": {
+            "home": 13,
+            "away": 20
+          },
+          "yellowCards": {
+            "home": 4,
+            "away": 5
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 3
+          },
+          "redCards": {
+            "home": 2,
+            "away": 1
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 8,
+            "away": 5
+          },
+          "corners": {
+            "home": 4,
+            "away": 1
+          },
+          "fouls": {
+            "home": 4,
+            "away": 8
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 1
+          },
+          "redCards": {
+            "home": 2,
+            "away": 1
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 8,
+            "away": 9
+          },
+          "corners": {
+            "home": 4,
+            "away": 2
+          },
+          "fouls": {
+            "home": 9,
+            "away": 12
+          },
+          "yellowCards": {
+            "home": 4,
+            "away": 4
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 3
+          },
+          "redCards": {
+            "home": 2,
+            "away": 1
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 94,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "red",
+          "minute": 94,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "red",
+          "minute": 94,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 93,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 93,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "red",
+          "minute": 78,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 62,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 54,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 52,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 28,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 322839,
+        "name": "Dario Herrera"
+      }
+    },
+    {
+      "id": 16131124,
+      "round": 5,
+      "date": "2026-05-09",
+      "homeTeam": "Boca Juniors",
+      "awayTeam": "Huracán",
+      "homeId": 3202,
+      "awayId": 7629,
+      "score": {
+        "home": 2,
+        "away": 3
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 36,
+            "away": 8
+          },
+          "corners": {
+            "home": 17,
+            "away": 1
+          },
+          "fouls": {
+            "home": 10,
+            "away": 15
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 5
+          },
+          "shotsOnTarget": {
+            "home": 11,
+            "away": 4
+          },
+          "redCards": {
+            "home": 0,
+            "away": 2
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 12,
+            "away": 3
+          },
+          "corners": {
+            "home": 8,
+            "away": 0
+          },
+          "fouls": {
+            "home": 2,
+            "away": 4
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 2
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 11,
+            "away": 1
+          },
+          "corners": {
+            "home": 6,
+            "away": 0
+          },
+          "fouls": {
+            "home": 4,
+            "away": 9
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 3
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 2
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "red",
+          "minute": 107,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "red",
+          "minute": 107,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 84,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 84,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 76,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 60,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 42,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 786258,
+        "name": "Pablo Echavarria"
+      }
+    },
+    {
+      "id": 16131191,
+      "round": 5,
+      "date": "2026-05-10",
+      "homeTeam": "Independiente Rivadavia",
+      "awayTeam": "Club Atlético Unión de Santa Fe",
+      "homeId": 36842,
+      "awayId": 3204,
+      "score": {
+        "home": 1,
+        "away": 2
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 18,
+            "away": 10
+          },
+          "corners": {
+            "home": 5,
+            "away": 5
+          },
+          "fouls": {
+            "home": 6,
+            "away": 15
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 6
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 7,
+            "away": 6
+          },
+          "corners": {
+            "home": 2,
+            "away": 3
+          },
+          "fouls": {
+            "home": 4,
+            "away": 5
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 11,
+            "away": 4
+          },
+          "corners": {
+            "home": 3,
+            "away": 2
+          },
+          "fouls": {
+            "home": 2,
+            "away": 10
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 63,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 56,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 8,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 788163,
+        "name": "Luis Lobo Medina"
+      }
+    },
+    {
+      "id": 16131126,
+      "round": 5,
+      "date": "2026-05-10",
+      "homeTeam": "Argentinos Juniors",
+      "awayTeam": "CA Lanús",
+      "homeId": 3216,
+      "awayId": 3218,
+      "score": {
+        "home": 2,
+        "away": 0
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 16,
+            "away": 9
+          },
+          "corners": {
+            "home": 3,
+            "away": 2
+          },
+          "fouls": {
+            "home": 12,
+            "away": 16
+          },
+          "yellowCards": {
+            "home": 3,
+            "away": 4
+          },
+          "shotsOnTarget": {
+            "home": 8,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 7,
+            "away": 4
+          },
+          "corners": {
+            "home": 2,
+            "away": 1
+          },
+          "fouls": {
+            "home": 3,
+            "away": 12
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 9,
+            "away": 5
+          },
+          "corners": {
+            "home": 1,
+            "away": 1
+          },
+          "fouls": {
+            "home": 9,
+            "away": 4
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 78,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 74,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 70,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 41,
+          "isHome": true,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 23,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 22,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 21,
+          "isHome": true,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 787028,
+        "name": "Leandro Rey Hilfer"
+      }
+    },
+    {
+      "id": 16131184,
+      "round": 5,
+      "date": "2026-05-10",
+      "homeTeam": "Rosario Central",
+      "awayTeam": "CA Independiente",
+      "homeId": 3217,
+      "awayId": 3209,
+      "score": {
+        "home": 3,
+        "away": 1
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 14,
+            "away": 6
+          },
+          "corners": {
+            "home": 2,
+            "away": 3
+          },
+          "fouls": {
+            "home": 11,
+            "away": 14
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 6,
+            "away": 4
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 7,
+            "away": 5
+          },
+          "corners": {
+            "home": 1,
+            "away": 0
+          },
+          "fouls": {
+            "home": 4,
+            "away": 9
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 7,
+            "away": 1
+          },
+          "corners": {
+            "home": 1,
+            "away": 3
+          },
+          "fouls": {
+            "home": 7,
+            "away": 5
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 93,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 50,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 34,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 11,
+          "isHome": true,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 787023,
+        "name": "Yael Falcon Perez"
+      }
+    },
+    {
+      "id": 16131180,
+      "round": 5,
+      "date": "2026-05-10",
+      "homeTeam": "Estudiantes de La Plata",
+      "awayTeam": "Racing Club",
+      "homeId": 3206,
+      "awayId": 3215,
+      "score": {
+        "home": 0,
+        "away": 1
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 13,
+            "away": 8
+          },
+          "corners": {
+            "home": 1,
+            "away": 4
+          },
+          "fouls": {
+            "home": 1,
+            "away": 18
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 5
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 5,
+            "away": 4
+          },
+          "corners": {
+            "home": 0,
+            "away": 1
+          },
+          "fouls": {
+            "home": 1,
+            "away": 8
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 8,
+            "away": 4
+          },
+          "corners": {
+            "home": 1,
+            "away": 3
+          },
+          "fouls": {
+            "home": 0,
+            "away": 10
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 4
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 95,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 92,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 84,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 72,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 46,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 40,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 38,
+          "isHome": true,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 788549,
+        "name": "Sebastian Nicolas Martinez"
+      }
+    },
+    {
+      "id": 16131186,
+      "round": 5,
+      "date": "2026-05-10",
+      "homeTeam": "River Plate",
+      "awayTeam": "San Lorenzo",
+      "homeId": 3211,
+      "awayId": 3201,
+      "score": {
+        "home": 6,
+        "away": 5
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 30,
+            "away": 5
+          },
+          "corners": {
+            "home": 6,
+            "away": 2
+          },
+          "fouls": {
+            "home": 14,
+            "away": 13
+          },
+          "yellowCards": {
+            "home": 3,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 12,
+            "away": 4
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 12,
+            "away": 2
+          },
+          "corners": {
+            "home": 3,
+            "away": 0
+          },
+          "fouls": {
+            "home": 4,
+            "away": 4
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 11,
+            "away": 2
+          },
+          "corners": {
+            "home": 2,
+            "away": 1
+          },
+          "fouls": {
+            "home": 7,
+            "away": 7
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 93,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 93,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "red",
+          "minute": 31,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 13,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 787946,
+        "name": "Sebastian Zunino"
+      }
+    },
+    {
+      "id": 16131189,
+      "round": 5,
+      "date": "2026-05-11",
+      "homeTeam": "Vélez Sarsfield",
+      "awayTeam": "Gimnasia y Esgrima",
+      "homeId": 3208,
+      "awayId": 3205,
+      "score": {
+        "home": 0,
+        "away": 1
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 27,
+            "away": 7
+          },
+          "corners": {
+            "home": 17,
+            "away": 0
+          },
+          "fouls": {
+            "home": 9,
+            "away": 13
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 5
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 8,
+            "away": 6
+          },
+          "corners": {
+            "home": 8,
+            "away": 0
+          },
+          "fouls": {
+            "home": 4,
+            "away": 8
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 19,
+            "away": 1
+          },
+          "corners": {
+            "home": 9,
+            "away": 0
+          },
+          "fouls": {
+            "home": 5,
+            "away": 5
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 3
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 91,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 80,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 67,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "red",
+          "minute": 55,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 25,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 21,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 18,
+          "isHome": true,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 10,
+          "isHome": true,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 787747,
+        "name": "Carlos Andres Gariano"
+      }
+    },
+    {
+      "id": 16161469,
+      "round": 27,
+      "date": "2026-05-12",
+      "homeTeam": "Club Atlético Belgrano",
+      "awayTeam": "Club Atlético Unión de Santa Fe",
+      "homeId": 3203,
+      "awayId": 3204,
+      "score": {
+        "home": 2,
+        "away": 0
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 17,
+            "away": 12
+          },
+          "corners": {
+            "home": 4,
+            "away": 7
+          },
+          "fouls": {
+            "home": 4,
+            "away": 8
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 3
+          },
+          "shotsOnTarget": {
+            "home": 8,
+            "away": 4
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 8,
+            "away": 6
+          },
+          "corners": {
+            "home": 3,
+            "away": 4
+          },
+          "fouls": {
+            "home": 3,
+            "away": 2
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 9,
+            "away": 6
+          },
+          "corners": {
+            "home": 1,
+            "away": 3
+          },
+          "fouls": {
+            "home": 1,
+            "away": 6
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 3
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 4
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 95,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 86,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 76,
+          "isHome": false,
+          "period": "2t"
+        }
+      ],
+      "referee": {
+        "id": 327871,
+        "name": "Andres Merlos"
+      }
+    },
+    {
+      "id": 16161472,
+      "round": 27,
+      "date": "2026-05-13",
+      "homeTeam": "Argentinos Juniors",
+      "awayTeam": "Huracán",
+      "homeId": 3216,
+      "awayId": 7629,
+      "score": {
+        "home": 1,
+        "away": 0
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 18,
+            "away": 11
+          },
+          "corners": {
+            "home": 9,
+            "away": 2
+          },
+          "fouls": {
+            "home": 14,
+            "away": 29
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 6
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 4
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 6,
+            "away": 2
+          },
+          "corners": {
+            "home": 2,
+            "away": 0
+          },
+          "fouls": {
+            "home": 6,
+            "away": 11
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 10,
+            "away": 5
+          },
+          "corners": {
+            "home": 5,
+            "away": 2
+          },
+          "fouls": {
+            "home": 5,
+            "away": 10
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 112,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 108,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 107,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 76,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 51,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 50,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 32,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 27,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 262437,
+        "name": "Fernando Echenique"
+      }
+    },
+    {
+      "id": 16161470,
+      "round": 27,
+      "date": "2026-05-13",
+      "homeTeam": "Rosario Central",
+      "awayTeam": "Racing Club",
+      "homeId": 3217,
+      "awayId": 3215,
+      "score": {
+        "home": 2,
+        "away": 1
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 19,
+            "away": 10
+          },
+          "corners": {
+            "home": 3,
+            "away": 2
+          },
+          "fouls": {
+            "home": 12,
+            "away": 24
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 6
+          },
+          "shotsOnTarget": {
+            "home": 10,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 2
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 1,
+            "away": 4
+          },
+          "corners": {
+            "home": 0,
+            "away": 0
+          },
+          "fouls": {
+            "home": 6,
+            "away": 9
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 0,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 2
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 14,
+            "away": 3
+          },
+          "corners": {
+            "home": 2,
+            "away": 1
+          },
+          "fouls": {
+            "home": 3,
+            "away": 10
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 3
+          },
+          "shotsOnTarget": {
+            "home": 8,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 2
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 116,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 111,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 100,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "red",
+          "minute": 96,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 80,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "red",
+          "minute": 75,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 63,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 56,
+          "isHome": false,
+          "period": "2t"
+        }
+      ],
+      "referee": {
+        "id": 322839,
+        "name": "Dario Herrera"
+      }
+    },
+    {
+      "id": 16161471,
+      "round": 27,
+      "date": "2026-05-14",
+      "homeTeam": "River Plate",
+      "awayTeam": "Gimnasia y Esgrima",
+      "homeId": 3211,
+      "awayId": 3205,
+      "score": {
+        "home": 2,
+        "away": 0
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 18,
+            "away": 12
+          },
+          "corners": {
+            "home": 7,
+            "away": 5
+          },
+          "fouls": {
+            "home": 21,
+            "away": 16
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 4
+          },
+          "shotsOnTarget": {
+            "home": 8,
+            "away": 6
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 7,
+            "away": 3
+          },
+          "corners": {
+            "home": 2,
+            "away": 1
+          },
+          "fouls": {
+            "home": 13,
+            "away": 9
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 11,
+            "away": 9
+          },
+          "corners": {
+            "home": 5,
+            "away": 4
+          },
+          "fouls": {
+            "home": 8,
+            "away": 7
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 4
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 81,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 62,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 44,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 41,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 24,
+          "isHome": true,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 787028,
+        "name": "Leandro Rey Hilfer"
+      }
+    },
+    {
+      "id": 16177635,
+      "round": 28,
+      "date": "2026-05-16",
+      "homeTeam": "River Plate",
+      "awayTeam": "Rosario Central",
+      "homeId": 3211,
+      "awayId": 3217,
+      "score": {
+        "home": 1,
+        "away": 0
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 11,
+            "away": 7
+          },
+          "corners": {
+            "home": 6,
+            "away": 1
+          },
+          "fouls": {
+            "home": 17,
+            "away": 19
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 7
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 7,
+            "away": 3
+          },
+          "corners": {
+            "home": 4,
+            "away": 1
+          },
+          "fouls": {
+            "home": 8,
+            "away": 8
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 3
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 4,
+            "away": 4
+          },
+          "corners": {
+            "home": 2,
+            "away": 0
+          },
+          "fouls": {
+            "home": 9,
+            "away": 11
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 4
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 95,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 89,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 83,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 80,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 60,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 58,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 29,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 24,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 8,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 788270,
+        "name": "Nicolas Ramirez"
+      }
+    },
+    {
+      "id": 16177374,
+      "round": 28,
+      "date": "2026-05-17",
+      "homeTeam": "Argentinos Juniors",
+      "awayTeam": "Club Atlético Belgrano",
+      "homeId": 3216,
+      "awayId": 3203,
+      "score": {
+        "home": 4,
+        "away": 5
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 18,
+            "away": 9
+          },
+          "corners": {
+            "home": 5,
+            "away": 3
+          },
+          "fouls": {
+            "home": 17,
+            "away": 22
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 8
+          },
+          "shotsOnTarget": {
+            "home": 8,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 9,
+            "away": 2
+          },
+          "corners": {
+            "home": 2,
+            "away": 1
+          },
+          "fouls": {
+            "home": 5,
+            "away": 10
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 5,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 5,
+            "away": 6
+          },
+          "corners": {
+            "home": 1,
+            "away": 1
+          },
+          "fouls": {
+            "home": 7,
+            "away": 9
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 6
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 102,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 96,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 93,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 90,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 79,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 75,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 72,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 50,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 31,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 18,
+          "isHome": true,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 786830,
+        "name": "Nazareno Arasa"
+      }
+    },
+    {
+      "id": 16198893,
+      "round": 29,
+      "date": "2026-05-24",
+      "homeTeam": "River Plate",
+      "awayTeam": "Club Atlético Belgrano",
+      "homeId": 3211,
+      "awayId": 3203,
+      "score": {
+        "home": 2,
+        "away": 3
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 8,
+            "away": 13
+          },
+          "corners": {
+            "home": 6,
+            "away": 4
+          },
+          "fouls": {
+            "home": 7,
+            "away": 11
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 3
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 6
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 4,
+            "away": 5
+          },
+          "corners": {
+            "home": 3,
+            "away": 1
+          },
+          "fouls": {
+            "home": 2,
+            "away": 7
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 4,
+            "away": 8
+          },
+          "corners": {
+            "home": 3,
+            "away": 3
+          },
+          "fouls": {
+            "home": 5,
+            "away": 4
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 3
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 94,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 74,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 48,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 3,
+          "isHome": true,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 787023,
+        "name": "Yael Falcon Perez"
       }
     }
   ],

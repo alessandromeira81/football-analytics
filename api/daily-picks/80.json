@@ -1,6 +1,6 @@
 {
   "date": "2026-05-25",
-  "generated_at": "2026-05-25T15:02:55Z",
+  "generated_at": "2026-05-26T01:22:07Z",
   "min_prob": 80,
   "count": 1,
   "picks": [
@@ -16,7 +16,7 @@
       "label": "Under 3.5 gols",
       "probability": 81,
       "confidence_band": "80%+",
-      "odds": 1.33,
+      "odds": null,
       "bet_id": "brasileirao|Coritiba|Bahia|Under 3.5 gols"
     }
   ]

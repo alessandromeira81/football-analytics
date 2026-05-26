@@ -2,10 +2,10 @@
   "period": "all",
   "min_prob": null,
   "summary": {
-    "total": 203,
-    "wins": 139,
+    "total": 204,
+    "wins": 140,
     "losses": 64,
-    "win_rate": 0.68
+    "win_rate": 0.69
   },
   "by_band": [
     {
@@ -24,15 +24,15 @@
     },
     {
       "band": "85%+",
-      "total": 63,
-      "wins": 40,
+      "total": 62,
+      "wins": 39,
       "losses": 23,
       "win_rate": 0.63
     },
     {
       "band": "80%+",
-      "total": 95,
-      "wins": 67,
+      "total": 97,
+      "wins": 69,
       "losses": 28,
       "win_rate": 0.71
     }
@@ -57,10 +57,10 @@
     {
       "league_key": "brasileirao",
       "league": "Brasileirao Serie A",
-      "total": 30,
-      "wins": 17,
+      "total": 31,
+      "wins": 18,
       "losses": 13,
-      "win_rate": 0.57
+      "win_rate": 0.58
     },
     {
       "league_key": "laliga",
@@ -106,8 +106,8 @@
   "by_market": [
     {
       "market": "Gols",
-      "total": 144,
-      "wins": 106,
+      "total": 145,
+      "wins": 107,
       "losses": 38,
       "win_rate": 0.74
     },
@@ -221,9 +221,9 @@
     },
     {
       "date": "2026-05-24",
-      "wins": 7,
+      "wins": 8,
       "losses": 2
     }
   ],
-  "generated_at": "2026-05-25T15:02:55Z"
+  "generated_at": "2026-05-26T01:22:07Z"
 }

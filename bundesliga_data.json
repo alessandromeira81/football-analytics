@@ -5,8 +5,8 @@
     "tournamentId": 35,
     "seasonId": 77333,
     "lastRound": 34,
-    "totalGames": 306,
-    "updatedAt": "2026-05-18T15:42:19Z",
+    "totalGames": 308,
+    "updatedAt": "2026-05-26T01:18:19Z",
     "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents."
   },
   "games": [
@@ -36825,6 +36825,282 @@
       "referee": {
         "id": 67061,
         "name": "Bastian Dankert"
+      }
+    },
+    {
+      "id": 16163439,
+      "round": 29,
+      "date": "2026-05-21",
+      "homeTeam": "VfL Wolfsburg",
+      "awayTeam": "SC Paderborn 07",
+      "homeId": 2524,
+      "awayId": 2561,
+      "score": {
+        "home": 0,
+        "away": 0
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 17,
+            "away": 2
+          },
+          "corners": {
+            "home": 4,
+            "away": 1
+          },
+          "fouls": {
+            "home": 12,
+            "away": 16
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 4
+          },
+          "shotsOnTarget": {
+            "home": 6,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 8,
+            "away": 1
+          },
+          "corners": {
+            "home": 2,
+            "away": 1
+          },
+          "fouls": {
+            "home": 7,
+            "away": 5
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 2,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 9,
+            "away": 1
+          },
+          "corners": {
+            "home": 2,
+            "away": 0
+          },
+          "fouls": {
+            "home": 5,
+            "away": 11
+          },
+          "yellowCards": {
+            "home": 1,
+            "away": 3
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "red",
+          "minute": 94,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 92,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 87,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 82,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 9,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 102956,
+        "name": "Benjamin Brand"
+      }
+    },
+    {
+      "id": 16163444,
+      "round": 29,
+      "date": "2026-05-25",
+      "homeTeam": "SC Paderborn 07",
+      "awayTeam": "VfL Wolfsburg",
+      "homeId": 2561,
+      "awayId": 2524,
+      "score": {
+        "home": 2,
+        "away": 1
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 39,
+            "away": 8
+          },
+          "corners": {
+            "home": 19,
+            "away": 2
+          },
+          "fouls": {
+            "home": 12,
+            "away": 9
+          },
+          "yellowCards": {
+            "home": 3,
+            "away": 6
+          },
+          "shotsOnTarget": {
+            "home": 10,
+            "away": 3
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 12,
+            "away": 1
+          },
+          "corners": {
+            "home": 8,
+            "away": 1
+          },
+          "fouls": {
+            "home": 4,
+            "away": 4
+          },
+          "yellowCards": {
+            "home": 2,
+            "away": 4
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 19,
+            "away": 1
+          },
+          "corners": {
+            "home": 7,
+            "away": 0
+          },
+          "fouls": {
+            "home": 2,
+            "away": 3
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 1
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 0
+          },
+          "redCards": {
+            "home": 0,
+            "away": 1
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 122,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 119,
+          "isHome": true,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 64,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 27,
+          "isHome": true,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 24,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "red",
+          "minute": 14,
+          "isHome": false,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 11,
+          "isHome": true,
+          "period": "1t"
+        },
+        {
+          "type": "yellow",
+          "minute": 11,
+          "isHome": false,
+          "period": "1t"
+        }
+      ],
+      "referee": {
+        "id": 52417,
+        "name": "Felix Zwayer"
       }
     }
   ],

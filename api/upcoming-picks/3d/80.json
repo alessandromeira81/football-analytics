@@ -2,9 +2,9 @@
   "from_date": "2026-05-25",
   "to_date": "2026-05-27",
   "days": 3,
-  "generated_at": "2026-05-25T15:02:55Z",
+  "generated_at": "2026-05-26T01:22:07Z",
   "min_prob": 80,
-  "count": 1,
+  "count": 5,
   "picks": [
     {
       "league": "Brasileirao Serie A",
@@ -18,8 +18,68 @@
       "label": "Under 3.5 gols",
       "probability": 81,
       "confidence_band": "80%+",
-      "odds": 1.33,
+      "odds": null,
       "bet_id": "brasileirao|Coritiba|Bahia|Under 3.5 gols"
+    },
+    {
+      "league": "Ligue 1",
+      "league_key": "ligue1",
+      "home_team": "Saint-Étienne",
+      "away_team": "Nice",
+      "kickoff": "2026-05-26T00:00:00Z",
+      "date": "2026-05-26",
+      "market": "Gols",
+      "pick": "Over 1.5 gols",
+      "label": "Over 1.5 gols",
+      "probability": 99,
+      "confidence_band": "95%+",
+      "odds": 1.22,
+      "bet_id": "ligue1|Saint-Étienne|Nice|Over 1.5 gols"
+    },
+    {
+      "league": "Ligue 1",
+      "league_key": "ligue1",
+      "home_team": "Saint-Étienne",
+      "away_team": "Nice",
+      "kickoff": "2026-05-26T00:00:00Z",
+      "date": "2026-05-26",
+      "market": "Gols",
+      "pick": "Over 2.5 gols",
+      "label": "Over 2.5 gols",
+      "probability": 97,
+      "confidence_band": "95%+",
+      "odds": 1.73,
+      "bet_id": "ligue1|Saint-Étienne|Nice|Over 2.5 gols"
+    },
+    {
+      "league": "Ligue 1",
+      "league_key": "ligue1",
+      "home_team": "Saint-Étienne",
+      "away_team": "Nice",
+      "kickoff": "2026-05-26T00:00:00Z",
+      "date": "2026-05-26",
+      "market": "BTTS",
+      "pick": "Ambas marcam",
+      "label": "BTTS - Sim",
+      "probability": 92,
+      "confidence_band": "90%+",
+      "odds": 1.62,
+      "bet_id": "ligue1|Saint-Étienne|Nice|BTTS - Sim"
+    },
+    {
+      "league": "Ligue 1",
+      "league_key": "ligue1",
+      "home_team": "Saint-Étienne",
+      "away_team": "Nice",
+      "kickoff": "2026-05-26T00:00:00Z",
+      "date": "2026-05-26",
+      "market": "Gols",
+      "pick": "Over 3.5 gols",
+      "label": "Over 3.5 gols",
+      "probability": 91,
+      "confidence_band": "90%+",
+      "odds": 2.75,
+      "bet_id": "ligue1|Saint-Étienne|Nice|Over 3.5 gols"
     }
   ]
 }

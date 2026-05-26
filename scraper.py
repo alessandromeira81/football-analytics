@@ -493,6 +493,111 @@ def inject_into_html(league_key, data):
     print(f"OK: dados de '{league_key}' injetados em {html_file}", flush=True)
 
 
+# ─── Coleta paginada (ligas sem rounds — ex: MLS) ────────────────────────────
+
+def _run_league_paged(page, league_key, league, tid, sid, games_by_id, backfilled, force_full):
+    """Coleta ligas que usam /events/last/{p} + /events/next/{p} (sem rounds)."""
+
+    new_count = 0
+
+    # ── Historico: pagina do mais recente para o mais antigo ─────────────────
+    p = 0
+    max_pages = 50  # teto de seguranca (~1500 jogos)
+    while p < max_pages:
+        data = browser_fetch(page, f"{BASE}/unique-tournament/{tid}/season/{sid}/events/last/{p}")
+        time.sleep(DELAY)
+        if not data or "events" not in data:
+            break
+        events   = data["events"]
+        finished = [e for e in events if (e.get("status") or {}).get("type") == "finished"]
+        new_evs  = [e for e in finished if e["id"] not in games_by_id]
+        already  = len(finished) - len(new_evs)
+        print(f"\n[Pagina {p}] {len(finished)} jogos encerrados ({already} ja coletados, {len(new_evs)} novos)", flush=True)
+
+        for i, ev in enumerate(new_evs):
+            home = ev["homeTeam"]["name"]
+            away = ev["awayTeam"]["name"]
+            rnd  = (ev.get("roundInfo") or {}).get("round", 0)
+            print(f"  {i+1:2d}. {home[:15]:<15} x {away[:15]:<15}", end=" ", flush=True)
+            game = collect_game(page, ev, rnd)
+            games_by_id[game["id"]] = game
+            new_count += 1
+            corners_h = (game["stats"].get("all") or {}).get("corners", {}).get("home", "?")
+            corners_a = (game["stats"].get("all") or {}).get("corners", {}).get("away", "?")
+            print(f"escanteios: {corners_h}-{corners_a}", flush=True)
+
+        # Modo incremental: para quando todos os jogos da pagina ja foram coletados
+        if not force_full and already == len(finished) and already > 0:
+            print(f"  Todos ja coletados — encerrando paginacao.", flush=True)
+            break
+
+        if not data.get("hasNextPage"):
+            break
+        p += 1
+
+    # ── Proximos jogos: /events/next/0 ───────────────────────────────────────
+    scheduled = []
+    next_data = browser_fetch(page, f"{BASE}/unique-tournament/{tid}/season/{sid}/events/next/0")
+    time.sleep(DELAY)
+    if next_data and "events" in next_data:
+        # Pega apenas os proximos 14 jogos (uma rodada tipica da MLS)
+        upcoming = [e for e in next_data["events"]
+                    if (e.get("status") or {}).get("type") == "notstarted"][:14]
+        print(f"  Proximos jogos: {len(upcoming)} encontrados", flush=True)
+        for ev in upcoming:
+            eid = ev["id"]
+            ts  = ev.get("startTimestamp", 0)
+            ev_odds = {}
+            for src in [1, 2, 3, 4]:
+                odds_data = browser_fetch(page, f"{BASE}/event/{eid}/odds/{src}/all")
+                time.sleep(DELAY)
+                ev_odds = parse_event_odds(odds_data)
+                if ev_odds:
+                    print(f"  [ODDS] evento {eid} source={src} ({len(ev_odds)} mercados)", flush=True)
+                    break
+            if not ev_odds:
+                print(f"  [ODDS] evento {eid}: sem odds", flush=True)
+            rnd = (ev.get("roundInfo") or {}).get("round", 0)
+            scheduled.append({
+                "id":       eid,
+                "round":    rnd,
+                "homeTeam": ev["homeTeam"]["name"],
+                "awayTeam": ev["awayTeam"]["name"],
+                "date":     datetime.utcfromtimestamp(ts).strftime("%Y-%m-%d") if ts else "",
+                "odds":     ev_odds,
+            })
+
+    if new_count == 0 and backfilled == 0 and not scheduled and not force_full:
+        print("\nNenhum dado novo. JSON nao atualizado.", flush=True)
+        return
+
+    all_games   = list(games_by_id.values())
+    total_games = len(all_games)
+    max_round   = max((g.get("round", 0) for g in all_games), default=0)
+
+    output = {
+        "meta": {
+            "leagueKey":    league_key,
+            "leagueName":   league["name"],
+            "tournamentId": tid,
+            "seasonId":     sid,
+            "lastRound":    max_round,
+            "totalGames":   total_games,
+            "updatedAt":    datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "note":         "Coleta paginada (sem rounds). Corners: granularidade 1T/2T apenas.",
+            "pageMode":     True,
+        },
+        "games":          all_games,
+        "scheduledGames": scheduled,
+    }
+
+    with open(league["out_file"], "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+    print(f"\nOK: {total_games} jogos salvos em {league['out_file']}", flush=True)
+
+    inject_into_html(league_key, output)
+
+
 # ─── Coleta de uma liga ───────────────────────────────────────────────────────
 
 def run_league(page, league_key, force_full=False, max_round_arg=None):
@@ -523,12 +628,18 @@ def run_league(page, league_key, force_full=False, max_round_arg=None):
         print("ERRO: nao foi possivel acessar a API do Sofascore", flush=True)
         return
 
+    # Ligas sem rounds (ex: MLS) usam paginacao de eventos — modo alternativo
+    all_regular_rounds = [r.get("round", 0) for r in rounds_data.get("rounds", []) if not r.get("slug")]
+    if not all_regular_rounds:
+        print("  Sem rounds detectados — usando modo paginado (last/next).", flush=True)
+        _run_league_paged(page, league_key, league, tid, sid, games_by_id, backfilled, force_full)
+        return
+
     # currentRound pode nao estar presente (ex: final da temporada)
     # Fallback: maior rodada listada em "rounds"
     current_round = (rounds_data.get("currentRound") or {}).get("round")
     if not current_round:
-        all_rounds = [r.get("round", 0) for r in rounds_data.get("rounds", [])]
-        current_round = max(all_rounds) if all_rounds else 38
+        current_round = max(all_regular_rounds) if all_regular_rounds else 38
     # Garante que max_round nunca regride abaixo do que ja temos coletado
     max_round = max_round_arg or max(current_round, last_collected)
     print(f"  Rodada detectada: {current_round} | coletando ate: {max_round}", flush=True)

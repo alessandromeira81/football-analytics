@@ -632,6 +632,57 @@ def run_league(page, league_key, force_full=False, max_round_arg=None):
             print(f"Proxima rodada ({candidate_rnd}): {len(scheduled)} jogos agendados", flush=True)
             break
 
+    # Rodadas especiais com slug (playoffs, finais de rebaixamento, etc.)
+    # Ex: Ligue 1 usa round=29/slug=final para o barrage Nice x Saint-Etienne.
+    # O endpoint /events/round/{n} NAO retorna esses jogos — exige /round/{n}/slug/{s}.
+    special_rounds = [r for r in rounds_data.get("rounds", []) if r.get("slug")]
+    for sr in special_rounds:
+        sr_round = sr["round"]
+        sr_slug  = sr["slug"]
+        sr_name  = sr.get("name", sr_slug)
+        sr_data  = browser_fetch(page, f"{BASE}/unique-tournament/{tid}/season/{sid}/events/round/{sr_round}/slug/{sr_slug}")
+        time.sleep(DELAY)
+        if not sr_data or "events" not in sr_data:
+            continue
+        events = sr_data["events"]
+        # Jogos nao iniciados → adiciona a scheduled (evita duplicatas por id)
+        scheduled_ids = {s["id"] for s in scheduled}
+        sr_unplayed = [e for e in events if (e.get("status") or {}).get("type") == "notstarted"
+                       and e["id"] not in scheduled_ids]
+        if sr_unplayed:
+            print(f"  Rodada especial '{sr_name}': {len(sr_unplayed)} jogo(s) agendado(s)", flush=True)
+            for ev in sr_unplayed:
+                eid = ev["id"]
+                ts  = ev.get("startTimestamp", 0)
+                ev_odds = {}
+                for src in [1, 2, 3, 4]:
+                    odds_data = browser_fetch(page, f"{BASE}/event/{eid}/odds/{src}/all")
+                    time.sleep(DELAY)
+                    ev_odds = parse_event_odds(odds_data)
+                    if ev_odds:
+                        print(f"  [ODDS] evento {eid} source={src} ({len(ev_odds)} mercados)", flush=True)
+                        break
+                if not ev_odds:
+                    print(f"  [ODDS] evento {eid}: sem odds (sources 1-4)", flush=True)
+                scheduled.append({
+                    "id":       eid,
+                    "round":    sr_round,
+                    "homeTeam": ev["homeTeam"]["name"],
+                    "awayTeam": ev["awayTeam"]["name"],
+                    "date":     datetime.utcfromtimestamp(ts).strftime("%Y-%m-%d") if ts else "",
+                    "odds":     ev_odds,
+                })
+        # Jogos ja encerrados na rodada especial → coleta historico
+        sr_finished = [e for e in events if (e.get("status") or {}).get("type") == "finished"
+                       and e["id"] not in games_by_id]
+        for ev in sr_finished:
+            home = ev["homeTeam"]["name"]
+            away = ev["awayTeam"]["name"]
+            print(f"  Rodada especial '{sr_name}' — coletando: {home} x {away}", flush=True)
+            game = collect_game(page, ev, sr_round)
+            games_by_id[game["id"]] = game
+            new_count += 1
+
     if new_count == 0 and backfilled == 0 and not scheduled and not force_full:
         print("\nNenhum dado novo. JSON nao atualizado.", flush=True)
         return

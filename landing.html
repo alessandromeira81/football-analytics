@@ -176,7 +176,7 @@
       <div class="grid grid-cols-3 gap-4 md:gap-8 mt-12 md:mt-16 max-w-2xl mx-auto">
         <div>
           <div class="num text-3xl md:text-5xl font-bold text-green" id="stat-winrate">—</div>
-          <div class="text-xs md:text-sm text-muted2 mt-1">Acerto nos picks 90%+<br><span class="text-muted" id="stat-winrate-period">—</span></div>
+          <div class="text-xs md:text-sm text-muted2 mt-1">Acerto nos picks <span id="stat-winrate-prob">90%+</span><br><span class="text-muted" id="stat-winrate-period">—</span></div>
         </div>
         <div>
           <div class="num text-3xl md:text-5xl font-bold" id="stat-total">—</div>
@@ -272,7 +272,7 @@
         </div>
         <!-- Direita: ligas -->
         <div>
-          <div class="text-sm text-muted2 mb-4 font-medium">DESEMPENHO POR LIGA (apenas 90%+) — <span id="leagues-period">últimos 30 dias</span></div>
+          <div class="text-sm text-muted2 mb-4 font-medium">DESEMPENHO POR LIGA (<span id="leagues-chart-prob">apenas 90%+</span>) — <span id="leagues-period">últimos 30 dias</span></div>
           <div id="leagues-chart" class="space-y-3">
             <div class="text-muted">Carregando…</div>
           </div>
@@ -552,37 +552,71 @@ async function fetchPeriod(period) {
 }
 
 function pickBestPeriod(results) {
-  // Prioriza por win_rate de 90%+, requer >= MIN_PICKS_FOR_PERIOD picks
-  const eligible = results.filter(x => x.p90 && x.p90.summary && x.p90.summary.total >= MIN_PICKS_FOR_PERIOD);
-  if (eligible.length === 0) {
-    // Fallback: pega o que tem mais picks
-    const fb = results.filter(x => x.p90 && x.p90.summary).sort((a,b)=>b.p90.summary.total - a.p90.summary.total)[0];
-    return fb || results[results.length - 1];
-  }
-  // Ordena por win_rate desc; em caso de empate, prefere amostra MAIOR (mais confiável)
-  eligible.sort((a, b) => {
-    const dw = (b.p90.summary.win_rate||0) - (a.p90.summary.win_rate||0);
-    if (dw !== 0) return dw;
-    return (b.p90.summary.total||0) - (a.p90.summary.total||0);
+  // Constrói candidatos de AMBOS os conjuntos: total (80%+) e p90 (90%+)
+  // para cada um dos 4 períodos — 8 combinações no total.
+  const candidates = [];
+  results.forEach(x => {
+    if (x.p90 && x.p90.summary && x.p90.summary.total >= MIN_PICKS_FOR_PERIOD) {
+      candidates.push({
+        ...x,
+        probLabel:   '90%+',
+        leagueLabel: 'apenas 90%+',
+        bestSummary: x.p90.summary,
+        bestLeagues: x.p90.by_league || [],
+        win_rate:    x.p90.summary.win_rate || 0,
+      });
+    }
+    if (x.total && x.total.summary && x.total.summary.total >= MIN_PICKS_FOR_PERIOD) {
+      candidates.push({
+        ...x,
+        probLabel:   '80%+',
+        leagueLabel: '80%+',
+        bestSummary: x.total.summary,
+        bestLeagues: x.total.by_league || [],
+        win_rate:    x.total.summary.win_rate || 0,
+      });
+    }
   });
-  return eligible[0];
+
+  if (candidates.length === 0) {
+    // Fallback: maior amostra disponível em 90%+
+    const fb = results.filter(x => x.p90 && x.p90.summary)
+                      .sort((a,b) => b.p90.summary.total - a.p90.summary.total)[0]
+               || results[results.length - 1];
+    return { ...fb, probLabel: '90%+', leagueLabel: 'apenas 90%+',
+             bestSummary: (fb && fb.p90) ? fb.p90.summary : null,
+             bestLeagues: (fb && fb.p90) ? (fb.p90.by_league || []) : [] };
+  }
+
+  // Ordena: win_rate desc → amostra maior → 90%+ preferido em empate absoluto
+  candidates.sort((a, b) => {
+    const dw = b.win_rate - a.win_rate;
+    if (Math.abs(dw) > 0.001) return dw;
+    const dt = (b.bestSummary.total||0) - (a.bestSummary.total||0);
+    if (dt !== 0) return dt;
+    return a.probLabel === '90%+' ? -1 : 1;
+  });
+  return candidates[0];
 }
 
 async function loadTrackRecord() {
   try {
     const results = await Promise.all(['3d','7d','15d','30d'].map(fetchPeriod));
     const best = pickBestPeriod(results);
-    const d   = best.total;
-    const tr90 = best.p90;
+    const d          = best.total;
     const periodLabel = PERIOD_LABELS[best.period] || best.period;
+    const bestSummary = best.bestSummary || (best.p90 && best.p90.summary) || (d && d.summary);
 
     // Hero stats
     document.getElementById('stat-winrate').textContent =
-      Math.round((tr90.summary.win_rate || 0) * 100) + '%';
+      Math.round((bestSummary.win_rate || 0) * 100) + '%';
     document.getElementById('stat-winrate-period').textContent = periodLabel;
-    document.getElementById('stat-total').textContent = d.summary.total;
+    document.getElementById('stat-winrate-prob').textContent = best.probLabel || '90%+';
+    document.getElementById('stat-total').textContent = d.summary.total;   // sempre total (nº maior)
     document.getElementById('bands-period').textContent = periodLabel;
     document.getElementById('leagues-period').textContent = periodLabel;
+    const probLabelEl = document.getElementById('leagues-chart-prob');
+    if (probLabelEl) probLabelEl.textContent = best.leagueLabel || 'apenas 90%+';
     document.getElementById('last-update').textContent =
       new Date(d.generated_at).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
 
@@ -618,9 +652,9 @@ async function loadTrackRecord() {
       `;
     }).join('');
 
-    // Ligas (apenas 90%+)
+    // Ligas — usa o nível selecionado (90%+ ou 80%+)
     const lEl = document.getElementById('leagues-chart');
-    const leagues = (tr90.by_league || []).slice(0, 8);
+    const leagues = (best.bestLeagues || []).slice(0, 9);
     if (leagues.length === 0) {
       lEl.innerHTML = '<div class="text-muted text-sm">Sem picks 90%+ no período.</div>';
     } else {
@@ -649,7 +683,7 @@ async function loadTrackRecord() {
     const calcPeriodEl2 = document.getElementById('calc-period2');
     if (calcPeriodEl)  calcPeriodEl.textContent  = periodLabel;
     if (calcPeriodEl2) calcPeriodEl2.textContent = periodLabel;
-    updateCalculator(tr90.summary);
+    updateCalculator(bestSummary);
   } catch (e) {
     console.warn('Erro ao carregar track record:', e);
     document.getElementById('stat-winrate').textContent = '—';

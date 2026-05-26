@@ -32,6 +32,10 @@ jobs:
       - name: Install Chromium
         run: python -m playwright install chromium
 
+      - name: Run scraper – MLS (sessao fresca, coleta prioritaria)
+        run: python scraper.py --liga mls
+        timeout-minutes: 30
+
       - name: Run scraper – all leagues
         run: python scraper.py --liga all
         timeout-minutes: 50

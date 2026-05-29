@@ -105,7 +105,7 @@ LEAGUES = {
         'short':         'USA',
         'country':       'Estados Unidos',
         'tournament_id': 242,
-        'season_id':     None,
+        'season_id':     86668,   # MLS 2026 — fixo
         'out_file':      'mls_data.json',
         'home_url':      'https://www.sofascore.com/football/tournament/usa/mls/242',
     },
@@ -624,8 +624,11 @@ def run_league(page, league_key, force_full=False, max_round_arg=None):
     backfilled += backfill_stats(page, games_by_id)
 
     rounds_data = browser_fetch(page, f"{BASE}/unique-tournament/{tid}/season/{sid}/rounds")
+    # rounds_data == None pode ser: (a) Sofascore bloqueado OU (b) liga sem /rounds (ex: MLS → 404).
+    # Em ambos os casos, tentamos modo paginado; se também falhar, a liga simplesmente não atualiza.
     if not rounds_data:
-        print("ERRO: nao foi possivel acessar a API do Sofascore", flush=True)
+        print("  /rounds indisponivel (404 ou bloqueio) — tentando modo paginado.", flush=True)
+        _run_league_paged(page, league_key, league, tid, sid, games_by_id, backfilled, force_full)
         return
 
     # Ligas sem rounds (ex: MLS) usam paginacao de eventos — modo alternativo

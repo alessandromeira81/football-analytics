@@ -893,18 +893,12 @@ def main():
     print("=" * 56, flush=True)
 
     with sync_playwright() as pw:
-        # Usa Chrome real (channel="chrome") com headless="new" — bem mais difícil
-        # de detectar como bot que Chromium headless padrão.
-        try:
-            browser = pw.chromium.launch(channel="chrome", headless=True, args=[
-                "--disable-blink-features=AutomationControlled",
-                "--no-sandbox",
-            ])
-        except Exception:
-            print("  [WARN] Chrome real nao disponivel, fallback para Chromium.", flush=True)
-            browser = pw.chromium.launch(headless=True, args=[
-                "--disable-blink-features=AutomationControlled",
-            ])
+        # Args anti-deteccao de bot (funciona com Chromium do Playwright sem precisar
+        # de Chrome real instalado). Combinado com DELAY mais alto reduz rate-limit.
+        browser = pw.chromium.launch(headless=True, args=[
+            "--disable-blink-features=AutomationControlled",
+            "--no-sandbox",
+        ])
         ctx     = browser.new_context(
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "

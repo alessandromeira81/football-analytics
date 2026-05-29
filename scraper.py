@@ -111,7 +111,7 @@ LEAGUES = {
     },
 }
 
-DELAY = 1.2
+DELAY = 3.0
 BASE  = "https://api.sofascore.com/api/v1"
 
 STAT_KEYS = {
@@ -893,7 +893,18 @@ def main():
     print("=" * 56, flush=True)
 
     with sync_playwright() as pw:
-        browser = pw.chromium.launch(headless=True)
+        # Usa Chrome real (channel="chrome") com headless="new" — bem mais difícil
+        # de detectar como bot que Chromium headless padrão.
+        try:
+            browser = pw.chromium.launch(channel="chrome", headless=True, args=[
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+            ])
+        except Exception:
+            print("  [WARN] Chrome real nao disponivel, fallback para Chromium.", flush=True)
+            browser = pw.chromium.launch(headless=True, args=[
+                "--disable-blink-features=AutomationControlled",
+            ])
         ctx     = browser.new_context(
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "

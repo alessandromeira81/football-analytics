@@ -567,9 +567,14 @@ def _run_league_paged(page, league_key, league, tid, sid, games_by_id, backfille
                 "odds":     ev_odds,
             })
 
-    if new_count == 0 and backfilled == 0 and not scheduled and not force_full:
+    # Se for a primeira coleta desta liga (arquivo nao existia), cria o arquivo
+    # mesmo que vazio — garante que a proxima run incremental saiba de onde comecar.
+    is_first_collection = not os.path.exists(league["out_file"])
+    if new_count == 0 and backfilled == 0 and not scheduled and not force_full and not is_first_collection:
         print("\nNenhum dado novo. JSON nao atualizado.", flush=True)
         return
+    if new_count == 0 and not scheduled and is_first_collection:
+        print(f"\nPrimeira coleta de {league_key}: API sem retorno. Criando arquivo base.", flush=True)
 
     all_games   = list(games_by_id.values())
     total_games = len(all_games)

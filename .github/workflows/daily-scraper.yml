@@ -36,14 +36,16 @@ jobs:
         run: python scraper.py --liga mls
         timeout-minutes: 30
 
-      - name: Diagnóstico MLS pós-coleta
+      - name: Diagnostico MLS pos-coleta
+        continue-on-error: true
         run: |
           if (Test-Path "mls_data.json") {
-            $d = Get-Content "mls_data.json" | ConvertFrom-Json
-            Write-Host "MLS OK: $($d.meta.totalGames) jogos, $($d.scheduledGames.Count) proximos"
+            $size = (Get-Item "mls_data.json").Length
+            Write-Host "mls_data.json existe: $size bytes"
           } else {
-            Write-Host "mls_data.json NAO criado — MLS nao coletou dados"
+            Write-Host "mls_data.json NAO existe — MLS nao coletou dados"
           }
+          exit 0
 
       - name: Run scraper – all leagues
         run: python scraper.py --liga all

@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "leagueKey": "mls",
+    "leagueName": "MLS",
+    "tournamentId": 242,
+    "seasonId": 86668,
+    "lastRound": 0,
+    "totalGames": 0,
+    "updatedAt": "2026-05-29T20:44:41Z",
+    "note": "Coleta paginada (sem rounds). Corners: granularidade 1T/2T apenas.",
+    "pageMode": true
+  },
+  "games": [],
+  "scheduledGames": []
+}

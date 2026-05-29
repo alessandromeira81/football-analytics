@@ -1,7 +1,23 @@
 {
-  "date": "2026-05-28",
-  "generated_at": "2026-05-29T02:38:48Z",
+  "date": "2026-05-29",
+  "generated_at": "2026-05-29T12:19:15Z",
   "min_prob": 90,
-  "count": 0,
-  "picks": []
+  "count": 1,
+  "picks": [
+    {
+      "league": "Ligue 1",
+      "league_key": "ligue1",
+      "home_team": "Nice",
+      "away_team": "Saint-Étienne",
+      "kickoff": "2026-05-29T00:00:00Z",
+      "date": "2026-05-29",
+      "market": "Gols",
+      "pick": "Under 3.5 gols",
+      "label": "Under 3.5 gols",
+      "probability": 92,
+      "confidence_band": "90%+",
+      "odds": null,
+      "bet_id": "ligue1|Nice|Saint-Étienne|Under 3.5 gols"
+    }
+  ]
 }

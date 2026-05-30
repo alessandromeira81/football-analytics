@@ -893,12 +893,7 @@ def main():
     print("=" * 56, flush=True)
 
     with sync_playwright() as pw:
-        # Args anti-deteccao de bot (funciona com Chromium do Playwright sem precisar
-        # de Chrome real instalado). Combinado com DELAY mais alto reduz rate-limit.
-        browser = pw.chromium.launch(headless=True, args=[
-            "--disable-blink-features=AutomationControlled",
-            "--no-sandbox",
-        ])
+        browser = pw.chromium.launch(headless=True)
         ctx     = browser.new_context(
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "

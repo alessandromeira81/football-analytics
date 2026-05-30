@@ -2,25 +2,25 @@
   "period": "30d",
   "min_prob": null,
   "summary": {
-    "total": 205,
+    "total": 210,
     "wins": 140,
-    "losses": 65,
-    "win_rate": 0.68
+    "losses": 70,
+    "win_rate": 0.67
   },
   "by_band": [
     {
       "band": "95%+",
-      "total": 20,
+      "total": 22,
       "wins": 13,
-      "losses": 7,
-      "win_rate": 0.65
+      "losses": 9,
+      "win_rate": 0.59
     },
     {
       "band": "90%+",
-      "total": 25,
+      "total": 28,
       "wins": 19,
-      "losses": 6,
-      "win_rate": 0.76
+      "losses": 9,
+      "win_rate": 0.68
     },
     {
       "band": "85%+",
@@ -89,10 +89,10 @@
     {
       "league_key": "ligue1",
       "league": "Ligue 1",
-      "total": 16,
+      "total": 21,
       "wins": 9,
-      "losses": 7,
-      "win_rate": 0.56
+      "losses": 12,
+      "win_rate": 0.43
     },
     {
       "league_key": "bundesliga",
@@ -106,10 +106,10 @@
   "by_market": [
     {
       "market": "Gols",
-      "total": 146,
+      "total": 150,
       "wins": 107,
-      "losses": 39,
-      "win_rate": 0.73
+      "losses": 43,
+      "win_rate": 0.71
     },
     {
       "market": "Escanteios",
@@ -120,10 +120,10 @@
     },
     {
       "market": "BTTS",
-      "total": 15,
+      "total": 16,
       "wins": 5,
-      "losses": 10,
-      "win_rate": 0.33
+      "losses": 11,
+      "win_rate": 0.31
     },
     {
       "market": "Resultado",
@@ -134,11 +134,6 @@
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-04-29",
-      "wins": 0,
-      "losses": 0
-    },
     {
       "date": "2026-04-30",
       "wins": 0,
@@ -272,7 +267,7 @@
     {
       "date": "2026-05-26",
       "wins": 0,
-      "losses": 0
+      "losses": 4
     },
     {
       "date": "2026-05-27",
@@ -283,7 +278,12 @@
       "date": "2026-05-28",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "date": "2026-05-29",
+      "wins": 0,
+      "losses": 1
     }
   ],
-  "generated_at": "2026-05-30T02:28:53Z"
+  "generated_at": "2026-05-30T19:42:09Z"
 }

@@ -1,23 +1,38 @@
 {
-  "date": "2026-05-29",
-  "generated_at": "2026-05-30T02:28:53Z",
+  "date": "2026-05-30",
+  "generated_at": "2026-05-30T19:42:09Z",
   "min_prob": 80,
-  "count": 1,
+  "count": 2,
   "picks": [
     {
-      "league": "Ligue 1",
-      "league_key": "ligue1",
-      "home_team": "Nice",
-      "away_team": "Saint-Étienne",
-      "kickoff": "2026-05-29T00:00:00Z",
-      "date": "2026-05-29",
+      "league": "Brasileirao Serie A",
+      "league_key": "brasileirao",
+      "home_team": "Bahia",
+      "away_team": "Botafogo",
+      "kickoff": "2026-05-30T00:00:00Z",
+      "date": "2026-05-30",
+      "market": "Gols",
+      "pick": "Over 1.5 gols",
+      "label": "Over 1.5 gols",
+      "probability": 83,
+      "confidence_band": "80%+",
+      "odds": 1.22,
+      "bet_id": "brasileirao|Bahia|Botafogo|Over 1.5 gols"
+    },
+    {
+      "league": "Brasileirao Serie A",
+      "league_key": "brasileirao",
+      "home_team": "Grêmio",
+      "away_team": "Corinthians",
+      "kickoff": "2026-05-30T00:00:00Z",
+      "date": "2026-05-30",
       "market": "Gols",
       "pick": "Under 3.5 gols",
       "label": "Under 3.5 gols",
-      "probability": 92,
-      "confidence_band": "90%+",
-      "odds": null,
-      "bet_id": "ligue1|Nice|Saint-Étienne|Under 3.5 gols"
+      "probability": 80,
+      "confidence_band": "80%+",
+      "odds": 1.2,
+      "bet_id": "brasileirao|Grêmio|Corinthians|Under 3.5 gols"
     }
   ]
 }

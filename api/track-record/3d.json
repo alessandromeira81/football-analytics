@@ -2,9 +2,9 @@
   "period": "3d",
   "min_prob": null,
   "summary": {
-    "total": 0,
+    "total": 1,
     "wins": 0,
-    "losses": 0,
+    "losses": 1,
     "win_rate": 0.0
   },
   "by_band": [
@@ -17,9 +17,9 @@
     },
     {
       "band": "90%+",
-      "total": 0,
+      "total": 1,
       "wins": 0,
-      "losses": 0,
+      "losses": 1,
       "win_rate": 0.0
     },
     {
@@ -37,14 +37,26 @@
       "win_rate": 0.0
     }
   ],
-  "by_league": [],
-  "by_market": [],
-  "daily_results": [
+  "by_league": [
     {
-      "date": "2026-05-26",
+      "league_key": "ligue1",
+      "league": "Ligue 1",
+      "total": 1,
       "wins": 0,
-      "losses": 0
-    },
+      "losses": 1,
+      "win_rate": 0.0
+    }
+  ],
+  "by_market": [
+    {
+      "market": "Gols",
+      "total": 1,
+      "wins": 0,
+      "losses": 1,
+      "win_rate": 0.0
+    }
+  ],
+  "daily_results": [
     {
       "date": "2026-05-27",
       "wins": 0,
@@ -54,7 +66,12 @@
       "date": "2026-05-28",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "date": "2026-05-29",
+      "wins": 0,
+      "losses": 1
     }
   ],
-  "generated_at": "2026-05-30T02:28:53Z"
+  "generated_at": "2026-05-30T19:42:09Z"
 }

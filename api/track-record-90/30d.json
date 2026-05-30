@@ -2,25 +2,25 @@
   "period": "30d",
   "min_prob": 90,
   "summary": {
-    "total": 45,
+    "total": 50,
     "wins": 32,
-    "losses": 13,
-    "win_rate": 0.71
+    "losses": 18,
+    "win_rate": 0.64
   },
   "by_band": [
     {
       "band": "95%+",
-      "total": 20,
+      "total": 22,
       "wins": 13,
-      "losses": 7,
-      "win_rate": 0.65
+      "losses": 9,
+      "win_rate": 0.59
     },
     {
       "band": "90%+",
-      "total": 25,
+      "total": 28,
       "wins": 19,
-      "losses": 6,
-      "win_rate": 0.76
+      "losses": 9,
+      "win_rate": 0.68
     },
     {
       "band": "85%+",
@@ -63,6 +63,14 @@
       "win_rate": 0.57
     },
     {
+      "league_key": "ligue1",
+      "league": "Ligue 1",
+      "total": 7,
+      "wins": 1,
+      "losses": 6,
+      "win_rate": 0.14
+    },
+    {
       "league_key": "saudi",
       "league": "Saudi Pro League",
       "total": 6,
@@ -85,23 +93,15 @@
       "wins": 2,
       "losses": 2,
       "win_rate": 0.5
-    },
-    {
-      "league_key": "ligue1",
-      "league": "Ligue 1",
-      "total": 2,
-      "wins": 1,
-      "losses": 1,
-      "win_rate": 0.5
     }
   ],
   "by_market": [
     {
       "market": "Gols",
-      "total": 34,
+      "total": 38,
       "wins": 26,
-      "losses": 8,
-      "win_rate": 0.76
+      "losses": 12,
+      "win_rate": 0.68
     },
     {
       "market": "Escanteios",
@@ -112,10 +112,10 @@
     },
     {
       "market": "BTTS",
-      "total": 3,
+      "total": 4,
       "wins": 1,
-      "losses": 2,
-      "win_rate": 0.33
+      "losses": 3,
+      "win_rate": 0.25
     },
     {
       "market": "Resultado",
@@ -126,11 +126,6 @@
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-04-29",
-      "wins": 0,
-      "losses": 0
-    },
     {
       "date": "2026-04-30",
       "wins": 0,
@@ -264,7 +259,7 @@
     {
       "date": "2026-05-26",
       "wins": 0,
-      "losses": 0
+      "losses": 4
     },
     {
       "date": "2026-05-27",
@@ -275,7 +270,12 @@
       "date": "2026-05-28",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "date": "2026-05-29",
+      "wins": 0,
+      "losses": 1
     }
   ],
-  "generated_at": "2026-05-30T02:28:53Z"
+  "generated_at": "2026-05-30T19:42:09Z"
 }

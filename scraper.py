@@ -111,7 +111,7 @@ LEAGUES = {
     },
 }
 
-DELAY = 3.0
+DELAY = 1.2
 BASE  = "https://api.sofascore.com/api/v1"
 
 STAT_KEYS = {

@@ -13,12 +13,19 @@ permissions:
   contents: write
 
 jobs:
-  scrape:
+  # ─────────────────────────────────────────────────────────────────────────────
+  # JOB 1: Primario — GitHub-hosted runner (windows-latest)
+  # Vantagens: independe do PC, sempre disponivel
+  # Risco:    IPs Azure podem ser bloqueados pelo Sofascore
+  # ─────────────────────────────────────────────────────────────────────────────
+  scrape-hosted:
     runs-on: windows-latest
     timeout-minutes: 60
     env:
       PYTHONIOENCODING: utf-8
       PYTHONUTF8: 1
+    outputs:
+      data_changed: ${{ steps.diff.outputs.changed }}
 
     steps:
       - name: Checkout repo
@@ -76,6 +83,26 @@ jobs:
         run: python generate_api.py
         timeout-minutes: 5
 
+      - name: Detecta se houve coleta real de dados das ligas
+        id: diff
+        run: |
+          # Verifica se algum *_data.json mudou nesta execucao (uncommitted)
+          # OU se foi atualizado nos ultimos 30 min (pegou na coleta)
+          git add *.json 2>$null
+          $staged = git diff --cached --name-only | Where-Object { $_ -match "_data\.json$" }
+          $thirtyMinAgo = (Get-Date).AddMinutes(-30)
+          $recentlyUpdated = Get-ChildItem -Filter "*_data.json" |
+            Where-Object { $_.LastWriteTime -gt $thirtyMinAgo }
+
+          if ($staged -or $recentlyUpdated) {
+            Write-Host "Dados das ligas FORAM atualizados pelo hosted runner"
+            Write-Host "Arquivos modificados: $($staged -join ', ')"
+            "changed=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+          } else {
+            Write-Host "Dados das ligas NAO foram atualizados — fallback self-hosted sera necessario"
+            "changed=false" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+          }
+
       - name: Commit updated data
         run: |
           git config user.name  "github-actions[bot]"
@@ -84,12 +111,10 @@ jobs:
           git diff --cached --quiet
           if ($LASTEXITCODE -ne 0) {
             $today = Get-Date -Format 'yyyy-MM-dd'
-            git commit -m "chore: atualiza dados das ligas $today"
+            git commit -m "chore: atualiza dados das ligas $today (hosted)"
           } else {
             Write-Host "Nada novo para commitar."
           }
-          # Tenta push; se rejeitar (porque remote tem commits novos),
-          # faz pull --rebase e tenta de novo. Repete ate 3 vezes.
           $attempt = 0
           while ($attempt -lt 3) {
             git push
@@ -105,11 +130,9 @@ jobs:
           }
 
       - name: Purge jsDelivr CDN cache
-        if: success()
+        if: success() && steps.diff.outputs.changed == 'true'
         continue-on-error: true
         run: |
-          # 1) Aguarda raw.githubusercontent.com ter o conteudo novo
-          #    (raw.github tambem tem cache de ~5min, precisa atualizar antes)
           $rawUrl = 'https://raw.githubusercontent.com/alessandromeira81/football-analytics/main/api/track-record.json'
           $expectedDate = (Get-Date).ToString('yyyy-MM-dd')
           Write-Host "Aguardando raw.github refletir commit (timeout 3min)..."
@@ -126,8 +149,6 @@ jobs:
             Start-Sleep -Seconds 10
             $i++
           }
-
-          # 2) Purge jsDelivr (POST bulk)
           $paths = @(
             '/gh/alessandromeira81/football-analytics@main/api/daily-picks.json',
             '/gh/alessandromeira81/football-analytics@main/api/daily-picks/80.json',
@@ -161,3 +182,123 @@ jobs:
           } catch {
             Write-Host "Purge POST warning: $_"
           }
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # JOB 2: Fallback — Self-hosted runner (PC do usuario)
+  # Roda APENAS se o hosted nao conseguiu coletar dados (Sofascore bloqueou)
+  # Requisitos: 1 runner Listener ativo, PC ligado, IP residencial
+  # ─────────────────────────────────────────────────────────────────────────────
+  scrape-fallback-selfhosted:
+    needs: scrape-hosted
+    if: needs.scrape-hosted.outputs.data_changed != 'true'
+    runs-on: self-hosted
+    timeout-minutes: 60
+    env:
+      PYTHONIOENCODING: utf-8
+      PYTHONUTF8: 1
+
+    steps:
+      - name: Checkout repo (apos hosted)
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
+
+      - name: Pull alteracoes do hosted run
+        run: |
+          git pull origin main --no-edit
+
+      - name: Install Python dependencies
+        run: pip install playwright firebase-admin
+
+      - name: Install Chromium
+        run: python -m playwright install chromium
+
+      - name: Run scraper – MLS (sessao fresca)
+        run: python scraper.py --liga mls
+        timeout-minutes: 30
+
+      - name: Run scraper – all leagues
+        run: python scraper.py --liga all
+        timeout-minutes: 50
+
+      - name: Run referee scraper – Brasileirao
+        run: python scraper_refs.py
+        timeout-minutes: 10
+
+      - name: Re-inject JSON into HTML
+        run: python scraper.py --inject --liga all
+
+      - name: Salva bets >=80% em betMeta
+        continue-on-error: true
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: python save_upcoming_bets.py
+        timeout-minutes: 5
+
+      - name: Sync assertividade → Firestore
+        continue-on-error: true
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: python assertividade_sync.py
+        timeout-minutes: 5
+
+      - name: Gerar API publica
+        run: python generate_api.py
+        timeout-minutes: 5
+
+      - name: Commit updated data (selfhosted fallback)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add *.json *.html api/
+          git diff --cached --quiet
+          if ($LASTEXITCODE -ne 0) {
+            $today = Get-Date -Format 'yyyy-MM-dd'
+            git commit -m "chore: atualiza dados das ligas $today (selfhosted fallback)"
+          } else {
+            Write-Host "Nada novo para commitar."
+          }
+          $attempt = 0
+          while ($attempt -lt 3) {
+            git push
+            if ($LASTEXITCODE -eq 0) { break }
+            Write-Host "Push rejeitado (tentativa $($attempt+1)). Fazendo rebase..."
+            git pull --rebase origin main
+            if ($LASTEXITCODE -ne 0) {
+              Write-Host "Rebase falhou. Abortando."
+              git rebase --abort
+              exit 1
+            }
+            $attempt++
+          }
+
+      - name: Purge jsDelivr CDN cache
+        if: success()
+        continue-on-error: true
+        run: |
+          $rawUrl = 'https://raw.githubusercontent.com/alessandromeira81/football-analytics/main/api/track-record.json'
+          $expectedDate = (Get-Date).ToString('yyyy-MM-dd')
+          Write-Host "Aguardando raw.github..."
+          $i = 0
+          while ($i -lt 18) {
+            try {
+              $r = Invoke-WebRequest -Uri $rawUrl -Headers @{'Cache-Control'='no-cache'} -TimeoutSec 10
+              $data = $r.Content | ConvertFrom-Json
+              if ($data.generated_at -and $data.generated_at.StartsWith($expectedDate)) { break }
+            } catch { }
+            Start-Sleep -Seconds 10
+            $i++
+          }
+          $paths = @(
+            '/gh/alessandromeira81/football-analytics@main/api/daily-picks.json',
+            '/gh/alessandromeira81/football-analytics@main/api/upcoming-picks.json',
+            '/gh/alessandromeira81/football-analytics@main/api/track-record.json',
+            '/gh/alessandromeira81/football-analytics@main/api/track-record-90.json',
+            '/gh/alessandromeira81/football-analytics@main/api/index.json'
+          )
+          $body = @{ path = $paths } | ConvertTo-Json
+          try {
+            Invoke-RestMethod -Uri 'https://purge.jsdelivr.net/' -Method Post `
+                  -ContentType 'application/json' -Body $body -TimeoutSec 30
+          } catch { }

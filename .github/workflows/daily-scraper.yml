@@ -2,7 +2,7 @@ name: Daily Data Scraper
 
 on:
   schedule:
-    - cron: '0 12 * * *'  # 12h UTC = 9h BRT (self-hosted: PC precisa estar ligado)
+    - cron: '0 12 * * *'  # 12h UTC = 9h BRT (hosted runner — independe do PC)
   workflow_dispatch:       # permite rodar manualmente
   push:                    # trigger manual via push do arquivo marcador
     branches: [main]
@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   scrape:
-    runs-on: self-hosted
+    runs-on: windows-latest
     timeout-minutes: 60
     env:
       PYTHONIOENCODING: utf-8

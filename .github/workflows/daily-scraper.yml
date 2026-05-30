@@ -86,20 +86,16 @@ jobs:
       - name: Detecta se houve coleta real de dados das ligas
         id: diff
         run: |
-          # Verifica se algum *_data.json mudou nesta execucao (uncommitted)
-          # OU se foi atualizado nos ultimos 30 min (pegou na coleta)
-          git add *.json 2>$null
-          $staged = git diff --cached --name-only | Where-Object { $_ -match "_data\.json$" }
-          $thirtyMinAgo = (Get-Date).AddMinutes(-30)
-          $recentlyUpdated = Get-ChildItem -Filter "*_data.json" |
-            Where-Object { $_.LastWriteTime -gt $thirtyMinAgo }
+          # Usa git diff para detectar SE algum *_data.json foi modificado.
+          # NAO usar LastWriteTime (em fresh checkout todos arquivos sao "recentes").
+          $modified = git status --porcelain | Where-Object { $_ -match "_data\.json$" }
 
-          if ($staged -or $recentlyUpdated) {
-            Write-Host "Dados das ligas FORAM atualizados pelo hosted runner"
-            Write-Host "Arquivos modificados: $($staged -join ', ')"
+          if ($modified) {
+            Write-Host "Dados das ligas FORAM atualizados pelo hosted runner:"
+            $modified | ForEach-Object { Write-Host "  $_" }
             "changed=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
           } else {
-            Write-Host "Dados das ligas NAO foram atualizados — fallback self-hosted sera necessario"
+            Write-Host "Dados das ligas NAO foram atualizados (Sofascore bloqueou?). Fallback self-hosted sera ativado."
             "changed=false" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
           }
 

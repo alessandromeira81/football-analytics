@@ -59,12 +59,14 @@ jobs:
         run: python scraper.py --inject --liga all
 
       - name: Salva bets >=80% em betMeta (server-side)
+        continue-on-error: true
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: python save_upcoming_bets.py
         timeout-minutes: 5
 
       - name: Sync assertividade → Firestore
+        continue-on-error: true
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: python assertividade_sync.py

@@ -21786,6 +21786,10 @@
         "First team to score_Athletico": 1.62,
         "First team to score_No goal": 9.0,
         "First team to score_Mirassol": 2.6
+      },
+      "referee": {
+        "id": 789411,
+        "name": "Fernando Antonio Mendes de Salles Nascimento Filho"
       }
     },
     {
@@ -21831,6 +21835,10 @@
         "First team to score_Flamengo": 1.36,
         "First team to score_No goal": 13.0,
         "First team to score_Coritiba": 3.4
+      },
+      "referee": {
+        "id": 243629,
+        "name": "Flavio Rodrigues De Souza"
       }
     },
     {
@@ -21876,6 +21884,10 @@
         "First team to score_Bahia": 1.67,
         "First team to score_No goal": 13.0,
         "First team to score_Botafogo": 2.3
+      },
+      "referee": {
+        "id": 788982,
+        "name": "Davi de Oliveira Lacerda"
       }
     },
     {
@@ -21919,6 +21931,10 @@
         "First team to score_Grêmio": 1.95,
         "First team to score_No goal": 7.5,
         "First team to score_Corinthians": 2.2
+      },
+      "referee": {
+        "id": 787225,
+        "name": "Lucas Paulo Torezin"
       }
     },
     {
@@ -21962,6 +21978,10 @@
         "First team to score_Santos": 1.62,
         "First team to score_No goal": 9.0,
         "First team to score_Vitória": 2.62
+      },
+      "referee": {
+        "id": 788516,
+        "name": "Rafael Rodrigo Klein"
       }
     },
     {
@@ -22005,6 +22025,10 @@
         "First team to score_Red Bull Bragantino": 1.73,
         "First team to score_No goal": 9.0,
         "First team to score_Internacional": 2.3
+      },
+      "referee": {
+        "id": 789405,
+        "name": "Alex Gomes Stefano"
       }
     },
     {
@@ -22050,6 +22074,10 @@
         "First team to score_Palmeiras": 1.25,
         "First team to score_No goal": 13.0,
         "First team to score_Chapecoense": 4.0
+      },
+      "referee": {
+        "id": 787245,
+        "name": "Felipe Fernandes de Lima"
       }
     },
     {
@@ -22093,6 +22121,10 @@
         "First team to score_Vasco da Gama": 1.73,
         "First team to score_No goal": 9.0,
         "First team to score_Atlético Mineiro": 2.3
+      },
+      "referee": {
+        "id": 244037,
+        "name": "Anderson Daronco"
       }
     },
     {
@@ -22136,6 +22168,10 @@
         "First team to score_Cruzeiro": 1.73,
         "First team to score_No goal": 9.0,
         "First team to score_Fluminense": 2.3
+      },
+      "referee": {
+        "id": 789502,
+        "name": "Lucas Casagrande"
       }
     },
     {
@@ -22179,6 +22215,10 @@
         "First team to score_Remo": 2.1,
         "First team to score_No goal": 9.0,
         "First team to score_São Paulo": 1.91
+      },
+      "referee": {
+        "id": 788983,
+        "name": "Jonathan Benkenstein Pinheiro"
       }
     }
   ]

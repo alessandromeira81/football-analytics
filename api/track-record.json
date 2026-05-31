@@ -2,10 +2,10 @@
   "period": "7d",
   "min_prob": null,
   "summary": {
-    "total": 28,
-    "wins": 18,
-    "losses": 10,
-    "win_rate": 0.64
+    "total": 16,
+    "wins": 8,
+    "losses": 8,
+    "win_rate": 0.5
   },
   "by_band": [
     {
@@ -17,51 +17,27 @@
     },
     {
       "band": "90%+",
-      "total": 4,
-      "wins": 1,
+      "total": 3,
+      "wins": 0,
       "losses": 3,
-      "win_rate": 0.25
+      "win_rate": 0.0
     },
     {
       "band": "85%+",
-      "total": 5,
-      "wins": 3,
-      "losses": 2,
-      "win_rate": 0.6
+      "total": 3,
+      "wins": 2,
+      "losses": 1,
+      "win_rate": 0.67
     },
     {
       "band": "80%+",
-      "total": 16,
-      "wins": 14,
-      "losses": 2,
-      "win_rate": 0.88
-    }
-  ],
-  "by_league": [
-    {
-      "league_key": "brasileirao",
-      "league": "Brasileirao Serie A",
       "total": 7,
       "wins": 6,
       "losses": 1,
       "win_rate": 0.86
-    },
-    {
-      "league_key": "laliga",
-      "league": "La Liga",
-      "total": 7,
-      "wins": 5,
-      "losses": 2,
-      "win_rate": 0.71
-    },
-    {
-      "league_key": "seriea",
-      "league": "Serie A",
-      "total": 5,
-      "wins": 3,
-      "losses": 2,
-      "win_rate": 0.6
-    },
+    }
+  ],
+  "by_league": [
     {
       "league_key": "ligue1",
       "league": "Ligue 1",
@@ -77,22 +53,38 @@
       "wins": 4,
       "losses": 0,
       "win_rate": 1.0
+    },
+    {
+      "league_key": "seriea",
+      "league": "Serie A",
+      "total": 4,
+      "wins": 2,
+      "losses": 2,
+      "win_rate": 0.5
+    },
+    {
+      "league_key": "brasileirao",
+      "league": "Brasileirao Serie A",
+      "total": 3,
+      "wins": 2,
+      "losses": 1,
+      "win_rate": 0.67
     }
   ],
   "by_market": [
     {
       "market": "Gols",
-      "total": 23,
-      "wins": 15,
-      "losses": 8,
-      "win_rate": 0.65
+      "total": 14,
+      "wins": 7,
+      "losses": 7,
+      "win_rate": 0.5
     },
     {
       "market": "Escanteios",
-      "total": 4,
-      "wins": 3,
-      "losses": 1,
-      "win_rate": 0.75
+      "total": 1,
+      "wins": 1,
+      "losses": 0,
+      "win_rate": 1.0
     },
     {
       "market": "BTTS",
@@ -103,11 +95,6 @@
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-23",
-      "wins": 10,
-      "losses": 2
-    },
     {
       "date": "2026-05-24",
       "wins": 8,
@@ -137,7 +124,12 @@
       "date": "2026-05-29",
       "wins": 0,
       "losses": 1
+    },
+    {
+      "date": "2026-05-30",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-05-30T21:01:16Z"
+  "generated_at": "2026-05-31T13:52:40Z"
 }

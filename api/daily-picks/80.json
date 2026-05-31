@@ -1,38 +1,38 @@
 {
-  "date": "2026-05-30",
-  "generated_at": "2026-05-30T21:01:16Z",
+  "date": "2026-05-31",
+  "generated_at": "2026-05-31T13:52:40Z",
   "min_prob": 80,
   "count": 2,
   "picks": [
     {
       "league": "Brasileirao Serie A",
       "league_key": "brasileirao",
-      "home_team": "Bahia",
-      "away_team": "Botafogo",
-      "kickoff": "2026-05-30T00:00:00Z",
-      "date": "2026-05-30",
-      "market": "Gols",
-      "pick": "Over 1.5 gols",
-      "label": "Over 1.5 gols",
-      "probability": 83,
-      "confidence_band": "80%+",
-      "odds": 1.22,
-      "bet_id": "brasileirao|Bahia|Botafogo|Over 1.5 gols"
+      "home_team": "Red Bull Bragantino",
+      "away_team": "Internacional",
+      "kickoff": "2026-05-31T00:00:00Z",
+      "date": "2026-05-31",
+      "market": "Escanteios",
+      "pick": "Over 8.5 escanteios",
+      "label": "Over 8.5 escanteios",
+      "probability": 86,
+      "confidence_band": "85%+",
+      "odds": null,
+      "bet_id": "brasileirao|Red Bull Bragantino|Internacional|Over 8.5 escanteios"
     },
     {
       "league": "Brasileirao Serie A",
       "league_key": "brasileirao",
-      "home_team": "Grêmio",
-      "away_team": "Corinthians",
-      "kickoff": "2026-05-30T00:00:00Z",
-      "date": "2026-05-30",
+      "home_team": "Vasco da Gama",
+      "away_team": "Atlético Mineiro",
+      "kickoff": "2026-05-31T00:00:00Z",
+      "date": "2026-05-31",
       "market": "Gols",
       "pick": "Under 3.5 gols",
       "label": "Under 3.5 gols",
       "probability": 80,
       "confidence_band": "80%+",
-      "odds": 1.2,
-      "bet_id": "brasileirao|Grêmio|Corinthians|Under 3.5 gols"
+      "odds": 1.29,
+      "bet_id": "brasileirao|Vasco da Gama|Atlético Mineiro|Under 3.5 gols"
     }
   ]
 }

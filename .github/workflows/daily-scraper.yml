@@ -34,7 +34,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Python dependencies
-        run: pip install playwright firebase-admin
+        run: pip install playwright firebase-admin playwright-stealth
 
       - name: Install Chromium
         run: python -m playwright install chromium
@@ -205,7 +205,7 @@ jobs:
           git pull origin main --no-edit
 
       - name: Install Python dependencies
-        run: pip install playwright firebase-admin
+        run: pip install playwright firebase-admin playwright-stealth
 
       - name: Install Chromium
         run: python -m playwright install chromium

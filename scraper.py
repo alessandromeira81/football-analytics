@@ -127,31 +127,35 @@ PERIOD_MAP = {"ALL": "all", "1ST": "1t", "2ND": "2t"}
 # ─── Fetch via browser context ────────────────────────────────────────────────
 
 def browser_fetch(page, url):
-    """Faz requisicao HTTP via Playwright APIRequestContext.
+    """Faz requisicao via fetch DENTRO da pagina (browser context).
 
-    Usa o mesmo cookie jar do navegador (mesma sessao que o Sofascore viu),
-    sem as restricoes de CORS do JavaScript in-page.
+    Crucial: usar page.evaluate(fetch) e nao context.request — a Sofascore
+    detecta APIRequestContext como bot mas aceita fetch in-page (com cookies
+    e fingerprint reais do browser).
     """
     try:
-        resp = page.context.request.get(
-            url,
-            headers={
-                "Accept":           "application/json, text/plain, */*",
-                "Accept-Language":  "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
-                "Cache-Control":    "no-cache",
-                "Pragma":           "no-cache",
-                "Referer":          "https://www.sofascore.com/",
-                "Origin":           "https://www.sofascore.com",
-                "Sec-Fetch-Dest":   "empty",
-                "Sec-Fetch-Mode":   "cors",
-                "Sec-Fetch-Site":   "same-site",
-            },
-            timeout=20000,
-        )
-        if not resp.ok:
-            print(f"  [ERR] HTTP {resp.status} → ...{url[-60:]}", flush=True)
+        # IMPORTANTE: usar apenas headers "simples" (Accept, Accept-Language).
+        # Cache-Control e Pragma forcam CORS preflight OPTIONS, que a Sofascore
+        # nao permite — o fetch falha com 'TypeError: Failed to fetch'.
+        result = page.evaluate("""async (url) => {
+            try {
+                const r = await fetch(url, {
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7',
+                    }
+                });
+                if (!r.ok) return { error: true, status: r.status };
+                return { error: false, data: await r.json() };
+            } catch (e) {
+                return { error: true, exception: e.toString() };
+            }
+        }""", url)
+        if result.get("error"):
+            status = result.get("status") or result.get("exception") or "?"
+            print(f"  [ERR] HTTP {status} → ...{url[-60:]}", flush=True)
             return None
-        return resp.json()
+        return result.get("data")
     except Exception as e:
         print(f"  [ERR] {e}", flush=True)
         return None
@@ -892,6 +896,14 @@ def main():
     print(f"  Ligas: {', '.join(valid)}", flush=True)
     print("=" * 56, flush=True)
 
+    # Tenta usar playwright-stealth (anti-deteccao). Fallback se nao instalado.
+    try:
+        from playwright_stealth import Stealth
+        USE_STEALTH = True
+    except ImportError:
+        USE_STEALTH = False
+        print("  [WARN] playwright-stealth nao instalado", flush=True)
+
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=True)
         ctx     = browser.new_context(
@@ -905,35 +917,28 @@ def main():
             viewport={"width": 1920, "height": 1080},
             extra_http_headers={
                 "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
-                "Sec-Ch-Ua": '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-                "Sec-Ch-Ua-Mobile": "?0",
-                "Sec-Ch-Ua-Platform": '"Windows"',
             },
         )
         page = ctx.new_page()
 
-        # Stealth: esconde sinais comuns de automacao (webdriver, plugins vazios, etc.)
-        # Aplicado ANTES de qualquer navegacao para nao ser detectado.
-        page.add_init_script("""
-            Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
-            Object.defineProperty(navigator, 'plugins', { get: () => [1,2,3,4,5] });
-            Object.defineProperty(navigator, 'languages', { get: () => ['pt-BR', 'pt', 'en'] });
-            window.chrome = { runtime: {} };
-            const originalQuery = window.navigator.permissions.query;
-            window.navigator.permissions.query = (parameters) => (
-                parameters.name === 'notifications'
-                    ? Promise.resolve({ state: Notification.permission })
-                    : originalQuery(parameters)
-            );
-        """)
+        if USE_STEALTH:
+            Stealth().apply_stealth_sync(page)
+            print("  Stealth aplicado.", flush=True)
 
-        # Aquece o contexto com a pagina inicial do Sofascore
-        print("Abrindo Sofascore...", flush=True)
+        # Aquece o contexto com navegacao humanizada (home -> futebol -> espera)
+        # Crucial para passar pela detecao do Sofascore.
+        print("Abrindo Sofascore (home)...", flush=True)
         try:
             page.goto("https://www.sofascore.com", wait_until="domcontentloaded", timeout=30000)
         except Exception as e:
-            print(f"  [WARN] Home do Sofascore nao carregou: {e}", flush=True)
-        time.sleep(3)
+            print(f"  [WARN] Home nao carregou: {e}", flush=True)
+        time.sleep(5)
+        print("Navegando para /football...", flush=True)
+        try:
+            page.goto("https://www.sofascore.com/football", wait_until="domcontentloaded", timeout=30000)
+        except Exception as e:
+            print(f"  [WARN] /football nao carregou: {e}", flush=True)
+        time.sleep(5)
         print(f"  URL atual: {page.url}", flush=True)
 
         # Teste rapido de acesso a API — confirma que a sessao esta funcional

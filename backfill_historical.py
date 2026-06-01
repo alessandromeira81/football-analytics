@@ -163,6 +163,13 @@ def backfill(league_key, year):
     print(f"  Backfill: {league['name']} | Ano: {year}")
     print(f"{'='*60}")
 
+    try:
+        from playwright_stealth import Stealth
+        USE_STEALTH = True
+    except ImportError:
+        USE_STEALTH = False
+        print("[WARN] playwright-stealth nao instalado", flush=True)
+
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=True)
         ctx = browser.new_context(
@@ -176,26 +183,32 @@ def backfill(league_key, year):
             viewport={"width": 1920, "height": 1080},
         )
         page = ctx.new_page()
-        page.add_init_script("""
-            Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
-            Object.defineProperty(navigator, 'plugins', { get: () => [1,2,3,4,5] });
-        """)
 
-        # Aquece sessao
-        print("Abrindo Sofascore...", flush=True)
+        if USE_STEALTH:
+            Stealth().apply_stealth_sync(page)
+            print("Stealth aplicado.", flush=True)
+
+        # Aquece sessao com navegacao humanizada (essencial pra passar bloqueio)
+        print("Abrindo Sofascore (home)...", flush=True)
         try:
             page.goto("https://www.sofascore.com", wait_until="domcontentloaded", timeout=30000)
         except Exception as e:
             print(f"  [WARN] Home: {e}", flush=True)
-        time.sleep(3)
+        time.sleep(5)
+        print("Navegando /football...", flush=True)
+        try:
+            page.goto("https://www.sofascore.com/football", wait_until="domcontentloaded", timeout=30000)
+        except Exception as e:
+            print(f"  [WARN] /football: {e}", flush=True)
+        time.sleep(5)
 
-        # Teste API
-        _test = browser_fetch(page, f"{BASE}/sport/0/scheduled-events/2026-05-08")
+        # Teste API com endpoint de seasons (sempre disponivel pra qualquer liga)
+        _test = browser_fetch(page, f"{BASE}/unique-tournament/{tid}/seasons")
         if _test is None:
             print("[ERRO] API Sofascore bloqueada. Backfill cancelado.", flush=True)
             browser.close()
             sys.exit(2)
-        print(f"API OK ({len(_test.get('events', []))} eventos teste)", flush=True)
+        print(f"API OK ({len(_test.get('seasons', []))} temporadas listadas)", flush=True)
 
         # Descobre season_id
         sid, season_name = find_season_id_for_year(page, tid, year)

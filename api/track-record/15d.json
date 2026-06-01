@@ -2,10 +2,10 @@
   "period": "15d",
   "min_prob": null,
   "summary": {
-    "total": 63,
-    "wins": 49,
+    "total": 61,
+    "wins": 47,
     "losses": 14,
-    "win_rate": 0.78
+    "win_rate": 0.77
   },
   "by_band": [
     {
@@ -24,10 +24,10 @@
     },
     {
       "band": "85%+",
-      "total": 21,
-      "wins": 17,
+      "total": 19,
+      "wins": 15,
       "losses": 4,
-      "win_rate": 0.81
+      "win_rate": 0.79
     },
     {
       "band": "80%+",
@@ -81,17 +81,17 @@
     {
       "league_key": "saudi",
       "league": "Saudi Pro League",
-      "total": 8,
-      "wins": 7,
+      "total": 6,
+      "wins": 5,
       "losses": 1,
-      "win_rate": 0.88
+      "win_rate": 0.83
     }
   ],
   "by_market": [
     {
       "market": "Gols",
-      "total": 51,
-      "wins": 40,
+      "total": 49,
+      "wins": 38,
       "losses": 11,
       "win_rate": 0.78
     },
@@ -118,11 +118,6 @@
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-16",
-      "wins": 2,
-      "losses": 0
-    },
     {
       "date": "2026-05-17",
       "wins": 21,
@@ -192,7 +187,12 @@
       "date": "2026-05-30",
       "wins": 2,
       "losses": 0
+    },
+    {
+      "date": "2026-05-31",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-06-01T02:32:49Z"
+  "generated_at": "2026-06-01T03:04:31Z"
 }

@@ -5,9 +5,9 @@
     "tournamentId": 17,
     "seasonId": 76986,
     "lastRound": 38,
-    "totalGames": 759,
-    "updatedAt": "2026-06-01T03:04:17Z",
-    "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents. | backfill_2024=380"
+    "totalGames": 760,
+    "updatedAt": "2026-06-01T11:32:48Z",
+    "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents. | backfill_2024=380 | backfill_2025=1"
   },
   "games": [
     {
@@ -89782,6 +89782,117 @@
       "referee": {
         "id": 81627,
         "name": "Craig Pawson"
+      }
+    },
+    {
+      "id": 15999228,
+      "round": 31,
+      "date": "2026-05-13",
+      "homeTeam": "Manchester City",
+      "awayTeam": "Crystal Palace",
+      "homeId": 17,
+      "awayId": 7,
+      "score": {
+        "home": 3,
+        "away": 0
+      },
+      "stats": {
+        "all": {
+          "shots": {
+            "home": 15,
+            "away": 6
+          },
+          "corners": {
+            "home": 9,
+            "away": 4
+          },
+          "fouls": {
+            "home": 10,
+            "away": 7
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 4,
+            "away": 2
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "1t": {
+          "shots": {
+            "home": 10,
+            "away": 3
+          },
+          "corners": {
+            "home": 6,
+            "away": 2
+          },
+          "fouls": {
+            "home": 5,
+            "away": 4
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 0
+          },
+          "shotsOnTarget": {
+            "home": 3,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        },
+        "2t": {
+          "shots": {
+            "home": 5,
+            "away": 3
+          },
+          "corners": {
+            "home": 3,
+            "away": 2
+          },
+          "fouls": {
+            "home": 5,
+            "away": 3
+          },
+          "yellowCards": {
+            "home": 0,
+            "away": 2
+          },
+          "shotsOnTarget": {
+            "home": 1,
+            "away": 1
+          },
+          "redCards": {
+            "home": 0,
+            "away": 0
+          }
+        }
+      },
+      "cards": [
+        {
+          "type": "yellow",
+          "minute": 81,
+          "isHome": false,
+          "period": "2t"
+        },
+        {
+          "type": "yellow",
+          "minute": 52,
+          "isHome": false,
+          "period": "2t"
+        }
+      ],
+      "referee": {
+        "id": 52597,
+        "name": "Stuart Attwell"
       }
     }
   ],

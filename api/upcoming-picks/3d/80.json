@@ -2,39 +2,8 @@
   "from_date": "2026-05-31",
   "to_date": "2026-06-02",
   "days": 3,
-  "generated_at": "2026-06-01T02:03:20Z",
+  "generated_at": "2026-06-01T02:32:49Z",
   "min_prob": 80,
-  "count": 2,
-  "picks": [
-    {
-      "league": "Brasileirao Serie A",
-      "league_key": "brasileirao",
-      "home_team": "Palmeiras",
-      "away_team": "Chapecoense",
-      "kickoff": "2026-05-31T00:00:00Z",
-      "date": "2026-05-31",
-      "market": "Cartoes",
-      "pick": "Over 3.5 cartoes",
-      "label": "Over 3.5 cartoes",
-      "probability": 82,
-      "confidence_band": "80%+",
-      "odds": null,
-      "bet_id": "brasileirao|Palmeiras|Chapecoense|Over 3.5 cartoes"
-    },
-    {
-      "league": "Brasileirao Serie A",
-      "league_key": "brasileirao",
-      "home_team": "Cruzeiro",
-      "away_team": "Fluminense",
-      "kickoff": "2026-05-31T00:00:00Z",
-      "date": "2026-05-31",
-      "market": "Gols",
-      "pick": "Under 3.5 gols",
-      "label": "Under 3.5 gols",
-      "probability": 81,
-      "confidence_band": "80%+",
-      "odds": 1.29,
-      "bet_id": "brasileirao|Cruzeiro|Fluminense|Under 3.5 gols"
-    }
-  ]
+  "count": 0,
+  "picks": []
 }

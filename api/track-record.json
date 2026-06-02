@@ -2,10 +2,10 @@
   "period": "7d",
   "min_prob": null,
   "summary": {
-    "total": 8,
+    "total": 7,
     "wins": 1,
-    "losses": 7,
-    "win_rate": 0.12
+    "losses": 6,
+    "win_rate": 0.14
   },
   "by_band": [
     {
@@ -31,9 +31,9 @@
     },
     {
       "band": "80%+",
-      "total": 2,
+      "total": 1,
       "wins": 0,
-      "losses": 2,
+      "losses": 1,
       "win_rate": 0.0
     }
   ],
@@ -49,18 +49,18 @@
     {
       "league_key": "brasileirao",
       "league": "Brasileirao Serie A",
-      "total": 3,
+      "total": 2,
       "wins": 1,
-      "losses": 2,
-      "win_rate": 0.33
+      "losses": 1,
+      "win_rate": 0.5
     }
   ],
   "by_market": [
     {
       "market": "Gols",
-      "total": 6,
+      "total": 5,
       "wins": 0,
-      "losses": 6,
+      "losses": 5,
       "win_rate": 0.0
     },
     {
@@ -79,11 +79,6 @@
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-25",
-      "wins": 0,
-      "losses": 1
-    },
     {
       "date": "2026-05-26",
       "wins": 0,
@@ -113,7 +108,12 @@
       "date": "2026-05-31",
       "wins": 1,
       "losses": 0
+    },
+    {
+      "date": "2026-06-01",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-06-02T02:25:43Z"
+  "generated_at": "2026-06-02T16:41:27Z"
 }

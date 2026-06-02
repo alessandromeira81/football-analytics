@@ -2,143 +2,138 @@
   "period": "30d",
   "min_prob": null,
   "summary": {
-    "total": 208,
-    "wins": 139,
-    "losses": 69,
-    "win_rate": 0.67
+    "total": 175,
+    "wins": 113,
+    "losses": 62,
+    "win_rate": 0.65
   },
   "by_band": [
     {
       "band": "95%+",
-      "total": 21,
-      "wins": 12,
-      "losses": 9,
-      "win_rate": 0.57
+      "total": 16,
+      "wins": 8,
+      "losses": 8,
+      "win_rate": 0.5
     },
     {
       "band": "90%+",
-      "total": 28,
-      "wins": 19,
-      "losses": 9,
-      "win_rate": 0.68
+      "total": 21,
+      "wins": 14,
+      "losses": 7,
+      "win_rate": 0.67
     },
     {
       "band": "85%+",
-      "total": 61,
-      "wins": 39,
+      "total": 56,
+      "wins": 34,
       "losses": 22,
-      "win_rate": 0.64
+      "win_rate": 0.61
     },
     {
       "band": "80%+",
-      "total": 98,
-      "wins": 69,
-      "losses": 29,
+      "total": 82,
+      "wins": 57,
+      "losses": 25,
       "win_rate": 0.7
     }
   ],
   "by_league": [
     {
-      "league_key": "argentina",
-      "league": "Liga Profesional",
-      "total": 34,
-      "wins": 22,
-      "losses": 12,
-      "win_rate": 0.65
-    },
-    {
       "league_key": "brasileirao",
       "league": "Brasileirao Serie A",
-      "total": 34,
-      "wins": 19,
-      "losses": 15,
-      "win_rate": 0.56
+      "total": 29,
+      "wins": 16,
+      "losses": 13,
+      "win_rate": 0.55
     },
     {
       "league_key": "seriea",
       "league": "Serie A",
-      "total": 29,
-      "wins": 17,
+      "total": 28,
+      "wins": 16,
       "losses": 12,
-      "win_rate": 0.59
+      "win_rate": 0.57
     },
     {
       "league_key": "laliga",
       "league": "La Liga",
-      "total": 28,
-      "wins": 24,
+      "total": 27,
+      "wins": 23,
       "losses": 4,
-      "win_rate": 0.86
+      "win_rate": 0.85
+    },
+    {
+      "league_key": "argentina",
+      "league": "Liga Profesional",
+      "total": 23,
+      "wins": 13,
+      "losses": 10,
+      "win_rate": 0.57
     },
     {
       "league_key": "saudi",
       "league": "Saudi Pro League",
-      "total": 25,
-      "wins": 22,
+      "total": 22,
+      "wins": 19,
       "losses": 3,
-      "win_rate": 0.88
+      "win_rate": 0.86
     },
     {
       "league_key": "premier",
       "league": "Premier League",
-      "total": 23,
-      "wins": 16,
-      "losses": 7,
+      "total": 20,
+      "wins": 14,
+      "losses": 6,
       "win_rate": 0.7
     },
     {
       "league_key": "ligue1",
       "league": "Ligue 1",
-      "total": 21,
-      "wins": 9,
-      "losses": 12,
-      "win_rate": 0.43
+      "total": 19,
+      "wins": 8,
+      "losses": 11,
+      "win_rate": 0.42
     },
     {
       "league_key": "bundesliga",
       "league": "Bundesliga",
-      "total": 14,
-      "wins": 10,
-      "losses": 4,
-      "win_rate": 0.71
+      "total": 7,
+      "wins": 4,
+      "losses": 3,
+      "win_rate": 0.57
     }
   ],
   "by_market": [
     {
       "market": "Gols",
-      "total": 148,
-      "wins": 105,
-      "losses": 43,
-      "win_rate": 0.71
+      "total": 127,
+      "wins": 86,
+      "losses": 41,
+      "win_rate": 0.68
     },
     {
       "market": "Escanteios",
-      "total": 32,
-      "wins": 22,
-      "losses": 10,
-      "win_rate": 0.69
+      "total": 26,
+      "wins": 17,
+      "losses": 9,
+      "win_rate": 0.65
     },
     {
       "market": "BTTS",
-      "total": 15,
-      "wins": 5,
-      "losses": 10,
-      "win_rate": 0.33
+      "total": 13,
+      "wins": 4,
+      "losses": 9,
+      "win_rate": 0.31
     },
     {
       "market": "Resultado",
-      "total": 13,
-      "wins": 7,
-      "losses": 6,
-      "win_rate": 0.54
+      "total": 9,
+      "wins": 6,
+      "losses": 3,
+      "win_rate": 0.67
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-02",
-      "wins": 26,
-      "losses": 7
-    },
     {
       "date": "2026-05-03",
       "wins": 30,
@@ -283,7 +278,12 @@
       "date": "2026-05-31",
       "wins": 1,
       "losses": 0
+    },
+    {
+      "date": "2026-06-01",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-06-02T02:25:43Z"
+  "generated_at": "2026-06-02T16:41:27Z"
 }

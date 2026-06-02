@@ -6,8 +6,8 @@
     "seasonId": 77333,
     "lastRound": 34,
     "totalGames": 616,
-    "updatedAt": "2026-06-02T02:14:28Z",
-    "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents. | backfill_2024=308"
+    "updatedAt": "2026-06-02T02:25:29Z",
+    "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents. | backfill_2024=308 | backfill_2025=0"
   },
   "games": [
     {

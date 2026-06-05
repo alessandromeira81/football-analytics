@@ -2,25 +2,25 @@
   "period": "30d",
   "min_prob": 90,
   "summary": {
-    "total": 19,
-    "wins": 10,
+    "total": 17,
+    "wins": 8,
     "losses": 9,
-    "win_rate": 0.53
+    "win_rate": 0.47
   },
   "by_band": [
     {
       "band": "95%+",
-      "total": 6,
-      "wins": 1,
+      "total": 5,
+      "wins": 0,
       "losses": 5,
-      "win_rate": 0.17
+      "win_rate": 0.0
     },
     {
       "band": "90%+",
-      "total": 13,
-      "wins": 9,
+      "total": 12,
+      "wins": 8,
       "losses": 4,
-      "win_rate": 0.69
+      "win_rate": 0.67
     },
     {
       "band": "85%+",
@@ -63,14 +63,6 @@
       "win_rate": 1.0
     },
     {
-      "league_key": "argentina",
-      "league": "Liga Profesional",
-      "total": 2,
-      "wins": 2,
-      "losses": 0,
-      "win_rate": 1.0
-    },
-    {
       "league_key": "brasileirao",
       "league": "Brasileirao Serie A",
       "total": 1,
@@ -98,10 +90,10 @@
   "by_market": [
     {
       "market": "Gols",
-      "total": 18,
-      "wins": 10,
+      "total": 16,
+      "wins": 8,
       "losses": 8,
-      "win_rate": 0.56
+      "win_rate": 0.5
     },
     {
       "market": "BTTS",
@@ -112,11 +104,6 @@
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-05",
-      "wins": 2,
-      "losses": 0
-    },
     {
       "date": "2026-05-06",
       "wins": 0,
@@ -261,7 +248,12 @@
       "date": "2026-06-03",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "date": "2026-06-04",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-06-04T15:24:50Z"
+  "generated_at": "2026-06-05T15:00:02Z"
 }

@@ -2,10 +2,10 @@
   "period": "7d",
   "min_prob": null,
   "summary": {
-    "total": 3,
+    "total": 2,
     "wins": 1,
-    "losses": 2,
-    "win_rate": 0.33
+    "losses": 1,
+    "win_rate": 0.5
   },
   "by_band": [
     {
@@ -17,9 +17,9 @@
     },
     {
       "band": "90%+",
-      "total": 1,
+      "total": 0,
       "wins": 0,
-      "losses": 1,
+      "losses": 0,
       "win_rate": 0.0
     },
     {
@@ -45,38 +45,25 @@
       "wins": 1,
       "losses": 1,
       "win_rate": 0.5
-    },
-    {
-      "league_key": "ligue1",
-      "league": "Ligue 1",
-      "total": 1,
-      "wins": 0,
-      "losses": 1,
-      "win_rate": 0.0
     }
   ],
   "by_market": [
-    {
-      "market": "Gols",
-      "total": 2,
-      "wins": 0,
-      "losses": 2,
-      "win_rate": 0.0
-    },
     {
       "market": "Escanteios",
       "total": 1,
       "wins": 1,
       "losses": 0,
       "win_rate": 1.0
+    },
+    {
+      "market": "Gols",
+      "total": 1,
+      "wins": 0,
+      "losses": 1,
+      "win_rate": 0.0
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-29",
-      "wins": 0,
-      "losses": 1
-    },
     {
       "date": "2026-05-30",
       "wins": 0,
@@ -106,7 +93,12 @@
       "date": "2026-06-04",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "date": "2026-06-05",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-06-05T15:00:02Z"
+  "generated_at": "2026-06-06T13:52:30Z"
 }

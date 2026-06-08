@@ -2,9 +2,9 @@
   "period": "30d",
   "min_prob": null,
   "summary": {
-    "total": 109,
-    "wins": 74,
-    "losses": 35,
+    "total": 107,
+    "wins": 73,
+    "losses": 34,
     "win_rate": 0.68
   },
   "by_band": [
@@ -24,17 +24,17 @@
     },
     {
       "band": "85%+",
-      "total": 35,
-      "wins": 24,
+      "total": 34,
+      "wins": 23,
       "losses": 11,
-      "win_rate": 0.69
+      "win_rate": 0.68
     },
     {
       "band": "80%+",
-      "total": 58,
+      "total": 57,
       "wins": 43,
-      "losses": 15,
-      "win_rate": 0.74
+      "losses": 14,
+      "win_rate": 0.75
     }
   ],
   "by_league": [
@@ -49,10 +49,10 @@
     {
       "league_key": "laliga",
       "league": "La Liga",
-      "total": 21,
+      "total": 20,
       "wins": 18,
-      "losses": 3,
-      "win_rate": 0.86
+      "losses": 2,
+      "win_rate": 0.9
     },
     {
       "league_key": "premier",
@@ -89,18 +89,18 @@
     {
       "league_key": "bundesliga",
       "league": "Bundesliga",
-      "total": 6,
-      "wins": 3,
+      "total": 5,
+      "wins": 2,
       "losses": 3,
-      "win_rate": 0.5
+      "win_rate": 0.4
     }
   ],
   "by_market": [
     {
       "market": "Gols",
-      "total": 87,
-      "wins": 59,
-      "losses": 28,
+      "total": 85,
+      "wins": 58,
+      "losses": 27,
       "win_rate": 0.68
     },
     {
@@ -126,11 +126,6 @@
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-08",
-      "wins": 1,
-      "losses": 1
-    },
     {
       "date": "2026-05-09",
       "wins": 9,
@@ -275,7 +270,12 @@
       "date": "2026-06-06",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "date": "2026-06-07",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-06-07T14:02:28Z"
+  "generated_at": "2026-06-08T16:00:58Z"
 }

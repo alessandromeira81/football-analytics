@@ -2,17 +2,17 @@
   "period": "30d",
   "min_prob": 90,
   "summary": {
-    "total": 16,
+    "total": 15,
     "wins": 7,
-    "losses": 9,
-    "win_rate": 0.44
+    "losses": 8,
+    "win_rate": 0.47
   },
   "by_band": [
     {
       "band": "95%+",
-      "total": 5,
+      "total": 4,
       "wins": 0,
-      "losses": 5,
+      "losses": 4,
       "win_rate": 0.0
     },
     {
@@ -69,23 +69,15 @@
       "wins": 1,
       "losses": 0,
       "win_rate": 1.0
-    },
-    {
-      "league_key": "bundesliga",
-      "league": "Bundesliga",
-      "total": 1,
-      "wins": 0,
-      "losses": 1,
-      "win_rate": 0.0
     }
   ],
   "by_market": [
     {
       "market": "Gols",
-      "total": 15,
+      "total": 14,
       "wins": 7,
-      "losses": 8,
-      "win_rate": 0.47
+      "losses": 7,
+      "win_rate": 0.5
     },
     {
       "market": "BTTS",
@@ -96,11 +88,6 @@
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-09",
-      "wins": 0,
-      "losses": 1
-    },
     {
       "date": "2026-05-10",
       "wins": 2,
@@ -245,7 +232,12 @@
       "date": "2026-06-07",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "date": "2026-06-08",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-06-08T16:00:58Z"
+  "generated_at": "2026-06-09T15:00:49Z"
 }

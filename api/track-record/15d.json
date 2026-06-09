@@ -2,17 +2,17 @@
   "period": "15d",
   "min_prob": null,
   "summary": {
-    "total": 18,
-    "wins": 9,
-    "losses": 9,
-    "win_rate": 0.5
+    "total": 8,
+    "wins": 1,
+    "losses": 7,
+    "win_rate": 0.12
   },
   "by_band": [
     {
       "band": "95%+",
-      "total": 3,
+      "total": 2,
       "wins": 0,
-      "losses": 3,
+      "losses": 2,
       "win_rate": 0.0
     },
     {
@@ -24,28 +24,20 @@
     },
     {
       "band": "85%+",
-      "total": 4,
-      "wins": 3,
-      "losses": 1,
-      "win_rate": 0.75
+      "total": 1,
+      "wins": 1,
+      "losses": 0,
+      "win_rate": 1.0
     },
     {
       "band": "80%+",
-      "total": 8,
-      "wins": 6,
+      "total": 2,
+      "wins": 0,
       "losses": 2,
-      "win_rate": 0.75
+      "win_rate": 0.0
     }
   ],
   "by_league": [
-    {
-      "league_key": "brasileirao",
-      "league": "Brasileirao Serie A",
-      "total": 5,
-      "wins": 3,
-      "losses": 2,
-      "win_rate": 0.6
-    },
     {
       "league_key": "ligue1",
       "league": "Ligue 1",
@@ -55,34 +47,26 @@
       "win_rate": 0.0
     },
     {
-      "league_key": "premier",
-      "league": "Premier League",
-      "total": 4,
-      "wins": 4,
-      "losses": 0,
-      "win_rate": 1.0
-    },
-    {
-      "league_key": "seriea",
-      "league": "Serie A",
-      "total": 4,
-      "wins": 2,
+      "league_key": "brasileirao",
+      "league": "Brasileirao Serie A",
+      "total": 3,
+      "wins": 1,
       "losses": 2,
-      "win_rate": 0.5
+      "win_rate": 0.33
     }
   ],
   "by_market": [
     {
       "market": "Gols",
-      "total": 15,
-      "wins": 7,
-      "losses": 8,
-      "win_rate": 0.47
+      "total": 6,
+      "wins": 0,
+      "losses": 6,
+      "win_rate": 0.0
     },
     {
       "market": "Escanteios",
-      "total": 2,
-      "wins": 2,
+      "total": 1,
+      "wins": 1,
       "losses": 0,
       "win_rate": 1.0
     },
@@ -95,11 +79,6 @@
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-24",
-      "wins": 8,
-      "losses": 2
-    },
     {
       "date": "2026-05-25",
       "wins": 0,
@@ -169,7 +148,12 @@
       "date": "2026-06-07",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "date": "2026-06-08",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-06-08T16:00:58Z"
+  "generated_at": "2026-06-09T15:00:49Z"
 }

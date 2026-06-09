@@ -41,11 +41,6 @@
   "by_market": [],
   "daily_results": [
     {
-      "date": "2026-06-01",
-      "wins": 0,
-      "losses": 0
-    },
-    {
       "date": "2026-06-02",
       "wins": 0,
       "losses": 0
@@ -74,7 +69,12 @@
       "date": "2026-06-07",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "date": "2026-06-08",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-06-08T16:00:58Z"
+  "generated_at": "2026-06-09T15:00:49Z"
 }

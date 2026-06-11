@@ -2,10 +2,10 @@
   "period": "30d",
   "min_prob": null,
   "summary": {
-    "total": 71,
-    "wins": 53,
-    "losses": 18,
-    "win_rate": 0.75
+    "total": 66,
+    "wins": 51,
+    "losses": 15,
+    "win_rate": 0.77
   },
   "by_band": [
     {
@@ -17,10 +17,10 @@
     },
     {
       "band": "90%+",
-      "total": 9,
+      "total": 8,
       "wins": 5,
-      "losses": 4,
-      "win_rate": 0.56
+      "losses": 3,
+      "win_rate": 0.62
     },
     {
       "band": "85%+",
@@ -31,28 +31,28 @@
     },
     {
       "band": "80%+",
-      "total": 36,
-      "wins": 29,
-      "losses": 7,
-      "win_rate": 0.81
+      "total": 32,
+      "wins": 27,
+      "losses": 5,
+      "win_rate": 0.84
     }
   ],
   "by_league": [
     {
-      "league_key": "seriea",
-      "league": "Serie A",
-      "total": 16,
-      "wins": 10,
-      "losses": 6,
-      "win_rate": 0.62
-    },
-    {
       "league_key": "laliga",
       "league": "La Liga",
-      "total": 14,
-      "wins": 12,
+      "total": 13,
+      "wins": 11,
       "losses": 2,
-      "win_rate": 0.86
+      "win_rate": 0.85
+    },
+    {
+      "league_key": "seriea",
+      "league": "Serie A",
+      "total": 13,
+      "wins": 10,
+      "losses": 3,
+      "win_rate": 0.77
     },
     {
       "league_key": "saudi",
@@ -81,19 +81,19 @@
     {
       "league_key": "premier",
       "league": "Premier League",
-      "total": 9,
-      "wins": 8,
+      "total": 8,
+      "wins": 7,
       "losses": 1,
-      "win_rate": 0.89
+      "win_rate": 0.88
     }
   ],
   "by_market": [
     {
       "market": "Gols",
-      "total": 56,
-      "wins": 42,
-      "losses": 14,
-      "win_rate": 0.75
+      "total": 52,
+      "wins": 40,
+      "losses": 12,
+      "win_rate": 0.77
     },
     {
       "market": "Escanteios",
@@ -104,10 +104,10 @@
     },
     {
       "market": "BTTS",
-      "total": 4,
+      "total": 3,
       "wins": 2,
-      "losses": 2,
-      "win_rate": 0.5
+      "losses": 1,
+      "win_rate": 0.67
     },
     {
       "market": "Resultado",
@@ -118,11 +118,6 @@
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-11",
-      "wins": 2,
-      "losses": 3
-    },
     {
       "date": "2026-05-12",
       "wins": 0,
@@ -267,7 +262,12 @@
       "date": "2026-06-09",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "date": "2026-06-10",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-06-10T15:44:19Z"
+  "generated_at": "2026-06-11T16:10:49Z"
 }

@@ -2,24 +2,24 @@
   "period": "15d",
   "min_prob": 90,
   "summary": {
-    "total": 5,
+    "total": 1,
     "wins": 0,
-    "losses": 5,
+    "losses": 1,
     "win_rate": 0.0
   },
   "by_band": [
     {
       "band": "95%+",
-      "total": 2,
+      "total": 0,
       "wins": 0,
-      "losses": 2,
+      "losses": 0,
       "win_rate": 0.0
     },
     {
       "band": "90%+",
-      "total": 3,
+      "total": 1,
       "wins": 0,
-      "losses": 3,
+      "losses": 1,
       "win_rate": 0.0
     },
     {
@@ -41,22 +41,15 @@
     {
       "league_key": "ligue1",
       "league": "Ligue 1",
-      "total": 5,
+      "total": 1,
       "wins": 0,
-      "losses": 5,
+      "losses": 1,
       "win_rate": 0.0
     }
   ],
   "by_market": [
     {
       "market": "Gols",
-      "total": 4,
-      "wins": 0,
-      "losses": 4,
-      "win_rate": 0.0
-    },
-    {
-      "market": "BTTS",
       "total": 1,
       "wins": 0,
       "losses": 1,
@@ -64,11 +57,6 @@
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-26",
-      "wins": 0,
-      "losses": 4
-    },
     {
       "date": "2026-05-27",
       "wins": 0,
@@ -138,7 +126,12 @@
       "date": "2026-06-09",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "date": "2026-06-10",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-06-10T15:44:19Z"
+  "generated_at": "2026-06-11T16:10:49Z"
 }

@@ -2,24 +2,24 @@
   "period": "30d",
   "min_prob": null,
   "summary": {
-    "total": 7,
+    "total": 3,
     "wins": 1,
-    "losses": 6,
-    "win_rate": 0.14
+    "losses": 2,
+    "win_rate": 0.33
   },
   "by_band": [
     {
       "band": "95%+",
-      "total": 2,
+      "total": 0,
       "wins": 0,
-      "losses": 2,
+      "losses": 0,
       "win_rate": 0.0
     },
     {
       "band": "90%+",
-      "total": 3,
+      "total": 1,
       "wins": 0,
-      "losses": 3,
+      "losses": 1,
       "win_rate": 0.0
     },
     {
@@ -39,28 +39,28 @@
   ],
   "by_league": [
     {
-      "league_key": "ligue1",
-      "league": "Ligue 1",
-      "total": 5,
-      "wins": 0,
-      "losses": 5,
-      "win_rate": 0.0
-    },
-    {
       "league_key": "brasileirao",
       "league": "Brasileirao Serie A",
       "total": 2,
       "wins": 1,
       "losses": 1,
       "win_rate": 0.5
+    },
+    {
+      "league_key": "ligue1",
+      "league": "Ligue 1",
+      "total": 1,
+      "wins": 0,
+      "losses": 1,
+      "win_rate": 0.0
     }
   ],
   "by_market": [
     {
       "market": "Gols",
-      "total": 5,
+      "total": 2,
       "wins": 0,
-      "losses": 5,
+      "losses": 2,
       "win_rate": 0.0
     },
     {
@@ -69,21 +69,9 @@
       "wins": 1,
       "losses": 0,
       "win_rate": 1.0
-    },
-    {
-      "market": "BTTS",
-      "total": 1,
-      "wins": 0,
-      "losses": 1,
-      "win_rate": 0.0
     }
   ],
   "daily_results": [
-    {
-      "date": "2026-05-26",
-      "wins": 0,
-      "losses": 4
-    },
     {
       "date": "2026-05-27",
       "wins": 0,
@@ -228,7 +216,12 @@
       "date": "2026-06-24",
       "wins": 0,
       "losses": 0
+    },
+    {
+      "date": "2026-06-25",
+      "wins": 0,
+      "losses": 0
     }
   ],
-  "generated_at": "2026-06-25T14:43:50Z"
+  "generated_at": "2026-06-26T14:33:47Z"
 }

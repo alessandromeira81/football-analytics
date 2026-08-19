@@ -3,7 +3,7 @@
   "base_url": "https://cdn.jsdelivr.net/gh/alessandromeira81/football-analytics@main/api",
   "cors": "open (Access-Control-Allow-Origin: *)",
   "auth": "none",
-  "updated_at": "2026-08-18T12:53:16Z",
+  "updated_at": "2026-08-19T12:54:02Z",
   "endpoints": [
     {
       "name": "daily-picks",

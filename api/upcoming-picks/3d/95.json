@@ -1,8 +1,8 @@
 {
-  "from_date": "2026-08-21",
-  "to_date": "2026-08-23",
+  "from_date": "2026-08-22",
+  "to_date": "2026-08-24",
   "days": 3,
-  "generated_at": "2026-08-21T12:55:06Z",
+  "generated_at": "2026-08-22T12:45:13Z",
   "min_prob": 95,
   "count": 0,
   "picks": []

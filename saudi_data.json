@@ -6,8 +6,9 @@
     "seasonId": 80443,
     "lastRound": 34,
     "totalGames": 600,
-    "updatedAt": "2026-09-14T02:24:07Z",
-    "note": "Corners: granularidade 1T/2T apenas. Cartoes: minuto exato via incidents. | backfill_2024=306"
+    "updatedAt": "2026-09-14T17:56:03Z",
+    "note": "Coleta paginada (sem rounds). Corners: granularidade 1T/2T apenas.",
+    "pageMode": true
   },
   "games": [
     {
